@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import Study from "./Study.js";
 
 import nextBtn from "./assets/next.png";
 import Mega from "./assets/cylinder.png";
@@ -20,7 +21,7 @@ class Walkthrough extends React.Component {
         top:
           "Mega is your personal assistant. It can respond to basic commands",
         mid: "Try asking Mega what the weather is.",
-        speak: true
+        speak: "It is currently 59 degrees Fahrenheit."
       },
       {
         mega: true,
@@ -35,7 +36,7 @@ class Walkthrough extends React.Component {
           "However, Mega may not always be accurate. Keep an eye out for any errors!"
       }
     ];
-    this.state = { text, index: 0, speaking: false };
+    this.state = { text, index: 0, speaking: false, doneSpeaking: false };
   }
 
   //helper function to get text
@@ -45,25 +46,28 @@ class Walkthrough extends React.Component {
   }
 
   speakBtn() {
-    this.setState({ speaking: !this.state.speaking });
+    this.setState({ doneSpeaking: !this.state.doneSpeaking });
+    if (this.state.doneSpeaking) {
+      this.setState({ speaking: !this.state.speaking });
+    }
   }
 
   render() {
-    const { text, index, speaking } = this.state;
+    const { text, index, speaking, doneSpeaking } = this.state;
 
     if (index >= text.length) {
-      return <></>;
+      return <Study />;
     }
 
     const currTex = text[index];
 
     return (
-      <div className="App header" style={{ marginTop: "50px" }}>
+      <div className="body">
         <h1>
           {" "}
           <b> {currTex.header} </b>{" "}
         </h1>
-        <div className="App">
+        <div>
           <p> {currTex.top} </p>
           <p> {currTex.mid} </p>
           <p> {currTex.bottom} </p>
@@ -74,12 +78,12 @@ class Walkthrough extends React.Component {
               alt="mega"
             />
           )}
-          {!currTex.speak ? (
+          {!currTex.speak || speaking ? (
             <NextButton getNextText={this.getNextText.bind(this)} />
           ) : (
             <p>
               <button id="btn" class="speak" onClick={() => this.speakBtn()}>
-                {speaking ? "Click to Speak" : "Done speaking"}
+                {!doneSpeaking ? "Click to Speak" : "Done speaking"}
               </button>
             </p>
           )}
@@ -97,7 +101,7 @@ const NextButton = (props) => {
       <img
         src={nextBtn}
         style={{
-          width: "10%",
+          width: "90px",
           position: "fixed",
           bottom: "100px",
           right: "100px"
@@ -112,7 +116,7 @@ const NextButton = (props) => {
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="App">
         <Walkthrough />
       </div>
     );

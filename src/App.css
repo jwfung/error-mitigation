@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-style: Sans-Serif;
 }
 
 .App-logo {
@@ -24,17 +25,17 @@
   color: white;
 }
 
-.paragraph {
-  background-color: #282c34;
+.body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   justify-content: center;
   max-width: 500px;
   margin: auto;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
 .App-link {
