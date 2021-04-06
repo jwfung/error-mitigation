@@ -32,21 +32,22 @@ class Study extends React.Component {
     const currSpeech = checkpointOne[index];
 
     return (
-      <div>
-        <div style={{ textAlign: "center" }}>
+      <div className="wrapper">
+        <img
+          src={firstList}
+          style={{ width: "250px", margin: "200px" }}
+          alt="shopping-list"
+        />
+        <div className="body">
           <p> This is your shopping list </p>
           <p> Using Mega, order each item, one by one </p>
         </div>
         <img
-          src={firstList}
-          style={{ width: "250px", margin: "left", margin: "100px 100px" }}
-          alt="shopping-list"
-        />
-        <img
           src={Mega}
-          style={{ width: "250px", margin: "left", margin: "100px 100px" }}
+          style={{ width: "250px", margin: "200px" }}
           alt="mega bot"
         />
+        <div></div>
       </div>
     );
   }
