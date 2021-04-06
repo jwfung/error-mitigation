@@ -16,10 +16,10 @@ class Walkthrough extends React.Component {
       },
       {
         mega: true,
-        top: "This is Mega",
-        mid:
+        header: "This is Mega",
+        top:
           "Mega is your personal assistant. It can respond to basic commands",
-        bottom: "Try asking Mega what the weather is.",
+        mid: "Try asking Mega what the weather is.",
         speak: true
       },
       {
@@ -35,7 +35,7 @@ class Walkthrough extends React.Component {
           "However, Mega may not always be accurate. Keep an eye out for any errors!"
       }
     ];
-    this.state = { text, index: 0 };
+    this.state = { text, index: 0, speaking: false };
   }
 
   //helper function to get text
@@ -44,8 +44,12 @@ class Walkthrough extends React.Component {
     this.setState({ index: index + 1 });
   }
 
+  speakBtn() {
+    this.setState({ speaking: !this.state.speaking });
+  }
+
   render() {
-    const { text, index } = this.state;
+    const { text, index, speaking } = this.state;
 
     if (index >= text.length) {
       return <></>;
@@ -60,16 +64,24 @@ class Walkthrough extends React.Component {
           <b> {currTex.header} </b>{" "}
         </h1>
         <div className="App">
-          {currTex.mega && (
-            <img src={Mega} style={{ width: "50%" }} alt="mega" />
-          )}
           <p> {currTex.top} </p>
           <p> {currTex.mid} </p>
           <p> {currTex.bottom} </p>
+          {currTex.mega && (
+            <img
+              src={Mega}
+              style={{ width: "250px", margin: "20px" }}
+              alt="mega"
+            />
+          )}
           {!currTex.speak ? (
             <NextButton getNextText={this.getNextText.bind(this)} />
           ) : (
-            <button class="speak">Click to Speak</button>
+            <p>
+              <button id="btn" class="speak" onClick={() => this.speakBtn()}>
+                {speaking ? "Click to Speak" : "Done speaking"}
+              </button>
+            </p>
           )}
         </div>
       </div>
@@ -77,34 +89,34 @@ class Walkthrough extends React.Component {
   }
 }
 
-class NextButton extends React.Component {
-  render() {
-    const { getNextText } = this.props;
+const NextButton = (props) => {
+  const { getNextText } = props;
 
+  return (
+    <div>
+      <img
+        src={nextBtn}
+        style={{
+          width: "10%",
+          position: "fixed",
+          bottom: "100px",
+          right: "100px"
+        }}
+        onClick={() => getNextText()}
+        alt="next arrow"
+      />
+    </div>
+  );
+};
+
+class App extends React.Component {
+  render() {
     return (
       <div>
-        <img
-          src={nextBtn}
-          style={{
-            width: "10%",
-            position: "fixed",
-            bottom: "100px",
-            right: "100px"
-          }}
-          onClick={() => getNextText()}
-          alt="next arrow"
-        />
+        <Walkthrough />
       </div>
     );
   }
-}
-
-function App() {
-  return (
-    <div>
-      <Walkthrough />
-    </div>
-  );
 }
 
 export default App;
