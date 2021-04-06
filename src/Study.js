@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 
+import nextBtn from "./assets/next.png";
 import Mega from "./assets/cylinder.png";
 import firstList from "./assets/shopList_1.png";
 
@@ -53,12 +54,31 @@ class Study extends React.Component {
           alt="mega bot"
         />
         <div>
-          <p> </p>
-          <p> </p>
+          <NextButton getNextText={this.getNextText.bind(this)} />
         </div>
       </div>
     );
   }
 }
+
+const NextButton = (props) => {
+  const { getNextText } = props;
+
+  return (
+    <div>
+      <img
+        src={nextBtn}
+        style={{
+          width: "90px",
+          position: "fixed",
+          bottom: "100px",
+          right: "100px"
+        }}
+        onClick={() => getNextText()}
+        alt="next arrow"
+      />
+    </div>
+  );
+};
 
 export default Study;
