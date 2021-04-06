@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 
 import Mega from "./assets/cylinder.png";
+import firstList from "./assets/shopList_1.png";
 
 class Study extends React.Component {
   constructor(props) {
@@ -31,13 +32,16 @@ class Study extends React.Component {
     const currSpeech = checkpointOne[index];
 
     return (
-      <div className="body">
-        <div>
-          <div>
-            <p> This is your shopping list </p>
-            <p> Using Mega, order each item, one by one </p>
-          </div>
+      <div>
+        <div style={{ textAlign: "center" }}>
+          <p> This is your shopping list </p>
+          <p> Using Mega, order each item, one by one </p>
         </div>
+        <img
+          src={firstList}
+          style={{ width: "250px", margin: "left", margin: "100px 100px" }}
+          alt="shopping-list"
+        />
         <img
           src={Mega}
           style={{ width: "250px", margin: "left", margin: "100px 100px" }}
