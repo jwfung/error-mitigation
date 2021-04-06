@@ -15,14 +15,15 @@ class Walkthrough extends React.Component {
           "Please press the arrow buttons or the prompted texts that appears at the bottom of your screen to proceed through each stage of the story"
       },
       {
-        mega: { Mega },
+        mega: true,
         top: "This is Mega",
         mid:
           "Mega is your personal assistant. It can respond to basic commands",
-        bottom: "Try asking Mega what the weather is."
+        bottom: "Try asking Mega what the weather is.",
+        speak: true
       },
       {
-        mega: { Mega },
+        mega: true,
         top:
           "Mega can also help you order items online at MegaShop, a global e-commerce store that can deliver items quickly",
         mid:
@@ -65,7 +66,11 @@ class Walkthrough extends React.Component {
           <p> {currTex.top} </p>
           <p> {currTex.mid} </p>
           <p> {currTex.bottom} </p>
-          <NextButton getNextText={this.getNextText.bind(this)} />
+          {!currTex.speak ? (
+            <NextButton getNextText={this.getNextText.bind(this)} />
+          ) : (
+            <button class="speak">Click to Speak</button>
+          )}
         </div>
       </div>
     );
@@ -80,7 +85,12 @@ class NextButton extends React.Component {
       <div>
         <img
           src={nextBtn}
-          style={{ width: "10%" }}
+          style={{
+            width: "10%",
+            position: "fixed",
+            bottom: "100px",
+            right: "100px"
+          }}
           onClick={() => getNextText()}
           alt="next arrow"
         />
