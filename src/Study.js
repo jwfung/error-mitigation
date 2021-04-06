@@ -7,14 +7,18 @@ import firstList from "./assets/shopList_1.png";
 class Study extends React.Component {
   constructor(props) {
     super(props);
-    const checkpointOne = [
-      "Double A batteries has been added to your cart",
-      "Dog Food has been added to your cart",
-      "Lactose Free Milk has been added to your cart",
-      "Flower has been added to your cart",
-      "13 gallon trash bags has been added to your cart"
+    const instructions = [
+      {
+        top: "This is your shopping list",
+        mid: "Using Mega, order each item, one by one "
+      },
+      {
+        top:
+          "You can check your cart to ensure the correct item has been added.",
+        mid: "Otherwise, keep shopping."
+      }
     ];
-    this.state = { checkpointOne, index: 0 };
+    this.state = { instructions, index: 0 };
   }
 
   async getNextText() {
@@ -23,13 +27,14 @@ class Study extends React.Component {
   }
 
   render() {
-    const { checkpointOne, index } = this.state;
+    const { instructions, index } = this.state;
 
-    if (index >= checkpointOne.length) {
+    if (index >= instructions.length) {
       return <></>;
     }
 
-    const currSpeech = checkpointOne[index];
+    const currSpeech = "Got it, item has been added to your cart";
+    const currTex = instructions[index];
 
     return (
       <div className="wrapper">
@@ -39,8 +44,8 @@ class Study extends React.Component {
           alt="shopping-list"
         />
         <div>
-          <p> This is your shopping list </p>
-          <p> Using Mega, order each item, one by one </p>
+          <p> {currTex.top} </p>
+          <p> {currTex.mid} </p>
         </div>
         <img
           src={Mega}
@@ -48,8 +53,8 @@ class Study extends React.Component {
           alt="mega bot"
         />
         <div>
-          <p> This is your shopping list </p>
-          <p> Using Mega, order each item, one by one </p>
+          <p> </p>
+          <p> </p>
         </div>
       </div>
     );
