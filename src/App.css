@@ -28,5 +28,5 @@
 .wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 200px;
+  grid-template-rows: 200px;
 }

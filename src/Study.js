@@ -38,7 +38,7 @@ class Study extends React.Component {
           style={{ width: "250px", margin: "200px" }}
           alt="shopping-list"
         />
-        <div className="body">
+        <div>
           <p> This is your shopping list </p>
           <p> Using Mega, order each item, one by one </p>
         </div>
@@ -47,7 +47,10 @@ class Study extends React.Component {
           style={{ width: "250px", margin: "200px" }}
           alt="mega bot"
         />
-        <div></div>
+        <div>
+          <p> This is your shopping list </p>
+          <p> Using Mega, order each item, one by one </p>
+        </div>
       </div>
     );
   }
