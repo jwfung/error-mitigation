@@ -75,9 +75,10 @@ class Walkthrough extends React.Component {
             <img
               src={Mega}
               style={{ width: "250px", margin: "20px" }}
-              alt="mega"
+              alt="mega bot"
             />
           )}
+          {currTex.speak && speaking ? <p> {currTex.speak}</p> : null}
           {!currTex.speak || speaking ? (
             <NextButton getNextText={this.getNextText.bind(this)} />
           ) : (

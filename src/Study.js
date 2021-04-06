@@ -1,7 +1,9 @@
 import "./App.css";
 import React from "react";
 
-class MegaSpeech extends React.Component {
+import Mega from "./assets/cylinder.png";
+
+class Study extends React.Component {
   constructor(props) {
     super(props);
     const checkpointOne = [
@@ -28,6 +30,22 @@ class MegaSpeech extends React.Component {
 
     const currSpeech = checkpointOne[index];
 
-    return {};
+    return (
+      <div className="body">
+        <div>
+          <div>
+            <p> This is your shopping list </p>
+            <p> Using Mega, order each item, one by one </p>
+          </div>
+        </div>
+        <img
+          src={Mega}
+          style={{ width: "250px", margin: "left", margin: "100px 100px" }}
+          alt="mega bot"
+        />
+      </div>
+    );
   }
 }
+
+export default Study;
