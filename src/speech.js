@@ -1,10 +1,16 @@
 import "./App.css";
 import React from "react";
 
+import NextButton from "./NextButton.js";
+
 class Speech extends React.Component {
-  // constructor (props) {
-  //   super(props);
-  // }
+  constructor (props) {
+    super(props);
+
+    this.state = {       
+      doneSpeak: false, 
+      clickSpeak: false }
+  }
 
   handleSpeak() {
     {/* Turn Click to Speak off */}
@@ -16,12 +22,11 @@ class Speech extends React.Component {
   }
 
   render() {
-    const { megaSpeak, clickSpeak, handleSpeak, getNextText } = this.props;
+    const { megaSpeak, getNextText } = this.props;
+    const { clickSpeak, doneSpeak } = this.state;
     
     return (
       <div>
-        {/* If Mega has something to say and user done speaking */}
-        {megaSpeak && doneSpeak ? <p> {megaSpeak}</p> : null}
         {/* If done speaking, move on, otherwise, prepare to speak*/}
         {!megaSpeak || doneSpeak ? (
           <NextButton getNextText={getNextText()} />
@@ -30,6 +35,8 @@ class Speech extends React.Component {
             {!clickSpeak ? "Click to Speak" : "Done speaking"}
           </button>
         )}
+        {/* If Mega has something to say and user done speaking */}
+        {megaSpeak && doneSpeak ? <p> { megaSpeak }</p> : null} 
       </div>
     );
   }

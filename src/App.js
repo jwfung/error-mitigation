@@ -4,7 +4,6 @@ import Mega from "./assets/cylinder.png";
 
 import instructions from "./instructions.js";
 import text from "./text.js";
-import NextButton from "./NextButton.js";
 import Study from "./Study";
 import Speech from "./Speech";
 
@@ -15,8 +14,7 @@ class Walkthrough extends React.Component {
       text, 
       instructions,
       index: 0, 
-      doneSpeak: false, 
-      clickSpeak: false
+
     };
   }
 
@@ -27,7 +25,7 @@ class Walkthrough extends React.Component {
   }
 
   render() {
-    const { text, instructions, index, doneSpeak, clickSpeak } = this.state;
+    const { text, instructions, index } = this.state;
 
     if (index >= text.length) {
       return (
@@ -35,9 +33,6 @@ class Walkthrough extends React.Component {
           index={index - text.length}  
           instructions={instructions}
           getNextText={this.getNextText.bind(this)}
-          handleSpeak={this.handleSpeak.bind(this)}
-          doneSpeak={doneSpeak}
-          clickSpeak={clickSpeak}
         />
       )
     }
@@ -62,9 +57,6 @@ class Walkthrough extends React.Component {
           )}
           <Speech 
             megaSpeak={currTex.speak}
-            handleSpeak={this.handleSpeak.bind(this)}
-            clickSpeak={clickSpeak}
-            doneSpeak={doneSpeak}
             getNextText={this.getNextText.bind(this)}
           />
         </div>

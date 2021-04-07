@@ -1,7 +1,6 @@
 import "./App.css";
 import React from "react";
 
-import NextButton from "./NextButton.js";
 import Speech from "./Speech.js";
 
 import Mega from "./assets/cylinder.png";
@@ -9,16 +8,13 @@ import firstList from "./assets/shopList_1.png";
 
 
 class Study extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     const { instructions, 
             index, 
-            doneSpeak, 
-            clickSpeak, 
-            handleSpeak, 
             getNextText } = this.props;
 
     if (index >= instructions.length) {
@@ -69,10 +65,7 @@ class Study extends React.Component {
         <div className="item text next"> 
           <Speech 
             megaSpeak={confirmItem}
-            handleSpeak={this.handleSpeak.bind(this)}
-            clickSpeak={clickSpeak}
-            doneSpeak={doneSpeak}
-            getNextText={this.getNextText.bind(this)}
+            getNextText={getNextText()}
           />
         </div>
         <Nav/>
