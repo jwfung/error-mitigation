@@ -1,8 +1,6 @@
 import nextBtn from "./assets/next.png";
 
 const NextButton = (props) => {
-  const { getNextText } = props;
-
   return (
     <div>
       <img
@@ -13,7 +11,7 @@ const NextButton = (props) => {
           bottom: "100px",
           right: "100px"
         }}
-        onClick={() => getNextText()}
+        onClick={() => props.getNextText()}
         alt="next arrow"
       />
     </div>

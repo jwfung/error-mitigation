@@ -7,15 +7,14 @@ class Speech extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = {       
-      doneSpeak: false, 
-      clickSpeak: false }
+    this.state = { doneSpeak: false, clickSpeak: false }
   }
 
   handleSpeak() {
-    {/* Turn Click to Speak off */}
+    // Turn Click to Speak off 
     this.setState({ clickSpeak: !this.state.clickSpeak });
-    {/* User is done speaking */}
+
+    // User is done speaking 
     if (this.state.clickSpeak) {
       this.setState({ doneSpeak: !this.state.doneSpeak });
     }
@@ -29,9 +28,9 @@ class Speech extends React.Component {
       <div>
         {/* If done speaking, move on, otherwise, prepare to speak*/}
         {!megaSpeak || doneSpeak ? (
-          <NextButton getNextText={getNextText()} />
+          <NextButton getNextText={() => getNextText()} />
         ) : (
-          <button id="btn" class="speak" onClick={() => this.handleSpeak()}>
+          <button id="btn" className="speak" onClick={() => this.handleSpeak()}>
             {!clickSpeak ? "Click to Speak" : "Done speaking"}
           </button>
         )}

@@ -2,7 +2,6 @@ import "./App.css";
 import React from "react";
 import Mega from "./assets/cylinder.png";
 
-import instructions from "./instructions.js";
 import text from "./text.js";
 import Study from "./Study";
 import Speech from "./Speech";
@@ -11,29 +10,22 @@ class Walkthrough extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      text, 
-      instructions,
       index: 0, 
-
     };
   }
 
   //helper function to get text
-  async getNextText() {
+  getNextText() {
     const { index } = this.state;
     this.setState({ index: index + 1 });
   }
 
   render() {
-    const { text, instructions, index } = this.state;
+    const { index } = this.state;
 
     if (index >= text.length) {
       return (
-        <Study 
-          index={index - text.length}  
-          instructions={instructions}
-          getNextText={this.getNextText.bind(this)}
-        />
+        <Study />
       )
     }
 
@@ -65,14 +57,9 @@ class Walkthrough extends React.Component {
   }
 }
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="App">
-        <Walkthrough />
-      </div>
-    );
-  }
-}
+const App = () => 
+  <div className="App">
+    <Walkthrough />
+  </div>
 
 export default App;
