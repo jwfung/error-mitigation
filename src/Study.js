@@ -52,7 +52,7 @@ class Study extends React.Component {
           <list
             className="item first"
             src={firstList}
-            style={{ marginLeft: "100px"}}
+            style={{}}
             alt="shopping-list"
           >
             <h2>Shopping List</h2>
@@ -74,9 +74,9 @@ class Study extends React.Component {
         </row>
         <row>
           <img
-            className="item first"
+            className="item first img"
             src={Mega}
-            style={{ marginLeft: "100px",width: "50px" }}
+            stye={{}}
             alt="mega bot"
           />
           <div className="item text next"> 
