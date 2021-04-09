@@ -1,7 +1,7 @@
 const instructions = [
   {
     top: "This is your shopping list",
-    mid: "Using Mega, order each item in order, one by one"
+    mid: "Ask Mega to help you order each item, one by one"
   },
   {
     top:

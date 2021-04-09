@@ -36,6 +36,10 @@ class Study extends React.Component {
   getNextText() {
     const { index } = this.state;
     this.setState({ index: index + 1 });
+
+    if (index >= instructions.length) {
+      return false;
+    }
   }
 
   render() {
@@ -45,13 +49,21 @@ class Study extends React.Component {
     return (
       <div>
         <row>
-          <img 
+          <list
             className="item first"
             src={firstList}
-            style={{ width: "50px", margin: "100px" }}
+            style={{ marginLeft: "100px"}}
             alt="shopping-list"
-          />
+          >
+            <h2>Shopping List</h2>
+            <p> double A batteries </p>
+            <p> dog food </p>
+            <p> lactose-free milk </p>
+            <p> flour </p>
+            <p> 13 gallons trash bags </p>
+          </list>
           <div className="item text next">
+            <Nav/>
             {currTex && (
               <div>
                 <p> {currTex.top} </p>
@@ -64,7 +76,7 @@ class Study extends React.Component {
           <img
             className="item first"
             src={Mega}
-            style={{ width: "50px", margin: "100px" }}
+            style={{ marginLeft: "100px",width: "50px" }}
             alt="mega bot"
           />
           <div className="item text next"> 
@@ -73,6 +85,7 @@ class Study extends React.Component {
               getNextText={this.getNextText.bind(this)}
             />
           </div>
+          {/* TODO: trigger speak button again */}
         </row>
       </div>
     );

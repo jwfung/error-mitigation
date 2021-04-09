@@ -21,7 +21,7 @@ class Cart extends React.Component {
       },
       {
         name: "Bouquet of Flowers",
-        added: true
+        added: false
       },
       {
         name: "13 Gallons Trash Bags",

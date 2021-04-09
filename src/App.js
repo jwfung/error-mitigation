@@ -24,9 +24,7 @@ class Walkthrough extends React.Component {
     const { index } = this.state;
 
     if (index >= text.length) {
-      return (
-        <Study />
-      )
+      return <Study />
     }
 
     const currTex = text[index];
