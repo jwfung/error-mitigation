@@ -25,24 +25,35 @@
   font-size: 20px;
 }
 
+.counter {
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  right: 20px;
+  top: 100px;
+  padding: 2px;
+}
+
 list {
   background-color: bisque;
   border-radius: 5px;
   box-shadow: burlywood;
   margin: auto;
-  max-width: 20%;
-  aspect-ratio: 1;
+  max-width: 30%;
+  aspect-ratio: 1/1;
 }
 
 row {
   display: flex;
   flex-direction: row;
-  max-height: 400px;
-  margin-left: 100px;
+  max-height: 50%;
+  /* margin: auto; */
   margin-top: 100px;
 
 }
 .item {
+  margin: auto;
   font-size: 1.5rem;
   text-align: center;
 }

@@ -5,7 +5,7 @@ import instructions from "./instructions.js";
 import Speech from "./Speech.js";
 
 import Mega from "./assets/cylinder.png";
-import firstList from "./assets/shopList_1.png";
+import window from "./assets/cart.png";
 
 const confirmItem = "Got it! Item has been added to your cart";
 
@@ -29,7 +29,7 @@ const Nav = () => {
 class Study extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { index : 0 }
+    this.state = { index : 0}
   }
 
   //helper function to get text
@@ -38,6 +38,17 @@ class Study extends React.Component {
     this.setState({ index: index + 1 });
 
     if (index >= instructions.length) {
+      return false;
+    }
+  }
+
+  addToCart() {
+    const { itemCounter } = this.state;
+
+    if (itemCounter < 5) {
+      this.setState({itemCounter: itemCounter + 1});
+    }
+    else {
       return false;
     }
   }
@@ -51,9 +62,6 @@ class Study extends React.Component {
         <row>
           <list
             className="item first"
-            src={firstList}
-            style={{}}
-            alt="shopping-list"
           >
             <h2>Shopping List</h2>
             <p> double A batteries </p>
@@ -63,13 +71,18 @@ class Study extends React.Component {
             <p> 13 gallons trash bags </p>
           </list>
           <div className="item text next">
-            <Nav/>
-            {currTex && (
+            {/* <Nav/> */}
+            {currTex ? (
               <div>
                 <p> {currTex.top} </p>
                 <p> {currTex.mid} </p>
-              </div>
-            )}
+              </div>) :
+              <img
+              className="item next img"
+              src={window}
+              alt="shopping window"
+              />
+              }
           </div>
         </row>
         <row>
@@ -80,10 +93,13 @@ class Study extends React.Component {
             alt="mega bot"
           />
           <div className="item text next"> 
-            <Speech 
-              megaSpeak={confirmItem}
-              getNextText={this.getNextText.bind(this)}
-            />
+          {/* {this.addToCart() === false ? null: */}
+          <Speech 
+            key={index}
+            megaSpeak={confirmItem}
+            getNextText={this.getNextText.bind(this)}
+          />
+          {/* { this.addToCart() } */}
           </div>
           {/* TODO: trigger speak button again */}
         </row>
