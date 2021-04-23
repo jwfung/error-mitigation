@@ -6,7 +6,7 @@ class Cart extends React.Component {
   constructor(props) {    
     super(props);
 
-    this.state = { items: {cartOne}, index: 0}
+    this.state = { items: cartOne, index: 0}
   }
 
 
@@ -15,10 +15,10 @@ class Cart extends React.Component {
 
     return(
       <div>
-        {items.map((item) => {
+        {items && items.map((item, i) => {
           if (item.added) {
             return (
-              <div>
+              <div key={i}>
                 <p>
                   {item.img && <img src={item.img} alt="img"></img>}
                   {item.name}

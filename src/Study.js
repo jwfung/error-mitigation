@@ -4,7 +4,9 @@ import React from "react";
 import instructions from "./text/instructions.js";
 import Speech from "./Speech.js";
 import Walkthrough from "./Walkthrough.js"
+import Cart from "./Cart.js"
 import Mega from "./assets/cylinder.png";
+import speaker from "./assets/person.png";
 
 const confirmItem = "Got it! Item has been added to your cart";
 
@@ -28,11 +30,11 @@ const Nav = () => {
 class Study extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { index : 0}
+    this.state = { index : 0, mini :true }
   }
 
   componentDidUpdate() {}
-  
+
   //helper function to get text
   getNextText() {
     const { index } = this.state;
@@ -54,54 +56,87 @@ class Study extends React.Component {
     }
   }
 
+  toggleSidebar() {
+    const {mini} = this.state;
+    if (mini) {
+      console.log("opening sidebar");
+      document.getElementById("mySidebar").style.width = "250px";
+      // document.getElementById("main").style.marginLeft = "250px";
+      this.setState({mini: false});
+    } else {
+      console.log("closing sidebar");
+      document.getElementById("mySidebar").style.width = "100px";
+      // document.getElementById("main").style.marginLeft = "100px";
+      this.setState({ mini: true});
+    }
+  }
+
   render() {
     const { index } = this.state;
-    const currTex = (index >= instructions.length ? null : instructions[index]);
+    const currTex = (index >= instructions.length ? null : instructions[index]);    
 
     if (currTex !== null) {
       return (
         <div>
-          <row>
-            <div className="item first">
-              <list>
-                <h2>Shopping List</h2>
-                <p> double A batteries </p>
-                <p> dog food </p>
-                <p> lactose-free milk </p>
-                <p> flour </p>
-                <p> 13 gallons trash bags </p>
-            </list>
-            </div>
-            <div className="item text next">
-              {/* <Nav/> */}
-                <div>
-                  <p> {currTex.top} </p>
-                  <p> {currTex.mid} </p>
-                  {/* {currTex.img &&
-                    <img 
-                      className="item next img" 
-                      src={currTex.img} 
-                      alt="shopping window"
-                    />
-                  }  */}
-                </div>
-            </div>
-          </row>
-          <row>
-            <div className="item first">
-              <img
-                src={Mega}
-                alt="mega bot"
-              />
-            </div>
-            <div className="item text next"> 
-              <Speech 
-                key={index}
-                megaSpeak={currTex === null ? null: confirmItem}
-                getNextText={this.getNextText.bind(this)}
+          <div 
+            id="mySidebar"
+            className="tablet"
+            onMouseOver={() => this.toggleSidebar()}
+            onMouseOut={() => this.toggleSidebar()}>
+            <Cart/>
+          </div>
+          <div>
+            <row>
+              <div className="item first">
+                <list>
+                  <h2>Shopping List</h2>
+                  <p> double A batteries </p>
+                  <p> dog food </p>
+                  <p> lactose-free milk </p>
+                  <p> flour </p>
+                  <p> 13 gallons trash bags </p>
+              </list>
+              </div>
+              <div className="item text next">
+                {/* <Nav/> */}
+                  <div>
+                    {/* <button className="btn" onClick={this.togglePhone}>
+                      see phone
+                    </button> */}
+                  {/* </div> */}
+                    <p> {currTex.top} </p>
+                    <p> {currTex.mid} </p>
+                    {/* {currTex.img &&
+                      <img 
+                        className="item next img" 
+                        src={currTex.img} 
+                        alt="shopping window"
+                      />
+                    }  */}
+                  </div>
+              </div>
+            </row>
+            <row>
+              <div className="item first">
+                <img
+                  src={Mega}
+                  alt="mega bot"
                 />
-            </div>
-          </row>
+              </div>
+              <div className="item text next"> 
+                <Speech 
+                  key={index}
+                  megaSpeak={currTex === null ? null: confirmItem}
+                  getNextText={this.getNextText.bind(this)}
+                />
+                <img 
+                  className="item next img" 
+                  src={speaker} 
+                  alt="speaker"
+                />
+              </div>
+            </row>
+          </div>
         </div>
       );
     } else {return <Walkthrough text=""/>;}
