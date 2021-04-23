@@ -1,11 +1,11 @@
 import "./App.css";
 import React from "react";
-import cartOne from "/cartOne.js"
+import cartOne from "./text/cartOne.js"
 
 class Cart extends React.Component {
   constructor(props) {    
     super(props);
-    
+
     this.state = { items: {cartOne}, index: 0}
   }
 

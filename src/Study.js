@@ -1,11 +1,10 @@
 import "./App.css";
 import React from "react";
 
-import instructions from "./instructions.js";
+import instructions from "./text/instructions.js";
 import Speech from "./Speech.js";
-
+import Walkthrough from "./Walkthrough.js"
 import Mega from "./assets/cylinder.png";
-import window from "./assets/cart.png";
 
 const confirmItem = "Got it! Item has been added to your cart";
 
@@ -32,6 +31,8 @@ class Study extends React.Component {
     this.state = { index : 0}
   }
 
+  componentDidUpdate() {}
+  
   //helper function to get text
   getNextText() {
     const { index } = this.state;
@@ -57,54 +58,53 @@ class Study extends React.Component {
     const { index } = this.state;
     const currTex = (index >= instructions.length ? null : instructions[index]);
 
-    return (
-      <div>
-        <row>
-          <list
-            className="item first"
-          >
-            <h2>Shopping List</h2>
-            <p> double A batteries </p>
-            <p> dog food </p>
-            <p> lactose-free milk </p>
-            <p> flour </p>
-            <p> 13 gallons trash bags </p>
-          </list>
-          <div className="item text next">
-            {/* <Nav/> */}
-            {currTex ? (
-              <div>
-                <p> {currTex.top} </p>
-                <p> {currTex.mid} </p>
-              </div>) :
+    if (currTex !== null) {
+      return (
+        <div>
+          <row>
+            <div className="item first">
+              <list>
+                <h2>Shopping List</h2>
+                <p> double A batteries </p>
+                <p> dog food </p>
+                <p> lactose-free milk </p>
+                <p> flour </p>
+                <p> 13 gallons trash bags </p>
+            </list>
+            </div>
+            <div className="item text next">
+              {/* <Nav/> */}
+                <div>
+                  <p> {currTex.top} </p>
+                  <p> {currTex.mid} </p>
+                  {/* {currTex.img &&
+                    <img 
+                      className="item next img" 
+                      src={currTex.img} 
+                      alt="shopping window"
+                    />
+                  }  */}
+                </div>
+            </div>
+          </row>
+          <row>
+            <div className="item first">
               <img
-              className="item next img"
-              src={window}
-              alt="shopping window"
+                src={Mega}
+                alt="mega bot"
               />
-              }
-          </div>
-        </row>
-        <row>
-          <img
-            className="item first img"
-            src={Mega}
-            stye={{}}
-            alt="mega bot"
-          />
-          <div className="item text next"> 
-          {/* {this.addToCart() === false ? null: */}
-          <Speech 
-            key={index}
-            megaSpeak={confirmItem}
-            getNextText={this.getNextText.bind(this)}
-          />
-          {/* { this.addToCart() } */}
-          </div>
-          {/* TODO: trigger speak button again */}
-        </row>
-      </div>
-    );
+            </div>
+            <div className="item text next"> 
+              <Speech 
+                key={index}
+                megaSpeak={currTex === null ? null: confirmItem}
+                getNextText={this.getNextText.bind(this)}
+                />
+            </div>
+          </row>
+        </div>
+      );
+    } else {return <Walkthrough text=""/>;}
   }
 }
 

@@ -1,5 +1,5 @@
-import battery from "./assets/batteries.jpg";
-import dogFood from "./assets/dog_food.jpg";
+import battery from "../assets/batteries.jpg";
+import dogFood from "../assets/dog_food.jpg";
 
 const cartOne = [
   {

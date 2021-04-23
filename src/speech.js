@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 
 import NextButton from "./NextButton.js";
-import cartOne from "./cartOne.js";
+import cartOne from "./text/cartOne.js";
 
 const confirmItem = "Got it! Item has been added to your cart";
 
@@ -11,7 +11,6 @@ class Speech extends React.Component {
     super(props);
 
     this.state = { 
-      doneSpeak: false, 
       clickSpeak: false, 
       itemCounter: 0,
       index: 0,
@@ -21,8 +20,8 @@ class Speech extends React.Component {
   componentDidUpdate() {
     if (this.props.megaSpeak === {confirmItem}) {
       this.addItem();
-      this.setState({doneSpeak: !this.state.doneSpeak, clickSpeak: !this.state.doneSpeak});
-      this.setState({itemCounter: this.state.itemCounter + 1});
+      // this.setState({doneSpeak: !this.state.doneSpeak, clickSpeak: !this.state.doneSpeak});
+      // this.setState({itemCounter: this.state.itemCounter + 1});
       return (
         <div className="counter"> 
           <p> { this.state.itemCounter } </p> 
@@ -36,34 +35,26 @@ class Speech extends React.Component {
     this.setState({ index: index + 1, items });
   }
 
-  handleSpeak(megaResponse) {
-    // Turn Click to Speak off 
+  handleSpeak() {
     this.setState({ clickSpeak: !this.state.clickSpeak });
-
-    // User is done speaking 
-    if (this.state.clickSpeak) {
-      this.setState({ doneSpeak: !this.state.doneSpeak});
-    }
+    // const {megaSpeak} = this.props
+    // return ( megaSpeak ? <p> <i> { megaSpeak } </i> </p>: null );
+  
   }
 
   render() {
     const { megaSpeak, getNextText } = this.props;
-    const { clickSpeak, doneSpeak } = this.state;
-
-    const megaResponse = megaSpeak ?  megaSpeak :  confirmItem;
-
+    const {clickSpeak } = this.state;
     return (
       <div>
-        {/* If done speaking, move on, otherwise, prepare to speak*/}
-        {!megaSpeak || doneSpeak ? (
+        {!megaSpeak || clickSpeak ? (
           <NextButton getNextText={() => getNextText()} />
         ) : (
-          <button id="btn" className="speak" onClick={() => this.handleSpeak(megaResponse)}>
-            {!clickSpeak ? "Click to Speak" : "Done speaking"}
+          <button id="btn" className="speak" onClick={() => this.handleSpeak(megaSpeak)}>
+            Ask Mega
           </button>
         )}
-        {/* If Mega has something to say and user done speaking */}
-        {megaSpeak && doneSpeak ? <p> { megaSpeak } </p>: null} 
+        { clickSpeak && megaSpeak ? <p> <i> { megaSpeak } </i> </p>: null }
       </div>
     );
   }
