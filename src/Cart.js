@@ -6,47 +6,55 @@ class Cart extends React.Component {
   constructor(props) {    
     super(props);
 
-    this.state = { items: cartOne, index: 0, mini :true }
+    this.state = { items: cartOne, index: 0, deviceOpened: false}
   }
 
-  toggleSidebar() {
-    const {mini} = this.state;
-    if (mini) {
-      document.getElementById("myPhone").style.width = "250px";
-      this.setState({mini: false});
-    } else {
-      document.getElementById("myPhone").style.width = "50px";
-      this.setState({ mini: true});
-    }
+  openDevice() {
+    document.getElementById("myDevice").style.display = "block";
+    this.setState({deviceOpened: true})
+  }
+
+  closeDevice() {
+    document.getElementById("myDevice").style.display = "none";
+    this.setState({deviceOpened: false})
   }
 
   render() {
-    const { items, mini } = this.state;
+    const { items } = this.state;
+    var modal = document.getElementById("myDevice");
+
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
 
     return(
-      <div
-        id="myPhone"
-        className="tablet"
-        onMouseOver={() => this.toggleSidebar()}
-        onClickOut={() => this.toggleSidebar()}>
-        {mini === false &&
-        <div style={{background: "white", width: "100%", height: "90%"}}>
-          <h1>Your Cart</h1>
-          {items && items.map((item, i) => {
-            if (item.added) {
-              return (
-                <div key={i}>
-                  <p>
-                    {item.img && <img src={item.img} alt="img"></img>}
-                    {item.name}
-                  </p>
-                </div>
-              )
-            }
-            return <></>
-          })}
+      <div> 
+        <div id="myDevice" className="device">
+          <div className="device-content">
+            <div class="device-header">
+              <span className="close" onClick={() => this.closeDevice()}>&times;</span>
+            </div>
+            <h1>Your Cart</h1>
+            {items && items.map((item, i) => {
+              if (item.added) {
+                return (
+                  <div key={i}>
+                    <p>
+                      {item.img && <img src={item.img} alt="img"></img>}
+                      {item.name}
+                    </p>
+                  </div>
+                )
+              }
+              return <></>
+            })}
+          </div>
         </div>
-      }
+        <button className="speak" onClick={() => this.openDevice()}>
+          View Cart
+        </button>
       </div>
     );
   }
