@@ -1,6 +1,5 @@
 import "./App.css";
 import React from "react";
-import Mega from "./assets/cylinder.png";
 
 import Study from "./Study";
 import Speech from "./Speech";
@@ -39,11 +38,8 @@ class Walkthrough extends React.Component {
           <p> {currTex.mid} </p>
           <p> {currTex.bottom} </p>
           {currTex.mega && (
-            <img
-              src={Mega}
-              style={{ width: "250px", margin: "20px" }}
-              alt="mega bot"
-            />
+            <div id="cylinder">
+            </div>
           )}
           <Speech 
             megaSpeak={currTex.speak}

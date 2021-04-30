@@ -5,32 +5,14 @@ import instructions from "./text/instructions.js";
 import Speech from "./Speech.js";
 import Walkthrough from "./Walkthrough.js"
 import Cart from "./Cart.js"
-import Mega from "./assets/cylinder.png";
 import speaker from "./assets/person.png";
 
 const confirmItem = "Got it! Item has been added to your cart";
 
-const Nav = () => {
-  const [open, setOpen] = React.useState(false);
-
-  return (
-    <nav className={open ? "open" : null}>
-      <button
-        onClick={() => {
-          setOpen(!open);
-        }}
-      >
-        hamburger
-      </button>
-      <ul>{/* elements */}</ul>
-    </nav>
-  );
-};
-
 class Study extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { index : 0, mini :true }
+    this.state = { index : 0}
   }
 
   componentDidUpdate() {}
@@ -56,21 +38,6 @@ class Study extends React.Component {
     }
   }
 
-  toggleSidebar() {
-    const {mini} = this.state;
-    if (mini) {
-      console.log("opening sidebar");
-      document.getElementById("mySidebar").style.width = "250px";
-      // document.getElementById("main").style.marginLeft = "250px";
-      this.setState({mini: false});
-    } else {
-      console.log("closing sidebar");
-      document.getElementById("mySidebar").style.width = "100px";
-      // document.getElementById("main").style.marginLeft = "100px";
-      this.setState({ mini: true});
-    }
-  }
-
   render() {
     const { index } = this.state;
     const currTex = (index >= instructions.length ? null : instructions[index]);    
@@ -78,11 +45,7 @@ class Study extends React.Component {
     if (currTex !== null) {
       return (
         <div>
-          <div 
-            id="mySidebar"
-            className="tablet"
-            onMouseOver={() => this.toggleSidebar()}
-            onMouseOut={() => this.toggleSidebar()}>
+          <div>
             <Cart/>
           </div>
           <div>
@@ -98,30 +61,15 @@ class Study extends React.Component {
               </list>
               </div>
               <div className="item text next">
-                {/* <Nav/> */}
                   <div>
-                    {/* <button className="btn" onClick={this.togglePhone}>
-                      see phone
-                    </button> */}
-                  {/* </div> */}
                     <p> {currTex.top} </p>
                     <p> {currTex.mid} </p>
-                    {/* {currTex.img &&
-                      <img 
-                        className="item next img" 
-                        src={currTex.img} 
-                        alt="shopping window"
-                      />
-                    }  */}
                   </div>
               </div>
             </row>
             <row>
               <div className="item first">
-                <img
-                  src={Mega}
-                  alt="mega bot"
-                />
+                <div id="cylinder"></div> 
               </div>
               <div className="item text next"> 
                 <Speech 
@@ -132,6 +80,7 @@ class Study extends React.Component {
                 <img 
                   className="item next img" 
                   src={speaker} 
+                  style={{position: "float"}}
                   alt="speaker"
                 />
               </div>

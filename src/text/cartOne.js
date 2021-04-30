@@ -5,20 +5,20 @@ const cartOne = [
   {
     img: { battery },
     name: "AA Batteries",
-    added: false
+    added: true
   },
   {
     img: { dogFood },
     name:"Dog Food",
-    added: false
+    added: true
   },
   {
     name: "Bouquet of Flowers",
-    added: false
+    added: true
   },
   {
     name: "13 Gallons Trash Bags",
-    added: false
+    added: true
   }
 ];
 

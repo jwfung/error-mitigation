@@ -20,8 +20,7 @@ class Speech extends React.Component {
   componentDidUpdate() {
     if (this.props.megaSpeak === {confirmItem}) {
       this.addItem();
-      // this.setState({doneSpeak: !this.state.doneSpeak, clickSpeak: !this.state.doneSpeak});
-      // this.setState({itemCounter: this.state.itemCounter + 1});
+      this.setState({itemCounter: this.state.itemCounter + 1});
       return (
         <div className="counter"> 
           <p> { this.state.itemCounter } </p> 
@@ -37,8 +36,6 @@ class Speech extends React.Component {
 
   handleSpeak() {
     this.setState({ clickSpeak: !this.state.clickSpeak });
-    // const {megaSpeak} = this.props
-    // return ( megaSpeak ? <p> <i> { megaSpeak } </i> </p>: null );
   
   }
 
