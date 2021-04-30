@@ -69,7 +69,7 @@ class Study extends React.Component {
             </row>
             <row>
               <div className="item first">
-                <div id="cylinder"></div> 
+                <div className="cylinder"></div> 
               </div>
               <div className="item text next"> 
                 <Speech 

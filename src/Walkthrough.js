@@ -38,7 +38,7 @@ class Walkthrough extends React.Component {
           <p> {currTex.mid} </p>
           <p> {currTex.bottom} </p>
           {currTex.mega && (
-            <div id="cylinder">
+            <div className="cylinder">
             </div>
           )}
           <Speech 
