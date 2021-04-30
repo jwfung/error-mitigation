@@ -5,7 +5,6 @@ import instructions from "./text/instructions.js";
 import Speech from "./Speech.js";
 import Walkthrough from "./Walkthrough.js"
 import Cart from "./Cart.js"
-import speaker from "./assets/person.png";
 
 const confirmItem = "Got it! Item has been added to your cart";
 
@@ -67,24 +66,12 @@ class Study extends React.Component {
                   </div>
               </div>
             </row>
-            <row>
-              <div className="item first">
-                <div className="cylinder"></div> 
-              </div>
-              <div className="item text next"> 
-                <Speech 
-                  key={index}
-                  megaSpeak={currTex === null ? null: confirmItem}
-                  getNextText={this.getNextText.bind(this)}
-                />
-                <img 
-                  className="item next img" 
-                  src={speaker} 
-                  style={{position: "float"}}
-                  alt="speaker"
-                />
-              </div>
-            </row>
+            <div className="cylinder"></div> 
+            <Speech 
+              key={index}
+              megaSpeak={currTex === null ? null: confirmItem}
+              getNextText={this.getNextText.bind(this)}
+            />
           </div>
         </div>
       );

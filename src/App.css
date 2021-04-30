@@ -66,8 +66,21 @@ row {
   border-radius: 5px;
   color: white;
   font-size: 20px;
+  bottom: 30px;
 }
 
+.phone {
+  width: 100px;
+  height: 150px;
+  border-radius: 10px;
+  transform: skew(-20deg);
+  background: black;
+  bottom: 30px;
+  right: 20%;
+  position: absolute;
+  content: "O";
+  color:rgb(130, 130, 131)
+}
 
 /* ITEM COUNTER*/
 .counter {
@@ -102,6 +115,11 @@ row {
   left: 0;
 }
 
+@keyframes speaking {
+  20% {
+    border-color: blue;
+  }
+}
 
 /* DEVICE */
 .device {

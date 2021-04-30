@@ -36,7 +36,7 @@ class Speech extends React.Component {
 
   handleSpeak() {
     this.setState({ clickSpeak: !this.state.clickSpeak });
-  
+    // document.getElementsByName("cyliner").style.animation = "speaking";
   }
 
   render() {

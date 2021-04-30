@@ -9,13 +9,15 @@ class Cart extends React.Component {
   }
 
   openDevice() {
+    this.setState({deviceOpened: true}) //might not be necessary
     document.getElementById("myDevice").style.display = "block";
-    this.setState({deviceOpened: true})
+    document.getElementById("phone").style.display = "none";
   }
 
   closeDevice() {
-    document.getElementById("myDevice").style.display = "none";
     this.setState({deviceOpened: false})
+    document.getElementById("myDevice").style.display = "none";
+    document.getElementById("phone").style.display = "block";
   }
 
   render() {
@@ -24,7 +26,8 @@ class Cart extends React.Component {
 
     window.onclick = function(event) {
       if (event.target === modal) {
-        modal.style.display = "none";
+        document.getElementById("myDevice").style.display = "none";
+        document.getElementById("phone").style.display = "block";
       }
     }
 
@@ -51,9 +54,7 @@ class Cart extends React.Component {
             })}
           </div>
         </div>
-        <button className="speak" onClick={() => this.openDevice()}>
-          View Cart
-        </button>
+        <div id="phone" className="phone" onClick = {() => this.openDevice()}/>
       </div>
     );
   }
