@@ -1,5 +1,5 @@
 import Walkthrough from "./Walkthrough";
-import text from "./text/text.js";
+import text from "./text/instructionsOne.js";
 
 const App = () => 
   <div className="App">

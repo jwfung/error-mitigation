@@ -12,6 +12,10 @@ class Walkthrough extends React.Component {
     };
   }
 
+  componentDidMount() {
+    console.log("walkthrough");
+  }
+
   //helper function to get text
   getNextText() {
     const { index } = this.state;

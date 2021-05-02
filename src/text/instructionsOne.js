@@ -1,4 +1,4 @@
-const text = [
+const instructions = [
   {
     header: "Instructions:",
     top: "In this study, you will be interacting with a story sequence",
@@ -27,4 +27,4 @@ const text = [
   }
 ];
 
-export default text;
+export default instructions;

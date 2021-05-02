@@ -8,11 +8,11 @@ class Item extends React.Component {
 
     return (
       <div className="grid">
-        {item.img && <img className="col-1-3" src={item.img} alt="img"></img>}
+        {item.img && <img style={{textAlign: "left"}} src={item.img} alt="item"></img>}
         <div className="col-2-3">
-          <h3>{item.name}</h3>
+          <h3 style={{textAlign: "left"}}>{item.name}</h3>
           <p>Quantity: 1</p>
-          <button className="inCart">This is Incorrect</button>
+          <button className="inCart">Item is incorrect</button>
         </div>
       </div>
     )
@@ -55,17 +55,19 @@ class Cart extends React.Component {
             <div class="device-header">
               <span className="close" onClick={() => this.closeDevice()}>&times;</span>
             </div>
-            <h2>Your Cart</h2>
-            {items && items.map((item, i) => {
-              if (item.added) {
-                return (
-                  <div key={i}>
-                    <Item item={item}/>
-                  </div>
-                )
-              }
-              return <></>
-            })}
+            <div className="device-screen">
+              <h2>Your Cart</h2>
+              {items && items.map((item, i) => {
+                if (item.added) {
+                  return (
+                    <div key={i}>
+                      <Item item={item}/>
+                    </div>
+                  )
+                }
+                return <></>
+              })}
+            </div>
           </div>
         </div>
         <div id="phone" className="phone" onClick = {() => this.openDevice()}/>

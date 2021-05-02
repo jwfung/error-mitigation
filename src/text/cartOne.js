@@ -1,14 +1,11 @@
-import battery from "../assets/batteries.jpg";
-import dogFood from "../assets/dog_food.jpg";
-
 const cartOne = [
   {
-    img: { battery },
+    img: require('../assets/batteries.jpg'),
     name: "AA Batteries",
     added: true
   },
   {
-    img: { dogFood },
+    img: require('../assets/dog_food.png-'),
     name:"Dog Food",
     added: true
   },

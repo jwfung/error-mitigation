@@ -1,8 +1,29 @@
 import "./App.css";
 import React from "react";
 
-import NextButton from "./NextButton.js";
 import cartOne from "./text/cartOne.js";
+import nextBtn from "./assets/next.png";
+
+class NextButton extends React.Component{
+  render() {
+    return (
+      <div>
+        <img
+          src={nextBtn}
+          style={{
+            width: "90px",
+            position: "fixed",
+            bottom: "100px",
+            right: "100px"
+          }}
+          onClick={() => this.props.getNextText()}
+          alt="next arrow"
+        />
+      </div>
+    );
+  }
+}
+
 
 const confirmItem = "Got it! Item has been added to your cart";
 
