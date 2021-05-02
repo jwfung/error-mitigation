@@ -48,24 +48,23 @@ class Study extends React.Component {
             <Cart/>
           </div>
           <div>
-            <row>
-              <div className="item first">
-                <list>
-                  <h2>Shopping List</h2>
-                  <p> double A batteries </p>
-                  <p> dog food </p>
-                  <p> lactose-free milk </p>
-                  <p> flour </p>
-                  <p> 13 gallons trash bags </p>
-              </list>
+            <div className="grid">
+              <div className="list col-1-2">
+                <h3>Shopping List</h3>
+                <p> double A batteries </p>
+                <p> dog food </p>
+                <p> lactose-free milk </p>
+                <p> flour </p>
+                <p> 13 gallons trash bags </p>
               </div>
-              <div className="item text next">
-                  <div>
-                    <p> {currTex.top} </p>
-                    <p> {currTex.mid} </p>
-                  </div>
+              <div className="text col-2-3">
+                <div>
+                  <p> {currTex.top} </p>
+                  <p> {currTex.mid} </p>
+                  <p> {currTex.bottom} </p>
+                </div> 
               </div>
-            </row>
+            </div>
             <div className="cylinder"></div> 
             <Speech 
               key={index}

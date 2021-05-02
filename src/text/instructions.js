@@ -8,7 +8,7 @@ const instructions = [
   {
     top:
       "You can check your cart to ensure the correct item has been added.",
-    mid: "View your cart by clicking on your phone in the bottom right",
+    mid: "View your cart by clicking on the phone in the bottom right.",
     bottom: "Otherwise, keep shopping."
   },
   { top: <img className="item next img" src={window} alt="shopping window"/> },

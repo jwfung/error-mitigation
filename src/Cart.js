@@ -2,6 +2,23 @@ import "./App.css";
 import React from "react";
 import cartOne from "./text/cartOne.js"
 
+class Item extends React.Component {
+  render() {
+    const {item} = this.props;
+
+    return (
+      <div className="grid">
+        {item.img && <img className="col-1-3" src={item.img} alt="img"></img>}
+        <div className="col-2-3">
+          <h3>{item.name}</h3>
+          <p>Quantity: 1</p>
+          <button className="inCart">This is Incorrect</button>
+        </div>
+      </div>
+    )
+  }
+}
+
 class Cart extends React.Component {
   constructor(props) {    
     super(props);
@@ -38,15 +55,12 @@ class Cart extends React.Component {
             <div class="device-header">
               <span className="close" onClick={() => this.closeDevice()}>&times;</span>
             </div>
-            <h1>Your Cart</h1>
+            <h2>Your Cart</h2>
             {items && items.map((item, i) => {
               if (item.added) {
                 return (
                   <div key={i}>
-                    <p>
-                      {item.img && <img src={item.img} alt="img"></img>}
-                      {item.name}
-                    </p>
+                    <Item item={item}/>
                   </div>
                 )
               }
