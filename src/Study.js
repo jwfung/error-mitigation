@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 
 import instructions from "./text/checkpointOne.js";
+import text from "./text/instructionsTwo.js";
 import Speech from "./Speech.js";
 import Walkthrough from "./Walkthrough.js"
 import Cart from "./Cart.js"
@@ -74,7 +75,7 @@ class Study extends React.Component {
           </div>
         </div>
       );
-    } else {return <Walkthrough text="./text/instructionsTwo.js"/>;}
+    } else {return <Walkthrough text={text} />;}
   }
 }
 

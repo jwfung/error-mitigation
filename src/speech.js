@@ -25,7 +25,7 @@ class NextButton extends React.Component{
 }
 
 
-const confirmItem = "Got it! Item has been added to your cart";
+// const confirmItem = "Got it! Item has been added to your cart";
 
 class Speech extends React.Component {
   constructor (props) {
@@ -34,14 +34,17 @@ class Speech extends React.Component {
     this.state = { 
       clickSpeak: false, 
       itemCounter: 0,
+      addItem: false,
       index: 0,
       items: {cartOne}}
   }
 
   componentDidUpdate() {
-    if (this.props.megaSpeak === {confirmItem}) {
-      this.addItem();
+    const {addItem} = this.state;
+    if ({addItem}=== true) {
+      console.log("Added");
       this.setState({itemCounter: this.state.itemCounter + 1});
+      this.setState({ addItem: !this.state.addItem });
       return (
         <div className="counter"> 
           <p> { this.state.itemCounter } </p> 
@@ -52,11 +55,12 @@ class Speech extends React.Component {
   addItem() {
     const { index, items } = this.state;
     items[index].added = true
-    this.setState({ index: index + 1, items });
+    this.setState({ index: index + 1, addItem: !this.state.addItem });
   }
 
   handleSpeak() {
     this.setState({ clickSpeak: !this.state.clickSpeak });
+    this.addItem();
     // document.getElementsByName("cyliner").style.animation = "speaking";
   }
 
