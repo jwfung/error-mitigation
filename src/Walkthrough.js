@@ -12,10 +12,6 @@ class Walkthrough extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log("walkthrough");
-  }
-
   //helper function to get text
   getNextText() {
     const { index } = this.state;
@@ -24,10 +20,10 @@ class Walkthrough extends React.Component {
 
   render() {
     const { index } = this.state;
-    const { text } = this.props;
+    const { text, cart } = this.props;
 
     if (index >= text.length) {
-      return <Study />
+      return <Study items={cart}/>
     }
 
     const currTex = text[index];

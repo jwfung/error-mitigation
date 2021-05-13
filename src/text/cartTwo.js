@@ -1,41 +1,32 @@
 const cartOne = [
   {
-
-  },
-  {
     img: require('../assets/batteries.jpg'),
-    name: "AA Batteries",
-    added: false,
+    name: "party hats",
     list: true,
+    added: false,
     count: 1
   },
   {
     img: require('../assets/dog_food.png-'),
-    name:"Dog Food",
+    name:"brownie mix",
     list: true,
     added: false,
     count: 1
   },
   {
-    name:"Lactose-Free Milk",
+    name: "balloons",
     list: true,
     added: false,
     count: 1
   },
   {
-    name: "Flour",
+    name: "bow",
     list: true,
     added: false,
     count: 1
   },
   {
-    name: "Bouquet of Flowers",
-    list: false,
-    added: false,
-    count: 1
-  },
-  {
-    name: "13 Gallons Trash Bags",
+    name: "plastic cups",
     list: true,
     added: false,
     count: 1

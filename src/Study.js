@@ -3,6 +3,8 @@ import React from "react";
 
 import instructions from "./text/checkpointOne.js";
 import text from "./text/instructionsTwo.js";
+import cart from "./text/cartTwo.js"
+
 import Speech from "./Speech.js";
 import Walkthrough from "./Walkthrough.js"
 import Cart from "./Cart.js"
@@ -14,8 +16,6 @@ class Study extends React.Component {
     super(props);
     this.state = { index : 0}
   }
-
-  componentDidUpdate() {}
 
   //helper function to get text
   getNextText() {
@@ -40,25 +40,29 @@ class Study extends React.Component {
 
   render() {
     const { index } = this.state;
+    const { items } = this.props;
     const currTex = (index >= instructions.length ? null : instructions[index]);    
 
     if (currTex !== null) {
       return (
         <div>
           <div>
-            <Cart/>
+            <Cart cart={items}/>
           </div>
           <div>
-            <div className="grid">
-              <div className="list col-1-2">
+            <div className="wrapper">
+              <div className="list">
                 <h3>Shopping List</h3>
-                <p> double A batteries </p>
-                <p> dog food </p>
-                <p> lactose-free milk </p>
-                <p> flour </p>
-                <p> 13 gallons trash bags </p>
+                {items.map((item, i) => {
+                  if (item.list) {
+                    return (
+                      <div key={i}>
+                        {item.name}
+                      </div>
+                    )
+                }})}
               </div>
-              <div className="text col-2-3">
+              <div className="text">
                 <div>
                   <p> {currTex.top} </p>
                   <p> {currTex.mid} </p>
@@ -75,7 +79,7 @@ class Study extends React.Component {
           </div>
         </div>
       );
-    } else {return <Walkthrough text={text} />;}
+    } else {return <Walkthrough text={text} cart={cart}/>;}
   }
 }
 

@@ -1,6 +1,5 @@
 import "./App.css";
 import React from "react";
-import cartOne from "./text/cartOne.js"
 
 class Item extends React.Component {
   render() {
@@ -22,7 +21,7 @@ class Item extends React.Component {
 class Cart extends React.Component {
   constructor(props) {    
     super(props);
-    this.state = { items: cartOne, index: 0, deviceOpened: false}
+    this.state = { index: 0, deviceOpened: false}
   }
 
   openDevice() {
@@ -38,7 +37,7 @@ class Cart extends React.Component {
   }
 
   render() {
-    const { items } = this.state;
+    const { items } = this.props;
     var modal = document.getElementById("myDevice");
 
     window.onclick = function(event) {
@@ -65,6 +64,7 @@ class Cart extends React.Component {
                     </div>
                   )
                 }
+                // {this.setState({index: index + 1})}
                 return <></>
               })}
             </div>

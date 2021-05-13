@@ -3,6 +3,7 @@ import React from "react";
 
 import cartOne from "./text/cartOne.js";
 import nextBtn from "./assets/next.png";
+import speaking from "./assets/3.gif";
 
 class NextButton extends React.Component{
   render() {
@@ -36,12 +37,13 @@ class Speech extends React.Component {
       itemCounter: 0,
       addItem: false,
       index: 0,
-      items: {cartOne}}
+      items: cartOne
+    }
   }
 
   componentDidUpdate() {
-    const {addItem} = this.state;
-    if ({addItem}=== true) {
+    const {addItem, clickSpeak} = this.state;
+    if (addItem === true) {
       console.log("Added");
       this.setState({itemCounter: this.state.itemCounter + 1});
       this.setState({ addItem: !this.state.addItem });
@@ -50,12 +52,17 @@ class Speech extends React.Component {
           <p> { this.state.itemCounter } </p> 
         </div>);
       }
+    if (clickSpeak) {
+      return (<img src={speaking} alt="speaking"/>)
+    }
   }
 
   addItem() {
     const { index, items } = this.state;
-    items[index].added = true
     this.setState({ index: index + 1, addItem: !this.state.addItem });
+    console.log(items)
+    console.log(index)
+    items[index].added = true
   }
 
   handleSpeak() {
