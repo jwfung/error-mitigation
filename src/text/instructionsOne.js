@@ -21,9 +21,9 @@ const instructions = [
       "You can check your cart online at MegaShop before placing your order, or place the order directly"
   },
   {
-    top: "In this game, you will be ordering a list of items using Mega.",
+    top: "In this game, you will be ordering a list of items using Mega, as well as another personal assistant, Gema.",
     mid:
-      "However, Mega may not always be accurate. Keep an eye out for any errors!"
+      "However, they may not always be accurate. Keep an eye out for any errors!"
   }
 ];
 
