@@ -12,8 +12,6 @@ const instructions = [
     bottom: "Otherwise, keep shopping."
   },
   { top: <img className="item next img" src={window} alt="shopping window"/> },
-  { top: <img className="item next img" src={window} alt="shopping window"/> },
-  { top: <img className="item next img" src={window} alt="shopping window"/> },
   { 
     top: "Congrats! You've reached Checkpoint #1!",
     mid: "You can check your cart to see the items were correctly added before checking out"

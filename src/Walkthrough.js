@@ -20,14 +20,15 @@ class Walkthrough extends React.Component {
 
   render() {
     const { index } = this.state;
-    const { text, cart } = this.props;
+    const { text, cart, instructions, items } = this.props;
+    console.log(index + " out of " + text.length)
 
     if (index >= text.length) {
-      return <Study items={cart}/>
+      return <Study items={cart} instructions={instructions}/>
     }
 
     const currTex = text[index];
-
+    
     return (
       <div className="body">
         <h1>

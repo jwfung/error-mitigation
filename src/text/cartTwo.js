@@ -1,4 +1,4 @@
-const cartOne = [
+const cartTwo = [
   {
     img: require('../assets/batteries.jpg'),
     name: "party hats",
@@ -33,4 +33,4 @@ const cartOne = [
   }
 ];
 
-export default cartOne;
+export default cartTwo;

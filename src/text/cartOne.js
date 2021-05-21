@@ -1,8 +1,5 @@
 const cartOne = [
   {
-
-  },
-  {
     img: require('../assets/batteries.jpg'),
     name: "AA Batteries",
     added: false,
@@ -23,14 +20,9 @@ const cartOne = [
     count: 1
   },
   {
+    wrongItem: { name: "Bouquet of Flowers", rejected: false },
     name: "Flour",
     list: true,
-    added: false,
-    count: 1
-  },
-  {
-    name: "Bouquet of Flowers",
-    list: false,
     added: false,
     count: 1
   },

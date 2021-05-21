@@ -20,15 +20,17 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 10px;
+  margin-bottom: 40px;
+  margin-top: 20px;
 }
 
 .list {
   /* order: 1; */
   background-color: rgb(255, 250, 175);
   box-shadow: rgb(126, 124, 122);
-  height: 100%;
-  width: 30%;
-  border-radius: 5px;
+  height: 20rem;
+  width: 20rem;
+  border-radius: 8px;
   padding-top: 5px;
   font-size: 1.2rem;
   margin: auto;
@@ -39,17 +41,14 @@
   font-size: 1.5rem;
   text-align: center;
   position: relative;
-  top: 20%;
-  /* right: 10%; */
+  margin: auto;  /* right: 10%; */
   max-width: 500px;
 }
 
 .img {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 30%;
-  height: auto;
+  margin: auto;
+  max-height: 250px;
 }
 
 /* SPEAK BUTTON */
@@ -80,11 +79,18 @@
 .counter {
   background-color: red;
   color: white;
-  border-radius: 10px;
+  border-radius: 100px;
   position: absolute;
-  right: 20px;
-  top: 100px;
-  padding: 2px;
+  right: 100px;
+  width: 2rem;
+  height: 2rem;
+  top: 80px;
+}
+
+h4 {
+  margin-top: 0;
+  font-weight: 450;
+  font-size: 1.3rem;
 }
 
 /* MEGA */
@@ -104,6 +110,26 @@
   border-radius: 100%;
   z-index: 1;
   width: 200px;
+  height: 30px;
+  left: 0;
+}
+/*GEMA*/
+.gema {
+  background: rgb(34, 34, 34);
+  width: 100px;
+  height: 200px;
+  border-radius: 100% / 30%;
+  position: relative;
+  margin: auto;
+}
+.gema:before {
+  content:"";
+  position: absolute;
+  background: rgb(92, 92, 92);
+  border: 0 solid transparent;
+  border-radius: 100%;
+  z-index: 1;
+  width: 100px;
   height: 30px;
   left: 0;
 }

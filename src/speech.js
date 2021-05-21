@@ -1,9 +1,14 @@
 import "./App.css";
 import React from "react";
 
-import cartOne from "./text/cartOne.js";
+//import cartOne from "./text/cartOne.js";
+//import speaking from "./assets/3.gif";
 import nextBtn from "./assets/next.png";
-import speaking from "./assets/3.gif";
+
+// const textToSpeech = require('@google-cloud/text-to-speech');
+// const fs = require('fs');
+// const util = require('util');
+// const client = new textToSpeech.TextToSpeechClient();
 
 class NextButton extends React.Component{
   render() {
@@ -25,7 +30,6 @@ class NextButton extends React.Component{
   }
 }
 
-
 // const confirmItem = "Got it! Item has been added to your cart";
 
 class Speech extends React.Component {
@@ -35,18 +39,19 @@ class Speech extends React.Component {
     this.state = { 
       clickSpeak: false, 
       itemCounter: 0,
-      addItem: false,
-      index: 0,
-      items: cartOne
+      //addItem: false,
+      //index: 0,
+      //items: cartOne
     }
   }
 
   componentDidUpdate() {
-    const {addItem, clickSpeak} = this.state;
+    /*const {addItem, clickSpeak, itemCounter} = this.state;
     if (addItem === true) {
-      console.log("Added");
-      this.setState({itemCounter: this.state.itemCounter + 1});
+      console.log(addItem);
+      this.setState({itemCounter: itemCounter + 1});
       this.setState({ addItem: !this.state.addItem });
+      console.log(itemCounter)
       return (
         <div className="counter"> 
           <p> { this.state.itemCounter } </p> 
@@ -54,32 +59,55 @@ class Speech extends React.Component {
       }
     if (clickSpeak) {
       return (<img src={speaking} alt="speaking"/>)
-    }
+    }*/
   }
-
-  addItem() {
-    const { index, items } = this.state;
-    this.setState({ index: index + 1, addItem: !this.state.addItem });
-    console.log(items)
-    console.log(index)
-    items[index].added = true
-  }
+/*
+  async megaSpeech() {
+    // The text to synthesize
+    const text = 'hello, world!';
+  
+    // Construct the request
+    const request = {
+      input: {text: text},
+      // Select the language and SSML voice gender (optional)
+      voice: {languageCode: 'en-US', ssmlGender: 'NEUTRAL'},
+      // select the type of audio encoding
+      audioConfig: {audioEncoding: 'MP3'},
+    };
+  
+    // Performs the text-to-speech request
+    const [response] = await client.synthesizeSpeech(request);
+    // Write the binary audio content to a local file
+    const writeFile = util.promisify(fs.writeFile);
+    await writeFile('output.mp3', response.audioContent, 'binary');
+    console.log('Audio content written to file: output.mp3');
+  }*/
 
   handleSpeak() {
-    this.setState({ clickSpeak: !this.state.clickSpeak });
-    this.addItem();
-    // document.getElementsByName("cyliner").style.animation = "speaking";
+    const { addItem } = this.props
+    if (addItem) {
+      addItem();
+    }
+    this.setState({ clickSpeak: true });
+    // this.megaSpeech();
+    // document.getElementsByName("cylinder").style.animation = "speaking";
+  }
+
+  getNextText() {
+    this.props.getNextText();
+    this.setState({ clickSpeak: false });
   }
 
   render() {
-    const { megaSpeak, getNextText } = this.props;
-    const {clickSpeak } = this.state;
+    const { megaSpeak } = this.props;
+    const { clickSpeak } = this.state;
+
     return (
       <div>
         {!megaSpeak || clickSpeak ? (
-          <NextButton getNextText={() => getNextText()} />
+          <NextButton getNextText={() => this.getNextText()} />
         ) : (
-          <button id="btn" className="speak" onClick={() => this.handleSpeak(megaSpeak)}>
+          <button id="btn" className="speak" onClick={() => this.handleSpeak()}>
             Ask Mega
           </button>
         )}
