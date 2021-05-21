@@ -1,6 +1,6 @@
 import Walkthrough from "./Walkthrough";
 import text from "./text/instructionsOne.js";
-import instructions from "./text/checkpointOne.js";
+import checkpointText from "./text/checkpointOne.js";
 import cart from "./text/cartOne.js";
 
 const App = () => 
@@ -8,7 +8,8 @@ const App = () =>
     <Walkthrough 
       text={text} 
       cart={cart}
-      instructions={instructions}/>
+      checkpointText={checkpointText}
+    />
   </div>
 
 export default App;

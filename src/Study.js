@@ -1,24 +1,24 @@
 import "./App.css";
 import React from "react";
 import text from "./text/instructionsTwo.js";
+import textFinal from "./text/instructionsFinal.js"
 import cartTwo from "./text/cartTwo.js"
-import cartOne from "./text/cartOne.js";
 
 import Speech from "./Speech.js";
 import Walkthrough from "./Walkthrough.js"
 import Cart from "./Cart.js"
-
-const confirmItem = "Got it! Item has been added to your cart";
-const errorMitigation = "Oops, I'm sorry about that. Shall we try again?"
+import checkpointTwo from "./text/checkpointTwo";
 
 class Study extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { index : 0, itemsIndex: 0, items: cartOne, itemCounter: 0, errorMit: false, checkout: false}
+    this.state = { index : 0, itemsIndex: 0, itemCounter: 0, errorMit: false, checkout: false}
   }
 
   addItem() {
-    const { itemsIndex, items, itemCounter } = this.state;
+    const { itemsIndex, itemCounter } = this.state;
+    const { items } = this.props;
+    console.log(items[itemsIndex])
     items[itemsIndex].added = true
 
     let newIndex = itemsIndex + 1
@@ -29,14 +29,16 @@ class Study extends React.Component {
   }
 
   removeItem(i) {
-    const { items, itemCounter } = this.state;
+    const { itemCounter } = this.state;
+    const { items } = this.props;
+
     const item = items[i];
     const { wrongItem } = item;
     if (wrongItem && !wrongItem.rejected) {
       wrongItem.rejected = true;
     } 
-    this.setState({ itemsIndex: i, items, itemCounter: itemCounter - 1, errorMit: true});
     item.added = false;
+    this.setState({ itemsIndex: i, items, itemCounter: itemCounter - 1, errorMit: true});
   }
 
   checkout() {
@@ -46,9 +48,9 @@ class Study extends React.Component {
 
   //helper function to get text
   getNextText() {
-    const { instructions } = this.props;
-    const { index, itemCounter, items } = this.state;
-    if (instructions && index >= instructions.length) {
+    const { checkpointText, items } = this.props;
+    const { index, itemCounter } = this.state;
+    if (checkpointText && index >= checkpointText.length) {
       return false;
     }
     if (index < 2 || itemCounter >= items.length) {
@@ -58,12 +60,25 @@ class Study extends React.Component {
 
   render() {
     const { index, itemCounter, errorMit, checkout } = this.state;
-    const { items, instructions } = this.props;
-    const currTex = (instructions && index <= instructions.length ? instructions[index] : null);    
+    const { items, checkpointText } = this.props;
+    console.log("items: " + itemCounter + " out of " + items.length)
 
-    //TODO: get rid of instrucions for round two
+    const currTex = (checkpointText && index <= checkpointText.length ? checkpointText[index] : null); 
+    const length = (checkpointText ? checkpointText.length : null)
+    const isCheckpointTwo = (checkpointText === checkpointTwo ? true : false) 
+    const windowIndex = (isCheckpointTwo ? 3 : 2)
+    const confirmItem = "Got it! Item has been added to your cart";
+    const errorMitigation = (isCheckpointTwo ? "Oops, I'm sorry about that. Those two words sound the same. I wasn't sure which one you meant."
+                                                : "Oops, I'm sorry about that. Shall we try again?");
+    
+    console.log("index: " + index + " out of " + length)
+    
     if (checkout) {
-      return <Walkthrough text={text} cart={cartTwo} items={items}/>;
+      if (items !== cartTwo) {
+        return <Walkthrough text={text} cart={cartTwo} checkpointText={checkpointTwo}/>;
+      } else {
+        return <Walkthrough text={textFinal} />;
+      }
     }
     else if (currTex != null) {
       return (
@@ -89,24 +104,26 @@ class Study extends React.Component {
                   <p> {currTex.mid} </p>
                   <p> {currTex.bottom} </p>
                 </div> 
-                { index >= 2 && itemCounter <= items.length && index < instructions.length - 1 ? <div className="counter"> 
-                  <h4> { this.state.itemCounter } </h4> 
-                </div> : null }
+                {index >= windowIndex && index <= length - 2 ? 
+                  <div className="counter"> 
+                    <h4> { this.state.itemCounter } </h4> 
+                  </div> : null}
               </div>
             </div>
-            {instructions ? <div className="cylinder"/> : <div className="gema"/>}
+            {!isCheckpointTwo ? <div className="cylinder"/> : <div className="gema"/>}
             {errorMit ? <p> <i> {errorMitigation} </i></p> : null}
-            {index < instructions.length - 1 ? 
+            {index <= length - 2 || itemCounter < items.length ? 
             <Speech 
               key={index}
-              megaSpeak={(itemCounter >= items.length && index >= instructions.length - 1) ? false : confirmItem}
+              megaSpeak={(itemCounter >= items.length && index >= length - 1) ? false : confirmItem}
               getNextText={this.getNextText.bind(this)}
               addItem={this.addItem.bind(this)}
+              isCheckpointTwo={isCheckpointTwo}
             /> : null }
           </div>
         </div>
       );
-    }
+    } else {return <></>}
   }
 }
 

@@ -99,8 +99,9 @@ class Speech extends React.Component {
   }
 
   render() {
-    const { megaSpeak } = this.props;
+    const { megaSpeak, isCheckpointTwo } = this.props;
     const { clickSpeak } = this.state;
+    const btnName = (!isCheckpointTwo ? "Ask Mega" : "Ask Gema" )
 
     return (
       <div>
@@ -108,7 +109,7 @@ class Speech extends React.Component {
           <NextButton getNextText={() => this.getNextText()} />
         ) : (
           <button id="btn" className="speak" onClick={() => this.handleSpeak()}>
-            Ask Mega
+            {btnName}
           </button>
         )}
         { clickSpeak && megaSpeak ? <p> <i> { megaSpeak } </i> </p>: null }

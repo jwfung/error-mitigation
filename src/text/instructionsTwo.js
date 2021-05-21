@@ -1,6 +1,6 @@
 import check from "../assets/check.png"
 
-const instructions = [
+const instructionsTwo = [
   {
     top: <img src={check} alt="check"/>,
     mid: "Purchase Completed!"
@@ -15,4 +15,4 @@ const instructions = [
   }
 ];
 
-export default instructions;
+export default instructionsTwo;

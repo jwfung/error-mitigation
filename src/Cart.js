@@ -1,7 +1,5 @@
 import "./App.css";
 import React from "react";
-import Walkthrough from "./Walkthrough.js"
-import cartTwo from "./text/cartTwo.js"
 
 class Item extends React.Component {
   handleRemove(index) {
@@ -18,7 +16,7 @@ class Item extends React.Component {
         {item.img && <img style={{textAlign: "left"}} src={item.img} alt="item"></img>}
         <div className="col-2-3">
           <h3>{wrongItem && !wrongItem.rejected ? wrongItem.name : item.name}</h3>
-          <p>Quantity: 1</p>
+          {/* <p>Quantity: 1</p> */}
           <button className="inCart" onClick={() => this.handleRemove(index)}>Item is incorrect</button>
         </div>
       </div>
@@ -71,7 +69,7 @@ class Cart extends React.Component {
                   </div>
                 )
               })}
-              {itemCounter === items.length ? <button onClick={() => checkout()}> Proceed to Checkout </button> : null}
+              {itemCounter === items.length ? <button className="purchase" onClick={() => checkout()}> Proceed to Checkout </button> : null}
             </div>
           </div>
         </div>

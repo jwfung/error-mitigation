@@ -20,6 +20,7 @@ const cartTwo = [
     count: 1
   },
   {
+    wrongItem: { name: "archery bow", rejected: false },
     name: "bow",
     list: true,
     added: false,

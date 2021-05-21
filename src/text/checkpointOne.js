@@ -1,6 +1,6 @@
 import window from "../assets/cart.png";
 
-const instructions = [
+const checkpointOne = [
   {
     top: "This is your shopping list",
     mid: "Ask Mega to help you order each item, one by one"
@@ -19,4 +19,4 @@ const instructions = [
 
 ];
 
-export default instructions;
+export default checkpointOne;
