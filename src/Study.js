@@ -61,18 +61,15 @@ class Study extends React.Component {
   render() {
     const { index, itemCounter, errorMit, checkout } = this.state;
     const { items, checkpointText } = this.props;
-    console.log("items: " + itemCounter + " out of " + items.length)
 
     const currTex = (checkpointText && index <= checkpointText.length ? checkpointText[index] : null); 
-    const length = (checkpointText ? checkpointText.length : null)
+    const length = (checkpointText ? checkpointText.length : 1)
     const isCheckpointTwo = (checkpointText === checkpointTwo ? true : false) 
-    const windowIndex = (isCheckpointTwo ? 3 : 2)
+    const windowIndex = (isCheckpointTwo ? 1 : 2)
     const confirmItem = "Got it! Item has been added to your cart";
     const errorMitigation = (isCheckpointTwo ? "Oops, I'm sorry about that. Those two words sound the same. I wasn't sure which one you meant."
                                                 : "Oops, I'm sorry about that. Shall we try again?");
-    
-    console.log("index: " + index + " out of " + length)
-    
+        
     if (checkout) {
       if (items !== cartTwo) {
         return <Walkthrough text={text} cart={cartTwo} checkpointText={checkpointTwo}/>;
