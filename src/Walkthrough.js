@@ -21,7 +21,6 @@ class Walkthrough extends React.Component {
   render() {
     const { index } = this.state;
     const { text, cart, checkpointText} = this.props;
-    console.log(index + " out of " + text.length)
 
     if (index >= text.length) {
       return <Study items={cart} checkpointText={checkpointText}/>
@@ -42,7 +41,12 @@ class Walkthrough extends React.Component {
             <div className="cylinder">
             </div>
           )}
+          {currTex.gema && (
+            <div className="gema">
+            </div>
+          )}
           <Speech 
+            isDemo={true}
             megaSpeak={currTex.speak}
             getNextText={this.getNextText.bind(this)}
           />

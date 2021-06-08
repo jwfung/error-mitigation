@@ -99,9 +99,9 @@ class Speech extends React.Component {
   }
 
   render() {
-    const { megaSpeak, isCheckpointTwo } = this.props;
+    const { megaSpeak, isCheckpointTwo, isDemo } = this.props;
     const { clickSpeak } = this.state;
-    const btnName = (!isCheckpointTwo ? "Ask Mega" : "Ask Gema" )
+    const btnName = isDemo ? "Ask the weather" : (!isCheckpointTwo ? "Ask Mega" : "Ask Gema")
 
     return (
       <div>

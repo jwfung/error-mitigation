@@ -1,13 +1,11 @@
 const cartTwo = [
   {
-    img: require('../assets/batteries.jpg'),
     name: "party hats",
     list: true,
     added: false,
     count: 1
   },
   {
-    img: require('../assets/dog_food.png-'),
     name:"brownie mix",
     list: true,
     added: false,

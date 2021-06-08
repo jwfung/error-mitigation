@@ -10,10 +10,12 @@ class Item extends React.Component {
   render() {
     const { item, index } = this.props;
     const { wrongItem } = item;
+    const {img} = wrongItem && !wrongItem.rejected ? wrongItem.img : item.img; 
 
     return (
       <div className="grid">
-        {item.img && <img style={{textAlign: "left"}} src={item.img} alt="item"></img>}
+        <img style={{textAlign: "left", maxHeight: "100px"}} src={item.img} alt=""/>
+        {wrongItem && <img style={{textAlign: "left", maxHeight: "100px"}} src={img} alt=""/>}
         <div className="col-2-3">
           <h3>{wrongItem && !wrongItem.rejected ? wrongItem.name : item.name}</h3>
           {/* <p>Quantity: 1</p> */}
@@ -73,7 +75,7 @@ class Cart extends React.Component {
             </div>
           </div>
         </div>
-        <div id="phone" className="phone" onClick = {() => this.openDevice()}/>
+        <div id="phone" className="phone" onClick={() => this.openDevice()}/>
       </div>
     );
   }

@@ -1,10 +1,4 @@
-import check from "../assets/check.png"
-
 const instructionsTwo = [
-  {
-    top: <img src={check} alt="check"/>,
-    mid: "Purchase Completed!"
-  },
   {
     top: "Session #1 Complete",
     mid: "Continue to Session #2"
