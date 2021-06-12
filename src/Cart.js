@@ -10,16 +10,17 @@ class Item extends React.Component {
   render() {
     const { item, index } = this.props;
     const { wrongItem } = item;
+    const isWrong = wrongItem ? true : false;
     const {img} = wrongItem && !wrongItem.rejected ? wrongItem.img : item.img; 
 
     return (
-      <div className="grid">
-        <img style={{textAlign: "left", maxHeight: "100px"}} src={item.img} alt=""/>
-        {wrongItem && <img style={{textAlign: "left", maxHeight: "100px"}} src={img} alt=""/>}
-        <div className="col-2-3">
+      <div className="wrapper">
+        {wrongItem && !wrongItem.rejected ? <img style={{textAlign: "left", maxHeight: "100px"}} src={wrongItem.img} alt=""/> :
+                                            <img style={{textAlign: "left", maxHeight: "100px"}} src={item.img} alt=""/>}
+        {console.log(isWrong)}
+        <div>
           <h3>{wrongItem && !wrongItem.rejected ? wrongItem.name : item.name}</h3>
-          {/* <p>Quantity: 1</p> */}
-          <button className="inCart" onClick={() => this.handleRemove(index)}>Item is incorrect</button>
+          <button className="inCart" onClick={() => this.handleRemove(index)}>Item is Incorrect</button>
         </div>
       </div>
     )
