@@ -22,7 +22,8 @@ class Study extends React.Component {
       errorMit: false, 
       checkout: false,
       submit: false,
-      delivered: false
+      delivered: false,
+      incorrectItem: false
     }
   }
 
@@ -54,17 +55,25 @@ class Study extends React.Component {
 
   checkout() {
     this.setState({checkout: true})
-    // console.log(this.state.checkout)
   }
 
   handleSubmission() {
     this.setState({submit: true})
-    // console.log(this.state.submit)
+  }
+
+  handleIncorrectItem() {
+    this.setState({incorrectItem: false})
   }
 
   delivered() {
     this.setState({delivered: true})
-    console.log(this.state.delivered)
+  }
+
+  onChangeValue(e) {
+    console.log(e);
+    if (e === "incorrect") {
+      this.setState({incorrectItem: true})
+    }
   }
 
   //helper function to get text
@@ -80,7 +89,7 @@ class Study extends React.Component {
   }
 
   render() {
-    const { index, itemCounter, errorMit, checkout, submit, delivered } = this.state;
+    const { index, itemCounter, errorMit, checkout, submit, delivered, incorrectItem } = this.state;
     const { items, checkpointText } = this.props;
 
     const currTex = (checkpointText && index <= checkpointText.length ? checkpointText[index] : null);
@@ -91,7 +100,16 @@ class Study extends React.Component {
     const errorMitigation = (isCheckpointTwo ? "Oops, I'm sorry about that. I found multiple items with the same keyword. Can you be more specific?"
                                               : "Oops, I'm sorry about that. Can you be more specific?");
     if (submit) {
-      if (items !== cartTwo) {
+      if (incorrectItem) {
+        return ( 
+          <div className="body">
+            {!isCheckpointTwo ? <div className="cylinder"/> : <div className="gema"/>}
+            <p><i>Oops, I'm sorry about that. I can start a return process for the item</i></p>
+            <img className="nextBtn" src={nextBtn} alt="next button" onClick={() => this.handleIncorrectItem()}/>
+          </div>
+        )
+      }
+      else if (items !== cartTwo) {
         return <Walkthrough text={text} cart={cartTwo} checkpointText={checkpointTwo} />;
       } else {
         return <Walkthrough text={textFinal} />;
@@ -102,37 +120,43 @@ class Study extends React.Component {
         <div>
         <h2>Your items have arrived!</h2>
         <p>Check to see if they match with your list.</p>
+        {/* <div className="wrapper"> 
+        <div className="list">
+          <h3> Shopping List </h3>
+          {items.map((item, i) => {
+            return (
+              <div key={i}>
+                {item.list && <p>{item.name}</p>}
+              </div>
+            )
+          })}
+        </div> */}
         {items && items.map((item, i) => {
           return (
-            <div key={i}>
-              {console.log(item.added)}
-              {item.added && <img src={item.img} style={{maxHeight: "150px"}} alt=""/>}
-              <div style={{margin: "20px"}}>
+            <div className="survey-wrapper" key={i}>
+              {item.added && <img src={item.img} style={{maxHeight: "150px", margin: "auto"}} alt=""/>}
+              <div style={{margin: "20px"}} onChange={e => this.onChangeValue(e.target.value)}>
                 <input type="radio" value="correct" name={i}/> Correct 
-                <input type="radio" value="inccorrect" name={i}/> Incorrect
+                <input type="radio" value="incorrect" name={i}/> Incorrect
               </div>
             </div>
           )
         })}
-        <button onClick={() => this.handleSubmission()}> Submit </button>
+        <button className="speak" style={{marginBlock: "1rem"}}onClick={() => this.handleSubmission()}> Submit </button>
       </div>
+      // </div> 
       );
     }
     else if (checkout) {
       return (
-        <div>
+        <div className="body">
           <h2>Purchase Completed!</h2>
           <img src={check} alt=""/>
           <img
             src={nextBtn}
-            style={{
-              width: "90px",
-              position: "fixed",
-              bottom: "100px",
-              right: "100px"
-            }}
+            className="nextBtn"
             onClick={() => this.delivered()}
-            alt="next arrow"
+            alt="next button"
           />
         </div>
       );
@@ -168,16 +192,17 @@ class Study extends React.Component {
               </div>
             </div>
             {!isCheckpointTwo ? <div className="cylinder"/> : <div className="gema"/>}
-            {errorMit ? <p> <i> {errorMitigation} </i></p> : null}
+            {errorMit ? <p><i> {errorMitigation} </i></p> : null}
             {index <= length - 2 || itemCounter < items.length ? 
-            <Speech 
+              <Speech 
               key={index}
+              errorMit={errorMit}
               megaSpeak={(itemCounter >= items.length && index >= length - 1) ? false : confirmItem}
               getNextText={this.getNextText.bind(this)}
               addItem={this.addItem.bind(this)}
               isCheckpointTwo={isCheckpointTwo}
             /> : null }
-            {(index > length - 2 || itemCounter > items.length ) ? <button className="purchase" onClick={() => this.checkout()}> Proceed to Checkout </button> : null}
+            {(index > length - 2 && itemCounter >= items.length) ? <button className="purchase" onClick={() => this.checkout()}> Proceed to Checkout </button> : null}
           </div>
         </div>
       );
