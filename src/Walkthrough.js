@@ -37,6 +37,10 @@ class Walkthrough extends React.Component {
           <p> {currTex.top} </p>
           <p> {currTex.mid} </p>
           <p> {currTex.bottom} </p>
+          {currTex.agent && (
+            <div className="agent">
+            </div>
+          )}
           {currTex.mega && (
             <div className="cylinder">
             </div>

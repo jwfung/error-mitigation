@@ -24,6 +24,14 @@
   margin-top: 20px;
 }
 
+.survey-wrapper {
+  display: grid;
+  margin-top: 50px;
+  gap: 10px;
+  grid-auto-flow: column;
+  justify-content: center;
+}
+
 .list {
   /* order: 1; */
   background-color: rgb(255, 250, 175);
@@ -73,6 +81,7 @@
   margin-top: 10px;
 }
 
+/*PHONE*/
 .phone {
   width: 100px;
   height: 150px;
@@ -104,11 +113,40 @@ h4 {
   font-size: 1.3rem;
 }
 
+/*NEXT BTN*/
+.nextBtn {
+  width: 90px;
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
+}
+
+/* AGENT */
+.agent {
+  background: rgb(85, 85, 85);
+  width: 200px;
+  height: 120px;
+  border-radius: 100% / 30%;
+  position: relative;
+  margin: auto;
+}
+.agent:before {
+  content:"";
+  position: absolute;
+  background: rgb(46, 46, 46);
+  border: 0 solid transparent;
+  border-radius: 100%;
+  z-index: 1;
+  width: 200px;
+  height: 30px;
+  left: 0;
+}
+
 /* MEGA */
 .cylinder {
   background: rgb(130, 130, 131);
-  width: 200px;
-  height: 100px;
+  width: 100px;
+  height: 150px;
   border-radius: 100% / 30%;
   position: relative;
   margin: auto;
@@ -120,15 +158,16 @@ h4 {
   border: 0 solid transparent;
   border-radius: 100%;
   z-index: 1;
-  width: 200px;
+  width: 100px;
   height: 30px;
   left: 0;
 }
+
 /*GEMA*/
 .gema {
   background: rgb(34, 34, 34);
-  width: 100px;
-  height: 150px;
+  width: 200px;
+  height: 100px;
   border-radius: 100% / 30%;
   position: relative;
   margin: auto;
@@ -140,7 +179,7 @@ h4 {
   border: 0 solid transparent;
   border-radius: 100%;
   z-index: 1;
-  width: 100px;
+  width: 200px;
   height: 30px;
   left: 0;
 }
