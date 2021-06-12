@@ -1,8 +1,6 @@
 import "./App.css";
 import React from "react";
 
-//import cartOne from "./text/cartOne.js";
-//import speaking from "./assets/3.gif";
 import nextBtn from "./assets/next.png";
 
 // const textToSpeech = require('@google-cloud/text-to-speech');
@@ -29,8 +27,6 @@ class NextButton extends React.Component{
     );
   }
 }
-
-// const confirmItem = "Got it! Item has been added to your cart";
 
 class Speech extends React.Component {
   constructor (props) {
@@ -99,20 +95,20 @@ class Speech extends React.Component {
   }
 
   render() {
-    const { megaSpeak, isCheckpointTwo, isDemo } = this.props;
+    const { megaSpeak, isCheckpointTwo, isDemo, errorMit } = this.props;
     const { clickSpeak } = this.state;
     const btnName = isDemo ? "Ask the weather" : (!isCheckpointTwo ? "Ask Mega" : "Ask Gema")
 
     return (
       <div>
-        {!megaSpeak || clickSpeak ? (
+        {(!megaSpeak || clickSpeak) && !errorMit ? (
           <NextButton getNextText={() => this.getNextText()} />
         ) : (
           <button id="btn" className="speak" onClick={() => this.handleSpeak()}>
             {btnName}
           </button>
         )}
-        { clickSpeak && megaSpeak ? <p> <i> { megaSpeak } </i> </p>: null }
+        { clickSpeak && megaSpeak && !errorMit ? <p> <i> { megaSpeak } </i> </p>: null }
       </div>
     );
   }
