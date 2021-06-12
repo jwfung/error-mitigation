@@ -4,12 +4,12 @@ const instructionsTwo = [
     mid: "Continue to Session #2"
   },
   {
-    header: "Instructions:",
-    top: "In this sequence, you will be interacting with a different personal assistant",
+    header: "Session 2:",
+    top: "In this next sequence, you will be interacting with a different personal assistant",
   },
   {
     gema: true,
-    top: "This is Gema",
+    top: "This assistant is called Gema",
     mid: "Gema can also respond to basic commands, and help you place orders online"
   },
   {
