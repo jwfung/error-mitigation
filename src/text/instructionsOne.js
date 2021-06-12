@@ -5,7 +5,7 @@ const instructions = [
     mid: "Use the arrow button at the bottom of the screen to proceed through each stage of the story."
   },
   {
-    mega: true,
+    agent: true,
     top: "This is a personal assistant. It can respond to basic commands.",
     mid: "Try asking it what the weather is.",
     speak: "It is currently 59 degrees Fahrenheit."
@@ -22,7 +22,7 @@ const instructions = [
   },
   {
     top: "In this session, you will be ordering a list of items using Mega",
-    mid: "However, they may not always be accurate. Keep an eye out for any errors!"
+    mid: "However, Mega may not always be accurate. Keep an eye out for any errors!"
   }
 ];
 
