@@ -26,9 +26,15 @@
 
 .survey-wrapper {
   display: grid;
-  margin-top: 50px;
-  gap: 10px;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 20px;
+}
+
+.survey-item-wrapper {
+  display: grid;
+  margin-top: 5px;
+  gap: 15px;
+  grid-auto-flow: row;
   justify-content: center;
 }
 
@@ -83,17 +89,43 @@
 
 /*PHONE*/
 .phone {
-  width: 100px;
-  height: 150px;
-  border-radius: 10px;
+  width: 107px;
+  height: 160px;
+  border-radius: 17px;
   transform: skew(-20deg);
-  background: black;
+  background: rgb(51, 51, 51);
   bottom: 30px;
-  right: 20%;
+  right: 17%;
   position: absolute;
   content: "O";
   color:rgb(130, 130, 131)
 }
+.phone::before {
+  width: 100px;
+  height: 150px;
+  border-radius: 10px;
+  background: black;
+  bottom: 10px;
+  right: 8%;
+  position: absolute;
+  content: "---";
+  color:rgb(189, 189, 189);
+}
+.phone:after {
+  width: 90px;
+  height: 110px;
+  /* transform: skew(-20deg); */
+  background: rgb(248, 248, 248);
+  bottom: 30px;
+  right: 13%;
+  position: absolute;
+  content: "Check Cart";
+  color:rgb(30, 32, 27)
+} 
+ /* .phone:after:hover {
+  background: rgb(85, 85, 85);
+ } */
+
 
 /* ITEM COUNTER*/
 .counter {
@@ -163,6 +195,11 @@ h4 {
   left: 0;
 }
 
+.mega-speech{
+  font-family:'Courier New', Courier, monospace;
+  font-style: italic;
+}
+
 /*GEMA*/
 .gema {
   background: rgb(34, 34, 34);
@@ -190,12 +227,36 @@ h4 {
   }
 }
 
+/*BTN IN CART*/
 .inCart{
   color:rgb(0, 139, 182);
   text-decoration: underline;
   border: transparent;
   background-color: white;
   cursor: pointer;
+}
+
+/*LIST ITEMS*/
+.list-item {
+  color:rgb(0, 0, 0);
+  text-decoration:black;
+  border: transparent;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-family: cursive;
+}
+.list-item:hover {
+  color:rgb(7, 108, 126);
+}
+.list-added {
+  color:rgb(0, 0, 0);
+  text-decoration: line-through;
+  border: transparent;
+  background-color: transparent;
+  font-size: 1.5rem;
+  font-family: cursive;
+  margin: 0;
 }
 
 /* DEVICE */
@@ -215,15 +276,13 @@ h4 {
   animation-name: fadeIn;
   animation-duration: 0.4s
 }
-
 .device-content {
   position: relative;
   background-color: white;
   margin: auto;
-  padding: 0;
-  border: 10px solid black;
+  border: 13px solid black;
   border-radius: 20px;
-  width: 320px;
+  width: 310px;
   height: 80%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   -webkit-animation-name: slideIn;
@@ -231,22 +290,41 @@ h4 {
   animation-name: slideIn;
   animation-duration: 0.4s
 }
-
 .device-screen {
   overflow-y: auto; 
-  height: 90%;
+  height: 85%;
 }
-
 .device-header {
   padding: 2px 16px;
   top: 0;
-  height: 40px;
+  width: 290px;
+  height: 7.5%;
   background-color: #000000;
   color: white;
 }
-
+.device-footer{
+  padding: 2px 16px;
+  height: 7.5%;
+  width: 290px;
+  background-color: #000000;
+  color: white;
+  content:"";
+}
 .device-body {padding: 2px 16px;}
 
+/*HELP*/
+.help-btn {
+  position: fixed;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  font-weight: 700;
+  top: 20px;
+  right: 20px;
+  border: 8px solid black;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+}
 
 /* Add Animation */
 @-webkit-keyframes slideIn {
@@ -269,14 +347,13 @@ h4 {
   to {opacity: 1}
 }
 
-/* The Close Button */
+/* CLOSE BTN */
 .close {
   color: white;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
   color: #000;

@@ -5,15 +5,15 @@ const instructionsTwo = [
   },
   {
     header: "Session 2:",
-    top: "In this next sequence, you will be interacting with a different personal assistant",
+    top: "In this next sequence, you will be interacting with a different personal assistant.",
   },
   {
     gema: true,
-    top: "This assistant is called Gema",
-    mid: "Gema can also respond to basic commands, and help you place orders online"
+    top: "This is Gema.",
+    mid: "Gema can also respond to basic commands, and help you place orders online."
   },
   {
-    top: "In this round, use Gema to help you order items for a party",
+    top: "In this round, use Gema to help you order items for a party.",
     mid: "Gema may not always be accurate, so remember to keep an eye out for errors!"
   },
 ];

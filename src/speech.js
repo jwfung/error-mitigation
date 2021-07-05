@@ -2,11 +2,8 @@ import "./App.css";
 import React from "react";
 
 import nextBtn from "./assets/next.png";
+import audio from "./assets/temp.mp3";
 
-// const textToSpeech = require('@google-cloud/text-to-speech');
-// const fs = require('fs');
-// const util = require('util');
-// const client = new textToSpeech.TextToSpeechClient();
 
 class NextButton extends React.Component{
   render() {
@@ -41,63 +38,24 @@ class Speech extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    /*const {addItem, clickSpeak, itemCounter} = this.state;
-    if (addItem === true) {
-      console.log(addItem);
-      this.setState({itemCounter: itemCounter + 1});
-      this.setState({ addItem: !this.state.addItem });
-      console.log(itemCounter)
-      return (
-        <div className="counter"> 
-          <p> { this.state.itemCounter } </p> 
-        </div>);
-      }
-    if (clickSpeak) {
-      return (<img src={speaking} alt="speaking"/>)
-    }*/
-  }
-/*
-  async megaSpeech() {
-    // The text to synthesize
-    const text = 'hello, world!';
   
-    // Construct the request
-    const request = {
-      input: {text: text},
-      // Select the language and SSML voice gender (optional)
-      voice: {languageCode: 'en-US', ssmlGender: 'NEUTRAL'},
-      // select the type of audio encoding
-      audioConfig: {audioEncoding: 'MP3'},
-    };
-  
-    // Performs the text-to-speech request
-    const [response] = await client.synthesizeSpeech(request);
-    // Write the binary audio content to a local file
-    const writeFile = util.promisify(fs.writeFile);
-    await writeFile('output.mp3', response.audioContent, 'binary');
-    console.log('Audio content written to file: output.mp3');
-  }*/
-
   handleSpeak() {
-    const { addItem } = this.props
-    if (addItem) {
-      addItem();
-    }
     this.setState({ clickSpeak: true });
-    // this.megaSpeech();
-    // document.getElementsByName("cylinder").style.animation = "speaking";
+    const audioEl = document.getElementsByClassName("audio-element")[0]
+    audioEl.play()
   }
 
   getNextText() {
     this.props.getNextText();
     this.setState({ clickSpeak: false });
+    const audioEl = document.getElementsByClassName("audio-element")[0]
+    audioEl.pause()
   }
 
   render() {
-    const { megaSpeak, isCheckpointTwo, isDemo, errorMit } = this.props;
+    const { megaSpeak, errorMit } = this.props;
     const { clickSpeak } = this.state;
-    const btnName = isDemo ? "Ask the weather" : (!isCheckpointTwo ? "Ask Mega" : "Ask Gema")
+    const btnName = "Ask the weather";
 
     return (
       <div>
@@ -108,7 +66,10 @@ class Speech extends React.Component {
             {btnName}
           </button>
         )}
-        { clickSpeak && megaSpeak && !errorMit ? <p> <i> { megaSpeak } </i> </p>: null }
+        { clickSpeak && megaSpeak && !errorMit ? <p className="mega-speech"> { megaSpeak } </p>: null }
+        <audio className="audio-element">
+          <source src={audio}></source>
+        </audio>
       </div>
     );
   }

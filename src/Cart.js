@@ -7,20 +7,24 @@ class Item extends React.Component {
     this.props.closeDevice();
   }
 
+  moreOptions(index) {
+    this.props.exchangeItem(index);
+    this.props.closeDevice();
+  }
+
   render() {
     const { item, index } = this.props;
-    const { wrongItem } = item;
-    const isWrong = wrongItem ? true : false;
-    const {img} = wrongItem && !wrongItem.rejected ? wrongItem.img : item.img; 
+    const { wrongItem, firstOpt, secondOpt } = item;
 
     return (
       <div className="wrapper">
         {wrongItem && !wrongItem.rejected ? <img style={{textAlign: "left", maxHeight: "100px"}} src={wrongItem.img} alt=""/> :
-                                            <img style={{textAlign: "left", maxHeight: "100px"}} src={item.img} alt=""/>}
-        {console.log(isWrong)}
+                                            (firstOpt && firstOpt.inCart ? <img style={{textAlign: "left", maxHeight: "100px"}} src={firstOpt.img} alt=""/> :
+                                                                          <img style={{textAlign: "left", maxHeight: "100px"}} src={secondOpt.img} alt=""/>) }
         <div>
-          <h3>{wrongItem && !wrongItem.rejected ? wrongItem.name : item.name}</h3>
-          <button className="inCart" onClick={() => this.handleRemove(index)}>Item is Incorrect</button>
+          <h3>{wrongItem && !wrongItem.rejected ? wrongItem.name : (firstOpt && firstOpt.inCart ? firstOpt.name : secondOpt.name)}</h3>
+          <button className="inCart" onClick={() => this.moreOptions(index)}>More Options</button>
+          <button className="inCart" onClick={() => this.handleRemove(index)}>Remove Item</button>
         </div>
       </div>
     )
@@ -46,7 +50,7 @@ class Cart extends React.Component {
   }
 
   render() {
-    const { items, removeItem, itemCounter, checkout } = this.props;
+    const { items, removeItem, exchangeItem, itemCounter, checkout } = this.props;
     var modal = document.getElementById("myDevice");
 
     window.onclick = function(event) {
@@ -68,12 +72,14 @@ class Cart extends React.Component {
               {items && items.map((item, i) => {
                 return (
                   <div key={i}>
-                    {item.added && <Item item={item} removeItem={removeItem} index={i} closeDevice={this.closeDevice.bind(this)}/>}
+                    {item.added && 
+                      <Item item={item} removeItem={removeItem} exchangeItem={exchangeItem} index={i} closeDevice={this.closeDevice.bind(this)}/>}
                   </div>
                 )
               })}
               {itemCounter === items.length ? <button className="purchase" onClick={() => checkout()}> Proceed to Checkout </button> : null}
             </div>
+            <div className="device-footer"/>
           </div>
         </div>
         <div id="phone" className="phone" onClick={() => this.openDevice()}/>
