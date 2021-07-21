@@ -76,6 +76,17 @@
   margin-top: 10px;
 }
 
+/*SELECTION BUTTON*/
+.select {
+  padding: 5px 15px;
+  background: rgb(216, 216, 216);
+  cursor: pointer;
+  border-radius: 5px;
+  color: black;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
 /*PURCHASE BUTTON*/
 .purchase {
   padding: 5px 15px;
