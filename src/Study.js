@@ -1,65 +1,90 @@
 import "./App.css";
 import React from "react";
-import text from "./text/instructionsTwo.js";
-import textFinal from "./text/instructionsFinal.js";
-import cartTwo from "./text/cartTwo.js";
 import nextBtn from "./assets/next.png";
 import check from "./assets/check.png";
-import audio from "./assets/confirm.mp3";
+import confirm from "./assets/confirm.mp3";
 import sameWord from "./assets/same_keyword.mp3";
 import moreSpecific from "./assets/more_specific.mp3";
 
-import Speech from "./Speech.js";
-import Cart from "./Cart.js";
 import checkpointTwo from "./text/checkpointTwo";
+import text from "./text/instructionsTwo";
+import textFinal from "./text/instructionsFinal";
+import cartOne from "./text/cartOne";
+import cartTwo from "./text/cartTwo";
+import cartThree from "./text/cartThree";
+import cartFour from "./text/cartFour";
+import cartFive from "./text/cartFive";
+
+import Cart from "./Cart.js";
 import Walkthrough from "./Walkthrough.js";
+
+class Response extends React.Component {
+  render () {
+    const {index} = this.props;
+
+    return (
+      <div className="survey-item-wrapper"> 
+        <button className="select" onClick={() => this.props.addItem(index)}>"Yes, that is correct. Add to cart"</button>
+        <button className="select" onClick={() => this.props.exchangeItem(index)}>"Yes, that is correct, but show me more options"</button>
+        <button className="select" onClick={() => this.props.errorMitigation()}>"No, that is incorrect"</button>
+      </div>
+    );
+  }
+}
 
 class Study extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      index : 0, 
-      itemsIndex: 0, 
+      // index : 0, 
+      // itemsIndex: 0, 
       itemCounter: 0, 
       errorMit: false, 
       checkout: false,
       submit: false,
       delivered: false,
       incorrectItem: false,
-      itemAdded: false,
       itemAudio: '',
-      showHelp: false
+      itemAdded: false,
+      showHelp: false,
+      response: false,
+      shoppingList: [cartOne, cartTwo, cartThree, cartFour, cartFive]
     }
   }
 
+  triggerResponse(index) {
+    const {items} = this.props;
+    this.setState({items, response: index, itemAudio: items[index].audio})
+    // {console.log(this.state.itemAudio)}
+
+    const audioAgent = document.getElementsByClassName("audio-order")[0];
+    audioAgent.play();
+  }
+
   addItem(index) {
-    const { itemsIndex, itemCounter } = this.state;
+    const { itemCounter } = this.state;
     const { items } = this.props;
     items[index].added = true
 
-    const audioOrder = document.getElementsByClassName("audio-order")[0];
-    audioOrder && audioOrder.play();
     this.addItemAgent();
 
     //find new index of removed item
-    let newIndex = itemsIndex + 1
-    for (let i = itemsIndex + 1; i < items.length; i++) {
-      if (items[i].added) newIndex++;
-    }
+    // let newIndex = itemsIndex + 1
+    // for (let i = itemsIndex + 1; i < items.length; i++) {
+    //   if (items[i].added) newIndex++;
+    // }
     this.setState({ 
-        itemsIndex: newIndex, 
         items, 
         itemCounter: itemCounter + 1, 
         errorMit: false, 
         itemAdded: true,
-        itemAudio: items[index].audio
+        response: false,
       });
   }
 
   addItemAgent() {
     this.setState({itemAdded: false})
-    // console.log(this.state.itemAdded);
-    const audioAgent = document.getElementsByClassName("audio-agent")[0];
+    const audioAgent = document.getElementsByClassName("audio-confirm")[0];
     audioAgent.play();
   }
 
@@ -73,10 +98,15 @@ class Study extends React.Component {
       wrongItem.rejected = true;
     } 
     item.added = false;
-    this.setState({ itemsIndex: i, items, itemCounter: itemCounter - 1, errorMit: true});
+    this.setState({ items, itemCounter: itemCounter - 1});
+    this.errorMitigation();
+  }
 
+  errorMitigation() {
     const audioAgent = document.getElementsByClassName("audio-agent-error")[0];
     audioAgent.play();
+
+    this.setState({ errorMit: true, response: false});
   }
 
   exchangeItem(i) {
@@ -124,23 +154,23 @@ class Study extends React.Component {
   }
 
   //helper function to get text
-  getNextText() {
-    const { checkpointText, items } = this.props;
-    const { index, itemCounter } = this.state;
-    if (checkpointText && index >= checkpointText.length) {
-      return false;
-    }
-    if (index < 2 || itemCounter >= items.length) {
-      this.setState({ index: index + 1 });
-    } 
-  }
+  // getNextText() {
+  //   const { checkpointText, items } = this.props;
+  //   const { index, itemCounter } = this.state;
+  //   if (checkpointText && index >= checkpointText.length) {
+  //     return false;
+  //   }
+  //   if (index < 2 || itemCounter >= items.length) {
+  //     this.setState({ index: index + 1 });
+  //   } 
+  // }
 
   render() {
-    const { index, itemCounter, errorMit, checkout, submit, delivered, incorrectItem, itemAdded, itemAudio, showHelp } = this.state;
+    const { itemCounter, errorMit, checkout, submit, delivered, incorrectItem, itemAdded, itemAudio, showHelp, response } = this.state;
     const { items, checkpointText } = this.props;
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
-    const length = (checkpointText ? checkpointText.length : 1);
+    // const length = (checkpointText ? checkpointText.length : 1);
     const isCheckpointTwo = (checkpointText === checkpointTwo ? true : false);
     const confirmItem = "Got it! Item has been added to your cart";
     const errorMitigation = (isCheckpointTwo ? "Oops, I'm sorry about that. I found multiple items with the same keyword. Can you try being more specific?"
@@ -160,7 +190,8 @@ class Study extends React.Component {
       } else {
         return <Walkthrough text={textFinal} />;
       }
-    }    
+    }   
+
     else if (delivered) {
       return (
         <div>
@@ -199,6 +230,7 @@ class Study extends React.Component {
         </div>
       );
     }
+
     //checked out
     else if (checkout) {
       return (
@@ -214,6 +246,7 @@ class Study extends React.Component {
         </div>
       );
     }
+
     //still ordering
     else if (currTex != null) {
       return (
@@ -234,18 +267,25 @@ class Study extends React.Component {
                 {items.map((item, i) => {
                   return (
                     <div key={i}>
-                      {!item.added ? <button className="list-item" onClick={() => this.addItem(i)}> {item.name} </button> :
+                      {!item.added ? <button className="list-item" onClick={() => this.triggerResponse(i)}> {item.name} </button> :
                                     <p className="list-added"> {item.name} </p> }
-                      {/* {console.log(item)} */}
-                      {console.log(item.audio)} {/*unsure*/}
                     </div>
                   )
                 })}
-                <audio className="audio-order">
-                  <source src={itemAudio}/>
-                </audio>
-                <audio className="audio-agent">
-                  <source src={audio}/>
+                {items.map((item, i) => {
+                  return (
+                    <div key={i}>
+                      <audio className="audio-order">
+                        <source src={item.audio}/>
+                      </audio>
+                    </div>
+                  )
+                })}
+                {/* <audio className="audio-order">
+                  <source src={items.audio}/>
+                </audio> */}
+                <audio className="audio-confirm">
+                  <source src={confirm}/>
                 </audio>
                 <audio className="audio-agent-error">
                   {!isCheckpointTwo ? <source src={moreSpecific}/> : <source src={sameWord}/>}
@@ -279,6 +319,12 @@ class Study extends React.Component {
                 addItem={this.addItem.bind(this)}
                 isCheckpointTwo={isCheckpointTwo}
               /> : null } */}
+            {response && <Response 
+                            index={response} 
+                            addItem={this.addItem.bind(this)} 
+                            exchangeItem={this.exchangeItem.bind(this)} 
+                            errorMitigation={this.errorMitigation.bind(this)}
+                          /> }
             {(itemCounter >= items.length) ? <button className="purchase" onClick={() => this.checkout()}>  
                                                                     Proceed to Checkout 
                                                                   </button> : null}
