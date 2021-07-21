@@ -9,11 +9,7 @@ import moreSpecific from "./assets/more_specific.mp3";
 import checkpointTwo from "./text/checkpointTwo";
 import text from "./text/instructionsTwo";
 import textFinal from "./text/instructionsFinal";
-import cartOne from "./text/cartOne";
-import cartTwo from "./text/cartTwo";
-import cartThree from "./text/cartThree";
-import cartFour from "./text/cartFour";
-import cartFive from "./text/cartFive";
+import sessions from "./text/sessions";
 
 import Cart from "./Cart.js";
 import Walkthrough from "./Walkthrough.js";
@@ -36,8 +32,7 @@ class Study extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      // index : 0, 
-      // itemsIndex: 0, 
+      sess: 0,
       itemCounter: 0, 
       errorMit: false, 
       checkout: false,
@@ -47,16 +42,16 @@ class Study extends React.Component {
       itemAudio: '',
       itemAdded: false,
       showHelp: false,
-      response: false,
-      shoppingList: [cartOne, cartTwo, cartThree, cartFour, cartFive]
+      response: -1,
+
     }
   }
 
   triggerResponse(index) {
     const {items} = this.props;
     this.setState({items, response: index, itemAudio: items[index].audio})
-    // {console.log(this.state.itemAudio)}
-
+    {console.log(this.state.itemAudio)}
+    {console.log(index)}
     const audioAgent = document.getElementsByClassName("audio-order")[0];
     audioAgent.play();
   }
@@ -67,18 +62,12 @@ class Study extends React.Component {
     items[index].added = true
 
     this.addItemAgent();
-
-    //find new index of removed item
-    // let newIndex = itemsIndex + 1
-    // for (let i = itemsIndex + 1; i < items.length; i++) {
-    //   if (items[i].added) newIndex++;
-    // }
     this.setState({ 
         items, 
         itemCounter: itemCounter + 1, 
         errorMit: false, 
         itemAdded: true,
-        response: false,
+        response: -1,
       });
   }
 
@@ -106,14 +95,14 @@ class Study extends React.Component {
     const audioAgent = document.getElementsByClassName("audio-agent-error")[0];
     audioAgent.play();
 
-    this.setState({ errorMit: true, response: false});
+    this.setState({ errorMit: true, response: -1});
   }
 
   exchangeItem(i) {
     const { items } = this.props;
 
     const item = items[i];
-    const { firstOpt, secondOpt } = item;
+    const { firstOpt, secondOpt } =  item.wrongItem && item.wrongItem.rejected ? item : item.wrongItem;
 
     if (firstOpt && firstOpt.inCart) {
       firstOpt.inCart = false;
@@ -153,28 +142,16 @@ class Study extends React.Component {
     this.setState({showHelp: !this.state.showHelp})
   }
 
-  //helper function to get text
-  // getNextText() {
-  //   const { checkpointText, items } = this.props;
-  //   const { index, itemCounter } = this.state;
-  //   if (checkpointText && index >= checkpointText.length) {
-  //     return false;
-  //   }
-  //   if (index < 2 || itemCounter >= items.length) {
-  //     this.setState({ index: index + 1 });
-  //   } 
-  // }
-
   render() {
-    const { itemCounter, errorMit, checkout, submit, delivered, incorrectItem, itemAdded, itemAudio, showHelp, response } = this.state;
+    const { sess, itemCounter, errorMit, checkout, submit, delivered, incorrectItem, itemAdded, itemAudio, showHelp, response } = this.state;
     const { items, checkpointText } = this.props;
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
     // const length = (checkpointText ? checkpointText.length : 1);
     const isCheckpointTwo = (checkpointText === checkpointTwo ? true : false);
     const confirmItem = "Got it! Item has been added to your cart";
-    const errorMitigation = (isCheckpointTwo ? "Oops, I'm sorry about that. I found multiple items with the same keyword. Can you try being more specific?"
-                                              : "Oops, I'm sorry about that. Can you try being more specific?");
+    const errorMitigation = sessions[sess].error;
+
     if (submit) {
       if (incorrectItem) {
         return ( 
@@ -185,10 +162,8 @@ class Study extends React.Component {
           </div>
         )
       }
-      else if (items !== cartTwo) {
-        return <Walkthrough text={text} cart={cartTwo} checkpointText={checkpointTwo} />;
-      } else {
-        return <Walkthrough text={textFinal} />;
+      else {
+        return <Walkthrough text={sessions[sess].text} cart={sessions[sess + 1]} checkpointText={checkpointTwo} />;
       }
     }   
 
@@ -212,11 +187,14 @@ class Study extends React.Component {
               return (
                 <div className="survey-item-wrapper" key={i}>
                   <div>
-                    <h3>{item.wrongItem && !item.wrongItem.rejected ? item.wrongItem.name : (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)}</h3>   
-                    {item.wrongItem && !item.wrongItem.rejected ? <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.img} alt=""/> :
+                    <h3> {item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
+                                                                        (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)} </h3>   
+                    {item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? 
+                                                                    <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.firstOpt.img} alt=""/> :
+                                                                    <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.secondOpt.img} alt=""/>) :
                                                                   (item.added && item.firstOpt.inCart ? 
-                                                                                <img style={{textAlign: "left", maxHeight: "100px"}} src={item.firstOpt.img} alt=""/> :
-                                                                                <img style={{textAlign: "left", maxHeight: "100px"}} src={item.secondOpt.img} alt=""/>)}
+                                                                    <img style={{textAlign: "left", maxHeight: "100px"}} src={item.firstOpt.img} alt=""/> :
+                                                                    <img style={{textAlign: "left", maxHeight: "100px"}} src={item.secondOpt.img} alt=""/>)}
                   </div>                                                        
                   <div style={{marginBlock: "auto"}} onChange={e => this.onChangeValue(e.target.value)}>
                     <input type="radio" value="correct" name={i}/> Correct 
@@ -272,7 +250,7 @@ class Study extends React.Component {
                     </div>
                   )
                 })}
-                {items.map((item, i) => {
+                {/* {items.map((item, i) => {
                   return (
                     <div key={i}>
                       <audio className="audio-order">
@@ -280,10 +258,10 @@ class Study extends React.Component {
                       </audio>
                     </div>
                   )
-                })}
-                {/* <audio className="audio-order">
-                  <source src={items.audio}/>
-                </audio> */}
+                })} */}
+                <audio className="audio-order">
+                  <source src={itemAudio}/>
+                </audio>
                 <audio className="audio-confirm">
                   <source src={confirm}/>
                 </audio>
@@ -299,35 +277,21 @@ class Study extends React.Component {
                   <p> {currTex.mid} </p>
                   <p> {currTex.bottom} </p>
                 </div> : null}
-                {/* ITEM COUNTER */}
-                {/* {index >= 1 && index <= length - 2 ? 
-                  <div className="counter"> 
-                    <h4> { this.state.itemCounter } </h4> 
-                  </div> : null} */}
+
               </div>
             </div>
-            {!isCheckpointTwo ? <div className="cylinder"/> : <div className="gema"/>}
+            { sessions[sess].agent }
             { itemAdded && !errorMit ? <p className="mega-speech"> { confirmItem } </p>: null }
-            {errorMit ? <p className="mega-speech"> {errorMitigation} </p> : null}
-            {/* SPEECH BUTTON */}
-            {/* {index <= length - 2 || itemCounter < items.length ? 
-              <Speech 
-                key={index}
-                errorMit={errorMit}
-                megaSpeak={(itemCounter >= items.length && index >= length - 1) ? false : confirmItem}
-                getNextText={this.getNextText.bind(this)}
-                addItem={this.addItem.bind(this)}
-                isCheckpointTwo={isCheckpointTwo}
-              /> : null } */}
-            {response && <Response 
+            { errorMit ? <p className="mega-speech"> {errorMitigation} </p> : null}
+            { response >= 0 && <Response 
                             index={response} 
                             addItem={this.addItem.bind(this)} 
                             exchangeItem={this.exchangeItem.bind(this)} 
                             errorMitigation={this.errorMitigation.bind(this)}
                           /> }
-            {(itemCounter >= items.length) ? <button className="purchase" onClick={() => this.checkout()}>  
-                                                                    Proceed to Checkout 
-                                                                  </button> : null}
+            { (itemCounter >= items.length) ? <button className="purchase" onClick={() => this.checkout()}>  
+                                                Proceed to Checkout 
+                                              </button> : null }
           </div>
         </div>
       );

@@ -18,11 +18,15 @@ class Item extends React.Component {
 
     return (
       <div className="wrapper">
-        {wrongItem && !wrongItem.rejected ? <img style={{textAlign: "left", maxHeight: "100px"}} src={wrongItem.img} alt=""/> :
-                                            (firstOpt && firstOpt.inCart ? <img style={{textAlign: "left", maxHeight: "100px"}} src={firstOpt.img} alt=""/> :
-                                                                          <img style={{textAlign: "left", maxHeight: "100px"}} src={secondOpt.img} alt=""/>) }
+        {wrongItem && !wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? 
+                                              <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.firstOpt.img} alt=""/> :
+                                              <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.secondOpt.img} alt=""/>) :
+                                            (firstOpt && firstOpt.inCart ? 
+                                              <img style={{textAlign: "left", maxHeight: "100px"}} src={firstOpt.img} alt=""/> :
+                                              <img style={{textAlign: "left", maxHeight: "100px"}} src={secondOpt.img} alt=""/>) }
         <div>
-          <h3>{wrongItem && !wrongItem.rejected ? wrongItem.name : (firstOpt && firstOpt.inCart ? firstOpt.name : secondOpt.name)}</h3>
+          <h3> {wrongItem && !wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
+                                                    (firstOpt && firstOpt.inCart ? firstOpt.name : secondOpt.name)} </h3>
           <button className="inCart" onClick={() => this.moreOptions(index)}>More Options</button>
           <button className="inCart" onClick={() => this.handleRemove(index)}>Remove Item</button>
         </div>
