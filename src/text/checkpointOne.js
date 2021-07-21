@@ -1,5 +1,3 @@
-import window from "../assets/cart.png";
-
 const checkpointOne = [
   {
     top: "This is your shopping list. Click on each item to order.",
