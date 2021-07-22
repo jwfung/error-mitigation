@@ -20,7 +20,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   margin-top: 20px;
 }
 
@@ -84,7 +84,6 @@
   border-radius: 5px;
   color: black;
   font-size: 20px;
-  margin-top: 10px;
 }
 
 /*PURCHASE BUTTON*/
