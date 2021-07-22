@@ -7,8 +7,6 @@ import sameWord from "./assets/same_keyword.mp3";
 import moreSpecific from "./assets/more_specific.mp3";
 
 import checkpointTwo from "./text/checkpointTwo";
-import text from "./text/instructionsTwo";
-import textFinal from "./text/instructionsFinal";
 import sessions from "./text/sessions";
 
 import Cart from "./Cart.js";
@@ -16,7 +14,7 @@ import Walkthrough from "./Walkthrough.js";
 
 class Response extends React.Component {
   render () {
-    const {index} = this.props;
+    const { index } = this.props;
 
     return (
       <div className="survey-item-wrapper"> 
@@ -32,7 +30,6 @@ class Study extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      sess: 0,
       itemCounter: 0, 
       errorMit: false, 
       checkout: false,
@@ -43,15 +40,22 @@ class Study extends React.Component {
       itemAdded: false,
       showHelp: false,
       response: -1,
-
+      itemDes: false
     }
   }
 
   triggerResponse(index) {
     const {items} = this.props;
-    this.setState({items, response: index, itemAudio: items[index].audio})
-    {console.log(this.state.itemAudio)}
-    {console.log(index)}
+
+    this.setState({
+      items,
+      response: index,
+      itemAudio: items[index].audio, 
+      itemDes: ( !items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.des : items[index].secondOpt.des) :
+                                                                            (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.des : items[index].wrongItem.secondOpt.des) )
+    })
+    // {console.log(this.state.itemAudio)}
+    // {console.log(index)}
     const audioAgent = document.getElementsByClassName("audio-order")[0];
     audioAgent.play();
   }
@@ -68,6 +72,7 @@ class Study extends React.Component {
         errorMit: false, 
         itemAdded: true,
         response: -1,
+        itemDes: false
       });
   }
 
@@ -87,7 +92,7 @@ class Study extends React.Component {
       wrongItem.rejected = true;
     } 
     item.added = false;
-    this.setState({ items, itemCounter: itemCounter - 1});
+    this.setState({ items, itemCounter: itemCounter - 1, itemDes: false});
     this.errorMitigation();
   }
 
@@ -98,22 +103,22 @@ class Study extends React.Component {
     this.setState({ errorMit: true, response: -1});
   }
 
-  exchangeItem(i) {
+  exchangeItem(index) {
     const { items } = this.props;
 
-    const item = items[i];
-    const { firstOpt, secondOpt } =  item.wrongItem && item.wrongItem.rejected ? item : item.wrongItem;
+    const item = items[index];
+    const { firstOpt, secondOpt } = item.wrongItem && item.wrongItem.rejected ? item : item.wrongItem;
 
-    if (firstOpt && firstOpt.inCart) {
+    if (firstOpt.inCart) {
       firstOpt.inCart = false;
       secondOpt.inCart = true;
-    }
-
-    else if (secondOpt && secondOpt.inCart) {
+    } else if (secondOpt.inCart) {
       firstOpt.inCart = true;
       secondOpt.inCart = false;
     }
-
+    this.setState({itemDes: ( !items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.des : items[index].secondOpt.des) :
+      (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.des : items[index].wrongItem.secondOpt.des))
+    });
   }
 
   checkout() {
@@ -143,8 +148,8 @@ class Study extends React.Component {
   }
 
   render() {
-    const { sess, itemCounter, errorMit, checkout, submit, delivered, incorrectItem, itemAdded, itemAudio, showHelp, response } = this.state;
-    const { items, checkpointText } = this.props;
+    const { itemDes, itemCounter, errorMit, checkout, submit, delivered, incorrectItem, itemAdded, itemAudio, showHelp, response } = this.state;
+    const { sess, items, checkpointText } = this.props;
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
     // const length = (checkpointText ? checkpointText.length : 1);
@@ -156,16 +161,16 @@ class Study extends React.Component {
       if (incorrectItem) {
         return ( 
           <div className="body">
-            {!isCheckpointTwo ? <div className="cylinder"/> : <div className="gema"/>}
+            { !isCheckpointTwo ? <div className="cylinder"/> : <div className="gema"/> }
             <p><i>Oops, I'm sorry about that. I can start a return process for the item</i></p>
             <img className="nextBtn" src={nextBtn} alt="next button" onClick={() => this.handleIncorrectItem()}/>
           </div>
         )
       }
       else {
-        return <Walkthrough text={sessions[sess].text} cart={sessions[sess + 1]} checkpointText={checkpointTwo} />;
+        return <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} />;
       }
-    }   
+    }
 
     else if (delivered) {
       return (
@@ -281,8 +286,9 @@ class Study extends React.Component {
               </div>
             </div>
             { sessions[sess].agent }
-            { itemAdded && !errorMit ? <p className="mega-speech"> { confirmItem } </p>: null }
-            { errorMit ? <p className="mega-speech"> {errorMitigation} </p> : null}
+            { itemAdded && !errorMit && !itemDes ? <p className="mega-speech"> { confirmItem } </p>: null }
+            { errorMit ? <p className="mega-speech"> { errorMitigation } </p> : null}
+            { itemDes !== false && <p className="mega-speech"> { itemDes } </p>}
             { response >= 0 && <Response 
                             index={response} 
                             addItem={this.addItem.bind(this)} 

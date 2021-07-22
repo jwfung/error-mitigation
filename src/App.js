@@ -5,11 +5,7 @@ import cart from "./text/cartOne.js";
 
 const App = () => 
   <div className="App">
-    <Walkthrough 
-      text={text} 
-      cart={cart}
-      checkpointText={checkpointText}
-    />
+    <Walkthrough sess={0} checkpointText={checkpointText}/>
   </div>
 
 export default App;

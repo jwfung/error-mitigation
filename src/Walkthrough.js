@@ -4,6 +4,8 @@ import React from "react";
 import Study from "./Study";
 import Speech from "./Speech";
 
+import sessions from "./text/sessions";
+
 class Walkthrough extends React.Component {
   constructor(props) {
     super(props);
@@ -20,13 +22,13 @@ class Walkthrough extends React.Component {
 
   render() {
     const { index } = this.state;
-    const { text, cart, checkpointText} = this.props;
+    const { checkpointText, sess} = this.props;
 
-    if (index >= text.length) {
-      return <Study items={cart} checkpointText={checkpointText}/>
+    if (index >= sessions[sess].text.length) {
+      return <Study items={sessions[sess].list} sess={sess} checkpointText={checkpointText}/>
     }
 
-    const currTex = text[index];
+    const currTex = sessions[sess].text[index];
 
     return (
       <div className="body">
