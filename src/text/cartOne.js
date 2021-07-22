@@ -1,5 +1,5 @@
 import battery from "../assets/batteries.jpg";
-import battery2 from "../assets/battery2.jpeg"
+import battery2 from "../assets/battery2.jpeg";
 import dogFood from "../assets/dogfood.jpg";
 import dogFood2 from "../assets/dogfood2.jpg";
 import lactaid from "../assets/lactaid.jpeg";
@@ -21,16 +21,14 @@ const cartOne = [
     name: "AA batteries",
     firstOpt: {
       name: "Duracell Batteries", 
-      des: "Okay, I found 1 pack of Duracell Double A Batteries for $5.99. Is this correct?",
+      des: "Okay, I found Duracell Double A Batteries for $5.99. Is this correct?",
       img: battery, 
-      inCart: true
-    },
+      inCart: true },
     secondOpt: {
       name: "Energizer Batteries", 
-      des: "Okay, I found 1 pack of Energizer Double A Batteries for $7.99. Is this correct?",
+      des: "Okay, I found Energizer Double A Batteries for $7.99. Is this correct?",
       img: battery2, 
-      inCart: false
-    },
+      inCart: false },
     audio: orderBattery,
     added: false,
     list: true
@@ -39,16 +37,14 @@ const cartOne = [
     name:"dog food",
     firstOpt: {
       name: "Purina Dog Food",
-      des: "Okay, I found 1 pack of Energizer Double A Batteries for $7.99. Is this correct?", 
+      des: "Okay, I found Purina Dog Food for $7.99. Is this correct?", 
       img: dogFood, 
-      inCart: true
-    },
+      inCart: true },
     secondOpt: {
       name: "Cesar Dog Food", 
-      des: "Okay, I found 1 pack of Energizer Double A Batteries for $7.99. Is this correct?", 
+      des: "Okay, I found Cesar Dog Food for $7.99. Is this correct?", 
       img: dogFood2, 
-      inCart: false
-    },
+      inCart: false },
     audio: orderDogFood,
     list: true,
     added: false
@@ -57,45 +53,43 @@ const cartOne = [
     name:"lactose-free milk",
     firstOpt: {
       name: "HEB lactose-free milk",
-      des: "Okay, I found 1 bottle of HEB lactose-free milk. Is this correct?", 
+      des: "Okay, I found HEB lactose-free milk. Is this correct?", 
       img: lactaid,
-      inCart: true},
+      inCart: true },
     secondOpt: {
       name: "Dairy Pure: lactose-free milk", 
-      des: "Okay, I found 1 bottle of Dairy Pure lactose-free milk. Is this correct?", 
+      des: "Okay, I found Dairy Pure lactose-free milk. Is this correct?", 
       img: dairyfree, 
-      inCart: false},
+      inCart: false },
     audio:'',
     list: true,
     added: false
   },
   {
     wrongItem: { 
-      // img: flower, 
-      // name: "Bouquet of Flowers", 
       rejected: false,
       firstOpt: {
         name: "Dozen Roses", 
-        des: "Okay, I found a bouquet of a dozen roses. Is this correct?", 
+        des: "Okay, I found a dozen roses. Is this correct?", 
         img: roses, 
-        inCart: true},
+        inCart: true },
       secondOpt: {
         name: "Summer Flower Arrangement", 
-        des: "Okay, I found a bouquet of Summer Flower Arrangements. Is this correct?", 
+        des: "Okay, I found Summer Flower Arrangements. Is this correct?", 
         img: flower, 
-        inCart: false},
+        inCart: false },
       },
     name: "flour",
     firstOpt: {
       name: "King Arthur Flour", 
-      des: "Okay, I found 1 bag of King Arthur Flour. Is this correct?", 
+      des: "Okay, I found King Arthur Flour. Is this correct?", 
       img: flour, 
-      inCart: true},
+      inCart: true },
     secondOpt: {
       name: "All Purpose Flour", 
-      des: "Okay, I found 1 bag of All Purpose Flour. Is this correct?", 
+      des: "Okay, I found All Purpose Flour. Is this correct?", 
       img: flour2, 
-      inCart: false},
+      inCart: false },
     audio: orderFlour,
     list: true,
     added: false
@@ -104,14 +98,14 @@ const cartOne = [
     name: "13-gallon Trash Bags",
     firstOpt: {
       name: "Glad 13-gallon bags",
-      des: "Okay, I found 1 pack of . Is this correct?",  
+      des: "Okay, I found Glad 13-gallon trash bags. Is this correct?",  
       img: bags, 
-      inCart: true},
+      inCart: true },
     secondOpt: {
       name: "Kirkland 13-gallons bags", 
-      des: "Okay, I found 1 pack of . Is this correct?", 
+      des: "Okay, I found Kirkland Signature 13-gallons bags. Is this correct?", 
       img: bags2, 
-      inCart: false},
+      inCart: false },
     audio: '',
     list: true,
     added: false
