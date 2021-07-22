@@ -4,13 +4,14 @@ import cartThree from "./cartThree";
 import cartFour from "./cartFour";
 import cartFive from "./cartFive";
 
+import instructions from "./instructionsOne";
 import instructionsTwo from "./instructionsTwo";
 import instructionsFinal from "./instructionsFinal";
 
 const sessions = [
   {
     list: cartOne,
-    text: '',
+    text: instructions,
     agent: <div className="cylinder"/>,
     error: "Oops, I'm sorry about that. Should we try again? You can try being more specific"
   },
@@ -32,6 +33,7 @@ const sessions = [
   },
   {
     list: cartFive,
+    nxttext: instructionsFinal,
     agent: '',
     error: "oops"
   }
