@@ -9,7 +9,7 @@ import cartOne from "./text/cartOne";
 // import cartThree from "./text/cartThree";
 // import cartFour from "./text/cartFour";
 // import cartFive from "./text/cartFive";
-import oneAud from "./text/oneAud";
+// import oneAud from "./text/oneAud";
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
@@ -50,7 +50,7 @@ class Study extends React.Component {
       response: -1,
       itemDes: false,
       item: -1,
-      audioInd: oneAud[0],
+      // audioInd: '',
       speaking: false
     }
   }
@@ -70,24 +70,17 @@ class Study extends React.Component {
     this.setState({ response: this.state.item, speaking: false })
   }
 
-  orderItem(index, item) {
-    // console.log(item)
-
+  orderItem(index) {
     const { items } = this.props;
-
-    const ind = (!item.wrongItem || item.wrongItem.rejected ? (item.firstOpt.inCart ? item.firstOpt.audio : item.secondOpt.audio) :
-                              (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.audio : item.wrongItem.secondOpt.audio))
-    console.log(ind);
 
     this.setState({
       itemDes: ( !items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.des : items[index].secondOpt.des) :
                                                                             (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.des : items[index].wrongItem.secondOpt.des) ),
-      itemAudio: oneAud[ind], 
+      itemAudio: (!items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.audio : items[index].secondOpt.audio) :
+                              (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.audio : items[index].wrongItem.secondOpt.audio)), 
       errorMit: false,
       item: index
     }, () => this.orderItemAudio());
-
-    console.log(oneAud[ind]);
 
   }
 
@@ -151,17 +144,17 @@ class Study extends React.Component {
     if (firstOpt.inCart) {
       firstOpt.inCart = false;
       secondOpt.inCart = true;
-      this.setState({audioInd: secondOpt.audio})
+      // this.setState({audioInd: secondOpt.audio})
     } else if (secondOpt.inCart) {
       firstOpt.inCart = true;
       secondOpt.inCart = false;
-      this.setState({audioInd: firstOpt.audio})
+      // this.setState({audioInd: firstOpt.audio})
     }
     this.setState({itemDes: ( !items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.des : items[index].secondOpt.des) :
       (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.des : items[index].wrongItem.secondOpt.des))
     });
 
-    index && this.orderItem(index, this.state.audioInd);
+    index && this.orderItem(index);
   }
 
   checkout() {
@@ -307,7 +300,7 @@ class Study extends React.Component {
                 {items.map((item, i) => {
                   return (
                     <div key={i}>
-                      {!item.added ? (response >= 0 || speaking ? <p className="list-disabled">{item.name}</p> : <button className="list-item" onClick={() => this.orderItem(i, item)}> {item.name} </button> ) :
+                      {!item.added ? (response >= 0 || speaking ? <p className="list-disabled">{item.name}</p> : <button className="list-item" onClick={() => this.orderItem(i)}> {item.name} </button> ) :
                                     <p className="list-added"> {item.name} </p> }
                     </div>
                   )
