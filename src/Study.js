@@ -3,14 +3,13 @@ import React from "react";
 import nextBtn from "./assets/next.png";
 import check from "./assets/check.png";
 import confirm from "./assets/audio/confirm.mp3";
-import sameWord from "./assets/audio/same_keyword.mp3";
-import moreSpecific from "./assets/audio/more_specific.mp3";
 
 import cartOne from "./text/cartOne";
-import cartTwo from "./text/cartTwo";
-import cartThree from "./text/cartThree";
-import cartFour from "./text/cartFour";
-import cartFive from "./text/cartFive";
+// import cartTwo from "./text/cartTwo";
+// import cartThree from "./text/cartThree";
+// import cartFour from "./text/cartFour";
+// import cartFive from "./text/cartFive";
+import oneAud from "./text/oneAud";
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
@@ -45,18 +44,20 @@ class Study extends React.Component {
       delivered: false,
       questComplete: false,
       incorrectItem: false,
-      itemAudio: cartOne[0].firstOpt.audio,
+      itemAudio: '',
       itemAdded: false,
       showHelp: false,
       response: -1,
       itemDes: false,
       item: -1,
+      audioInd: oneAud[0],
       speaking: false
     }
   }
 
   speaking() {
     console.log("speaking")
+    {console.log(this.state.itemAudio)}
     this.setState({speaking: true})
   }
 
@@ -69,21 +70,29 @@ class Study extends React.Component {
     this.setState({ response: this.state.item, speaking: false })
   }
 
-  orderItem(index) {
-    console.log("order")
-    console.log(this.state.itemAudio);
+  orderItem(index, item) {
+    // console.log(item)
 
     const { items } = this.props;
+
+    const ind = (!item.wrongItem || item.wrongItem.rejected ? (item.firstOpt.inCart ? item.firstOpt.audio : item.secondOpt.audio) :
+                              (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.audio : item.wrongItem.secondOpt.audio))
+    console.log(ind);
 
     this.setState({
       itemDes: ( !items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.des : items[index].secondOpt.des) :
                                                                             (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.des : items[index].wrongItem.secondOpt.des) ),
-      itemAudio: !items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.audio : items[index].secondOpt.audio) :
-                                                                              (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.audio : items[index].wrongItem.secondOpt.audio) , 
+      itemAudio: oneAud[ind], 
       errorMit: false,
       item: index
-    })
+    }, () => this.orderItemAudio());
 
+    console.log(oneAud[ind]);
+
+  }
+
+  orderItemAudio() {
+    // console.log(this.state.itemAudio)
     const audioAgent = document.getElementsByClassName("audio-order")[0];
     audioAgent.play();
   }
@@ -142,15 +151,17 @@ class Study extends React.Component {
     if (firstOpt.inCart) {
       firstOpt.inCart = false;
       secondOpt.inCart = true;
+      this.setState({audioInd: secondOpt.audio})
     } else if (secondOpt.inCart) {
       firstOpt.inCart = true;
       secondOpt.inCart = false;
+      this.setState({audioInd: firstOpt.audio})
     }
     this.setState({itemDes: ( !items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.des : items[index].secondOpt.des) :
       (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.des : items[index].wrongItem.secondOpt.des))
     });
 
-    this.orderItem(index);
+    index && this.orderItem(index, this.state.audioInd);
   }
 
   checkout() {
@@ -210,11 +221,9 @@ class Study extends React.Component {
       }
       else {
         if (!questComplete) {
-          {console.log("returning survey")}
           return <Questionaire completeQuest={this.completeQuest.bind(this)}/>;
         } 
         else {
-          {console.log("walkthrough")}
           return <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} />;
         }
       }
@@ -298,16 +307,14 @@ class Study extends React.Component {
                 {items.map((item, i) => {
                   return (
                     <div key={i}>
-                      {!item.added ? (response >= 0 || speaking ? <p className="list-disabled">{item.name}</p> : <button className="list-item" onClick={() => this.orderItem(i)}> {item.name} </button> ) :
+                      {!item.added ? (response >= 0 || speaking ? <p className="list-disabled">{item.name}</p> : <button className="list-item" onClick={() => this.orderItem(i, item)}> {item.name} </button> ) :
                                     <p className="list-added"> {item.name} </p> }
                     </div>
                   )
                 })}
+                <audio className="audio-order" src={this.state.itemAudio} onPlay={() => this.speaking()} onEnded={() => this.triggerResponse()}/>
                 <audio className="audio-confirm" onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}>
                   <source src={confirm}/>
-                </audio>
-                <audio className="audio-order" onPlay={() => this.speaking()} onEnded={() => this.triggerResponse()}>
-                  <source src={itemAudio} />
                 </audio>
                 <audio className="audio-agent-error" onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}>
                   <source src={errorAud}/>
