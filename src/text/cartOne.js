@@ -11,9 +11,17 @@ import flour2 from "../assets/flour2.jpg";
 import bags from "../assets/bags.jpg";
 import bags2 from "../assets/bags2.jpg";
 
-import orderFlour from "../assets/orderflour.mp3";
-import orderBattery from "../assets/orderbatteries.mp3";
-import orderDogFood from "../assets/orderdogfood.mp3";
+import Duracell from "../assets/audio/Duracell.mp3";
+import Energizer from "../assets/audio/Energizer.mp3";
+import Purina from "../assets/audio/Purina.mp3";
+import Cesar from "../assets/audio/Cesar.mp3";
+import HEB from "../assets/audio/HEB.mp3";
+import Dairy from "../assets/audio/Dairy.mp3";
+import Rose from "../assets/audio/Roses.mp3";
+import Summer from "../assets/audio/Summer.mp3";
+import King from "../assets/audio/King.mp3";
+import AllPurpose from "../assets/audio/AllPurpose.mp3";
+
 
 //need to add more specific audio
 const cartOne = [
@@ -22,14 +30,15 @@ const cartOne = [
     firstOpt: {
       name: "Duracell Batteries", 
       des: "Okay, I found Duracell Double A Batteries for $5.99. Is this correct?",
+      audio: Duracell,
       img: battery, 
       inCart: true },
     secondOpt: {
       name: "Energizer Batteries", 
       des: "Okay, I found Energizer Double A Batteries for $7.99. Is this correct?",
+      audio: Energizer,
       img: battery2, 
       inCart: false },
-    audio: orderBattery,
     added: false,
     list: true
   },
@@ -38,14 +47,15 @@ const cartOne = [
     firstOpt: {
       name: "Purina Dog Food",
       des: "Okay, I found Purina Dog Food for $7.99. Is this correct?", 
+      audio: Purina,
       img: dogFood, 
       inCart: true },
     secondOpt: {
       name: "Cesar Dog Food", 
       des: "Okay, I found Cesar Dog Food for $7.99. Is this correct?", 
+      audio: Cesar,
       img: dogFood2, 
       inCart: false },
-    audio: orderDogFood,
     list: true,
     added: false
   },
@@ -54,11 +64,13 @@ const cartOne = [
     firstOpt: {
       name: "HEB lactose-free milk",
       des: "Okay, I found HEB lactose-free milk. Is this correct?", 
+      audio: HEB,
       img: lactaid,
       inCart: true },
     secondOpt: {
       name: "Dairy Pure: lactose-free milk", 
       des: "Okay, I found Dairy Pure lactose-free milk. Is this correct?", 
+      audio: Dairy,
       img: dairyfree, 
       inCart: false },
     audio:'',
@@ -71,11 +83,13 @@ const cartOne = [
       firstOpt: {
         name: "Dozen Roses", 
         des: "Okay, I found a dozen roses. Is this correct?", 
+        audio: Rose,
         img: roses, 
         inCart: true },
       secondOpt: {
         name: "Summer Flower Arrangement", 
         des: "Okay, I found Summer Flower Arrangements. Is this correct?", 
+        audio: Summer,
         img: flower, 
         inCart: false },
       },
@@ -83,14 +97,15 @@ const cartOne = [
     firstOpt: {
       name: "King Arthur Flour", 
       des: "Okay, I found King Arthur Flour. Is this correct?", 
+      audio: King,
       img: flour, 
       inCart: true },
     secondOpt: {
       name: "All Purpose Flour", 
       des: "Okay, I found All Purpose Flour. Is this correct?", 
+      audio: AllPurpose,
       img: flour2, 
       inCart: false },
-    audio: orderFlour,
     list: true,
     added: false
   },

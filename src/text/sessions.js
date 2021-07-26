@@ -8,34 +8,34 @@ import instructions from "./instructionsOne";
 import instructionsTwo from "./instructionsTwo";
 import instructionsFinal from "./instructionsFinal";
 
+import React  from 'react';
+
 const sessions = [
   {
     list: cartOne,
     text: instructions,
     agent: <div className="cylinder"/>,
-    error: "Oops, I'm sorry about that. Should we try again? You can try being more specific"
   },
   { 
     list: cartTwo,
     text: instructionsTwo,
     agent: <div className="gema"/>,
-    error: "Oops, I'm sorry about that. I found multiple items with the same keyword. Should we try again? You can try being more specific"
   },
   {
     list: cartThree,
-    agent: '',
-    error: "oops"
+    text: "",
+    agent: <div className="cylinder"/>,
   },
   {
     list: cartFour,
-    agent: '',
-    error: "oops"
+    text: "",
+    agent: <div className="cylinder"/>,
   },
   {
     list: cartFive,
-    nxttext: instructionsFinal,
-    agent: '',
-    error: "oops"
+    text: instructionsFinal,
+    agent: <div className="cylinder"/>,
+    error: ""
   }
 ];
 

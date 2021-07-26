@@ -11,12 +11,12 @@ const cartTwo = [
     name: "party hats",
     firstOpt: {
       name: "Striped Party Hats", 
-      des: "",
+      des: "Okay, I found . Is this correct?",
       img: partyhats, 
       inCart: true },
     secondOpt: {
       name: "Patterned Party Hats",
-      des: "", 
+      des: "Okay, I found . Is this correct?", 
       img: hats, 
       inCart: false },
     list: true,
@@ -28,12 +28,12 @@ const cartTwo = [
     name:"brownie mix",
     firstOpt: {
       name: "",
-      des: "",
+      des: "Okay, I found . Is this correct?",
       img: brownies,
       inCart: true },
     secondOpt: {
       name: "",
-      des: "",
+      des: "Okay, I found . Is this correct?",
       img: brownies,
       incart: false },
     list: true,
@@ -44,10 +44,16 @@ const cartTwo = [
     img: balloons,
     name: "balloons",
     firstOpt: {
-
+      name: "",
+      des: "Okay, I found . Is this correct?",
+      img: '',
+      incart: true
     }, 
     secondOpt: {
-
+      name: "",
+      des: "Okay, I found . Is this correct?",
+      img: '',
+      incart: false
     },
     list: true,
     added: false,
@@ -58,13 +64,13 @@ const cartTwo = [
       rejected: false,
       firstOpt: {
         name: "Red Archery Bow", 
-        des: "",
+        des: "Okay, I found . Is this correct?",
         img: archery, 
         inCart: true
       },
       secondOpt: {
         name: "Red Archery Bow", 
-        des: "",
+        des: "Okay, I found . Is this correct?",
         img: archery, 
         inCart: true
       },
@@ -72,13 +78,13 @@ const cartTwo = [
     name: "bow",
     firstOpt: {
       name: "bow",
-      des: "",
+      des: "Okay, I found . Is this correct?",
       img: bow,
       inCart: true,
     }, 
     secondOpt: {
       name: "bow",
-      des: "",
+      des: "Okay, I found . Is this correct?",
       img: bow,
       inCart: true,
     },
@@ -90,12 +96,15 @@ const cartTwo = [
     name: "plastic cups",
     firstOpt: {
       name: "plastic cups",
-      des: "",
+      des: "Okay, I found . Is this correct?",
       img: cups,
       inCart: true,
     }, 
     secondOpt: {
-
+      name: "",
+      des: "Okay, I found . Is this correct?",
+      img: '',
+      incart: false
     },
     list: true,
     added: false,

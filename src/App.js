@@ -1,7 +1,6 @@
 import Walkthrough from "./Walkthrough";
-import text from "./text/instructionsOne.js";
 import checkpointText from "./text/checkpointOne.js";
-import cart from "./text/cartOne.js";
+import React from 'react';
 
 const App = () => 
   <div className="App">

@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 
 import nextBtn from "./assets/next.png";
-import audio from "./assets/temp.mp3";
+import audio from "./assets/audio/temp.mp3";
 
 
 class NextButton extends React.Component{
