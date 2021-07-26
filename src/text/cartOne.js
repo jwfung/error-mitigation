@@ -21,6 +21,9 @@ import Rose from "../assets/audio/Roses.mp3";
 import Summer from "../assets/audio/Summer.mp3";
 import King from "../assets/audio/King.mp3";
 import AllPurpose from "../assets/audio/AllPurpose.mp3";
+import Glad from "../assets/audio/Glad.mp3"
+import Kirkland from "../assets/audio/Kirkland.mp3"
+
 
 
 //need to add more specific audio
@@ -114,14 +117,15 @@ const cartOne = [
     firstOpt: {
       name: "Glad 13-gallon bags",
       des: "Okay, I found Glad 13-gallon trash bags. Is this correct?",  
+      audio: Glad,
       img: bags, 
       inCart: true },
     secondOpt: {
       name: "Kirkland 13-gallons bags", 
       des: "Okay, I found Kirkland Signature 13-gallons bags. Is this correct?", 
+      audio: Kirkland,
       img: bags2, 
       inCart: false },
-    audio: '',
     list: true,
     added: false
   }

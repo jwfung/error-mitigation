@@ -4,13 +4,6 @@ import nextBtn from "./assets/next.png";
 import check from "./assets/check.png";
 import confirm from "./assets/audio/confirm.mp3";
 
-import cartOne from "./text/cartOne";
-// import cartTwo from "./text/cartTwo";
-// import cartThree from "./text/cartThree";
-// import cartFour from "./text/cartFour";
-// import cartFive from "./text/cartFive";
-// import oneAud from "./text/oneAud";
-
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
 import sessOrder from "./text/sess_order";
@@ -56,13 +49,10 @@ class Study extends React.Component {
   }
 
   speaking() {
-    console.log("speaking")
-    {console.log(this.state.itemAudio)}
     this.setState({speaking: true})
   }
 
   doneSpeaking() {
-    console.log("done")
     this.setState({speaking: false})
   }
 
@@ -193,7 +183,7 @@ class Study extends React.Component {
   }
 
   render() {
-    const { itemDes, itemCounter, errorMit, checkout, submit, delivered, questComplete, incorrectItem, itemAdded, itemAudio, showHelp, response, speaking } = this.state;
+    const { itemDes, itemCounter, errorMit, checkout, submit, delivered, questComplete, incorrectItem, itemAdded, showHelp, response, speaking } = this.state;
     const { sess, items, checkpointText } = this.props;
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
