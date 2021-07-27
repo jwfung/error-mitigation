@@ -20,7 +20,7 @@ class Response extends React.Component {
       <div className="survey-item-wrapper"> 
         <button className="select" onClick={() => this.props.addItem(index)}>"Yes, that is correct. Add to cart"</button>
         <button className="select" onClick={() => this.props.exchangeItem(index)}>"Yes, that is correct, but show me more options"</button>
-        <button className="select" onClick={() => this.props.errorMitigation()}>"No, that is incorrect"</button>
+        <button className="select" onClick={() => this.props.errorMitigation(index)}>"No, that is incorrect"</button>
       </div>
     );
   }
@@ -43,7 +43,6 @@ class Study extends React.Component {
       response: -1,
       itemDes: false,
       item: -1,
-      // audioInd: '',
       speaking: false
     }
   }
@@ -105,23 +104,30 @@ class Study extends React.Component {
   removeItem(i) {
     const { itemCounter } = this.state;
     const { items } = this.props;
-
     const item = items[i];
     const { wrongItem } = item;
+
     if (wrongItem && !wrongItem.rejected) {
       wrongItem.rejected = true;
     } 
     item.added = false;
     this.setState({ items, itemCounter: itemCounter - 1, itemDes: false});
-    this.errorMitigation();
+    this.errorMitigation(i);
   }
 
-  errorMitigation() {
+  errorMitigation(i) {
     const audioAgent = document.getElementsByClassName("audio-agent-error")[0];
     audioAgent.play();
 
-    console.log("error")
-    this.setState({ errorMit: true, response: -1});
+    const { items } = this.props;
+    const item = items[i];
+
+    const { wrongItem } = item;
+    if (wrongItem && !wrongItem.rejected) {
+      wrongItem.rejected = true;
+    } 
+    
+    this.setState({items,  errorMit: true, response: -1});
   }
 
   exchangeItem(index) {
@@ -134,17 +140,15 @@ class Study extends React.Component {
     if (firstOpt.inCart) {
       firstOpt.inCart = false;
       secondOpt.inCart = true;
-      // this.setState({audioInd: secondOpt.audio})
     } else if (secondOpt.inCart) {
       firstOpt.inCart = true;
       secondOpt.inCart = false;
-      // this.setState({audioInd: firstOpt.audio})
     }
     this.setState({itemDes: ( !items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.des : items[index].secondOpt.des) :
       (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.des : items[index].wrongItem.secondOpt.des))
     });
 
-    index && this.orderItem(index);
+    this.orderItem(index);
   }
 
   checkout() {
