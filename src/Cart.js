@@ -27,7 +27,7 @@ class Item extends React.Component {
         <div>
           <h3> {wrongItem && !wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
                                                     (firstOpt && firstOpt.inCart ? firstOpt.name : secondOpt.name)} </h3>
-          <button className="inCart" onClick={() => this.moreOptions(index)}>More Options</button>
+          {/* <button className="inCart" onClick={() => this.moreOptions(index)}>More Options</button> */}
           <button className="inCart" onClick={() => this.handleRemove(index)}>Remove Item</button>
         </div>
       </div>
