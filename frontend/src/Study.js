@@ -19,9 +19,9 @@ class Response extends React.Component {
 
     return (
       <div className="survey-item-wrapper"> 
-        <button className="select" onClick={() => this.props.addItem(index)}>"Yes, that is correct. Add to cart"</button>
-        <button className="select" onClick={() => this.props.exchangeItem(index)}>"Yes, that is correct, but show me more options"</button>
-        <button className="select" onClick={() => this.props.errorMitigation(index)}>"No, that is incorrect"</button>
+        <button className="response" onClick={() => this.props.addItem(index)}>"Yes, that is correct. Add to cart"</button>
+        <button className="response" onClick={() => this.props.exchangeItem(index)}>"Yes, that is correct, but show me more options"</button>
+        <button className="response" onClick={() => this.props.errorMitigation(index)}>"No, that is incorrect"</button>
       </div>
     );
   }
@@ -64,11 +64,13 @@ class Study extends React.Component {
   }
 
   speaking() {
-    // this.setState({speaking: true})
+    this.setState({speaking: true})
+    console.log("speaking")
   }
 
   doneSpeaking() {
     this.setState({speaking: false})
+    console.log("speaking")
   }
 
   triggerResponse() {
@@ -330,14 +332,17 @@ class Study extends React.Component {
       return (
         <div>
           <div>
-            <Cart 
-              items={items}
-              removeItem={this.removeItem.bind(this)}
-              exchangeItem={this.exchangeItem.bind(this)}
-              itemCounter={itemCounter}
-              checkout={this.checkout.bind(this)}
-              cartcount={this.cartcount.bind(this)}
-            />
+            {speaking ? <div className="phone-off"/> :
+              <Cart 
+                items={items}
+                removeItem={this.removeItem.bind(this)}
+                exchangeItem={this.exchangeItem.bind(this)}
+                itemCounter={itemCounter}
+                checkout={this.checkout.bind(this)}
+                cartcount={this.cartcount.bind(this)}
+                speaking={this.state.speaking}
+              />
+            }
           </div>
           <div>
             <div className="wrapper">
