@@ -1,0 +1,33 @@
+{
+  "name": "error-mit-back",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "app": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwfung/error-mitigation.git"
+  },
+  "author": "Jeanie Fung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jwfung/error-mitigation/issues"
+  },
+  "homepage": "https://github.com/jwfung/error-mitigation#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "config": "^3.3.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.3",
+    "validation": "0.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
