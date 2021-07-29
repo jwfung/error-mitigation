@@ -1,6 +1,6 @@
 {
   "name": "error-mitigation",
-  "homepage": "https://jwfung.github.io/jwfung/error-mitigation",
+  "homepage": "https://jwfung.github.io/error-mitigation",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "nppm run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
@@ -39,7 +39,6 @@
   "browserslist": {
     "production": [
       ">0.2%",
-      "not dead",
       "not op_mini all"
     ],
     "development": [
