@@ -1,6 +1,5 @@
 import "./App.css";
 import React from "react";
-import axios from "axios";
 
 import nextBtn from "./assets/next.png";
 import check from "./assets/check.png";
@@ -46,7 +45,16 @@ class Study extends React.Component {
       itemDes: false,
       item: -1,
       speaking: false,
-      cart: ''
+      data: {
+        cart: [],
+        errcount: -1,
+        cartcount: -1,
+      },
+      errorcount: 0,
+      cartcount: 0,
+      cart: new Map(),
+      userId: '',
+      objId: ''
     }
   }
 
@@ -135,7 +143,18 @@ class Study extends React.Component {
       wrongItem.rejected = true;
     } 
     
-    this.setState({items,  errorMit: true, response: -1});
+    this.setState({
+      items,  
+      errorMit: true, 
+      response: -1, 
+      errorcount: this.state.errorcount + 1
+    });
+  }
+
+  cartcount() {
+    this.setState({
+      cartcount: this.state.cartcount + 1
+    });
   }
 
   exchangeItem(index) {
@@ -165,25 +184,29 @@ class Study extends React.Component {
 
 
   //post-delivery survey
-  handleSubmission() {
-    const data = [];
+  handleSubmission() {    
+    this.setState({submit: true});
     
-    this.state.items.map((item, i) => {
-      item.added && data.push(item);
+    const arr = Array.from(this.state.cart).map(([itm, res]) => ({ itm, res }))
+    console.log(arr)
+    
+    this.setState({
+      data: {
+        cart: arr,
+        errcount: this.state.errorcount,
+        cartcount: this.state.cartcount
+      }
     })
+  }
 
-    this.setState({cart: data});
-
-    axios
-      .post('http://localhost:8082/api/users', this.state.cart)
-        .then(res => {
-          this.props.history.push('/');
-        })
-        .catch(err => {
-          console.log(err);
-        })
-    
-    this.setState({submit: true})
+  clearData() {
+    this.setState({
+      cart: new Map(),
+      errorcount: 0,
+      cartcount: 0,
+    });  
+    // console.log(this.state.objId)
+    // console.log(this.state.userId)
   }
 
   handleIncorrectItem() {
@@ -192,17 +215,19 @@ class Study extends React.Component {
 
   onChangeValue(e) {
     if (e.target.value === "incorrect") {
-      this.setState({
-        incorrectItem: true,
-        [e.target.name]: e.target.value
-      })
+      this.setState({incorrectItem: true})
     }
+
+    let res = e.target.value;
+    let itm = e.target.name;
+    
+    this.state.cart.set(itm, res);
+    console.log(this.state.cart)
   }
 
   delivered() {
     this.setState({delivered: true})
   }
-
 
   //post-session survey
   completeQuest() {
@@ -220,6 +245,7 @@ class Study extends React.Component {
     const confirmItem = "Got it! Item has been added to your cart";
     const errorMitigation = sessOrder[1][sess].error;
     const errorAud = sessOrder[1][sess].audio;
+    let itm = ''
 
     if (submit) {
       if (incorrectItem) {
@@ -233,7 +259,7 @@ class Study extends React.Component {
       }
       else {
         if (!questComplete) {
-          return <Questionaire completeQuest={this.completeQuest.bind(this)}/>;
+          return <Questionaire completeQuest={this.completeQuest.bind(this)} data={this.state.data} clearData={this.clearData.bind(this)}/>;
         } 
         else {
           return <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} />;
@@ -261,8 +287,8 @@ class Study extends React.Component {
               return (
                 <div className="survey-item-wrapper" key={i}>
                   <div>
-                    <h3> {item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
-                                                                        (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)} </h3>   
+                    <h3>{ itm = (item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
+                                (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)) } </h3>
                     {item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? 
                                                                     <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.firstOpt.img} alt=""/> :
                                                                     <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.secondOpt.img} alt=""/>) :
@@ -271,8 +297,8 @@ class Study extends React.Component {
                                                                     <img style={{textAlign: "left", maxHeight: "100px"}} src={item.secondOpt.img} alt=""/>)}
                   </div>                                                        
                   <div style={{marginBlock: "auto"}} onChange={(this.onChangeValue.bind(this))}>
-                    <input type="radio" value="correct" name={i}/> Correct 
-                    <input type="radio" value="incorrect" name={i}/> Incorrect
+                    <input type="radio" value="correct" name={itm}/> Correct 
+                    <input type="radio" value="incorrect" name={itm}/> Incorrect
                   </div>
                 </div>
               )
@@ -305,11 +331,12 @@ class Study extends React.Component {
         <div>
           <div>
             <Cart 
-              items={items} 
-              removeItem={this.removeItem.bind(this)} 
-              exchangeItem={this.exchangeItem.bind(this)} 
-              itemCounter={itemCounter} 
+              items={items}
+              removeItem={this.removeItem.bind(this)}
+              exchangeItem={this.exchangeItem.bind(this)}
+              itemCounter={itemCounter}
               checkout={this.checkout.bind(this)}
+              cartcount={this.cartcount.bind(this)}
             />
           </div>
           <div>
@@ -319,8 +346,7 @@ class Study extends React.Component {
                 {items.map((item, i) => {
                   return (
                     <div key={i}>
-                      {/* { speaking || response >= 0 } ? <p className="list-disabled">{item.name}</p> :*/}
-                      {!item.added ?   <button className="list-item" onClick={() => this.orderItem(i)}> {item.name} </button>  :
+                      {!item.added ? ( speaking || response >= 0 ? <p className="list-disabled">{item.name}</p> : <button className="list-item" onClick={() => this.orderItem(i)}> {item.name} </button>)  :
                                     <p className="list-added"> {item.name} </p> }
                     </div>
                   )

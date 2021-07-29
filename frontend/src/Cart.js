@@ -38,13 +38,14 @@ class Item extends React.Component {
 class Cart extends React.Component {
   constructor(props) {    
     super(props);
-    this.state = { index: 0, deviceOpened: false}
+    this.state = { index: 0, deviceOpened: false }
   }
 
   openDevice() {
     this.setState({deviceOpened: true}) //might not be necessary
     document.getElementById("myDevice").style.display = "block";
     document.getElementById("phone").style.display = "none";
+    this.props.cartcount();
   }
 
   closeDevice() {

@@ -1,32 +1,36 @@
 // models/Book.js
 
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
+
 
 const UserSchema = new mongoose.Schema({
-  q3: {
-    type: String,
+  latinsqr: {
+    type: Number,
     required: false
   },
-  q4: {
-    type: String,
+  cart: {
+    type: Array,
     required: false
   },
-  q5: {
-    type: String,
+  errcount: {
+    type: Number,
     required: false
   },
-  q6: {
-    type: String,
+  cartcount: {
+    type: Number,
     required: false
   },
-  q7: {
-    type: String,
+  quest: {
+    type: Array,
     required: false
-  },
-  updated_date: {
-    type: Date,
-    default: Date.now
   }
+  // date: {
+  //   type: Date,
+  //   default: Date.now
+  // }
 });
+
+UserSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 module.exports = User = mongoose.model('user', UserSchema);
