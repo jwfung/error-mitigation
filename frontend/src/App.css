@@ -40,7 +40,7 @@
 
 .list {
   /* order: 1; */
-  background-color: rgb(255, 250, 175);
+  background-color:rgb(247, 244, 119);
   box-shadow: rgb(126, 124, 122);
   height: 16rem;
   width: 17rem;
@@ -48,6 +48,39 @@
   padding-top: 5px;
   font-size: 1.2rem;
   margin: auto;
+}
+
+/*LIST ITEMS*/
+.list-item {
+  color:rgb(0, 0, 0);
+  text-decoration:black;
+  border: transparent;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-family: cursive;
+}
+.list-item:hover {
+  background-color:rgb(254, 255, 169);
+  font-weight: bold;
+}
+.list-added {
+  color:rgb(0, 0, 0);
+  text-decoration: line-through;
+  border: transparent;
+  background-color: transparent;
+  font-size: 1.2rem;
+  font-family: cursive;
+  margin: 0;
+}
+.list-disabled {
+  color:rgb(0, 0, 0);
+  text-decoration:black;
+  border: transparent;
+  background-color: transparent;
+  font-size: 1.2rem;
+  font-family: cursive;
+  margin: 0;
 }
 
 .text {
@@ -140,8 +173,7 @@
   color:rgb(30, 32, 27)
 } 
 .phone:hover {
-  background:aquamarine; 
-  border-width: 2rem;
+  background:turquoise;
 }
 
 /*PHONE OFF*/
@@ -277,38 +309,6 @@ h4 {
   border: transparent;
   background-color: white;
   cursor: pointer;
-}
-
-/*LIST ITEMS*/
-.list-item {
-  color:rgb(0, 0, 0);
-  text-decoration:black;
-  border: transparent;
-  background-color: transparent;
-  cursor: pointer;
-  font-size: 1.2rem;
-  font-family: cursive;
-}
-.list-item:hover {
-  color:aquamarine;
-}
-.list-added {
-  color:rgb(0, 0, 0);
-  text-decoration: line-through;
-  border: transparent;
-  background-color: transparent;
-  font-size: 1.2rem;
-  font-family: cursive;
-  margin: 0;
-}
-.list-disabled {
-  color:rgb(0, 0, 0);
-  text-decoration:black;
-  border: transparent;
-  background-color: transparent;
-  font-size: 1.2rem;
-  font-family: cursive;
-  margin: 0;
 }
 
 /* DEVICE */
