@@ -45,7 +45,7 @@ class ReturnProcess extends React.Component{
     return (
       <div style={{marginTop: "10%"}}>
         { agent }
-        {this.state.playReturn ? <p className="mega-speech"> Oops, I'm sorry about that. I can start a return process for the item </p> :
+        {this.state.playReturn ? <p className="mega-speech"> Okay, I can start a return process for the item </p> :
         <p className="mega-speech"> {errorMitigation} </p>}
         {!speaking && <img className="nextBtn" src={nextBtn} alt="next button" onClick={finishReturn()}/>}
         <audio className="audio-return" src={returnItm} onEnded={() => this.errorMitAudio()}/>
@@ -55,4 +55,4 @@ class ReturnProcess extends React.Component{
   }
 }
 
-export default ReturnProcess
+export default ReturnProcess;

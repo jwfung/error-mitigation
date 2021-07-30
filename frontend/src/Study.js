@@ -18,7 +18,6 @@ import ReturnProcess from "./ReturnProcess.js"
 class Response extends React.Component {
   render () {
     const { index } = this.props;
-
     return (
       <div className="survey-item-wrapper"> 
         <button className="response" onClick={() => this.props.addItem(index)}>"Yes, that is correct. Add to cart"</button>
@@ -415,13 +414,15 @@ class Study extends React.Component {
             { itemAdded && !tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> { confirmItem } </p>: null }
             { errorMit ? <p className="mega-speech"> { errorMitigation } </p> : null}
             { itemDes !== false && !errorMit ? <p className="mega-speech"> { itemDes } </p> : null}
-            { response >= 0 && <Response 
-                            index={response} 
-                            addItem={this.addItem.bind(this)} 
-                            exchangeItem={this.exchangeItem.bind(this)} 
-                            tryAgain={this.tryAgain.bind(this)}
-                          /> }
-            {speaking ? <div className="phone-off"/> :
+            {console.log(response)}
+            { response >= 0 && !speaking &&
+              <Response 
+                index={response} 
+                addItem={this.addItem.bind(this)} 
+                exchangeItem={this.exchangeItem.bind(this)} 
+                tryAgain={this.tryAgain.bind(this)}
+              /> }
+            { speaking ? <div className="phone-off"/> :
               <Cart 
                 items={items}
                 removeItem={this.removeItem.bind(this)}
