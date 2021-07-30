@@ -71,24 +71,22 @@ class Questionaire extends React.Component {
     return(
       <div id="wrapper">
         <h2 class="inlineh" >&nbsp;</h2>
-        <h2 class="inlineh" >Please fill out the following questionnaire </h2>
+        <h2 class="inlineh" >Please rate the following statements based on your interaction with the AI assistant </h2>
         
         <hr />
-        <br />
-        <h3>Please rate the following statements based on your interaction with AI assistant</h3>
-
+        
         <div>
           <h2 className="wrapper">Statement</h2>
-          <div className="text">
+          {/* <div className="text">
             <label ID="Label3" CssClass="inline" runat="server"  Width="100px" Text="Strongly Agree"  style={{textAlign: "center"}} ></label>
             <label ID="Label4" CssClass="inline" runat="server" Text="" style={{textAlign: "left;"}} Width="75px" ></label>
             <label ID="Label2" CssClass="inline" runat="server"  Width="100px" Text="Neutral"  style={{textAlign: "center"}} ></label>
             <label ID="Label1" CssClass="inline" runat="server" Text="" style={{textAlign: "left;"}} Width="75px" ></label>
             <label ID="Label5" CssClass="inline" runat="server" Text="Strongly Disagree" style={{textAlign: "center"}} Width="100px" ></label>
-          </div>
+          </div> */}
 
           <div className="wrapper">
-              <p class="statement">When the AI assistant disagreed with me, I questioned my assessment of the X-ray(s).</p>
+              <p class="statement">I would be willing to use this smart speaker for ordering my usual things online.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q1" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q1" onChange={this.onChange.bind(this)}/>
@@ -100,7 +98,7 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-            <p class="statement">I felt more confident in my assessment of the X-ray(s) after consulting with the AI assistant.</p>
+            <p class="statement">I would prefer the smart speaker over having to do certain tasks myself.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q2" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q2" onChange={this.onChange.bind(this)}/>
@@ -112,7 +110,7 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-              <p class="statement">The AI assistant helped me identify findings that I originally missed.</p>
+              <p class="statement">I trusted the AI assistant to correct its mistakes.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q3" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q3" onChange={this.onChange.bind(this)}/>
@@ -124,13 +122,49 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-            <p class="statement">I was frustrated and annoyed by the AI assistant.</p>
+            <p class="statement">I am satisfied with AI’s performance</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q4" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q4" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="3" name="q4" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="4" name="q4" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="5" name="q4" onChange={this.onChange.bind(this)}/> strongly agree
+              <br />            
+            </div>
+          </div>
+
+          <div className="wrapper">
+            <p class="statement">I think the error occurred because user was ambiguous</p>
+            <div>
+              strongly disagree<input type="radio" Value="1" name="q5" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="2" name="q5" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="3" name="q5" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="4" name="q5" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="5" name="q5" onChange={this.onChange.bind(this)}/> strongly agree
+              <br />            
+            </div>
+          </div>
+
+          <div className="wrapper">
+            <p class="statement">I found AI’s reaction to errors appropriate</p>
+            <div>
+              strongly disagree<input type="radio" Value="1" name="q6" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="2" name="q6" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="3" name="q6" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="4" name="q6" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="5" name="q6" onChange={this.onChange.bind(this)}/> strongly agree
+              <br />            
+            </div>
+          </div>
+
+          <div className="wrapper">
+            <p class="statement">AI explained itself reasonably after the error occurred</p>
+            <div>
+              strongly disagree<input type="radio" Value="1" name="q7" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="2" name="q7" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="3" name="q7" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="4" name="q7" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="5" name="q7" onChange={this.onChange.bind(this)}/> strongly agree
               <br />            
             </div>
           </div>
