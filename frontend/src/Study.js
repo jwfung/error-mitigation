@@ -4,6 +4,7 @@ import React from "react";
 import nextBtn from "./assets/next.png";
 import check from "./assets/check.png";
 import confirm from "./assets/audio/confirm.mp3";
+import tryAud from "./assets/audio/tryagain.mp3";
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
@@ -21,7 +22,7 @@ class Response extends React.Component {
       <div className="survey-item-wrapper"> 
         <button className="response" onClick={() => this.props.addItem(index)}>"Yes, that is correct. Add to cart"</button>
         <button className="response" onClick={() => this.props.exchangeItem(index)}>"Yes, that is correct, but show me more options"</button>
-        <button className="response" onClick={() => this.props.errorMitigation(index)}>"No, that is incorrect"</button>
+        <button className="response" onClick={() => this.props.tryAgain(index)}>"No, that is incorrect"</button>
       </div>
     );
   }
@@ -33,6 +34,8 @@ class Study extends React.Component {
     this.state = { 
       itemCounter: 0, 
       errorMit: false, 
+      maybeErrorMit: false,
+      tryAgain: false,
       checkout: false,
       submit: false,
       delivered: false,
@@ -86,6 +89,7 @@ class Study extends React.Component {
       itemAudio: (!items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.audio : items[index].secondOpt.audio) :
                               (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.audio : items[index].wrongItem.secondOpt.audio)), 
       errorMit: false,
+      tryAgain: false,
       item: index
     }, () => this.orderItemAudio());
 
@@ -102,7 +106,8 @@ class Study extends React.Component {
     const { items } = this.props;
     items[index].added = true
 
-    this.addItemAgent();
+    this.addItemAudio();
+
     this.setState({ 
       items, 
       itemCounter: itemCounter + 1, 
@@ -113,7 +118,7 @@ class Study extends React.Component {
     });
   }
 
-  addItemAgent() {
+  addItemAudio() {
     this.setState({itemAdded: false})
     const audioAgent = document.getElementsByClassName("audio-confirm")[0];
     audioAgent.play();
@@ -127,16 +132,49 @@ class Study extends React.Component {
 
     if (wrongItem && !wrongItem.rejected) {
       wrongItem.rejected = true;
+      this.setState({maybeErrorMit: true})
     } 
     item.added = false;
     this.setState({ items, itemCounter: itemCounter - 1, itemDes: false});
-    this.errorMitigation(i);
+    this.tryAgain(i);
+  }
+
+  tryAgain(i) {
+    const { items } = this.props;
+    const item = items[i];
+    const audioAgent = document.getElementsByClassName("audio-try-again")[0];
+    const { wrongItem } = item;
+
+    if (wrongItem && !wrongItem.rejected) {
+      wrongItem.rejected = true;
+      this.setState({maybeErrorMit: true})
+    } 
+
+    this.setState({
+      tryAgain: true,
+      itemDes: false,
+      items,  
+      response: -1, 
+      errorcount: this.state.errorcount + 1
+    });
+
+    audioAgent.play();
+  }
+
+  maybeErrorMit() {
+    if (this.state.maybeErrorMit) {
+      this.setState({errorMit: true, maybeErrorMit: false});
+      this.errorMitAudio();
+    }
+    this.setState({speaking: false})
+  }
+
+  errorMitAudio() {
+    const audioAgent = document.getElementsByClassName("audio-agent-error")[0];
+    audioAgent.play();
   }
 
   errorMitigation(i) {
-    const audioAgent = document.getElementsByClassName("audio-agent-error")[0];
-    audioAgent.play();
-
     const { items } = this.props;
     const item = items[i];
 
@@ -239,7 +277,7 @@ class Study extends React.Component {
 
 
   render() {
-    const { itemDes, itemCounter, errorMit, checkout, submit, delivered, questComplete, incorrectItem, itemAdded, showHelp, response, speaking } = this.state;
+    const { itemDes, itemCounter, errorMit, tryAgain, checkout, submit, delivered, questComplete, incorrectItem, itemAdded, showHelp, response, speaking } = this.state;
     const { sess, items, checkpointText } = this.props;
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
@@ -254,7 +292,7 @@ class Study extends React.Component {
         return ( 
           <div className="body">
             { !isCheckpointTwo ? <div className="cylinder"/> : <div className="gema"/> }
-            <p><i>Oops, I'm sorry about that. I can start a return process for the item</i></p>
+            <p className="mega-speech"> Oops, I'm sorry about that. I can start a return process for the item </p>
             <img className="nextBtn" src={nextBtn} alt="next button" onClick={() => this.handleIncorrectItem()}/>
           </div>
         )
@@ -332,19 +370,6 @@ class Study extends React.Component {
       return (
         <div>
           <div>
-            {speaking ? <div className="phone-off"/> :
-              <Cart 
-                items={items}
-                removeItem={this.removeItem.bind(this)}
-                exchangeItem={this.exchangeItem.bind(this)}
-                itemCounter={itemCounter}
-                checkout={this.checkout.bind(this)}
-                cartcount={this.cartcount.bind(this)}
-                speaking={this.state.speaking}
-              />
-            }
-          </div>
-          <div>
             <div className="wrapper">
               <div className="list">
                 <h3 style={{fontFamily: "cursive"}}> Shopping List </h3>
@@ -357,7 +382,8 @@ class Study extends React.Component {
                   )
                 })}
                 <audio className="audio-order" src={this.state.itemAudio} onPlay={() => this.speaking()} onEnded={() => this.triggerResponse()}/>
-                <audio className="audio-confirm" onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}>
+                <audio className="audio-try-again" src={tryAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
+                <audio className="audio-confirm" onPlay={() => this.speaking()} onEnded={() => this.maybeErrorMit()}>
                   <source src={confirm}/>
                 </audio>
                 <audio className="audio-agent-error" onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}>
@@ -376,19 +402,31 @@ class Study extends React.Component {
               </div>
             </div>
             { sessions[sess].agent }
-            { itemAdded && !errorMit && !itemDes && response ? <p className="mega-speech"> { confirmItem } </p>: null }
+            { tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> Let's try that again. </p>: null}
+            { itemAdded && !tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> { confirmItem } </p>: null }
             { errorMit ? <p className="mega-speech"> { errorMitigation } </p> : null}
             { itemDes !== false && !errorMit ? <p className="mega-speech"> { itemDes } </p> : null}
             { response >= 0 && <Response 
                             index={response} 
                             addItem={this.addItem.bind(this)} 
                             exchangeItem={this.exchangeItem.bind(this)} 
-                            errorMitigation={this.errorMitigation.bind(this)}
+                            tryAgain={this.tryAgain.bind(this)}
                           /> }
+            {speaking ? <div className="phone-off"/> :
+              <Cart 
+                items={items}
+                removeItem={this.removeItem.bind(this)}
+                exchangeItem={this.exchangeItem.bind(this)}
+                itemCounter={itemCounter}
+                checkout={this.checkout.bind(this)}
+                cartcount={this.cartcount.bind(this)}
+                speaking={this.state.speaking}
+              />
+            }
             { (itemCounter >= items.length) ? <button className="purchase" onClick={() => this.checkout()}>  
                                                 Proceed to Checkout 
                                               </button> : null }
-          </div>
+          </div>            
         </div>
       );
     } else {return;}
