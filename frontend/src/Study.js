@@ -57,6 +57,7 @@ class Study extends React.Component {
       cartcount: 0,
       cart: new Map(),
       playReturn: true,
+      currItem: ''
     }
   }
 
@@ -90,6 +91,7 @@ class Study extends React.Component {
       errorMit: false,
       tryAgain: false,
       item: index
+
     }, () => this.orderItemAudio());
 
   }
@@ -161,7 +163,10 @@ class Study extends React.Component {
   }
 
   maybeErrorMit() {
-    if (this.state.maybeErrorMit) {
+    const { items } = this.props;
+    const { wrongItem } = items[this.state.item];
+
+    if (this.state.maybeErrorMit && wrongItem) {
       this.setState({errorMit: true, maybeErrorMit: false});
       this.errorMitAudio();
     }
