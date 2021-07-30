@@ -13,6 +13,7 @@ import sessOrder from "./text/sess_order";
 import Cart from "./Cart.js";
 import Walkthrough from "./Walkthrough.js";
 import Questionaire from "./Questionaire.js";
+import ReturnProcess from "./ReturnProcess.js"
 
 class Response extends React.Component {
   render () {
@@ -37,10 +38,10 @@ class Study extends React.Component {
       maybeErrorMit: false,
       tryAgain: false,
       checkout: false,
-      submit: false,
+      submit: false, //TODO: Undo for debugging
       delivered: false,
       questComplete: false,
-      incorrectItem: false,
+      incorrectItem: false, //undo
       itemAudio: '',
       itemAdded: false,
       showHelp: false,
@@ -56,8 +57,7 @@ class Study extends React.Component {
       errorcount: 0,
       cartcount: 0,
       cart: new Map(),
-      userId: '',
-      objId: ''
+      playReturn: true,
     }
   }
 
@@ -172,6 +172,8 @@ class Study extends React.Component {
   errorMitAudio() {
     const audioAgent = document.getElementsByClassName("audio-agent-error")[0];
     audioAgent.play();
+
+    this.setState({playReturn: false})
   }
 
   errorMitigation(i) {
@@ -245,11 +247,11 @@ class Study extends React.Component {
       errorcount: 0,
       cartcount: 0,
     });  
-    // console.log(this.state.objId)
-    // console.log(this.state.userId)
+
   }
 
-  handleIncorrectItem() {
+  finishReturn() {
+    console.log("finished");
     this.setState({incorrectItem: false})
   }
 
@@ -281,25 +283,32 @@ class Study extends React.Component {
     const { sess, items, checkpointText } = this.props;
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
-    const isCheckpointTwo = (checkpointText === checkpointTwo ? true : false);
     const confirmItem = "Got it! Item has been added to your cart";
     const errorMitigation = sessOrder[1][sess].error;
     const errorAud = sessOrder[1][sess].audio;
+    const agent = sessions[sess].agent;
     let itm = ''
 
     if (submit) {
+      console.log(incorrectItem)
       if (incorrectItem) {
         return ( 
-          <div className="body">
-            { !isCheckpointTwo ? <div className="cylinder"/> : <div className="gema"/> }
-            <p className="mega-speech"> Oops, I'm sorry about that. I can start a return process for the item </p>
-            <img className="nextBtn" src={nextBtn} alt="next button" onClick={() => this.handleIncorrectItem()}/>
-          </div>
-        )
+          <ReturnProcess
+            errorAud={errorAud}
+            errorMitigation={errorMitigation}
+            agent={agent}
+            finishReturn={this.finishReturn.bind(this)}
+          />
+        );
       }
       else {
         if (!questComplete) {
-          return <Questionaire completeQuest={this.completeQuest.bind(this)} data={this.state.data} clearData={this.clearData.bind(this)}/>;
+          return (
+            <Questionaire 
+              completeQuest={this.completeQuest.bind(this)} 
+              data={this.state.data} 
+              clearData={this.clearData.bind(this)}
+            />);
         } 
         else {
           return <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} />;
