@@ -74,7 +74,7 @@ class Questionaire extends React.Component {
         <h2 class="inlineh" >Please rate the following statements based on your interaction with the AI assistant </h2>
         
         <hr />
-        
+
         <div>
           <h2 className="wrapper">Statement</h2>
           {/* <div className="text">
@@ -171,10 +171,10 @@ class Questionaire extends React.Component {
 
         </div>
           <br />
-          <br />
           {this.state.required && <p style={{color: "red"}}>*Answer all statements before proceeding</p>}
           <br />
           <button className="speak" onClick={() => this.onSubmit()} ID="submitSurvey" runat="server">Submit</button>
+          <br />
       </div>
     );
   }
