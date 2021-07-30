@@ -31,45 +31,45 @@ class Speech extends React.Component {
 
     this.state = { 
       clickSpeak: false, 
-      itemCounter: 0,
-      //addItem: false,
-      //index: 0,
-      //items: cartOne
+      speaking: false
     }
   }
-
   
   handleSpeak() {
-    this.setState({ clickSpeak: true });
+    this.setState({ speaking: true, clickSpeak: true });
     const audioEl = document.getElementsByClassName("audio-element")[0]
     audioEl.play()
   }
 
+  doneSpeaking() {
+    this.setState({speaking: false})
+  }
+
   getNextText() {
     this.props.getNextText();
-    this.setState({ clickSpeak: false });
+    this.setState({clickSpeak: false})
+
     const audioEl = document.getElementsByClassName("audio-element")[0]
     audioEl.pause()
   }
 
   render() {
-    const { megaSpeak, errorMit } = this.props;
-    const { clickSpeak } = this.state;
+    const { megaSpeak } = this.props;
+    const { clickSpeak, speaking } = this.state;
     const btnName = "Ask the weather";
 
     return (
       <div>
-        {(!megaSpeak || clickSpeak) && !errorMit ? (
+        {(!megaSpeak || clickSpeak) && !speaking  ? (
           <NextButton getNextText={() => this.getNextText()} />
-        ) : (
+        ) : ( clickSpeak ? null :
           <button id="btn" className="speak" onClick={() => this.handleSpeak()}>
             {btnName}
           </button>
         )}
-        { clickSpeak && megaSpeak && !errorMit ? <p className="mega-speech"> { megaSpeak } </p>: null }
-        <audio className="audio-element">
-          <source src={audio}></source>
-        </audio>
+        { clickSpeak && megaSpeak ? <p className="mega-speech"> { megaSpeak } </p>: null }
+        <audio className="audio-element" src={audio} onEnded={() => this.doneSpeaking()}/>
+
       </div>
     );
   }
