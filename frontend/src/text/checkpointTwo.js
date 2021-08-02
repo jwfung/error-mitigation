@@ -1,7 +1,8 @@
 const checkpointTwo = [
   {
     top: "This is your new shopping list.",
-    mid: "Order the items needed in preparation for a birthday party."
+    mid: "Click on each item to ask Gema to order it.",
+    bottom: "View your cart by clicking on the phone in the bottom right"
   },
   { 
     top: "Congrats! You've reached Checkpoint #2!",

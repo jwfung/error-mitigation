@@ -14,15 +14,16 @@ import Cart from "./Cart.js";
 import Walkthrough from "./Walkthrough.js";
 import Questionaire from "./Questionaire.js";
 import ReturnProcess from "./ReturnProcess.js"
+import Survey from "./Survey.js"
 
 class Response extends React.Component {
   render () {
     const { index } = this.props;
     return (
       <div className="survey-item-wrapper"> 
-        <button className="response" onClick={() => this.props.addItem(index)}>"Yes, that is correct. Add to cart"</button>
-        <button className="response" onClick={() => this.props.exchangeItem(index)}>"Yes, that is correct, but show me more options"</button>
-        <button className="response" onClick={() => this.props.tryAgain(index)}>"No, that is incorrect"</button>
+        <button className="response" onClick={() => this.props.addItem(index)}>"Yes, add to cart"</button>
+        <button className="response" onClick={() => this.props.exchangeItem(index)}>"Yes, but show me more options"</button>
+        <button className="response" onClick={() => this.props.tryAgain(index)}>"No, that is not what I wanted"</button>
       </div>
     );
   }
@@ -145,11 +146,20 @@ class Study extends React.Component {
     const item = items[i];
     const audioAgent = document.getElementsByClassName("audio-try-again")[0];
     const { wrongItem } = item;
+    const { firstOpt, secondOpt } = wrongItem ?  (wrongItem.rejected ? item : wrongItem) : item;
+
 
     if (wrongItem && !wrongItem.rejected) {
       wrongItem.rejected = true;
       this.setState({maybeErrorMit: true})
     } 
+    if (firstOpt.inCart) {
+      firstOpt.inCart = false;
+      secondOpt.inCart = true;
+    } else if (secondOpt.inCart) {
+      firstOpt.inCart = true;
+      secondOpt.inCart = false;
+    }
 
     this.setState({
       tryAgain: true,
@@ -158,7 +168,7 @@ class Study extends React.Component {
       response: -1, 
       errorcount: this.state.errorcount + 1
     });
-
+    
     audioAgent.play();
   }
 
@@ -308,6 +318,7 @@ class Study extends React.Component {
       else {
         if (!questComplete) {
           return (
+            // <Survey/>);
             <Questionaire 
               completeQuest={this.completeQuest.bind(this)} 
               data={this.state.data} 
