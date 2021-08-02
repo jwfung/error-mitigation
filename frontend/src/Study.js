@@ -428,7 +428,7 @@ class Study extends React.Component {
             { sessions[sess].agent }
             { tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> Let's try that again. </p>: null}
             { itemAdded && !tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> { confirmItem } </p>: null }
-            { errorMit ? <p className="mega-speech"> { errorMitigation } </p> : null}
+            { speaking && errorMit ? <p className="mega-speech"> { errorMitigation } </p> : null}
             { itemDes !== false && !errorMit ? <p className="mega-speech"> { itemDes } </p> : null}
             {console.log(response)}
             { response >= 0 && !speaking &&
