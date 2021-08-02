@@ -11,12 +11,14 @@ const cartTwo = [
     name: "party hats",
     firstOpt: {
       name: "Striped Party Hats", 
-      des: "Okay, I found . Is this correct?",
+      des: "Okay, I found Striped Party Hats. Is this correct?",
+      audio: '',
       img: partyhats, 
       inCart: true },
     secondOpt: {
       name: "Patterned Party Hats",
-      des: "Okay, I found . Is this correct?", 
+      des: "Okay, I found Patterned Party Hat. Is this correct?", 
+      audio: '',
       img: hats, 
       inCart: false },
     list: true,
@@ -27,13 +29,15 @@ const cartTwo = [
     img: brownies,
     name:"brownie mix",
     firstOpt: {
-      name: "",
+      name: "Betty Crockers Brownie Mix",
       des: "Okay, I found . Is this correct?",
+      audio: '',
       img: brownies,
       inCart: true },
     secondOpt: {
-      name: "",
+      name: "Ghirardelli Brownie Mix",
       des: "Okay, I found . Is this correct?",
+      audio: '',
       img: brownies,
       incart: false },
     list: true,
@@ -44,14 +48,16 @@ const cartTwo = [
     img: balloons,
     name: "balloons",
     firstOpt: {
-      name: "",
+      name: "Bag Of Balloons",
       des: "Okay, I found . Is this correct?",
+      audio: '',
       img: '',
       incart: true
     }, 
     secondOpt: {
-      name: "",
+      name: "Metallic Balloons Pack",
       des: "Okay, I found . Is this correct?",
+      audio: '',
       img: '',
       incart: false
     },
@@ -65,26 +71,30 @@ const cartTwo = [
       firstOpt: {
         name: "Red Archery Bow", 
         des: "Okay, I found . Is this correct?",
+        audio: '',
         img: archery, 
         inCart: true
       },
       secondOpt: {
-        name: "Red Archery Bow", 
+        name: "Firebird Bow for Archery", 
         des: "Okay, I found . Is this correct?",
+        audio: '',
         img: archery, 
         inCart: true
       },
     },
     name: "bow",
     firstOpt: {
-      name: "bow",
+      name: "Large Red Birthday Bow",
       des: "Okay, I found . Is this correct?",
+      audio: '',
       img: bow,
       inCart: true,
     }, 
     secondOpt: {
-      name: "bow",
+      name: "Bow for Gifts",
       des: "Okay, I found . Is this correct?",
+      audio: '',
       img: bow,
       inCart: true,
     },
@@ -95,14 +105,16 @@ const cartTwo = [
   {
     name: "plastic cups",
     firstOpt: {
-      name: "plastic cups",
+      name: "Red Plastic Cups",
       des: "Okay, I found . Is this correct?",
+      audio: '',
       img: cups,
       inCart: true,
     }, 
     secondOpt: {
-      name: "",
+      name: "Clear Plastic Cups",
       des: "Okay, I found . Is this correct?",
+      audio: '',
       img: '',
       incart: false
     },

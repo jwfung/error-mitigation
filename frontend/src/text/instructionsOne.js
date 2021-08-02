@@ -11,18 +11,18 @@ const instructions = [
     speak: "It is currently 59 degrees Fahrenheit."
   },
   {
-    top: "Throughout this study, you will be testing out different personal assistants.",
-    mid: "Click to arrow button to get started with Session #1."
+    top: "The SmartShop Company has been working on developing different personal assistants.",
+    mid: "You have been tasked with helping them test out 5 of their beta assistants."
   },
   {
     mega: true,
     header: "Meet Mega",
-    top: "Mega is a personal assistant. It can help you order items online, where they will delivered quickly.",
+    top: "Mega is our first assistant. It was developed by Team1 and can help you order items online.",
     mid: "You can check your cart before placing your order, or place the order directly."
   },
   {
-    top: "In this session, you will be ordering a list of items using Mega.",
-    mid: "However, Mega may not always be accurate. Keep an eye out for any errors!"
+    top: "You will be using Mega to order some groceries items.",
+    mid: "Click to arrow button to proceed with Session #1."
   }
 ];
 

@@ -1,9 +1,10 @@
 const cartThree = [
   {
-    name: "",
+    name: "Backpack",
     firstOpt: {
-      name: "", 
+      name: "backpack", 
       des: "",
+      audio: '',
       img: '', 
       inCart: true },
     secondOpt: {
@@ -15,30 +16,49 @@ const cartThree = [
     list: true
   },
   {
-    name: "",
+    name: "glasses",
     firstOpt: {
       name: "", 
       des: "",
+      audio: '',
       img: '', 
       inCart: true },
     secondOpt: {
       name: "", 
       des: "",
+      audio: '',
       img: '', 
       inCart: false },
     added: false,
-    list: true
-  },
-  {
-    name: "",
+    list: true,
+    wrongItem: { 
+      rejected: false,
     firstOpt: {
-      name: "", 
+      name: "Glass Cupware", 
       des: "",
+      audio: '',
       img: '', 
       inCart: true },
     secondOpt: {
       name: "", 
       des: "",
+      audio: '',
+      img: '', 
+      inCart: false },
+    },
+  },
+  {
+    name: "#2 pencils",
+    firstOpt: {
+      name: "", 
+      des: "",
+      audio: '',
+      img: '', 
+      inCart: true },
+    secondOpt: {
+      name: "", 
+      des: "",
+      audio: '',
       img: '', 
       inCart: false },
     added: false,
@@ -51,11 +71,13 @@ const cartThree = [
     firstOpt: {
       name: "", 
       des: "",
+      audio: '',
       img: '', 
       inCart: true },
     secondOpt: {
       name: "", 
       des: "",
+      audio: '',
       img: '', 
       inCart: false },
       },
@@ -63,26 +85,47 @@ const cartThree = [
       firstOpt: {
         name: "", 
         des: "",
+        audio: '',
         img: '', 
         inCart: true },
       secondOpt: {
         name: "", 
         des: "",
+        audio: '',
         img: '', 
         inCart: false },
       added: false,
       list: true
   },
   {
-    name: "",
+    name: "notebooks",
     firstOpt: {
       name: "", 
       des: "",
+      audio: '',
       img: '', 
       inCart: true },
     secondOpt: {
       name: "", 
       des: "",
+      audio: '',
+      img: '', 
+      inCart: false },
+    added: false,
+    list: true
+  },
+  {
+    name: "school glue",
+    firstOpt: {
+      name: "", 
+      des: "",
+      audio: '',
+      img: '', 
+      inCart: true },
+    secondOpt: {
+      name: "", 
+      des: "",
+      audio: '',
       img: '', 
       inCart: false },
     added: false,

@@ -1,11 +1,11 @@
-const instructionsTwo = [
+const instructionsFour = [
   {
-    top: "Session #1 Complete",
-    mid: "Continue to Session #2"
+    top: "Session #3 Complete",
+    mid: "Continue to Session #4"
   },
   {
-    header: "Session 2:",
-    top: "In this next sequence, you will be interacting with the next personal assistant.",
+    header: "Session 4:",
+    top: "In this next sequence, you will be interacting with the forth personal assistant.",
   },
   {
     gema: true,
@@ -19,4 +19,4 @@ const instructionsTwo = [
   },
 ];
 
-export default instructionsTwo;
+export default instructionsFour;
