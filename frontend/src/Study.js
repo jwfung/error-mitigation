@@ -39,7 +39,7 @@ class Study extends React.Component {
       tryAgain: false,
       checkout: false,
       submit: false, //TODO: Undo for debugging
-      delivered: false,
+      delivered: true,
       questComplete: false,
       incorrectItem: false, //undo
       itemAudio: '',
@@ -51,8 +51,8 @@ class Study extends React.Component {
       speaking: false,
       data: {
         cart: [],
-        errcount: -1,
-        cartcount: -1,
+        // errcount: -1,
+        // cartcount: -1,
       },
       errorcount: 0,
       cartcount: 0,
@@ -198,6 +198,8 @@ class Study extends React.Component {
     if (wrongItem && !wrongItem.rejected) {
       wrongItem.rejected = true;
     } 
+
+    item.err = item.err + 1;
     
     this.setState({
       items,  
@@ -270,12 +272,19 @@ class Study extends React.Component {
   }
 
   onChangeValue(e) {
+    const item = this.props.items[e.target.name];
+    const {wrongItem} = item;
+    const itm = item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
+                                (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)
+
     if (e.target.value === "incorrect") {
       this.setState({incorrectItem: true})
+      if (wrongItem && !wrongItem.rejected) {
+        this.setState({errorMit: true})
+      }
     }
 
     let res = e.target.value;
-    let itm = e.target.name;
     
     this.state.cart.set(itm, res);
     console.log(this.state.cart)
@@ -301,7 +310,7 @@ class Study extends React.Component {
     const errorMitigation = sessOrder[1][sess].error;
     const errorAud = sessOrder[1][sess].audio;
     const agent = sessions[sess].agent;
-    let itm = ''
+    let itm = '';
 
     if (submit) {
       console.log(incorrectItem)
@@ -312,6 +321,7 @@ class Study extends React.Component {
             errorMitigation={errorMitigation}
             agent={agent}
             finishReturn={this.finishReturn.bind(this)}
+            errorMit={errorMit}
           />
         );
       }
@@ -335,7 +345,7 @@ class Study extends React.Component {
       return (
         <div>
           <h2>Your items have arrived!</h2>
-          <p>Check to see if they match with your shopping list.</p>
+          <p>You can put the item away, or ask the assistant to start a return process for any unexpected items.</p>
             <div className="list">
               <h3 style={{fontFamily: "cursive"}}> Shopping List </h3>
               {items.map((item, i) => {
@@ -360,12 +370,14 @@ class Study extends React.Component {
                                                                     <img style={{textAlign: "left", maxHeight: "100px"}} src={item.firstOpt.img} alt=""/> :
                                                                     <img style={{textAlign: "left", maxHeight: "100px"}} src={item.secondOpt.img} alt=""/>)}
                   </div>                                                        
-                  <div style={{marginBlock: "auto"}} onChange={(this.onChangeValue.bind(this))}>
-                    <input type="radio" value="correct" name={itm}/> Correct 
-                    <input type="radio" value="incorrect" name={itm}/> Incorrect
-                  </div>
+                  <form style={{marginBlock: "auto"}} onChange={(this.onChangeValue.bind(this))}>
+                    <input type="radio" id="correct" value="correct" name={i}/>   
+                    <label for="correct">Put Item Away</label><br/>
+                    <input type="radio" id="incorrect" value="incorrect" name={i}/> 
+                    <label for="incorrect">Ask to Return Item</label><br/>
+                  </form>
                 </div>
-              )
+              );
             })}
             </div>
             <button className="speak" style={{marginBottom: "40px"}} onClick={() => this.handleSubmission()}> Submit </button>

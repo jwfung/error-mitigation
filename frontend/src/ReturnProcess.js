@@ -15,15 +15,16 @@ class ReturnProcess extends React.Component{
 
   componentDidMount() {
     console.log("incorrect item")
-    console.log("speak:" + this.state.speaking)
 
     const audioAgent = document.getElementsByClassName("audio-return")[0];
     audioAgent.play();
   }
 
   errorMitAudio() {
-    const audioAgent = document.getElementsByClassName("audio-agent-error")[0];
-    audioAgent.play();
+    if (this.props.errorMit) {
+      const audioAgent = document.getElementsByClassName("audio-agent-error")[0];
+      audioAgent.play();
+    }
 
     this.setState({playReturn: false})
   }
@@ -39,14 +40,14 @@ class ReturnProcess extends React.Component{
   }
 
   render() {
-    const { errorAud, errorMitigation, agent, finishReturn } = this.props;
+    const { errorAud, errorMitigation, agent, finishReturn, errorMit } = this.props;
     const { speaking } = this.state;
 
     return (
       <div style={{marginTop: "10%"}}>
         { agent }
         {this.state.playReturn ? <p className="mega-speech"> Okay, I can start a return process for the item </p> :
-        <p className="mega-speech"> {errorMitigation} </p>}
+        (errorMit ? <p className="mega-speech"> {errorMitigation} </p> : <img className="nextBtn" src={nextBtn} alt="next button" onClick={finishReturn()}/>)}
         {!speaking && <img className="nextBtn" src={nextBtn} alt="next button" onClick={finishReturn()}/>}
         <audio className="audio-return" src={returnItm} onEnded={() => this.errorMitAudio()}/>
         <audio className="audio-agent-error" src={errorAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
