@@ -51,8 +51,6 @@ class Study extends React.Component {
       speaking: false,
       data: {
         cart: [],
-        // errcount: -1,
-        // cartcount: -1,
       },
       errcount: 0,
       cartcount: 0,
@@ -105,24 +103,38 @@ class Study extends React.Component {
   }
 
   addItem(index) {
-    const { itemCounter } = this.state;
+    const { itemCounter, currItem } = this.state;
     const { items } = this.props;
     items[index].added = true
 
     this.addItemAudio();
 
-    this.state.cartOrder.push({item: this.state.currItem, err: this.state.errcount, cartcnt: this.state.cartcount},
-    this.setState({ 
-      items, 
-      itemCounter: itemCounter + 1, 
-      errorMit: false, 
-      itemAdded: true,
-      response: -1,
-      itemDes: false,
-      errorcount: 0,
-      cartcount: 0,
-      currItem: items[index].name
-    }, console.log(this.state.cartOrder)))
+    if (!currItem) {
+      this.setState({
+        items,
+        itemCounter: itemCounter + 1, 
+        errorMit: false, 
+        itemAdded: true,
+        response: -1,
+        itemDes: false,
+        currItem: items[index].name,
+      });
+    }
+    else {
+      this.state.cartOrder.push({item: currItem, err: this.state.errcount, cartcnt: this.state.cartcount},
+      this.setState({ 
+        items, 
+        itemCounter: itemCounter + 1, 
+        errorMit: false, 
+        itemAdded: true,
+        response: -1,
+        itemDes: false,
+        errorcount: 0,
+        cartcount: 0,
+        currItem: items[index].name
+      }, console.log(this.state.cartOrder))
+      )
+    }
   }
 
   addItemAudio() {
@@ -132,7 +144,7 @@ class Study extends React.Component {
   }
 
   removeItem(i) {
-    const { itemCounter } = this.state;
+    const { itemCounter, errcount } = this.state;
     const { items } = this.props;
     const item = items[i];
     const { wrongItem } = item;
@@ -142,7 +154,7 @@ class Study extends React.Component {
       this.setState({maybeErrorMit: true})
     } 
     item.added = false;
-    this.setState({ items, itemCounter: itemCounter - 1, itemDes: false});
+    this.setState({ items, itemCounter: itemCounter - 1, itemDes: false, errcount: errcount + 1});
     this.tryAgain(i);
   }
 
@@ -171,7 +183,7 @@ class Study extends React.Component {
       itemDes: false,
       items,  
       response: -1, 
-      errorcount: this.state.errorcount + 1
+      errcount: this.state.errcount + 1
     });
     
     audioAgent.play();
@@ -242,8 +254,9 @@ class Study extends React.Component {
   }
 
   checkout() {
-    this.setState({checkout: true})
-    this.state.cartOrder.push({item: this.state.currItem, err: this.state.errcount, cartcnt: this.state.cartcount})
+    this.state.cartOrder.push({item: this.state.currItem, err: this.state.errcount, cartcnt: this.state.cartcount},     
+      this.setState({checkout: true})
+    )
   }
 
 
@@ -258,8 +271,6 @@ class Study extends React.Component {
       data: {
         cart: arr,
         cartOrder: this.state.cartOrder
-        // errcount: this.state.errorcount,
-        // cartcount: this.state.cartcount
       }
     })
   }

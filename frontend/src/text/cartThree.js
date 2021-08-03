@@ -1,16 +1,21 @@
+import jansport from "../assets/jansport.jpg";
+import herschel from "../assets/herschel.jpg";
+import goldglasses from "../assets/goldglasses.png";
+import optics from "../assets/optics.jpg";
+
 const cartThree = [
   {
-    name: "Backpack",
+    name: "backpack",
     firstOpt: {
-      name: "backpack", 
+      name: "Jansport School Backpack", 
       des: "",
       audio: '',
-      img: '', 
+      img: jansport, 
       inCart: true },
     secondOpt: {
-      name: "", 
+      name: "Herschel School Backpack", 
       des: "",
-      img: '', 
+      img: herschel, 
       inCart: false },
     added: false,
     list: true
@@ -18,33 +23,33 @@ const cartThree = [
   {
     name: "glasses",
     firstOpt: {
-      name: "", 
+      name: "Gold Framed Glasses", 
       des: "",
       audio: '',
-      img: '', 
+      img: goldglasses, 
       inCart: true },
     secondOpt: {
-      name: "", 
+      name: "Modern Chic Optic Glasses", 
       des: "",
       audio: '',
-      img: '', 
+      img: optics, 
       inCart: false },
     added: false,
     list: true,
     wrongItem: { 
-      rejected: false,
-    firstOpt: {
-      name: "Glass Cupware", 
-      des: "",
-      audio: '',
-      img: '', 
-      inCart: true },
-    secondOpt: {
-      name: "", 
-      des: "",
-      audio: '',
-      img: '', 
-      inCart: false },
+        rejected: false,
+      firstOpt: {
+        name: "Glass Cupware", 
+        des: "",
+        audio: '',
+        img: '', 
+        inCart: true },
+      secondOpt: {
+        name: "", 
+        des: "",
+        audio: '',
+        img: '', 
+        inCart: false },
     },
   },
   {

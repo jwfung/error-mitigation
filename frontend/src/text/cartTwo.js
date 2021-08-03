@@ -1,10 +1,15 @@
 import partyhats from "../assets/partyhats.jpg";
 import hats from "../assets/hats.jpg";
 import brownies from "../assets/brownies.jpg";
-import balloons from "../assets/balloons.jpg"
-import archery from "../assets/archery.jpg"
-import bow from "../assets/bow.jpg"
-import cups from "../assets/cups.jpg"
+import ghir from "../assets/ghirardelli.jpg";
+import balloons from "../assets/balloons.jpg";
+import metball from "../assets/metballoons.jpg";
+import archery from "../assets/archery.jpg";
+import firebird from "../assets/firebird.png";
+import bow from "../assets/bow.jpg";
+import giftwrap from "../assets/giftwrap.jpg"
+import cups from "../assets/cups.jpg";
+import clearcups from "../assets/clearcups.jpeg";
 
 const cartTwo = [
   {
@@ -23,104 +28,98 @@ const cartTwo = [
       inCart: false },
     list: true,
     added: false,
-    count: 1
   },
   {
     img: brownies,
     name:"brownie mix",
     firstOpt: {
       name: "Betty Crockers Brownie Mix",
-      des: "Okay, I found . Is this correct?",
+      des: "Okay, I found Betty Crockers Brownies Mix. Is this correct?",
       audio: '',
       img: brownies,
       inCart: true },
     secondOpt: {
       name: "Ghirardelli Brownie Mix",
-      des: "Okay, I found . Is this correct?",
+      des: "Okay, I found Ghirardelli Brownie Mix. Is this correct?",
       audio: '',
-      img: brownies,
+      img: ghir,
       incart: false },
     list: true,
     added: false,
-    count: 1
   },
   {
-    img: balloons,
     name: "balloons",
     firstOpt: {
-      name: "Bag Of Balloons",
-      des: "Okay, I found . Is this correct?",
+      name: "Bag of Balloons",
+      des: "Okay, I found Bag of Balloons. Is this correct?",
       audio: '',
-      img: '',
+      img: balloons,
       incart: true
     }, 
     secondOpt: {
       name: "Metallic Balloons Pack",
-      des: "Okay, I found . Is this correct?",
+      des: "Okay, I found Metallic Balloons Pack. Is this correct?",
       audio: '',
-      img: '',
+      img: metball,
       incart: false
     },
     list: true,
     added: false,
-    count: 1
   },
   {
     wrongItem: {
       rejected: false,
       firstOpt: {
         name: "Red Archery Bow", 
-        des: "Okay, I found . Is this correct?",
+        des: "Okay, I found Red Archery Bow. Is this correct?",
         audio: '',
         img: archery, 
         inCart: true
       },
       secondOpt: {
         name: "Firebird Bow for Archery", 
-        des: "Okay, I found . Is this correct?",
+        des: "Okay, I found Firebird Bow for Archery. Is this correct?",
         audio: '',
-        img: archery, 
+        img: firebird, 
         inCart: true
       },
     },
     name: "bow",
     firstOpt: {
       name: "Large Red Birthday Bow",
-      des: "Okay, I found . Is this correct?",
+      des: "Okay, I found Large Red Birthday Bow. Is this correct?",
       audio: '',
       img: bow,
       inCart: true,
     }, 
     secondOpt: {
-      name: "Bow for Gifts",
-      des: "Okay, I found . Is this correct?",
+      name: "Gift Wrapping Bow",
+      des: "Okay, I found Bow for Gifts. Is this correct?",
       audio: '',
-      img: bow,
+      img: giftwrap,
       inCart: true,
     },
     list: true,
     added: false,
-    count: 1
   },
   {
     name: "plastic cups",
     firstOpt: {
       name: "Red Plastic Cups",
-      des: "Okay, I found . Is this correct?",
+      des: "Okay, I found Red Plastic Cups. Is this correct?",
       audio: '',
       img: cups,
       inCart: true,
     }, 
     secondOpt: {
       name: "Clear Plastic Cups",
-      des: "Okay, I found . Is this correct?",
+      des: "Okay, I found Clear Plastic Cups. Is this correct?",
       audio: '',
-      img: '',
+      img: clearcups,
       incart: false
     },
     list: true,
     added: false,
-    count: 1
   }
 ];
 
