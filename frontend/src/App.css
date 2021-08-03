@@ -27,9 +27,38 @@
   margin-top: 20px;
 }
 
-.radio {
-  width: 2em;
+input[type=radio] {
+  border: 0px;
+  width: 2rem;
+  height: 2em;
+  margin: 15px;
+  left: 40%;
 }
+
+label {
+  font-size: large;
+  margin: 30px;
+}
+
+form {
+  text-align: center;
+  margin: auto;
+}
+
+.statement {
+  font-size: 1.2rem;
+  text-align: left;
+  margin-left: 15%;
+}
+
+.quest-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  grid-template-columns: auto 700px auto;
+}
+.item1 { grid-column: 1; text-align: end;}
+.item2 { grid-column: 2; }
+.item3 { grid-column: 3; text-align: left;}
 
 .survey-wrapper {
   display: grid;
@@ -97,12 +126,6 @@
   position: relative;
   margin: auto;  /* right: 10%; */
   max-width: 500px;
-}
-
-.statement {
-  font-size: 1.2rem;
-  text-align: left;
-  margin-left: 5%;
 }
 
 .img {

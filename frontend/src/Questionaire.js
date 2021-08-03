@@ -43,6 +43,11 @@ class Questionaire extends React.Component {
           {q2: this.state.q2},
           {q3: this.state.q3},
           {q4: this.state.q4},
+          {q5: this.state.q5},
+          {q6: this.state.q6},
+          {q7: this.state.q7},
+          {q8: this.state.q8},
+
         ]
       }
       const { data } = this.props
@@ -76,26 +81,19 @@ class Questionaire extends React.Component {
   render() {
     return(
       <div id="wrapper">
-        <h2 class="inlineh" >&nbsp;</h2>
-        <h2 class="inlineh" >Please rate the following statements based on your interaction with the AI assistant </h2>
+        <h2 class="inlineh">&nbsp;</h2>
+        <h2 class="inlineh">How was your personal assistant?</h2>
+        <p>Based on your experience with the smart speaker, rate the statements on a scale of 1 to 5 (1=strongly disagree to 5=strongly agree)</p>
         
         <hr />
 
         <div>
           <h2 className="wrapper">Statement</h2>
-          {/* <div className="text">
-            <label ID="Label3" CssClass="inline" runat="server"  Width="100px" Text="Strongly Agree"  style={{textAlign: "center"}} ></label>
-            <label ID="Label4" CssClass="inline" runat="server" Text="" style={{textAlign: "left;"}} Width="75px" ></label>
-            <label ID="Label2" CssClass="inline" runat="server"  Width="100px" Text="Neutral"  style={{textAlign: "center"}} ></label>
-            <label ID="Label1" CssClass="inline" runat="server" Text="" style={{textAlign: "left;"}} Width="75px" ></label>
-            <label ID="Label5" CssClass="inline" runat="server" Text="Strongly Disagree" style={{textAlign: "center"}} Width="100px" ></label>
-          </div> */}
-
           <div className="wrapper">
-              <p class="statement">I would be willing to use this smart speaker for ordering my usual things online.</p>
+              <p class="statement">I would be willing to use this AI assistant for ordering my usual things online.</p>
             <form classname="radio">
-              strongly disagree<input type="radio" Value="1" name="q1" onChange={this.onChange.bind(this)}/>
-              <input type="radio" Value="2" name="q1" size="3em" onChange={this.onChange.bind(this)}/>
+              strongly disagree<input id= "q1" type="radio" Value="1" name="q1" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="2" name="q1" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="3" name="q1" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="4" name="q1" onChange={this.onChange.bind(this)}/> 
               <input type="radio" Value="5" name="q1" onChange={this.onChange.bind(this)}/> strongly agree
@@ -104,7 +102,7 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-            <p class="statement">I would prefer the smart speaker over having to do certain tasks myself.</p>
+            <p class="statement">I would prefer using the AI assistant over having to shop myself.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q2" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q2" onChange={this.onChange.bind(this)}/>
@@ -128,7 +126,7 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-            <p class="statement">I am satisfied with AI’s performance</p>
+            <p class="statement">I am satisfied with AI assistant's performance</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q4" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q4" onChange={this.onChange.bind(this)}/>
@@ -140,7 +138,7 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-            <p class="statement">I think the error occurred because user was ambiguous</p>
+            <p class="statement">Even though AI is not always accurate, I trusted AI to be efficient</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q5" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q5" onChange={this.onChange.bind(this)}/>
@@ -174,13 +172,80 @@ class Questionaire extends React.Component {
               <br />            
             </div>
           </div>
-
+          <div className="wrapper">
+            <p class="statement">AI assistant was able to understand its mistake and correct it effectively</p>
+            <div>
+              strongly disagree<input type="radio" Value="1" name="q7" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="2" name="q7" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="3" name="q7" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="4" name="q7" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="5" name="q7" onChange={this.onChange.bind(this)}/> strongly agree
+              <br />            
+            </div>
+          </div>
+          
         </div>
-          <br />
+      <br/>
+        <div>
+          <h2>Please rate your impression of the agent with the following scales:</h2>
+
+          <div className="quest-wrapper">
+            <p className="item1">Unconscious</p>
+            <form className="item2">
+              <label><input type="radio" Value="1" name="q8" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="2" name="q8" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="3" name="q8" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="4" name="q8" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="5" name="q8" onChange={this.onChange.bind(this)}/></label>
+            </form>
+            <p className="item3">Conscious</p>
+            <br />  
+            <p className="item1">Apathetic</p>
+            <form className="item2">
+              <label><input type="radio" Value="1" name="q9" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="2" name="q9" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="3" name="q9" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="4" name="q9" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="5" name="q9" onChange={this.onChange.bind(this)}/></label>
+            </form>
+            <p className="item3">Responsive</p>
+            <br />            
+            <p className="item1">Unfriendly</p>
+            <form className="item2">
+              <label><input type="radio" Value="1" name="q10" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="2" name="q10" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="3" name="q10" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="4" name="q10" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="5" name="q10" onChange={this.onChange.bind(this)}/></label>
+            </form>
+            <p className="item3">Friendly</p>
+            <br />            
+            <p className="item1">Incompetent</p>
+            <form className="item2">
+              <label><input type="radio" Value="1" name="q11" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="2" name="q11" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="3" name="q11" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="4" name="q11" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="5" name="q11" onChange={this.onChange.bind(this)}/></label>
+            </form>
+            <p className="item3">Knowledgeable</p>
+            <br />            
+            <p className="item1">Irresponsible</p>
+            <form className="item2">
+              <label><input type="radio" Value="1" name="q12" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="2" name="q12" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="3" name="q12" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="4" name="q12" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="5" name="q12" onChange={this.onChange.bind(this)}/></label>
+            </form>
+            <p className="item3">Responsible</p>
+          </div>
+      </div>
+
           {this.state.required && <p style={{color: "red"}}>*Answer all statements before proceeding</p>}
-          <br />
           <button className="speak" onClick={() => this.onSubmit()} ID="submitSurvey" runat="server">Submit</button>
           <br />
+          <br />            
       </div>
     );
   }
