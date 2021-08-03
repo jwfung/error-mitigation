@@ -19,6 +19,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^1.1.5",
     "save-dev": "0.0.1-security",
+    "survey-react": "^1.8.58",
     "validation": "0.0.1",
     "web-vitals": "^1.1.1"
   },

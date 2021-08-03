@@ -30,6 +30,8 @@ import Kirkland from "../assets/audio/Kirkland.mp3"
 const cartOne = [
   {
     name: "AA batteries",
+    err: 0,
+    cartcnt: 0,
     firstOpt: {
       name: "Duracell Batteries", 
       des: "Okay, I found Duracell Double A Batteries for $5.99. Is this correct?",
@@ -47,6 +49,8 @@ const cartOne = [
   },
   {
     name:"dog food",
+    err: 0,
+    cartcnt: 0,
     firstOpt: {
       name: "Purina Dog Food",
       des: "Okay, I found Purina Dog Food for $7.99. Is this correct?", 
@@ -64,6 +68,8 @@ const cartOne = [
   },
   {
     name:"lactose-free milk",
+    err: 0,
+    cartcnt: 0,
     firstOpt: {
       name: "HEB lactose-free milk",
       des: "Okay, I found HEB lactose-free milk. Is this correct?", 
@@ -97,6 +103,8 @@ const cartOne = [
         inCart: false },
       },
     name: "flour",
+    err: 0,
+    cartcnt: 0,
     firstOpt: {
       name: "King Arthur Flour", 
       des: "Okay, I found King Arthur Flour. Is this correct?", 
@@ -114,6 +122,8 @@ const cartOne = [
   },
   {
     name: "13-gallon Trash Bags",
+    err: 0,
+    cartcnt: 0,
     firstOpt: {
       name: "Glad 13-gallon bags",
       des: "Okay, I found Glad 13-gallon trash bags. Is this correct?",  

@@ -10,15 +10,18 @@ class Questionaire extends React.Component {
       q2: '',
       q3: '',
       q4: '',
+      q5: '',
+      q6: '',
+      q7: '',
       complete: false,
       required: false
     }
   }
 
   componentDidUpdate() {
-    const { q1, q2, q3, q4 } = this.state;
+    const { q1, q2, q3, q4, q5, q6, q7 } = this.state;
     
-    if (q1 && q2 && q3 && q4 && !this.state.complete) {
+    if (q1 && q2 && q3 && q4 && q5 && q6 && q7 && !this.state.complete) {
       this.setState({complete: true});
     }
 
@@ -54,8 +57,11 @@ class Questionaire extends React.Component {
               q2: '',
               q3: '',
               q4: '',
+              q5: '',
+              q6: '',
+              q7: ''
             })
-            this.props.clearData()
+            this.props.clearData();
             this.props.completeQuest();
             // this.props.history.push('/');
           })
@@ -87,14 +93,14 @@ class Questionaire extends React.Component {
 
           <div className="wrapper">
               <p class="statement">I would be willing to use this smart speaker for ordering my usual things online.</p>
-            <div>
+            <form classname="radio">
               strongly disagree<input type="radio" Value="1" name="q1" onChange={this.onChange.bind(this)}/>
-              <input type="radio" Value="2" name="q1" onChange={this.onChange.bind(this)}/>
+              <input type="radio" Value="2" name="q1" size="3em" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="3" name="q1" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="4" name="q1" onChange={this.onChange.bind(this)}/> 
               <input type="radio" Value="5" name="q1" onChange={this.onChange.bind(this)}/> strongly agree
               <br />
-            </div>
+            </form>
           </div>
 
           <div className="wrapper">

@@ -13,14 +13,18 @@ const UserSchema = new mongoose.Schema({
     type: Array,
     required: false
   },
-  errcount: {
-    type: Number,
-    required: false
+  cartOrder: {
+    type: Array,
+    require: false
   },
-  cartcount: {
-    type: Number,
-    required: false
-  },
+  // errcount: {
+  //   type: Number,
+  //   required: false
+  // },
+  // cartcount: {
+  //   type: Number,
+  //   required: false
+  // },
   quest: {
     type: Array,
     required: false

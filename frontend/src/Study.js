@@ -39,7 +39,7 @@ class Study extends React.Component {
       tryAgain: false,
       checkout: false,
       submit: false, //TODO: Undo for debugging
-      delivered: true,
+      delivered: false, //
       questComplete: false,
       incorrectItem: false, //undo
       itemAudio: '',
@@ -54,11 +54,12 @@ class Study extends React.Component {
         // errcount: -1,
         // cartcount: -1,
       },
-      errorcount: 0,
+      errcount: 0,
       cartcount: 0,
       cart: new Map(),
       playReturn: true,
-      currItem: ''
+      currItem: '',
+      cartOrder: []
     }
   }
 
@@ -110,14 +111,18 @@ class Study extends React.Component {
 
     this.addItemAudio();
 
+    this.state.cartOrder.push({item: this.state.currItem, err: this.state.errcount, cartcnt: this.state.cartcount},
     this.setState({ 
       items, 
       itemCounter: itemCounter + 1, 
       errorMit: false, 
       itemAdded: true,
       response: -1,
-      itemDes: false
-    });
+      itemDes: false,
+      errorcount: 0,
+      cartcount: 0,
+      currItem: items[index].name
+    }, console.log(this.state.cartOrder)))
   }
 
   addItemAudio() {
@@ -238,6 +243,7 @@ class Study extends React.Component {
 
   checkout() {
     this.setState({checkout: true})
+    this.state.cartOrder.push({item: this.state.currItem, err: this.state.errcount, cartcnt: this.state.cartcount})
   }
 
 
@@ -251,8 +257,9 @@ class Study extends React.Component {
     this.setState({
       data: {
         cart: arr,
-        errcount: this.state.errorcount,
-        cartcount: this.state.cartcount
+        cartOrder: this.state.cartOrder
+        // errcount: this.state.errorcount,
+        // cartcount: this.state.cartcount
       }
     })
   }
@@ -263,7 +270,6 @@ class Study extends React.Component {
       errorcount: 0,
       cartcount: 0,
     });  
-
   }
 
   finishReturn() {
