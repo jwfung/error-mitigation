@@ -122,14 +122,14 @@ const cartTwo = [
     firstOpt: {
       name: "Red Plastic Cups",
       des: "Okay, I found Red Plastic Cups. Is this correct?",
-      audio: '',
+      audio: redcup,
       img: cups,
       inCart: true,
     }, 
     secondOpt: {
       name: "Clear Plastic Cups",
       des: "Okay, I found Clear Plastic Cups. Is this correct?",
-      audio: '',
+      audio: clearcup,
       img: clearcups,
       incart: false
     },
