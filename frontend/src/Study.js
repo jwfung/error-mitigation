@@ -14,7 +14,6 @@ import Cart from "./Cart.js";
 import Walkthrough from "./Walkthrough.js";
 import Questionaire from "./Questionaire.js";
 import ReturnProcess from "./ReturnProcess.js"
-import Survey from "./Survey.js"
 
 class Response extends React.Component {
   render () {
@@ -320,12 +319,12 @@ class Study extends React.Component {
 
   render() {
     const { itemDes, itemCounter, errorMit, tryAgain, checkout, submit, delivered, questComplete, incorrectItem, itemAdded, showHelp, response, speaking } = this.state;
-    const { sess, items, checkpointText } = this.props;
+    const { sess, items, checkpointText, latinsqr } = this.props;
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
     const confirmItem = "Got it! Item has been added to your cart";
-    const errorMitigation = sessOrder[1][sess].error;
-    const errorAud = sessOrder[1][sess].audio;
+    const errorMitigation = sessOrder[latinsqr][sess].error;
+    const errorAud = sessOrder[latinsqr][sess].audio;
     const agent = sessions[sess].agent;
     let itm = '';
 

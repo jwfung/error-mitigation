@@ -22,10 +22,10 @@ class Walkthrough extends React.Component {
 
   render() {
     const { index } = this.state;
-    const { checkpointText, sess} = this.props;
+    const { checkpointText, sess, latinsqr } = this.props;
 
     if (index >= sessions[sess].text.length) {
-      return <Study items={sessions[sess].list} sess={sess} checkpointText={checkpointText}/>
+      return <Study items={sessions[sess].list} sess={sess} checkpointText={checkpointText} latinsqr={latinsqr}/>;
     }
 
     const currTex = sessions[sess].text[index];
