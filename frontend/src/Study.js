@@ -269,7 +269,8 @@ class Study extends React.Component {
     this.setState({
       data: {
         cart: arr,
-        cartOrder: this.state.cartOrder
+        cartOrder: this.state.cartOrder,
+        latinsqr: this.props.latinsqr
       }
     })
   }
