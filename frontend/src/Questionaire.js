@@ -27,13 +27,13 @@ class Questionaire extends React.Component {
   }
 
   componentDidUpdate() {
-    const { q1, q2, q3, q4, q5, q6, q7 } = this.state;
+    const { q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15 } = this.state;
     
-    if (q1 && q2 && q3 && q4 && q5 && q6 && q7 && !this.state.complete) {
+    if (q1 && q2 && q3 && q4 && q5 && q6 && q7 && q8 && q9 && q10 && q11 && q12 && q13 && q14 && q15 && !this.state.complete) {
       this.setState({complete: true});
     }
 
-    console.log(this.state.complete)
+    // console.log(this.state.complete)
   }
 
   onChange(e) {
@@ -42,7 +42,6 @@ class Questionaire extends React.Component {
 
   onSubmit(e) {
     // e.preventDefault();
-    console.log(this.props.objId)
 
     if (this.state.complete) {  
       const questData = {
@@ -66,10 +65,10 @@ class Questionaire extends React.Component {
       }
       const { data } = this.props
       let newData = Object.assign(data, questData)
-      console.log(newData)
+      // console.log(newData)
 
       axios
-        .post('https://jeanie.mongo.cosmos.azure.com:443/', newData)
+        .post('https://errormit.azurewebsites.net', newData)
           .then(res => {
             this.setState({
               q1: '',

@@ -31,7 +31,7 @@ const sessions = [
   {
     list: cartFour,
     text: instructionsFour,
-    agent: <div className="cylinder"/>,
+    agent: <div className="gema"/>,
   },
   {
     list: cartFive,

@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.13.3",
     "mongoose-sequence": "^5.3.1",
+    "request": "^2.88.2",
     "validation": "0.0.1"
   },
   "devDependencies": {

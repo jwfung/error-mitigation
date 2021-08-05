@@ -66,12 +66,12 @@ class Study extends React.Component {
   }
 
   speaking() {
-    console.log("speaking")
+    // console.log("speaking")
     this.setState({speaking: true})
   }
 
   doneSpeaking() {
-    console.log("done speaking")
+    // console.log("done speaking")
     // if (this.state.errorMit && (errorAud2 != null)) {
     //   this.errorPlayTwo();
     // } 
@@ -116,6 +116,7 @@ class Study extends React.Component {
   addItem(index) {
     const { itemCounter, currItem } = this.state;
     const { items } = this.props;
+    const item = items[index];
     items[index].added = true
 
     this.addItemAudio();
@@ -128,7 +129,8 @@ class Study extends React.Component {
         itemAdded: true,
         response: -1,
         itemDes: false,
-        currItem: items[index].name,
+        currItem: (item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
+                  (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)),
       });
     }
     else {
@@ -142,7 +144,8 @@ class Study extends React.Component {
         itemDes: false,
         errorcount: 0,
         cartcount: 0,
-        currItem: items[index].name
+        currItem: (item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
+                  (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name))
       }, console.log(this.state.cartOrder))
       )
     }
@@ -202,13 +205,14 @@ class Study extends React.Component {
     audioAgent.play();
   }
 
-  maybeErrorMit() {
+  maybeErrorMit(errorMitigation) {
     const { items } = this.props;
     const { wrongItem } = items[this.state.item];
 
     if (this.state.maybeErrorMit && wrongItem) {
       this.setState({errorMit: true, maybeErrorMit: false});
-      this.props.errorMitigation && this.errorMitAudio();
+      // console.log("ermit:" + errorMitigation);
+      errorMitigation && this.errorMitAudio();
     }
     this.setState({speaking: false})
   }
@@ -272,15 +276,14 @@ class Study extends React.Component {
     )
   }
 
-
   //post-delivery survey
   handleSubmission() {    
     this.setState({submit: true});
     
     const arr = Array.from(this.state.cart).map(([itm, res]) => ({ itm, res }))
-    console.log(arr)
-    console.log(this.props.sess)
-    console.log(this.props.latinsqr)
+    // console.log(arr)
+    // console.log(this.props.sess)
+    // console.log(this.props.latinsqr)
     
     this.setState({
       data: {
@@ -301,7 +304,7 @@ class Study extends React.Component {
   }
 
   finishReturn() {
-    console.log("finished");
+    // console.log("finished");
     this.setState({incorrectItem: false})
   }
 
@@ -341,14 +344,14 @@ class Study extends React.Component {
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
     const confirmItem = "Got it! Item has been added to your cart";
-    const errorMitigation = sessOrder[0][sess].error; //TODO: change to latinsqr
-    const errorAud = sessOrder[0][sess].audio;
+    const errorMitigation = sessOrder[latinsqr][sess].error; //TODO: change to latinsqr
+    const errorAud = sessOrder[latinsqr][sess].audio;
     // const errorAud2 = sessOrder[latinsqr][sess].audio2;
     const agent = sessions[sess].agent;
     // let itm;
 
     if (submit) {
-      console.log(incorrectItem)
+      // console.log(incorrectItem)
       if (incorrectItem) {
         return ( 
           <ReturnProcess
@@ -454,7 +457,7 @@ class Study extends React.Component {
                 })}
                 <audio className="audio-order" src={this.state.itemAudio} onPlay={() => this.speaking()} onEnded={() => this.triggerResponse()}/>
                 <audio className="audio-try-again" src={tryAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
-                <audio className="audio-confirm" onPlay={() => this.speaking()} onEnded={() => this.maybeErrorMit()}>
+                <audio className="audio-confirm" onPlay={() => this.speaking()} onEnded={() => this.maybeErrorMit(errorMitigation)}>
                   <source src={confirm}/>
                 </audio>
                 <audio className="audio-agent-error" src={errorAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
@@ -476,7 +479,7 @@ class Study extends React.Component {
             { speaking && itemAdded && !tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> { confirmItem } </p>: null }
             { speaking && errorMit ? <p className="mega-speech"> { errorMitigation } </p> : null}
             { itemDes !== false && !errorMit ? <p className="mega-speech"> { itemDes } </p> : null}
-            {console.log(response)}
+            {/* {console.log(response)} */}
             { response >= 0 && !speaking &&
               <Response 
                 index={response} 
