@@ -1,7 +1,7 @@
 const checkpointOne = [
   {
     top: "This is your shopping list.",
-    mid: "Click on each item to ask Mega to order it.",
+    mid: "Click on each item to ask the agent to order it.",
     bottom: "You can view your cart by clicking on the phone in the bottom right.",
   },
   { 

@@ -9,12 +9,12 @@ const instructionsFour = [
   },
   {
     gema: true,
-    header: "This is Gema.",
-    top: "Gema is our second assistant, developed by Team2 of SmartShop",
+    header: "This is Memi.",
+    top: "Memi is our fourth assistant, developed by Team4 of SmartShop",
     mid: "It can also respond to basic commands, and help you place orders online."
   },
   {
-    top: "In this round, use Gema to order some items for a party.",
+    top: "In this round, use Memi to order some items for your brother's baseball game.",
     mid: "Click the arrow to proceed "
   },
 ];

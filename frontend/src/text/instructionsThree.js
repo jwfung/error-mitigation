@@ -9,12 +9,12 @@ const instructionsThree = [
   },
   {
     gema: true,
-    header: "This is Gema.",
-    top: "Gema is our second assistant, developed by Team2 of SmartShop",
+    header: "This is Bemi.",
+    top: "Bemi is our third assistant, developed by Team3 of SmartShop",
     mid: "It can also respond to basic commands, and help you place orders online."
   },
   {
-    top: "In this round, use Gema to order some items for a party.",
+    top: "In this round, use Bemi to order some items for back-to-school.",
     mid: "Click the arrow to proceed "
   },
 ];

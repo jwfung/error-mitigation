@@ -6,6 +6,8 @@ import cartFive from "./cartFive";
 
 import instructions from "./instructionsOne";
 import instructionsTwo from "./instructionsTwo";
+import instructionsThree from "./instructionsThree";
+import instructionsFour from "./instructionsFour";
 import instructionsFinal from "./instructionsFinal";
 
 import React  from 'react';
@@ -23,19 +25,18 @@ const sessions = [
   },
   {
     list: cartThree,
-    text: "",
+    text: instructionsThree,
     agent: <div className="cylinder"/>,
   },
   {
     list: cartFour,
-    text: "",
+    text: instructionsFour,
     agent: <div className="cylinder"/>,
   },
   {
     list: cartFive,
     text: instructionsFinal,
     agent: <div className="cylinder"/>,
-    error: ""
   }
 ];
 

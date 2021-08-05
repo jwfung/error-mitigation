@@ -15,7 +15,11 @@ const UserSchema = new mongoose.Schema({
   },
   cartOrder: {
     type: Array,
-    require: false
+    required: false
+  },
+  sess: {
+    type: Number,
+    required: false
   },
   // errcount: {
   //   type: Number,

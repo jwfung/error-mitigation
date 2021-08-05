@@ -66,14 +66,26 @@ class Study extends React.Component {
   }
 
   speaking() {
-    this.setState({speaking: true})
     console.log("speaking")
+    this.setState({speaking: true})
   }
 
   doneSpeaking() {
-    this.setState({speaking: false})
-    console.log("speaking")
+    console.log("done speaking")
+    // if (this.state.errorMit && (errorAud2 != null)) {
+    //   this.errorPlayTwo();
+    // } 
+    this.setState({speaking: false});
   }
+
+  errorDoneSpeak() {
+    this.setState({speaking: false, errorMit: false})
+  }
+
+  // errorPlayTwo() {
+  //   const audioAgent = document.getElementsByClassName("audio-agent-error2")[0];
+  //   audioAgent.play();
+  // }
 
   triggerResponse() {
     this.setState({ response: this.state.item, speaking: false })
@@ -150,7 +162,9 @@ class Study extends React.Component {
 
     if (wrongItem && !wrongItem.rejected) {
       wrongItem.rejected = true;
-      this.setState({maybeErrorMit: true})
+      if (sessOrder[this.props.latinsqr][this.props.sess].audio != null) {
+        this.setState({maybeErrorMit: true})
+      }
     } 
     item.added = false;
     this.setState({ items, itemCounter: itemCounter - 1, itemDes: false, errcount: errcount + 1});
@@ -194,7 +208,7 @@ class Study extends React.Component {
 
     if (this.state.maybeErrorMit && wrongItem) {
       this.setState({errorMit: true, maybeErrorMit: false});
-      this.errorMitAudio();
+      this.props.errorMitigation && this.errorMitAudio();
     }
     this.setState({speaking: false})
   }
@@ -265,12 +279,15 @@ class Study extends React.Component {
     
     const arr = Array.from(this.state.cart).map(([itm, res]) => ({ itm, res }))
     console.log(arr)
+    console.log(this.props.sess)
+    console.log(this.props.latinsqr)
     
     this.setState({
       data: {
         cart: arr,
         cartOrder: this.state.cartOrder,
-        latinsqr: this.props.latinsqr
+        latinsqr: this.props.latinsqr,
+        sess: this.props.sess
       }
     })
   }
@@ -324,10 +341,11 @@ class Study extends React.Component {
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
     const confirmItem = "Got it! Item has been added to your cart";
-    const errorMitigation = sessOrder[latinsqr][sess].error;
-    const errorAud = sessOrder[latinsqr][sess].audio;
+    const errorMitigation = sessOrder[0][sess].error; //TODO: change to latinsqr
+    const errorAud = sessOrder[0][sess].audio;
+    // const errorAud2 = sessOrder[latinsqr][sess].audio2;
     const agent = sessions[sess].agent;
-    let itm = '';
+    // let itm;
 
     if (submit) {
       console.log(incorrectItem)
@@ -353,7 +371,7 @@ class Study extends React.Component {
             />);
         } 
         else {
-          return <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} />;
+          return <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} latinsqr={latinsqr}/>;
         }
       }
     }
@@ -378,7 +396,7 @@ class Study extends React.Component {
               return (
                 <div className="survey-item-wrapper" key={i}>
                   <div>
-                    <h3>{ itm = (item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
+                    <h3>{(item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
                                 (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)) } </h3>
                     {item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? 
                                                                     <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.firstOpt.img} alt=""/> :
@@ -391,7 +409,7 @@ class Study extends React.Component {
                     <input type="radio" id="correct" value="correct" name={i}/>   
                     <label for="correct">Put Item Away</label><br/>
                     <input type="radio" id="incorrect" value="incorrect" name={i}/> 
-                    <label for="incorrect">Ask to Return Item</label><br/>
+                    <label for="incorrect">Return Item</label><br/>
                   </form>
                 </div>
               );
@@ -439,9 +457,8 @@ class Study extends React.Component {
                 <audio className="audio-confirm" onPlay={() => this.speaking()} onEnded={() => this.maybeErrorMit()}>
                   <source src={confirm}/>
                 </audio>
-                <audio className="audio-agent-error" onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}>
-                  <source src={errorAud}/>
-                </audio>
+                <audio className="audio-agent-error" src={errorAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
+                {/* {errorAud2 && <audio className="audio-agent-error2" src={errorAud2} onPlay={() => this.speaking()} onEnded={() => this.errorDoneSpeak()}/>} */}
               </div>
               <div id="instructions" className="text">
                 {itemCounter >= 1 && <div className="help-btn" onClick={() => this.clickHelp()}>?</div>}
@@ -456,7 +473,7 @@ class Study extends React.Component {
             </div>
             { sessions[sess].agent }
             { tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> Let's try that again. </p>: null}
-            { itemAdded && !tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> { confirmItem } </p>: null }
+            { speaking && itemAdded && !tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> { confirmItem } </p>: null }
             { speaking && errorMit ? <p className="mega-speech"> { errorMitigation } </p> : null}
             { itemDes !== false && !errorMit ? <p className="mega-speech"> { itemDes } </p> : null}
             {console.log(response)}
@@ -478,9 +495,10 @@ class Study extends React.Component {
                 speaking={this.state.speaking}
               />
             }
-            { (itemCounter >= items.length) ? <button className="purchase" onClick={() => this.checkout()}>  
-                                                Proceed to Checkout 
-                                              </button> : null }
+            {!speaking && (itemCounter >= items.length) ? 
+              <button className="purchase" onClick={() => this.checkout()}>  
+                Proceed to Checkout 
+              </button> : null }
           </div>            
         </div>
       );
