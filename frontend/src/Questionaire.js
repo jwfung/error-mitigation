@@ -69,7 +69,7 @@ class Questionaire extends React.Component {
       console.log(newData)
 
       axios
-        .post('http://localhost:8082/api/users', newData)
+        .post('https://jeanie.mongo.cosmos.azure.com:443/', newData)
           .then(res => {
             this.setState({
               q1: '',
