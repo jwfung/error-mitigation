@@ -1,141 +1,132 @@
-import partyhats from "../assets/partyhats.jpg";
-import hats from "../assets/hats.jpg";
-import brownies from "../assets/brownies.jpg";
-import ghir from "../assets/ghirardelli.jpg";
-import balloons from "../assets/balloons.jpg";
-import metball from "../assets/metballoons.jpg";
-import archery from "../assets/archery.jpg";
-import firebird from "../assets/firebird.png";
-import bow from "../assets/bow.jpg";
-import giftwrap from "../assets/giftwrap.jpg"
-import cups from "../assets/cups.jpg";
-import clearcups from "../assets/clearcups.jpeg";
+import battery from "../assets/batteries.jpg";
+import battery2 from "../assets/battery2.jpeg";
+import dogFood from "../assets/dogfood.jpg";
+import dogFood2 from "../assets/dogfood2.jpg";
+import lactaid from "../assets/lactaid.jpeg";
+import dairyfree from "../assets/dairyfree.png";
+import bags from "../assets/bags.jpg";
+import bags2 from "../assets/bags2.jpg";
+import green from "../assets/green.jpg";
+import ecliners from "../assets/ecliners.jpg";
+import bounty from "../assets/bounty.jpg";
+import plenty from "../assets/plenty.jpg"
 
-import redarch from "../assets/audio/redarch.mp3";
-import firebrd from "../assets/audio/firebird.mp3";
-import redbday from "../assets/audio/redbday.mp3";
-import bowgifts from "../assets/audio/bowgifts.mp3";
-import redcup from "../assets/audio/redcups.mp3";
-import clearcup from "../assets/audio/clearcups.mp3";
-import striped from "../assets/audio/striped.mp3";
-import patterned from "../assets/audio/patterned.mp3";
-import betty from "../assets/audio/betty.mp3";
-import ghirad from "../assets/audio/ghir.mp3";
-import ball from "../assets/audio/bagball.mp3";
-import metalball from "../assets/audio/metball.mp3";
+import Duracell from "../assets/audio/Duracell.mp3";
+import Energizer from "../assets/audio/Energizer.mp3";
+import Purina from "../assets/audio/Purina.mp3";
+import Cesar from "../assets/audio/Cesar.mp3";
+import HEB from "../assets/audio/HEB.mp3";
+import Dairy from "../assets/audio/Dairy.mp3";
+import Glad from "../assets/audio/Glad.mp3";
+import Kirkland from "../assets/audio/Kirkland.mp3";
+import bount from "../assets/audio/bount.mp3";
+import plent from "../assets/audio/plent.mp3";
+import ecline from "../assets/audio/ecline.mp3";
+import think from "../assets/audio/think.mp3";
 
 
-
+//need to add more specific audio
 const cartTwo = [
   {
-    name: "party hats",
+    name: "AA batteries",
     firstOpt: {
-      name: "Striped Party Hats", 
-      des: "Okay, I found Striped Party Hats. Is this correct?",
-      audio: striped,
-      img: partyhats, 
+      name: "Duracell Batteries", 
+      des: "Okay, I found Duracell Double A Batteries. Is this correct?",
+      audio: Duracell,
+      img: battery, 
       inCart: true },
     secondOpt: {
-      name: "Patterned Party Hats",
-      des: "Okay, I found Patterned Party Hat. Is this correct?",
-      audio: patterned,
-      img: hats, 
+      name: "Energizer Batteries", 
+      des: "Okay, I found Energizer Double A Batteries. Is this correct?",
+      audio: Energizer,
+      img: battery2, 
+      inCart: false },
+    added: false,
+    list: true
+  },
+  {
+    name:"dog food",
+    firstOpt: {
+      name: "Purina Dog Food",
+      des: "Okay, I found Purina Dog Food. Is this correct?", 
+      audio: Purina,
+      img: dogFood, 
+      inCart: true },
+    secondOpt: {
+      name: "Cesar Dog Food", 
+      des: "Okay, I found Cesar Dog Food. Is this correct?", 
+      audio: Cesar,
+      img: dogFood2, 
+      inCart: false },
+    list: true,
+    added: false
+  },
+  {
+    name: "13-gallon Trash Bags",
+    firstOpt: {
+      name: "Glad 13-gallon bags",
+      des: "Okay, I found Glad 13-gallon trash bags. Is this correct?",  
+      audio: Glad,
+      img: bags, 
+      inCart: true },
+    secondOpt: {
+      name: "Kirkland 13-gallons bags", 
+      des: "Okay, I found Kirkland Signature 13-gallons bags. Is this correct?", 
+      audio: Kirkland,
+      img: bags2, 
       inCart: false },
     list: true,
     added: false,
+    wrongItem: { 
+      rejected: false,
+      secondOpt: {
+        name: "13 x ECLINERS one-gallon trash bags", 
+        des: "Okay, I found ECLINERS one-gallon trash bags. I can add 13 of them. Is this correct?", 
+        audio: ecline,
+        img: ecliners, 
+        inCart: false },
+      firstOpt: {
+        name: "13 x Think Green one-gal bags", 
+        des: "Okay, I found Think Green one-gallon bags. I can add 13 of them. Is this correct?", 
+        audio: think,
+        img: green, 
+        inCart: true },
+      },
   },
   {
-    img: brownies,
-    name:"brownie mix",
+    name: "paper towels",
     firstOpt: {
-      name: "Betty Crockers Brownie Mix",
-      des: "Okay, I found Betty Crockers Brownies Mix. Is this correct?",
-      audio: betty,
-      img: brownies,
+      name: "Bounty Paper Towels", 
+      des: "Okay, I found Bounty Paper Towels. Is this correct?", 
+      audio: bount,
+      img: bounty, 
       inCart: true },
     secondOpt: {
-      name: "Ghirardelli Brownie Mix",
-      des: "Okay, I found Ghirardelli Brownie Mix. Is this correct?",
-      audio: ghirad,
-      img: ghir,
-      incart: false },
+      name: "Plenty Paper Towels", 
+      des: "Okay, I found Plenty Paper Towels. Is this correct?", 
+      audio: plent,
+      img: plenty, 
+      inCart: false },
     list: true,
-    added: false,
+    added: false
   },
   {
-    name: "balloons",
+    name:"lactose-free milk",
     firstOpt: {
-      name: "Bag of Balloons",
-      des: "Okay, I found Bag of Balloons. Is this correct?",
-      audio: ball,
-      img: balloons,
-      incart: true
-    }, 
+      name: "HEB lactose-free milk",
+      des: "Okay, I found HEB lactose-free milk. Is this correct?", 
+      audio: HEB,
+      img: lactaid,
+      inCart: true },
     secondOpt: {
-      name: "Metallic Balloons Pack",
-      des: "Okay, I found Metallic Balloons Pack. Is this correct?",
-      audio: metalball,
-      img: metball,
-      incart: false
-    },
+      name: "Dairy Pure: lactose-free milk", 
+      des: "Okay, I found Dairy Pure lactose-free milk. Is this correct?", 
+      audio: Dairy,
+      img: dairyfree, 
+      inCart: false },
     list: true,
-    added: false,
+    added: false
   },
-  {
-    wrongItem: {
-      rejected: false,
-      firstOpt: {
-        name: "Red Archery Bow", 
-        des: "Okay, I found Red Archery Bow. Is this correct?",
-        audio: redarch,
-        img: archery, 
-        inCart: true
-      },
-      secondOpt: {
-        name: "Firebird Bow for Archery", 
-        des: "Okay, I found Firebird Bow for Archery. Is this correct?",
-        audio: firebrd,
-        img: firebird, 
-        inCart: true
-      },
-    },
-    name: "bow",
-    firstOpt: {
-      name: "Large Red Birthday Bow",
-      des: "Okay, I found Large Red Birthday Bow. Is this correct?",
-      audio: redbday,
-      img: bow,
-      inCart: true,
-    }, 
-    secondOpt: {
-      name: "Gift Wrapping Bow",
-      des: "Okay, I found Bow for Gifts. Is this correct?",
-      audio: bowgifts,
-      img: giftwrap,
-      inCart: true,
-    },
-    list: true,
-    added: false,
-  },
-  {
-    name: "plastic cups",
-    firstOpt: {
-      name: "Red Plastic Cups",
-      des: "Okay, I found Red Plastic Cups. Is this correct?",
-      audio: redcup,
-      img: cups,
-      inCart: true,
-    }, 
-    secondOpt: {
-      name: "Clear Plastic Cups",
-      des: "Okay, I found Clear Plastic Cups. Is this correct?",
-      audio: clearcup,
-      img: clearcups,
-      incart: false
-    },
-    list: true,
-    added: false,
-  }
 ];
 
 export default cartTwo;

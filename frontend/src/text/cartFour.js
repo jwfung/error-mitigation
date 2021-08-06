@@ -26,6 +26,23 @@ import wmitt from "../assets/audio/winter.mp3";
 
 const cartFour = [
   {
+    name: "Baseball",
+    firstOpt: {
+      name: "Baseball", 
+      des: "Okay, I found Baseball. Is this correct?",
+      audio: bba,
+      img: baseball, 
+      inCart: true },
+    secondOpt: {
+      name: "Rawlings Training Baseball", 
+      des: "Okay, I found Rawlings Training Baseball. Is this correct?",
+      audio: tba,
+      img: tball, 
+      inCart: false },
+    added: false,
+    list: true
+  },
+  {
     wrongItem: { 
       rejected: false,
       firstOpt: {
@@ -53,23 +70,6 @@ const cartFour = [
       des: "Okay, I found Large Baseball Glove. Is this correct?",
       audio: mitt2,
       img: baseballmitt, 
-      inCart: false },
-    added: false,
-    list: true
-  },
-  {
-    name: "Baseball",
-    firstOpt: {
-      name: "Baseball", 
-      des: "Okay, I found Baseball. Is this correct?",
-      audio: bba,
-      img: baseball, 
-      inCart: true },
-    secondOpt: {
-      name: "Rawlings Training Baseball", 
-      des: "Okay, I found Rawlings Training Baseball. Is this correct?",
-      audio: tba,
-      img: tball, 
       inCart: false },
     added: false,
     list: true
