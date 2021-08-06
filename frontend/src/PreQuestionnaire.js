@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 
-class Questionaire extends React.Component {
+class PreQuestionaire extends React.Component {
   constructor() {
     super();
     this.state = {
