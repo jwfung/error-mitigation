@@ -52,7 +52,8 @@ class EndSurvey extends React.Component {
         <div id="wrapper">
           <h2 class="inlineh">&nbsp;</h2>
           <h2 class="inlineh">Thank you for completing the study!</h2>
-          <p>Please fill out the following to be compensated for your time</p>
+          <p>Please enter your name and an Email Address where we can reach you for reimbursement. </p>
+          <p>You will get paid after the experiment has been concluded, which will take one month at most.</p>
           
           <hr />
 
@@ -65,6 +66,7 @@ class EndSurvey extends React.Component {
                 <label>Confirm Email: <input type="text" name="emailconf"/></label>
                 <br />
               </form>
+              <p>If you have any questions or concerns regarding this study, please contact Dr. Chien-Ming Huang at cmhuang@cs.jhu.edu</p>
               <button className="speak" onClick={() => this.onSubmit()}> Submit </button>
             </div>
             
@@ -75,7 +77,13 @@ class EndSurvey extends React.Component {
         </div>
       );
     }
-    return (<div><h2>thank you!</h2></div>);
+    return (
+      <div>
+        <img src="../src/assets/logo.png" alt="Johns Hopkins Logo"/>
+        <h2>Thank you for taking the time to complete this study!</h2>
+        <p>If you have any questions or concerns regarding this study, please contact Dr. Chien-Ming Huang at cmhuang@cs.jhu.edu</p>
+        <p>Feel free to close the tab now</p>
+      </div>);
   }
 }
 
