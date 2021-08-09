@@ -28,8 +28,6 @@ class PreQuestionaire extends React.Component {
     if (pq1 && pq2 && pq3 && pq4 && pq5 && pq6 && pq7 && pq8 && pq9 && pq10 && pq11 && !this.state.complete) {
       this.setState({complete: true});
     }
-
-    console.log(this.state.complete)
   }
 
   onChange(e) {
@@ -182,7 +180,7 @@ class PreQuestionaire extends React.Component {
             </div>
           </div>
           <div className="wrapper">
-            <p class="statement">I feel that if I depend too much on AI, something bad might happen.</p>
+            <p className="statement">I feel that if I depend too much on AI, something bad might happen.</p>
             <div>
               strongly disagree<input type="radio" value="1" name="pq8" onChange={this.onChange.bind(this)}/>
               <input type="radio" value="2" name="pq8" onChange={this.onChange.bind(this)}/>

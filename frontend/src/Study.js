@@ -40,8 +40,7 @@ class Study extends React.Component {
       submit: false, //TODO: Undo for debugging
       delivered: false, //
       questComplete: false,
-      incorrectItem: false, //undo
-      itemAudio: '',
+      incorrectItem: false, 
       itemAdded: false,
       showHelp: false,
       response: -1,
@@ -66,26 +65,16 @@ class Study extends React.Component {
   }
 
   speaking() {
-    // console.log("speaking")
     this.setState({speaking: true})
   }
 
   doneSpeaking() {
-    // console.log("done speaking")
-    // if (this.state.errorMit && (errorAud2 != null)) {
-    //   this.errorPlayTwo();
-    // } 
     this.setState({speaking: false});
   }
 
   errorDoneSpeak() {
     this.setState({speaking: false, errorMit: false})
   }
-
-  // errorPlayTwo() {
-  //   const audioAgent = document.getElementsByClassName("audio-agent-error2")[0];
-  //   audioAgent.play();
-  // }
 
   triggerResponse() {
     this.setState({ response: this.state.item, speaking: false })
@@ -108,7 +97,6 @@ class Study extends React.Component {
   }
 
   orderItemAudio() {
-    // console.log(this.state.itemAudio)
     const audioAgent = document.getElementsByClassName("audio-order")[0];
     audioAgent.play();
   }
@@ -146,8 +134,7 @@ class Study extends React.Component {
         cartcount: 0,
         currItem: (item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
                   (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name))
-      }, console.log(this.state.cartOrder))
-      )
+      }))
     }
   }
 
@@ -211,7 +198,6 @@ class Study extends React.Component {
 
     if (this.state.maybeErrorMit && wrongItem) {
       this.setState({errorMit: true, maybeErrorMit: false});
-      // console.log("ermit:" + errorMitigation);
       errorMitigation && this.errorMitAudio();
     }
     this.setState({speaking: false})
@@ -281,9 +267,6 @@ class Study extends React.Component {
     this.setState({submit: true});
     
     const arr = Array.from(this.state.cart).map(([itm, res]) => ({ itm, res }))
-    // console.log(arr)
-    // console.log(this.props.sess)
-    // console.log(this.props.latinsqr)
     
     this.setState({
       data: {
@@ -305,7 +288,6 @@ class Study extends React.Component {
   }
 
   finishReturn() {
-    // console.log("finished");
     this.setState({incorrectItem: false})
   }
 
@@ -325,7 +307,7 @@ class Study extends React.Component {
     let res = e.target.value;
     
     this.state.cart.set(itm, res);
-    console.log(this.state.cart)
+    // console.log(this.state.cart)
   }
 
   delivered() {
@@ -334,7 +316,6 @@ class Study extends React.Component {
 
   //post-session survey
   completeQuest() {
-    console.log("complete")
     this.setState({questComplete: true})
   }
 
@@ -347,12 +328,9 @@ class Study extends React.Component {
     const confirmItem = "Got it! Item has been added to your cart";
     const errorMitigation = sessOrder[latinsqr][sess].error; //TODO: change to latinsqr
     const errorAud = sessOrder[latinsqr][sess].audio;
-    // const errorAud2 = sessOrder[latinsqr][sess].audio2;
     const agent = sessions[sess].agent;
-    // let itm;
 
     if (submit) {
-      // console.log(incorrectItem)
       if (incorrectItem) {
         return ( 
           <ReturnProcess
@@ -367,7 +345,6 @@ class Study extends React.Component {
       else {
         if (!questComplete) {
           return (
-            // <Survey/>);
             <Questionaire 
               completeQuest={this.completeQuest.bind(this)} 
               data={this.state.data} 
@@ -411,7 +388,7 @@ class Study extends React.Component {
                   </div>                                                        
                   <form style={{marginBlock: "auto"}} onChange={(this.onChangeValue.bind(this))}>
                     <input type="radio" id="correct" value="correct" name={i}/>   
-                    <label for="correct">Put Item Away</label><br/>
+                    <label for="correct">Looks Good</label><br/>
                     <input type="radio" id="incorrect" value="incorrect" name={i}/> 
                     <label for="incorrect">Return Item</label><br/>
                   </form>
@@ -462,7 +439,6 @@ class Study extends React.Component {
                   <source src={confirm}/>
                 </audio>
                 <audio className="audio-agent-error" src={errorAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
-                {/* {errorAud2 && <audio className="audio-agent-error2" src={errorAud2} onPlay={() => this.speaking()} onEnded={() => this.errorDoneSpeak()}/>} */}
               </div>
               <div id="instructions" className="text">
                 {itemCounter >= 1 && <div className="help-btn" onClick={() => this.clickHelp()}>?</div>}
@@ -480,7 +456,6 @@ class Study extends React.Component {
             { speaking && itemAdded && !tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> { confirmItem } </p>: null }
             { speaking && errorMit ? <p className="mega-speech"> { errorMitigation } </p> : null}
             { itemDes !== false && !errorMit ? <p className="mega-speech"> { itemDes } </p> : null}
-            {/* {console.log(response)} */}
             { response >= 0 && !speaking &&
               <Response 
                 index={response} 

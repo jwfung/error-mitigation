@@ -19,7 +19,7 @@ class EndSurvey extends React.Component {
     this.setState({ [e.target.name]: e.target.value});
   }
 
-  onSubmit(e) {
+  onSubmit() {
     const participant = {
       part: [
         {first: this.state.first},
@@ -28,6 +28,7 @@ class EndSurvey extends React.Component {
         {emailconf: this.state.emailconf},
       ]
     }
+    console.log(participant)
 
     axios
       .post('https://errormit.azurewebsites.net/api/users', participant)
@@ -38,7 +39,7 @@ class EndSurvey extends React.Component {
               email: '',
               emailconf: '',
           })
-          return (<h2>Thank you!</h2>);
+          this.setState({complete: true});
         })
         .catch(err => {
           console.log(err);
@@ -46,34 +47,35 @@ class EndSurvey extends React.Component {
   }
 
   render() {
-    return(
-      <div id="wrapper">
-        <h2 class="inlineh">&nbsp;</h2>
-        <h2 class="inlineh">Thank you for completing the study!</h2>
-        <p>Please fill out the following to be compensated for your time</p>
-        
-        <hr />
-
-        <div>
-          <div>
-            <form className="end" onSubmit={() => this.onSubmit.bind(this)}>
-              <label>First Name: <input type="text" name="first"/></label>
-              <label>Last Name: <input type="text" name="last"/></label>
-              <label>Email: <input type="text" name="email"/></label>
-              <label>Confirm Email: <input type="text" name="emailconf"/></label>
-              <br />
-              <input type="submit" value="submit"/>
-            </form>
-          </div>
+    if (!this.state.complete) {
+      return(
+        <div id="wrapper">
+          <h2 class="inlineh">&nbsp;</h2>
+          <h2 class="inlineh">Thank you for completing the study!</h2>
+          <p>Please fill out the following to be compensated for your time</p>
           
-        </div>
-      <br/>
+          <hr />
 
-          {/* {this.state.required && <p style={{color: "red"}}>*Answer all statements before proceeding</p>} */}
-          <br />
-          <br />            
-      </div>
-    );
+          <div>
+            <div>
+              <form className="end">
+                <label>First Name: <input type="text" name="first"/></label>
+                <label>Last Name: <input type="text" name="last"/></label>
+                <label>Email: <input type="text" name="email"/></label>
+                <label>Confirm Email: <input type="text" name="emailconf"/></label>
+                <br />
+              </form>
+              <button className="speak" onClick={() => this.onSubmit()}> Submit </button>
+            </div>
+            
+          </div>
+        <br/>
+            <br />
+            <br />            
+        </div>
+      );
+    }
+    return (<div><h2>thank you!</h2></div>);
   }
 }
 

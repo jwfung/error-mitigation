@@ -33,7 +33,6 @@ class Questionaire extends React.Component {
       this.setState({complete: true});
     }
 
-    // console.log(this.state.complete)
   }
 
   onChange(e) {
@@ -41,8 +40,6 @@ class Questionaire extends React.Component {
   }
 
   onSubmit(e) {
-    // e.preventDefault();
-
     if (this.state.complete) {  
       const questData = {
         quest: [
@@ -65,7 +62,6 @@ class Questionaire extends React.Component {
       }
       const { data } = this.props
       let newData = Object.assign(data, questData)
-      // console.log(newData)
 
       axios
         .post('https://errormit.azurewebsites.net/api/users', newData)

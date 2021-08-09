@@ -91,10 +91,10 @@ class Demographics extends React.Component {
         <div>
               <p className="statement">What is your gender?</p>
             <div>
-              <input id= "gender" type="radio" Value="1" name="gender" onChange={this.onChange.bind(this)}/>Female
-              <input type="radio" Value="2" name="gender" onChange={this.onChange.bind(this)}/>Male
-              <input type="radio" Value="3" name="gender" onChange={this.onChange.bind(this)}/>Non-binary
-              <input type="radio" Value="4" name="gender" onChange={this.onChange.bind(this)}/>Other
+              <input id= "gender" type="radio" value="1" name="gender" onChange={this.onChange.bind(this)}/>Female
+              <input type="radio" value="2" name="gender" onChange={this.onChange.bind(this)}/>Male
+              <input type="radio" value="3" name="gender" onChange={this.onChange.bind(this)}/>Non-binary
+              <input type="radio" value="4" name="gender" onChange={this.onChange.bind(this)}/>Other
               <br />
             </div>
             
@@ -114,12 +114,12 @@ class Demographics extends React.Component {
               <p className="statement">What is your highest level of eductaion completed?</p>
               <br/>
               <div style={{textAlign: "left", marginLeft: "15%"}}>
-                        <input type="radio" Value="1" name="education" onChange={this.onChange.bind(this)} /> Some high school, no diploma <br/>
-                        <input type="radio" Value="2" name="education" onChange={this.onChange.bind(this)} /> High school graduate, diploma or the equivalent (for example: GED) <br/>
-                        <input type="radio" Value="3" name="education" onChange={this.onChange.bind(this)} /> Some college, no degree <br/>
-                        <input type="radio" Value="4" name="education" onChange={this.onChange.bind(this)} /> Trade/technical/vocational training <br/>
-                        <input type="radio" Value="5" name="education" onChange={this.onChange.bind(this)} /> Bachelor's degree <br />
-                        <input type="radio" Value="6" name="education" onChange={this.onChange.bind(this)} /> Advanced degree (for example: Master's, Professional, or Doctorate degree)
+                        <input type="radio" value="1" name="education" onChange={this.onChange.bind(this)} /> Some high school, no diploma <br/>
+                        <input type="radio" value="2" name="education" onChange={this.onChange.bind(this)} /> High school graduate, diploma or the equivalent (for example: GED) <br/>
+                        <input type="radio" value="3" name="education" onChange={this.onChange.bind(this)} /> Some college, no degree <br/>
+                        <input type="radio" value="4" name="education" onChange={this.onChange.bind(this)} /> Trade/technical/vocational training <br/>
+                        <input type="radio" value="5" name="education" onChange={this.onChange.bind(this)} /> Bachelor's degree <br />
+                        <input type="radio" value="6" name="education" onChange={this.onChange.bind(this)} /> Advanced degree (for example: Master's, Professional, or Doctorate degree)
                 <br />            
               </div>
                     
@@ -131,11 +131,11 @@ class Demographics extends React.Component {
             <p className="statement">Rate your level of experience with Artificial Intelligence (AI) technology before this study (e.g., Siri, Alexa, Cortana, Bixby etc.)</p>
             <br/>
             <div>
-              no experience<input type="radio" Value="1" name="experience1" onChange={this.onChange.bind(this)}/>
-                        <input type="radio" Value="2" name="experience1" onChange={this.onChange.bind(this)}/>
-                        <input type="radio" Value="3" name="experience1" onChange={this.onChange.bind(this)}/>
-                        <input type="radio" Value="4" name="experience1" onChange={this.onChange.bind(this)}/>
-                        <input type="radio" Value="5" name="experience1" onChange={this.onChange.bind(this)}/> most experience
+              no experience<input type="radio" value="1" name="experience1" onChange={this.onChange.bind(this)}/>
+                        <input type="radio" value="2" name="experience1" onChange={this.onChange.bind(this)}/>
+                        <input type="radio" value="3" name="experience1" onChange={this.onChange.bind(this)}/>
+                        <input type="radio" value="4" name="experience1" onChange={this.onChange.bind(this)}/>
+                        <input type="radio" value="5" name="experience1" onChange={this.onChange.bind(this)}/> most experience
               <br />            
             </div>
 
@@ -144,11 +144,11 @@ class Demographics extends React.Component {
             <p className="statement">In my opinion, the AI assistant provided a satisfactory response to the error.</p>
                     <br/>
             <div>
-              no experience<input type="radio" Value="1" name="experience2" onChange={this.onChange.bind(this)}/>
-                        <input type="radio" Value="2" name="experience2" onChange={this.onChange.bind(this)}/>
-                        <input type="radio" Value="3" name="experience2" onChange={this.onChange.bind(this)}/>
-                        <input type="radio" Value="4" name="experience2" onChange={this.onChange.bind(this)}/>
-                        <input type="radio" Value="5" name="experience2" onChange={this.onChange.bind(this)}/> most experience
+              no experience<input type="radio" value="1" name="experience2" onChange={this.onChange.bind(this)}/>
+                        <input type="radio" value="2" name="experience2" onChange={this.onChange.bind(this)}/>
+                        <input type="radio" value="3" name="experience2" onChange={this.onChange.bind(this)}/>
+                        <input type="radio" value="4" name="experience2" onChange={this.onChange.bind(this)}/>
+                        <input type="radio" value="5" name="experience2" onChange={this.onChange.bind(this)}/> most experience
               <br />            
             </div>
           {/* </div> */}

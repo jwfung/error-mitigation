@@ -310,6 +310,8 @@ h4 {
   font-family:'Courier New', Courier, monospace;
   font-style: italic;
   max-width: 800px;
+  margin-top: 10px;
+  font-size: 1.2rem;
   margin: auto;
 }
 

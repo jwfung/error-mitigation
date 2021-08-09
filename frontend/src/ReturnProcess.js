@@ -14,8 +14,6 @@ class ReturnProcess extends React.Component{
   }
 
   componentDidMount() {
-    console.log("incorrect item")
-
     const audioAgent = document.getElementsByClassName("audio-return")[0];
     audioAgent.play();
   }
@@ -35,7 +33,6 @@ class ReturnProcess extends React.Component{
 
   speaking() {
     this.setState({speaking: true})
-    console.log("speaking")
   }
 
   doneSpeaking() {
