@@ -17,15 +17,23 @@ class PreQuestionaire extends React.Component {
       pq9: '',
       pq10: '',
       pq11: '',
+      pq12: '',
+      pq13: '',
+      pq14: '',
+      pq15: '',
+      pq16: '',
+      pq17: '',
+      pq18: '',
+      pq19: '',
       complete: false,
       required: false
     }
   }
 
   componentDidUpdate() {
-    const { pq1, pq2, pq3, pq4, pq5, pq6, pq7, pq8, pq9, pq10, pq11 } = this.state;
+    const { pq1, pq2, pq3, pq4, pq5, pq6, pq7, pq8, pq9, pq10, pq11, pq12, pq13, pq14, pq15, pq16, pq17,pq18, pq19 } = this.state;
     
-    if (pq1 && pq2 && pq3 && pq4 && pq5 && pq6 && pq7 && pq8 && pq9 && pq10 && pq11 && !this.state.complete) {
+    if (pq1 && pq2 && pq3 && pq4 && pq5 && pq6 && pq7 && pq8 && pq9 && pq10 && pq11 && pq12 && pq13 && pq14 && pq15 && pq16 && pq17 && pq18 && pq19 && !this.state.complete) {
       this.setState({complete: true});
     }
   }
@@ -51,7 +59,15 @@ class PreQuestionaire extends React.Component {
           {pq8: this.state.pq8},
           {pq9: this.state.pq9},
           {pq10: this.state.pq10},
-          {pq11: this.state.pq11}
+          { pq11: this.state.pq11 },
+          { pq10: this.state.pq12 },
+          { pq11: this.state.pq13 },
+          { pq10: this.state.pq14 },
+          { pq11: this.state.pq15 },
+          { pq10: this.state.pq16 },
+          { pq11: this.state.pq17 },
+          { pq10: this.state.pq18 },
+          { pq11: this.state.pq19 },
         ], 
         uuid: this.props.uuid
       }
@@ -70,7 +86,15 @@ class PreQuestionaire extends React.Component {
               pq8: '',
               pq9: '',
               pq10: '',
-              pq11: ''
+              pq11: '',
+              pq12: '',
+              pq13: '',
+              pq14: '',
+              pq15: '',
+              pq16: '',
+              pq17: '',
+              pq18: '',
+              pq19: ''
             })
             // this.props.clearData();
             this.props.goToStudy();
@@ -99,7 +123,7 @@ class PreQuestionaire extends React.Component {
           <div className="wrapper">
               <p className="statement">I would feel uneasy if AI really had emotions.</p>
             <div>
-              strongly disagree<input id= "q1" type="radio" value="1" name="pq1" onChange={this.onChange.bind(this)}/>
+              strongly disagree<input id= "pq1" type="radio" value="1" name="pq1" onChange={this.onChange.bind(this)}/>
               <input type="radio" value="2" name="pq1" onChange={this.onChange.bind(this)}/>
               <input type="radio" value="3" name="pq1" onChange={this.onChange.bind(this)}/>
               <input type="radio" value="4" name="pq1" onChange={this.onChange.bind(this)}/> 
@@ -224,14 +248,115 @@ class PreQuestionaire extends React.Component {
             </div>
           </div>
         </div>
-      
-     
+            <hr />
+            <br/>
+            <h2>Please answer following questions about yourself</h2>
+            <p>Rate the following statements on a scale of 1 to 5 (1=strongly disagree to 5=strongly agree)</p>
 
+            <hr />
+
+            <div>
+                <h2 className="statement">Statement</h2>
+                <div className="wrapper">
+                    <p className="statement">I accept people as they are.</p>
+                    <div>
+                        strongly disagree<input id="pq12" type="radio" value="1" name="pq1" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="2" name="pq12" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="3" name="pq12" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="4" name="pq12" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="5" name="pq12" onChange={this.onChange.bind(this)} /> strongly agree
+              <br />
+                    </div>
+                </div>
+
+                <div className="wrapper">
+                    <p className="statement">I am a bad loser.</p>
+                    <div>
+                        strongly disagree<input type="radio" value="1" name="pq13" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="2" name="pq13" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="3" name="pq13" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="4" name="pq13" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="5" name="pq13" onChange={this.onChange.bind(this)} /> strongly agree
+              <br />
+                    </div>
+                </div>
+
+                <div className="wrapper">
+                    <p className="statement">I am annoyed by others’ mistakes.</p>
+                    <div>
+                        strongly disagree<input type="radio" value="1" name="pq14" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="2" name="pq14" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="3" name="pq14" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="4" name="pq14" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="5" name="pq14" onChange={this.onChange.bind(this)} /> strongly agree
+              <br />
+                    </div>
+                </div>
+
+
+                <div className="wrapper">
+                    <p className="statement">I get irritated easily.</p>
+                    <div>
+                        strongly disagree<input type="radio" value="1" name="pq15" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="2" name="pq15" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="3" name="pq15" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="4" name="pq15" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="5" name="pq15" onChange={this.onChange.bind(this)} /> strongly agree
+              <br />
+                    </div>
+                </div>
+
+                <div className="wrapper">
+                    <p className="statement">I believe there are many sides to most issues.</p>
+                    <div>
+                        strongly disagree<input type="radio" value="1" name="pq16" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="2" name="pq16" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="3" name="pq16" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="4" name="pq16" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="5" name="pq16" onChange={this.onChange.bind(this)} /> strongly agree
+              <br />
+                    </div>
+                </div>
+
+                <div className="wrapper">
+                    <p className="statement">I believe that others have good intentions.</p>
+                    <div>
+                        strongly disagree<input type="radio" value="1" name="pq17" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="2" name="pq17" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="3" name="pq17" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="4" name="pq17" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="5" name="pq17" onChange={this.onChange.bind(this)} /> strongly agree
+              <br />
+                    </div>
+                </div>
+                <div className="wrapper">
+                    <p className="statement">I am quick to judge others.</p>
+                    <div>
+                        strongly disagree<input type="radio" value="1" name="pq18" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="2" name="pq18" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="3" name="pq18" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="4" name="pq18" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="5" name="pq18" onChange={this.onChange.bind(this)} /> strongly agree
+              <br />
+                    </div>
+                </div>
+                <div className="wrapper">
+                    <p className="statement">I can accept a lot from others.</p>
+                    <div>
+                        strongly disagree<input type="radio" value="1" name="pq19" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="2" name="pq19" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="3" name="pq19" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="4" name="pq19" onChange={this.onChange.bind(this)} />
+                        <input type="radio" value="5" name="pq19" onChange={this.onChange.bind(this)} /> strongly agree
+              <br />
+                    </div>
+                </div>
           {this.state.required && <p style={{color: "red"}}>*Answer all statements before proceeding</p>}
           <button className="speak" onClick={() => this.onSubmit()}>Submit</button>
           <br />
           <br />            
-      </div>
+            </div>
+            </div>
     );
   }
 }

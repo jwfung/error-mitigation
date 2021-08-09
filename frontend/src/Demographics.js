@@ -141,7 +141,7 @@ class Demographics extends React.Component {
 
 
           {/* <div className="wrapper"> */}
-            <p className="statement">In my opinion, the AI assistant provided a satisfactory response to the error.</p>
+                <p className="statement">Rate your level of experience with ordering things online with AI assistants (e.g., Siri, Alexa, Cortana, Bixby etc.)</p>
                     <br/>
             <div>
               no experience<input type="radio" value="1" name="experience2" onChange={this.onChange.bind(this)}/>

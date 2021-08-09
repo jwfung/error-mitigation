@@ -9,7 +9,6 @@ class Questionaire extends React.Component {
       q1: '',
       q2: '',
       q3: '',
-      q4: '',
       q5: '',
       q6: '',
       q7: '',
@@ -28,9 +27,9 @@ class Questionaire extends React.Component {
   }
 
   componentDidUpdate() {
-    const { q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16 } = this.state;
+    const { q1, q2, q3, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16 } = this.state;
     
-    if (q1 && q2 && q3 && q4 && q5 && q6 && q7 && q8 && q9 && q10 && q11 && q12 && q13 && q14 && q15 && q16 && !this.state.complete) {
+    if (q1 && q2 && q3 && q5 && q6 && q7 && q8 && q9 && q10 && q11 && q12 && q13 && q14 && q15 && q16 && !this.state.complete) {
       this.setState({complete: true});
     }
 
@@ -47,7 +46,6 @@ class Questionaire extends React.Component {
           {q1: this.state.q1},
           {q2: this.state.q2},
           {q3: this.state.q3},
-          {q4: this.state.q4},
           {q5: this.state.q5},
           {q6: this.state.q6},
           {q7: this.state.q7},
@@ -72,7 +70,6 @@ class Questionaire extends React.Component {
               q1: '',
               q2: '',
               q3: '',
-              q4: '',
               q5: '',
               q6: '',
               q7: '',
@@ -145,17 +142,7 @@ class Questionaire extends React.Component {
             </div>
           </div>
 
-          <div className="wrapper">
-            <p className="statement">The AI assistant made mistakes.</p>
-            <div>
-              strongly disagree<input type="radio" Value="1" name="q4" onChange={this.onChange.bind(this)}/>
-              <input type="radio" Value="2" name="q4" onChange={this.onChange.bind(this)}/>
-              <input type="radio" Value="3" name="q4" onChange={this.onChange.bind(this)}/>
-              <input type="radio" Value="4" name="q4" onChange={this.onChange.bind(this)}/>
-              <input type="radio" Value="5" name="q4" onChange={this.onChange.bind(this)}/> strongly agree
-              <br />            
-            </div>
-          </div>
+         
 
           <div className="wrapper">
             <p className="statement">I am happy with how the error was handled.</p>
