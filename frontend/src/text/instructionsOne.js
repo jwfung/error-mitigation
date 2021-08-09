@@ -1,3 +1,5 @@
+import React from "react";
+
 const instructions = [
   {
     header: "Instructions:",
@@ -21,7 +23,7 @@ const instructions = [
     mid: "You can check your cart before placing your order, or place the order directly."
   },
   {
-    top: "You will be using Mega to order some items for a part.",
+    top: <p>You will be using Mega to <strong>order some items for a party.</strong></p>,
     mid: "Click to arrow button to proceed with Session #1."
   }
 ];

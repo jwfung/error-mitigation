@@ -1,3 +1,5 @@
+import React from "react";
+
 const instructionsFour = [
   {
     top: "Session #3 Complete",
@@ -14,7 +16,7 @@ const instructionsFour = [
     mid: "It can also respond to basic commands, and help you place orders online."
   },
   {
-    top: "In this round, use Memi to order some items for your brother's baseball game.",
+    top: <p>In this round, use Memi to <strong>order some items for your brother's baseball game.</strong></p>,
     mid: "Click the arrow to proceed "
   },
 ];

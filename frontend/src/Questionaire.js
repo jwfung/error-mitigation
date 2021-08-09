@@ -21,15 +21,16 @@ class Questionaire extends React.Component {
       q13: '',
       q14: '',
       q15: '',
+      q16: '',
       complete: false,
       required: false
     }
   }
 
   componentDidUpdate() {
-    const { q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15 } = this.state;
+    const { q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, q11, q12, q13, q14, q15, q16 } = this.state;
     
-    if (q1 && q2 && q3 && q4 && q5 && q6 && q7 && q8 && q9 && q10 && q11 && q12 && q13 && q14 && q15 && !this.state.complete) {
+    if (q1 && q2 && q3 && q4 && q5 && q6 && q7 && q8 && q9 && q10 && q11 && q12 && q13 && q14 && q15 && q16 && !this.state.complete) {
       this.setState({complete: true});
     }
 
@@ -57,7 +58,8 @@ class Questionaire extends React.Component {
           {q12: this.state.q12},
           {q13: this.state.q13},
           {q14: this.state.q14},
-          {q15: this.state.q15}
+          {q15: this.state.q15},
+          {q16: this.state.q16}
         ]
       }
       const { data } = this.props
@@ -81,7 +83,8 @@ class Questionaire extends React.Component {
               q12: '',
               q13: '',
               q14: '',
-              q15: ''
+              q15: '',
+              q16: ''
             })
             this.props.clearData();
             this.props.completeQuest();
@@ -131,7 +134,7 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-              <p className="statement">The AI assistant was responsive.</p>
+              <p className="statement">The AI assistant was responsive to any errors.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q3" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q3" onChange={this.onChange.bind(this)}/>
@@ -276,6 +279,16 @@ class Questionaire extends React.Component {
               <label><input type="radio" Value="5" name="q15" onChange={this.onChange.bind(this)}/></label>
             </form>
             <p className="item3">Intelligent</p> 
+            <br/>
+            <p className="item1">Insincere</p>
+            <form className="item2">
+              <label><input type="radio" Value="1" name="q16" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="2" name="q16" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="3" name="q16" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="4" name="q16" onChange={this.onChange.bind(this)}/></label>
+              <label><input type="radio" Value="5" name="q16" onChange={this.onChange.bind(this)}/></label>
+            </form>
+            <p className="item3">Sincere</p>
           </div>
       </div>
 

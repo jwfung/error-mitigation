@@ -1,3 +1,5 @@
+import React from "react";
+
 const instructionsTwo = [
   {
     top: "Session #1 Complete",
@@ -14,7 +16,7 @@ const instructionsTwo = [
     mid: "It can also respond to basic commands, and help you place orders online."
   },
   {
-    top: "In this round, use Gema to order some groceries itms.",
+    top: <p>In this round, use Gema to <strong> order some groceries items</strong></p>,
     mid: "Click the arrow to proceed "
   },
 ];

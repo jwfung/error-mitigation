@@ -1,3 +1,5 @@
+import React from "react";
+
 const instructionsFinal = [
   {
     top: "Session #4 Complete",
@@ -10,7 +12,7 @@ const instructionsFinal = [
     mid: "It can also respond to basic commands, and help you place orders online."
   },
   {
-    top: "In this round, use Bema to order some ingredients for a cookie recipe.",
+    top: <p>In this round, use Bema to <strong>order some ingredients for a cookie recipe.</strong></p>,
     mid: "Click the arrow to proceed "
   },
 ];
