@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
+import logo from "../src/assets/logo.png";
 
 class EndSurvey extends React.Component {
   constructor() {
@@ -79,7 +80,7 @@ class EndSurvey extends React.Component {
     }
     return (
       <div>
-        <img src="../src/assets/logo.png" alt="Johns Hopkins Logo"/>
+        <img src={logo} alt="Johns Hopkins Logo"/>
         <h2>Thank you for taking the time to complete this study!</h2>
         <p>If you have any questions or concerns regarding this study, please contact Dr. Chien-Ming Huang at cmhuang@cs.jhu.edu</p>
         <p>Feel free to close the tab now</p>
