@@ -128,7 +128,7 @@ class Demographics extends React.Component {
               </label>
               <br />
 
-            <p className="statement">Rate your level of experience with Artificial Intelligence (AI) technology before this study (e.g., Siri, Alexa, Cortana, Bixby etc.)</p>
+            <p className="statement">Rate your level of experience with ordering things online with Artificial Intelligence (AI) before this study (e.g., Siri, Alexa, Cortana, Bixby etc.)</p>
             <br/>
             <div>
               no experience<input type="radio" value="1" name="experience1" onChange={this.onChange.bind(this)}/>

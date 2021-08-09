@@ -14,7 +14,7 @@ class App extends React.Component {
         <p>
             We are a research group at Johns Hopkins University called the 
             <a id="HyperLink2" href="http://intuitivecomputing.jhu.edu/"> Intuitive Computing Lab</a>&nbsp;interested in understanding how humans perceive and interact with an Artificial Intelligence (AI) assistant. During this study, you will evaluate <strong>five</strong> AI assistants and their preformances as they help you complete a task.<br /><br />
-           Your participation is voluntary and your responses will be completely anonymous. We will ask only for your name and email address to send you a $10 Amazon gift card upon completion of the study (your personal information will not be associated with your responses). This study will take about 10 minutes to complete. 
+           Your participation is voluntary and your responses will be completely anonymous. We will ask only for your name and email address to send you a $5 Amazon gift card upon completion of the study (your personal information will not be associated with your responses). This study will take about 20 minutes to complete. 
             </p>
         <p>
             By continuing, you consent to participate in this study and understand that your input will only be used for research purposes. 
