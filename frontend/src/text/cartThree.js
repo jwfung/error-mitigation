@@ -54,8 +54,8 @@ const cartThree = [
       img: goldglasses, 
       inCart: true },
     secondOpt: {
-      name: "Modern Chic Optic Glasses", 
-      des: "Okay, I found Modern Chic Optic Glasses. Is this correct?",
+      name: "Modern Optic Glasses", 
+      des: "Okay, I found Modern Optic Glasses. Is this correct?",
       audio: modern,
       img: optics, 
       inCart: false },
@@ -64,8 +64,8 @@ const cartThree = [
     wrongItem: { 
         rejected: false,
       firstOpt: {
-        name: "Glass Cupware", 
-        des: "Okay, I found Glass Cupware. Is this correct?",
+        name: "Set of 6 Glass Cupware", 
+        des: "Okay, I found a set of 6 Glass Cupwares. Is this correct?",
         audio: glass,
         img: glasscups, 
         inCart: true },
