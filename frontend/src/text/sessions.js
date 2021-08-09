@@ -1,5 +1,5 @@
-import cartOne from "./cartTwo";
-import cartTwo from "./cartOne";
+import cartOne from "./cartOne";
+import cartTwo from "./cartTwo";
 import cartThree from "./cartThree";
 import cartFour from "./cartFour";
 import cartFive from "./cartFive";
@@ -39,7 +39,7 @@ const sessions = [
     agent: <div className="cylinder"/>,
   },
   {
-    text: {top: "Session 5 complete.", mid: "Thank you for completing the study!"}
+    text: [{top: "Session 5 complete."}]
   }
 ];
 

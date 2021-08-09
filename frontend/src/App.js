@@ -1,22 +1,38 @@
 import Walkthrough from "./Walkthrough";
 import checkpointText from "./text/checkpointOne.js";
 import React from 'react';
+import PreQuestionaire from "./PreQuestionnaire";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      latinsqr: Math.floor( Math.random() * 5 ) 
+      goToStudy: false,
+      latinsqr: Math.floor( Math.random() * 5 ),
+      uuid: '00-0-4-1-000'.replace(/[^-]/g,
+            s => ((Math.random() + ~~s) * 0x10000 >> s).toString(16).padStart(4, '0'))
     }
   }
 
+    goToStudy() {
+      this.setState({goToStudy: true})
+    }
+
   render () {
-    return (
-      <div className="App">
-        {console.log(this.state.latinsqr)}
-        <Walkthrough sess={0} checkpointText={checkpointText} latinsqr={this.state.latinsqr}/>
-      </div>
-    );
+    if (this.state.goToStudy) {
+      return (
+        <div className="App">
+          {console.log(this.state.uuid)}
+          <Walkthrough sess={0} checkpointText={checkpointText} latinsqr={this.state.latinsqr} uuid={this.state.uuid}/>
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className="App">
+          <PreQuestionaire uuid={this.state.uuid} goToStudy={this.goToStudy.bind(this)}/>
+        </div>);
+    }
   }
 }
 

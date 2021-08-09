@@ -21,6 +21,18 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: false
   },
+  uuid: {
+    type: String,
+    required: false
+  },
+  demo: {
+    type: Array,
+    required: false
+  },
+  part:  {
+    type: Array,
+    required: false
+  },
   // errcount: {
   //   type: Number,
   //   required: false
@@ -32,13 +44,15 @@ const UserSchema = new mongoose.Schema({
   quest: {
     type: Array,
     required: false
+  },
+  prequest: {
+    type: Array,
+    required: false
   }
   // date: {
   //   type: Date,
   //   default: Date.now
   // }
 });
-
-UserSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 module.exports = User = mongoose.model('user', UserSchema);

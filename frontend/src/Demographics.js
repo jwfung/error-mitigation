@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
+import EndSurvey from "./EndSurvey.js";
 
 class Demographics extends React.Component {
   constructor() {
@@ -14,14 +15,15 @@ class Demographics extends React.Component {
       experience1: '',
       experience2: '',
       complete: false,
-      required: false
+      required: false,
+      endSurvey: false
     }
   }
 
   componentDidUpdate() {
-    const { q1, q2, q3, q4, q5, q6, q7 } = this.state;
+    const { gender, age, country, education, major, experience1, experience2 } = this.state;
     
-    if (q1 && q2 && q3 && q4 && q5 && q6 && q7 && !this.state.complete) {
+    if (gender && age && country && education && major && experience1 && experience2 && !this.state.complete) {
       this.setState({complete: true});
     }
 
@@ -32,13 +34,13 @@ class Demographics extends React.Component {
     this.setState({ [e.target.name]: e.target.value});
   }
 
-  onSubmit(e) {
-    // e.preventDefault();
-    console.log(this.props.objId)
+  endSurvey() {
+    this.setState({endSurvey: true})
+  }
 
-    if (this.state.complete) {  
-      const questData = {
-        quest: [
+  onSubmit(e) {
+    const data = {
+        demo: [
           {gender: this.state.gender},
           {age: this.state.age},
           {country: this.state.country},
@@ -46,14 +48,16 @@ class Demographics extends React.Component {
           {major: this.state.major},
           {experience1: this.state.experience1},
           {experience2: this.state.experience2}
-        ]
+        ],
+        uuid: this.props.uuid
       }
-      const { data } = this.props
-      let newData = Object.assign(data, questData)
-      console.log(newData)
+      console.log(data)
+
+    if (this.state.complete) {  
+      
 
       axios
-        .post('https://jeanie.mongo.cosmos.azure.com:443/', newData)
+        .post('https://errormit.azurewebsites.net/api/users', data)
           .then(res => {
             this.setState({
                 gender: '',
@@ -64,9 +68,7 @@ class Demographics extends React.Component {
                 experience1: '',
                 experience2: ''
             })
-            this.props.clearData();
-            this.props.completeQuest();
-            // this.props.history.push('/');
+            this.endSurvey();
           })
           .catch(err => {
             console.log(err);
@@ -77,67 +79,57 @@ class Demographics extends React.Component {
   }
 
   render() {
+    if (this.state.endSurvey) {
+      return (<EndSurvey/>);
+    }
     return(
       <div id="wrapper">
         <h2 class="inlineh">&nbsp;</h2>
-        <h2 class="inlineh">How was your personal assistant?</h2>
-        <p>Based on your experience with the smart speaker, rate the statements on a scale of 1 to 5 (1=strongly disagree to 5=strongly agree)</p>
-        
+        <h2 class="inlineh">Post Study Questionaire</h2>        
         <hr />
 
         <div>
-          <h2 className="wrapper">Statement</h2>
-          <div className="wrapper">
-              <p class="statement">What is your gender?</p>
-            <form classname="radio">
+              <p className="statement">What is your gender?</p>
+            <div>
               <input id= "gender" type="radio" Value="1" name="gender" onChange={this.onChange.bind(this)}/>Female
               <input type="radio" Value="2" name="gender" onChange={this.onChange.bind(this)}/>Male
               <input type="radio" Value="3" name="gender" onChange={this.onChange.bind(this)}/>Non-binary
               <input type="radio" Value="4" name="gender" onChange={this.onChange.bind(this)}/>Other
               <br />
-            </form>
-          </div>
-
-          <div className="wrapper">
-            <p class="statement">What is your age (years)? </p>
-            <div>
-                <input type="number" id="age" name="name" min="0" max="120" onChange={this.onChange.bind(this)}/>
-                <br />
             </div>
-          </div>
+            
 
-          <div className="wrapper">
-              <p class="statement">What is your country of residence?</p>
-                <div>
-                <input type="text" id="country" name="country" minlength="1" maxlength="50" onChange={this.onChange.bind(this)} />
-                <br />
-            </div>
-          </div>
+              <label className="wrapper" style={{textAlign: "left", marginLeft: "15%"}}>What is your age (years)?
+                <input type="number" id="age" name="age" min="0" max="120" style={{maxWidth: "30px"}} onChange={this.onChange.bind(this)}/>
+              </label>
+              <br />
 
-          <div className="wrapper">
-                    <p class="statement">What is your highest level of eductaion completed?</p>
-                    <br/>
-            <div>
+  
+              <label className="wrapper" style={{textAlign: "left", marginLeft: "15%"}}>What is your country of residence?
+                <input type="text" id="country" name="country" minlength="1" maxlength="50" style={{maxWidth: "300px"}} onChange={this.onChange.bind(this)} />
+              </label>
+              <br />
+
+
+              <p className="statement">What is your highest level of eductaion completed?</p>
+              <br/>
+              <div style={{textAlign: "left", marginLeft: "15%"}}>
                         <input type="radio" Value="1" name="education" onChange={this.onChange.bind(this)} /> Some high school, no diploma <br/>
                         <input type="radio" Value="2" name="education" onChange={this.onChange.bind(this)} /> High school graduate, diploma or the equivalent (for example: GED) <br/>
                         <input type="radio" Value="3" name="education" onChange={this.onChange.bind(this)} /> Some college, no degree <br/>
                         <input type="radio" Value="4" name="education" onChange={this.onChange.bind(this)} /> Trade/technical/vocational training <br/>
                         <input type="radio" Value="5" name="education" onChange={this.onChange.bind(this)} /> Bachelor's degree <br />
                         <input type="radio" Value="6" name="education" onChange={this.onChange.bind(this)} /> Advanced degree (for example: Master's, Professional, or Doctorate degree)
-              <br />            
-            </div>
-            </div>
-            <div className="wrapper">
-                    <p class="statement">What is your current industry/discipline/major?  </p>
-                <div>
-                    <input type="text" id="major" name="major" minlength="1" maxlength="50" onChange={this.onChange.bind(this)} />
-                    <br />
-                </div>
-            </div>
+                <br />            
+              </div>
+                    
+              <label className="wrapper" style={{textAlign: "left", marginLeft: "15%"}}>What is your current industry/discipline/major? 
+                <input type="text" id="major" name="major" minlength="1" maxlength="50" style={{maxWidth: "300px"}} onChange={this.onChange.bind(this)} /> 
+              </label>
+              <br />
 
-          <div className="wrapper">
-                    <p class="statement">Rate your level of experience with Artificial Intelligence (AI) technology before this study (e.g., Siri, Alexa, Cortana, Bixby etc.)</p>
-                    <br/>
+            <p className="statement">Rate your level of experience with Artificial Intelligence (AI) technology before this study (e.g., Siri, Alexa, Cortana, Bixby etc.)</p>
+            <br/>
             <div>
               no experience<input type="radio" Value="1" name="experience1" onChange={this.onChange.bind(this)}/>
                         <input type="radio" Value="2" name="experience1" onChange={this.onChange.bind(this)}/>
@@ -146,10 +138,10 @@ class Demographics extends React.Component {
                         <input type="radio" Value="5" name="experience1" onChange={this.onChange.bind(this)}/> most experience
               <br />            
             </div>
-          </div>
 
-          <div className="wrapper">
-            <p class="statement">In my opinion, the AI assistant provided a satisfactory response to the error.</p>
+
+          {/* <div className="wrapper"> */}
+            <p className="statement">In my opinion, the AI assistant provided a satisfactory response to the error.</p>
                     <br/>
             <div>
               no experience<input type="radio" Value="1" name="experience2" onChange={this.onChange.bind(this)}/>
@@ -159,7 +151,7 @@ class Demographics extends React.Component {
                         <input type="radio" Value="5" name="experience2" onChange={this.onChange.bind(this)}/> most experience
               <br />            
             </div>
-          </div>
+          {/* </div> */}
 
           
           
@@ -176,4 +168,4 @@ class Demographics extends React.Component {
   }
 }
 
-export default Questionaire;
+export default Demographics;

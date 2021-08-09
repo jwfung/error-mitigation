@@ -21,9 +21,13 @@ class ReturnProcess extends React.Component{
   }
 
   errorMitAudio() {
-    if (this.props.errorMit) {
+    if (this.props.errorMit && this.props.errorMitigation) {
       const audioAgent = document.getElementsByClassName("audio-agent-error")[0];
       audioAgent.play();
+    }
+
+    if (!this.props.errorMitigation) {
+      this.setState({speaking: false})
     }
 
     this.setState({playReturn: false})
@@ -36,7 +40,6 @@ class ReturnProcess extends React.Component{
 
   doneSpeaking() {
     this.setState({speaking: false})
-    console.log("speaking")
   }
 
   render() {

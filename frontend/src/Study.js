@@ -290,6 +290,7 @@ class Study extends React.Component {
         cart: arr,
         cartOrder: this.state.cartOrder,
         latinsqr: this.props.latinsqr,
+        uuid: this.props.uuid,
         sess: this.props.sess
       }
     })
@@ -374,7 +375,7 @@ class Study extends React.Component {
             />);
         } 
         else {
-          return <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} latinsqr={latinsqr}/>;
+          return <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} latinsqr={latinsqr} uuid={this.props.uuid}/>;
         }
       }
     }

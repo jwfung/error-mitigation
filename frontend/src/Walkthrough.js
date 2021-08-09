@@ -5,6 +5,7 @@ import Study from "./Study";
 import Speech from "./Speech";
 
 import sessions from "./text/sessions";
+import Demographics from "./Demographics";
 
 class Walkthrough extends React.Component {
   constructor(props) {
@@ -24,8 +25,13 @@ class Walkthrough extends React.Component {
     const { index } = this.state;
     const { checkpointText, sess, latinsqr } = this.props;
 
-    if (index >= sessions[sess].text.length) {
-      return <Study items={sessions[sess].list} sess={sess} checkpointText={checkpointText} latinsqr={latinsqr}/>;
+    if (sess === 5) {
+      return <Demographics uuid={this.props.uuid}/>
+    }
+
+    else if (index >= sessions[sess].text.length) {
+      console.log("sess: "+ sess)
+      return <Study items={sessions[sess].list} sess={sess} checkpointText={checkpointText} latinsqr={latinsqr} uuid={this.props.uuid}/>;
     }
 
     const currTex = sessions[sess].text[index];

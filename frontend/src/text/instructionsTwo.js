@@ -14,7 +14,7 @@ const instructionsTwo = [
     mid: "It can also respond to basic commands, and help you place orders online."
   },
   {
-    top: "In this round, use Gema to order some items for a party.",
+    top: "In this round, use Gema to order some groceries itms.",
     mid: "Click the arrow to proceed "
   },
 ];

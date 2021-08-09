@@ -68,7 +68,7 @@ class Questionaire extends React.Component {
       // console.log(newData)
 
       axios
-        .post('https://errormit.azurewebsites.net', newData)
+        .post('https://errormit.azurewebsites.net/api/users', newData)
           .then(res => {
             this.setState({
               q1: '',
@@ -111,19 +111,19 @@ class Questionaire extends React.Component {
         <div>
           <h2 className="wrapper">Statement</h2>
           <div className="wrapper">
-              <p class="statement">I would be willing to use this AI assistant for ordering my usual things online.</p>
-            <form classname="radio">
+              <p className="statement">I would be willing to use this AI assistant for ordering my usual things online.</p>
+            <div>
               strongly disagree<input id= "q1" type="radio" Value="1" name="q1" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q1" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="3" name="q1" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="4" name="q1" onChange={this.onChange.bind(this)}/> 
               <input type="radio" Value="5" name="q1" onChange={this.onChange.bind(this)}/> strongly agree
               <br />
-            </form>
+            </div>
           </div>
 
           <div className="wrapper">
-            <p class="statement">The AI assistant was dependable.</p>
+            <p className="statement">The AI assistant was dependable.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q2" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q2" onChange={this.onChange.bind(this)}/>
@@ -135,7 +135,7 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-              <p class="statement">The AI assistant was responsive.</p>
+              <p className="statement">The AI assistant was responsive.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q3" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q3" onChange={this.onChange.bind(this)}/>
@@ -147,7 +147,7 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-            <p class="statement">The AI assistant made mistakes.</p>
+            <p className="statement">The AI assistant made mistakes.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q4" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q4" onChange={this.onChange.bind(this)}/>
@@ -159,7 +159,7 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-            <p class="statement">I am happy with how the error was handled.</p>
+            <p className="statement">I am happy with how the error was handled.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q5" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q5" onChange={this.onChange.bind(this)}/>
@@ -171,7 +171,7 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-            <p class="statement">In my opinion, the AI assistant provided a satisfactory response to the error.</p>
+            <p className="statement">In my opinion, the AI assistant provided a satisfactory response to the error.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q6" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q6" onChange={this.onChange.bind(this)}/>
@@ -183,7 +183,7 @@ class Questionaire extends React.Component {
           </div>
 
           <div className="wrapper">
-            <p class="statement">AI assistant acknowledged the mistake as its own.</p>
+            <p className="statement">AI assistant acknowledged the mistake as its own.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q7" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q7" onChange={this.onChange.bind(this)}/>
@@ -194,7 +194,7 @@ class Questionaire extends React.Component {
             </div>
           </div>
           <div className="wrapper">
-            <p class="statement">AI assistant shifted blame from itself.</p>
+            <p className="statement">AI assistant shifted blame from itself.</p>
             <div>
               strongly disagree<input type="radio" Value="1" name="q8" onChange={this.onChange.bind(this)}/>
               <input type="radio" Value="2" name="q8" onChange={this.onChange.bind(this)}/>
