@@ -260,7 +260,7 @@ class PreQuestionaire extends React.Component {
                 <div className="wrapper">
                     <p className="statement">I accept people as they are.</p>
                     <div>
-                        strongly disagree<input id="pq12" type="radio" value="1" name="pq1" onChange={this.onChange.bind(this)} />
+                        strongly disagree<input id="pq12" type="radio" value="1" name="pq12" onChange={this.onChange.bind(this)} />
                         <input type="radio" value="2" name="pq12" onChange={this.onChange.bind(this)} />
                         <input type="radio" value="3" name="pq12" onChange={this.onChange.bind(this)} />
                         <input type="radio" value="4" name="pq12" onChange={this.onChange.bind(this)} />
@@ -282,7 +282,7 @@ class PreQuestionaire extends React.Component {
                 </div>
 
                 <div className="wrapper">
-                    <p className="statement">I am annoyed by others’ mistakes.</p>
+                    <p className="statement">I am annoyed by others' mistakes.</p>
                     <div>
                         strongly disagree<input type="radio" value="1" name="pq14" onChange={this.onChange.bind(this)} />
                         <input type="radio" value="2" name="pq14" onChange={this.onChange.bind(this)} />

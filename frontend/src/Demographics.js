@@ -27,7 +27,7 @@ class Demographics extends React.Component {
       this.setState({complete: true});
     }
 
-    console.log(this.state.complete)
+    // console.log(this.state.complete)
   }
 
   onChange(e) {
@@ -51,11 +51,10 @@ class Demographics extends React.Component {
         ],
         uuid: this.props.uuid
       }
-      console.log(data)
+      // console.log(data)
 
     if (this.state.complete) {  
       
-
       axios
         .post('https://errormit.azurewebsites.net/api/users', data)
           .then(res => {
