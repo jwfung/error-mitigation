@@ -48,11 +48,11 @@ const UserSchema = new mongoose.Schema({
   prequest: {
     type: Array,
     required: false
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
-  // date: {
-  //   type: Date,
-  //   default: Date.now
-  // }
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

@@ -6,9 +6,8 @@ const checkpointOne = [
   },
   { 
     top: "Congrats! You've reached Checkpoint #1!",
-    mid: "You can check your cart to see the items were correctly added before checking out"
+    mid: "You can check your cart first, or directly proceed to check out"
   }
-
 ];
 
 export default checkpointOne;

@@ -263,10 +263,21 @@ class Study extends React.Component {
   }
 
   //post-delivery survey
-  handleSubmission() {    
-    this.setState({submit: true});
-    
+  handleSubmission() {   
+    this.state.cart.forEach((value) => {
+      if (value === "incorrect") {
+        this.setState({incorrectItem: true})
+      }
+    })
+
     const arr = Array.from(this.state.cart).map(([itm, res]) => ({ itm, res }))
+    arr.forEach((element, index) => {
+      const item = this.props.items[index];
+      const {wrongItem} = item; 
+      if (wrongItem && !wrongItem.rejected) {
+        this.setState({errorMit: true})
+      }
+    })
     
     this.setState({
       data: {
@@ -275,7 +286,8 @@ class Study extends React.Component {
         latinsqr: this.props.latinsqr,
         uuid: this.props.uuid,
         sess: this.props.sess
-      }
+      },
+      submit: true
     })
   }
 
@@ -293,21 +305,14 @@ class Study extends React.Component {
 
   onChangeValue(e) {
     const item = this.props.items[e.target.name];
-    const {wrongItem} = item;
     const itm = item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
                                 (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)
-
-    if (e.target.value === "incorrect") {
-      this.setState({incorrectItem: true})
-      if (wrongItem && !wrongItem.rejected) {
-        this.setState({errorMit: true})
-      }
-    }
 
     let res = e.target.value;
     
     this.state.cart.set(itm, res);
-    // console.log(this.state.cart)
+    console.log(this.state.cart)
+
   }
 
   delivered() {
@@ -387,10 +392,10 @@ class Study extends React.Component {
                                                                     <img style={{textAlign: "left", maxHeight: "100px"}} src={item.secondOpt.img} alt=""/>)}
                   </div>                                                        
                   <form style={{marginBlock: "auto"}} onChange={(this.onChangeValue.bind(this))}>
-                    <input type="radio" id="correct" value="correct" name={i}/>   
-                    <label for="correct">Looks Good</label><br/>
-                    <input type="radio" id="incorrect" value="incorrect" name={i}/> 
-                    <label for="incorrect">Return Item</label><br/>
+                    <input type="radio" id={item[i]} value="correct" name={i}/>   
+                    <label for={item[i]}>Looks Good</label><br/>
+                    <input type="radio" id={item[1]} value="incorrect" name={i}/> 
+                    <label for={item[i]}>Return Item</label><br/>
                   </form>
                 </div>
               );
