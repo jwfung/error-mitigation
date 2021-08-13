@@ -10,6 +10,7 @@ import fivestars from "../assets/fivestars.jpg";
 import onesub from "../assets/onesubn.jpg";
 import white from "../assets/elmerwhite.jpeg";
 import clear from "../assets/elmerclear.jpg";
+import photo from "../assets/back2school2.jpg";
 
 import eclear from "../assets/audio/clear.mp3";
 import ewhite from "../assets/audio/white.mp3";
@@ -127,6 +128,9 @@ const cartThree = [
       inCart: false },
     added: false,
     list: true
+  },
+  {
+    photo: photo
   }
 ];
 

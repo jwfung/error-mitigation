@@ -10,6 +10,7 @@ import bbuniform from "../assets/bbuniform.png";
 import allenuniform from "../assets/allenuniform.png";
 import baseballbat from "../assets/baseballbat.png";
 import bat from "../assets/bat.jpg";
+import game from "../assets/baseball_list.jpg";
 
 import allen from "../assets/audio/allenuni.mp3";
 import bb from "../assets/audio/bbuni.mp3";
@@ -124,6 +125,9 @@ const cartFour = [
       inCart: false },
     added: false,
     list: true
+  },
+  {
+    photo: game
   }
 ];
 

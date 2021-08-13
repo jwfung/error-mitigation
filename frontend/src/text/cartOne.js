@@ -10,6 +10,7 @@ import bow from "../assets/bow.jpg";
 import giftwrap from "../assets/giftwrap.jpg"
 import cups from "../assets/cups.jpg";
 import clearcups from "../assets/clearcups.jpeg";
+import party from "../assets/bday.jpg";
 
 import redarch from "../assets/audio/redarch.mp3";
 import firebrd from "../assets/audio/firebird.mp3";
@@ -26,7 +27,7 @@ import metalball from "../assets/audio/metball.mp3";
 
 
 
-const cartTwo = [
+const cartOne = [
   {
     name: "party hats",
     firstOpt: {
@@ -58,7 +59,7 @@ const cartTwo = [
       des: "Okay, I found Ghirardelli Brownie Mix. Is this correct?",
       audio: ghirad,
       img: ghir,
-      incart: false },
+      inCart: false },
     list: true,
     added: false,
   },
@@ -69,18 +70,19 @@ const cartTwo = [
       des: "Okay, I found Bag of Balloons. Is this correct?",
       audio: ball,
       img: balloons,
-      incart: true
+      inCart: true
     }, 
     secondOpt: {
       name: "Metallic Balloons Pack",
       des: "Okay, I found Metallic Balloons Pack. Is this correct?",
       audio: metalball,
       img: metball,
-      incart: false
+      inCart: false
     },
     list: true,
     added: false,
   },
+
   {
     wrongItem: {
       rejected: false,
@@ -96,10 +98,10 @@ const cartTwo = [
         des: "Okay, I found Firebird Bow for Archery. Is this correct?",
         audio: firebrd,
         img: firebird, 
-        inCart: true
+        inCart: false
       },
     },
-    name: "bow",
+    name: "bow (ribbon)",
     firstOpt: {
       name: "Large Red Birthday Bow",
       des: "Okay, I found Large Red Birthday Bow. Is this correct?",
@@ -112,11 +114,12 @@ const cartTwo = [
       des: "Okay, I found Bow for Gifts. Is this correct?",
       audio: bowgifts,
       img: giftwrap,
-      inCart: true,
+      inCart: false,
     },
     list: true,
     added: false,
   },
+
   {
     name: "plastic cups",
     firstOpt: {
@@ -135,7 +138,10 @@ const cartTwo = [
     },
     list: true,
     added: false,
+  },
+  {
+    photo: party
   }
 ];
 
-export default cartTwo;
+export default cartOne;

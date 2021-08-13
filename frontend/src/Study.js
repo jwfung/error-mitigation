@@ -20,9 +20,9 @@ class Response extends React.Component {
     const { index } = this.props;
     return (
       <div className="survey-item-wrapper"> 
-        <button className="response" onClick={() => this.props.addItem(index)}>"Yes, add to cart"</button>
-        <button className="response" onClick={() => this.props.exchangeItem(index)}>"Yes, but show me more options"</button>
-        <button className="response" onClick={() => this.props.tryAgain(index)}>"No, that is not what I wanted"</button>
+        <button className="response" onClick={() => this.props.addItem(index)}>"Yes, this is correct. Add to cart"</button>
+        <button className="response" onClick={() => this.props.exchangeItem(index)}>"Yes, this is correct, but show me more options"</button>
+        <button className="response" onClick={() => this.props.tryAgain(index)}>"No, this is incorrect"</button>
       </div>
     );
   }
@@ -379,6 +379,7 @@ class Study extends React.Component {
             </div> 
             <div className="survey-wrapper">
             {items && items.map((item, i) => {
+              if (item.name) {
               return (
                 <div className="survey-item-wrapper" key={i}>
                   <div>
@@ -395,11 +396,11 @@ class Study extends React.Component {
                     <input type="radio" id={item[i]} value="correct" name={i}/>   
                     <label for={item[i]}>Looks Good</label><br/>
                     <input type="radio" id={item[1]} value="incorrect" name={i}/> 
-                    <label for={item[i]}>Return Item</label><br/>
+                    <label for={item[i]}>This is incorrect, return item</label><br/>
                   </form>
                 </div>
               );
-            })}
+    }})}
             </div>
             <button className="speak" style={{marginBottom: "40px"}} onClick={() => this.handleSubmission()}> Submit </button>
         </div>
@@ -452,7 +453,7 @@ class Study extends React.Component {
                   <p> {currTex.top} </p>
                   <p> {currTex.mid} </p>
                   <p> {currTex.bottom} </p>
-                </div> : null}
+                </div> : <img src={items[5].photo} alt="" style={{maxWidth: "80%"}}/>}
 
               </div>
             </div>
@@ -479,7 +480,7 @@ class Study extends React.Component {
                 speaking={this.state.speaking}
               />
             }
-            {!speaking && (itemCounter >= items.length) ? 
+            {!speaking && (itemCounter >= items.length - 1) ? 
               <button className="purchase" onClick={() => this.checkout()}>  
                 Proceed to Checkout 
               </button> : null }

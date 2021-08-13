@@ -37,7 +37,7 @@ class App extends React.Component {
       return (
         <div className="App">
           {console.log(this.state.uuid)}
-          <Walkthrough sess={0} checkpointText={checkpointText} latinsqr={this.state.latinsqr} uuid={this.state.uuid}/>
+          <Walkthrough sess={0} checkpointText={checkpointText} latinsqr={this.state.latinsqr} uuid={11111}/>
         </div>
       );
     }

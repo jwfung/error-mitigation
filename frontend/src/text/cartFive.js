@@ -9,7 +9,8 @@ import domino from "../assets/domino.jpeg";
 import pureirish from "../assets/pureirish.png";
 import amul from "../assets/amil.jpg";
 import mccormick from "../assets/mccormick.jpg";
-import rodelle from "../assets/rodelle.jpg"
+import rodelle from "../assets/rodelle.jpg";
+import recipe from "../assets/recipe.jpg";
 
 import Rose from "../assets/audio/Roses.mp3";
 import Summer from "../assets/audio/Summer.mp3";
@@ -125,6 +126,9 @@ const cartFive = [
       inCart: false },
     added: false,
     list: true
+  },
+  {
+    photo: recipe
   }
 ];
 

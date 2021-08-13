@@ -1,6 +1,6 @@
 const checkpointTwo = [
   {
-    top: "This is your new shopping list.",
+    top: "This is your new shopping list. Order the first item to see what's missing from the scene.",
     mid: "Click on each item to ask the agent to order it.",
     bottom: "View your cart by clicking on the phone in the bottom right."
   },

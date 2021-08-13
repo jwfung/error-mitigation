@@ -82,7 +82,7 @@ class Cart extends React.Component {
                   </div>
                 )
               })}
-              {itemCounter === items.length ? <button className="purchase" onClick={() => checkout()}> Proceed to Checkout </button> : null}
+              {itemCounter === items.length - 1 ? <button className="purchase" onClick={() => checkout()}> Proceed to Checkout </button> : null}
             </div>
             <div className="device-footer"/>
           </div>
