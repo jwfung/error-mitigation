@@ -10,7 +10,7 @@ import green from "../assets/green.jpg";
 import ecliners from "../assets/ecliners.jpg";
 import bounty from "../assets/bounty.jpg";
 import plenty from "../assets/plenty.jpg";
-import party from "../assets/bday.jpg";
+import party from "../assets/grocery.jpg";
 
 import Duracell from "../assets/audio/Duracell.mp3";
 import Energizer from "../assets/audio/Energizer.mp3";

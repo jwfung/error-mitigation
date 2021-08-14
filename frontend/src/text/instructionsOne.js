@@ -24,7 +24,10 @@ const instructions = [
   },
   {
     top: <p>You will be using Mega to <strong>order some items for a party.</strong></p>,
-    mid: "Click to arrow button to proceed with Session #1."
+    mid: "Click to arrow button to see what you need, and proceed with Session #1."
+  },
+  {
+    top: <p>"Hello, I need some help preparing for a party. I need some <strong>party hats</strong> for our guests, a <strong>brownies mix</strong> to make some brownies, and <strong>balloons</strong> for decorations. Any kind will do. I also need a <strong>bow</strong> to wrap my presents. Oh! And dont forget the <strong>plastic cups!</strong>"</p>
   }
 ];
 

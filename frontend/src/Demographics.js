@@ -127,7 +127,7 @@ class Demographics extends React.Component {
               </label>
               <br />
 
-            <p className="statement">Rate your level of experience with ordering things online with Artificial Intelligence (AI) before this study (e.g., Siri, Alexa, Cortana, Bixby etc.)</p>
+            <p className="statement">Rate your level of experience with Artificial Intelligence (AI) before this study (e.g., Siri, Alexa, Cortana, Bixby etc.)</p>
             <br/>
             <div>
               no experience<input type="radio" value="1" name="experience1" onChange={this.onChange.bind(this)}/>
@@ -139,7 +139,6 @@ class Demographics extends React.Component {
             </div>
 
 
-          {/* <div className="wrapper"> */}
                 <p className="statement">Rate your level of experience with ordering things online with AI assistants (e.g., Siri, Alexa, Cortana, Bixby etc.)</p>
                     <br/>
             <div>
@@ -150,13 +149,11 @@ class Demographics extends React.Component {
                         <input type="radio" value="5" name="experience2" onChange={this.onChange.bind(this)}/> most experience
               <br />            
             </div>
-          {/* </div> */}
-
           
           
         </div>
       <br/>
-        
+    
 
           {this.state.required && <p style={{color: "red"}}>*Answer all statements before proceeding</p>}
           <button className="speak" onClick={() => this.onSubmit()} ID="submitSurvey" runat="server">Submit</button>

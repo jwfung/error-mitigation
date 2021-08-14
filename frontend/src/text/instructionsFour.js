@@ -17,8 +17,11 @@ const instructionsFour = [
   },
   {
     top: <p>In this round, use Memi to <strong>order some items for your brother's baseball game.</strong></p>,
-    mid: "Click the arrow to proceed "
+    mid: "Click the arrow to see what you need, and then proceed to the session."
   },
+  {
+    top: <p>"Hey, thanks for helping me out. Coach said I'm going to need a <strong>baseball,</strong> of course, and a <strong>baseball mitt</strong> to catch the ball. I'm also going to need a <strong>bat</strong> for hitting, and some <strong>cleats</strong> to run on the field. Oh, right. I'm also going to need a <strong>uniform</strong> to join the team."</p>
+  }
 ];
 
 export default instructionsFour;

@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      goToStudy: false,
+      goToStudy: false, //undo
       continue: false,
       latinsqr: Math.floor( Math.random() * 5 ),
       uuid: '00-0-4-1-000'.replace(/[^-]/g,
@@ -37,7 +37,7 @@ class App extends React.Component {
       return (
         <div className="App">
           {console.log(this.state.uuid)}
-          <Walkthrough sess={0} checkpointText={checkpointText} latinsqr={this.state.latinsqr} uuid={11111}/>
+          <Walkthrough sess={0} checkpointText={checkpointText} latinsqr={this.state.latinsqr} uuid={this.state.uuid}/>
         </div>
       );
     }

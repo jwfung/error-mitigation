@@ -17,8 +17,11 @@ const instructionsTwo = [
   },
   {
     top: <p>In this round, use Gema to <strong> order some groceries items</strong></p>,
-    mid: "Click the arrow to proceed "
+    mid: "Click the arrow to see what you need, and then proceed to the session."
   },
+  {
+    top: <p>"Hi Dear, can you help me pick up some things for the house? We're running out of those <strong>AA batteries</strong> and also <strong>food for the dog.</strong> We also need some more <strong>trash bags—the 13-gallon kind</strong>. The <strong>paper towels</strong> have run out and....oh, the <strong>milk too! Lactose-free</strong> of course."</p>
+  }
 ];
 
 export default instructionsTwo;
