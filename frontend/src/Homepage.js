@@ -18,7 +18,7 @@ class App extends React.Component {
             </p>
         <p>
             By continuing, you consent to participate in this study and understand that your input will only be used for research purposes. 
-            <a id="HyperLink1" href="https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfung4_jh_edu/EQMsjETb_ahDog9YC7L6xyoBWUcUl1FgG2JdqO33_qM6JQ?e=AKTlOg"> A detailed consent form</a> is provided for more information.
+            <a id="HyperLink1" href="https://livejohnshopkins-my.sharepoint.com/:w:/g/personal/jfung4_jh_edu/EW4aTAz0m5xCsUw-oFCyFQkB2KPQRBxhKedQKCYz4iwiNA?e=Xop8w8"> A detailed consent form</a> is provided for more information.
            </p>
 
          <p>

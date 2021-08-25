@@ -3,7 +3,7 @@ import React from "react";
 const instructions = [
   {
     header: "Instructions:",
-    top: "In this study, you will be interacting with a story sequence.",
+    top: "In this study, you will be interacting with a story sequence. Please turn your volume up as you go through the study.",
     mid: "Use the arrow button at the bottom of the screen to proceed through each stage of the story."
   },
   {
