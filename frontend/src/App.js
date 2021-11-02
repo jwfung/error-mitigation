@@ -10,7 +10,7 @@ class App extends React.Component {
     this.state = {
       goToStudy: false, //undo
       continue: false,
-      latinsqr: Math.floor( Math.random() * 5 ),
+      latinsqr: Math.floor( Math.random() * 4 ),
       //latinsqr: 3,
       uuid: '00-0-4-1-000'.replace(/[^-]/g,
             s => ((Math.random() + ~~s) * 0x10000 >> s).toString(16).padStart(4, '0'))
