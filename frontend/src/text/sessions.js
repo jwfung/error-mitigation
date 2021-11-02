@@ -1,12 +1,10 @@
 import cartOne from "./cartOne";
 import cartTwo from "./cartTwo";
-import cartThree from "./cartThree";
 import cartFour from "./cartFour";
 import cartFive from "./cartFive";
 
 import instructions from "./instructionsOne";
 import instructionsTwo from "./instructionsTwo";
-import instructionsThree from "./instructionsThree";
 import instructionsFour from "./instructionsFour";
 import instructionsFinal from "./instructionsFinal";
 
@@ -24,22 +22,17 @@ const sessions = [
     agent: <div className="gema"/>,
   },
   {
-    list: cartThree,
-    text: instructionsThree,
-    agent: <div className="cylinder"/>,
-  },
-  {
     list: cartFour,
     text: instructionsFour,
-    agent: <div className="gema"/>,
+    agent: <div className="cylinder"/>,
   },
   {
     list: cartFive,
     text: instructionsFinal,
-    agent: <div className="cylinder"/>,
+    agent: <div className="gema"/>,
   },
   {
-    text: [{top: "Session 5 complete."}]
+    text: [{top: "Session 4 complete."}]
   }
 ];
 

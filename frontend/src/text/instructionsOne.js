@@ -14,16 +14,16 @@ const instructions = [
   },
   {
     top: "The SmartShop Company has been working on developing different personal assistants.",
-    mid: "You have been tasked with helping them test out 5 of their beta assistants."
+    mid: "You have been tasked with helping them test out 4 of their beta assistants."
   },
   {
     mega: true,
-    header: "Meet Mega",
-    top: "Mega is our first assistant. It was developed by Team1 and can help you order items online.",
+    header: "Meet Megma",
+    top: "Megma is our first assistant. It was developed by Team1 and can help you order items online.",
     mid: "You can check your cart before placing your order, or place the order directly."
   },
   {
-    top: <p>You will be using Mega to <strong>order some items for a party.</strong></p>,
+    top: <p>You will be using Megma to <strong>order some items for a party.</strong></p>,
     mid: "Click to arrow button to see what you need, and proceed with Session #1."
   },
   {

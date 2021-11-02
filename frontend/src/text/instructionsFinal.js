@@ -2,17 +2,17 @@ import React from "react";
 
 const instructionsFinal = [
   {
-    top: "Session #4 Complete",
-    mid: "Continue to Session #5"
+    top: "Session #3 Complete",
+    mid: "Continue to Session #4"
   },
   {
     gema: true,
     header: "This is Bema.",
-    top: "Bema is our final assistant. It was developed by Team5 of SmartShop",
+    top: "Bema is our final assistant. It was developed by Team4 of SmartShop",
     mid: "It can also respond to basic commands, and help you place orders online."
   },
   {
-    top: <p>In this round, use Bema to <strong>order some ingredients for a cookie recipe.</strong></p>,
+    top: <p>In this round, use Bemi to <strong>order some ingredients for a cookie recipe.</strong></p>,
     mid: "Click the arrow to proceed and see what items are needed."
   },
   {

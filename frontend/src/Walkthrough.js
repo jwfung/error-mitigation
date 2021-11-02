@@ -60,6 +60,7 @@ class Walkthrough extends React.Component {
           <Speech 
             isDemo={true}
             megaSpeak={currTex.speak}
+            male={this.latinsqr === 2 || 3 ? true : false}
             getNextText={this.getNextText.bind(this)}
           />
         </div>

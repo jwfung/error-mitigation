@@ -25,6 +25,19 @@ import ghirad from "../assets/audio/ghir.mp3";
 import ball from "../assets/audio/bagball.mp3";
 import metalball from "../assets/audio/metball.mp3";
 
+import mredarch from "../assets/audio/mredarch.wav";
+import mfirebrd from "../assets/audio/mfirebrd.wav";
+import mredbday from "../assets/audio/mredbday.wav";
+import mbowgifts from "../assets/audio/mbowgifts.wav";
+import mredcup from "../assets/audio/mredcup.wav";
+import mclearcup from "../assets/audio/mclearcup.wav";
+import mstriped from "../assets/audio/mstriped.wav";
+import mpatterned from "../assets/audio/mpatterned.wav";
+import mbetty from "../assets/audio/mbetty.wav";
+import mghirad from "../assets/audio/mghirad.wav";
+import mball from "../assets/audio/mball.wav";
+import mmetalball from "../assets/audio/mmetalball.wav";
+
 
 
 const cartOne = [
@@ -34,12 +47,14 @@ const cartOne = [
       name: "Striped Party Hats", 
       des: "Okay, I found Striped Party Hats. Is this correct?",
       audio: striped,
+      maudio: mstriped,
       img: partyhats, 
       inCart: true },
     secondOpt: {
       name: "Patterned Party Hats",
       des: "Okay, I found Patterned Party Hat. Is this correct?",
       audio: patterned,
+      maudio: mpatterned,
       img: hats, 
       inCart: false },
     list: true,
@@ -52,12 +67,14 @@ const cartOne = [
       name: "Betty Crockers Brownie Mix",
       des: "Okay, I found Betty Crockers Brownies Mix. Is this correct?",
       audio: betty,
+      maudio: mbetty,
       img: brownies,
       inCart: true },
     secondOpt: {
       name: "Ghirardelli Brownie Mix",
       des: "Okay, I found Ghirardelli Brownie Mix. Is this correct?",
-      audio: ghirad,
+      audio: ghirad, 
+      maudio: mghirad,
       img: ghir,
       inCart: false },
     list: true,
@@ -69,6 +86,7 @@ const cartOne = [
       name: "Bag of Balloons",
       des: "Okay, I found Bag of Balloons. Is this correct?",
       audio: ball,
+      maudio: mball,
       img: balloons,
       inCart: true
     }, 
@@ -76,6 +94,7 @@ const cartOne = [
       name: "Metallic Balloons Pack",
       des: "Okay, I found Metallic Balloons Pack. Is this correct?",
       audio: metalball,
+      maudio: mmetalball,
       img: metball,
       inCart: false
     },
@@ -90,6 +109,7 @@ const cartOne = [
         name: "Red Archery Bow", 
         des: "Okay, I found Red Archery Bow. Is this correct?",
         audio: redarch,
+        maudio: mredarch,
         img: archery, 
         inCart: true
       },
@@ -97,6 +117,7 @@ const cartOne = [
         name: "Firebird Bow for Archery", 
         des: "Okay, I found Firebird Bow for Archery. Is this correct?",
         audio: firebrd,
+        maudio: mfirebrd,
         img: firebird, 
         inCart: false
       },
@@ -106,6 +127,7 @@ const cartOne = [
       name: "Large Red Birthday Bow",
       des: "Okay, I found Large Red Birthday Bow. Is this correct?",
       audio: redbday,
+      maudio: mredbday,
       img: bow,
       inCart: true,
     }, 
@@ -113,6 +135,7 @@ const cartOne = [
       name: "Gift Wrapping Bow",
       des: "Okay, I found Bow for Gifts. Is this correct?",
       audio: bowgifts,
+      maudio: mbowgifts,
       img: giftwrap,
       inCart: false,
     },
@@ -126,6 +149,7 @@ const cartOne = [
       name: "Red Plastic Cups",
       des: "Okay, I found Red Plastic Cups. Is this correct?",
       audio: redcup,
+      maudio: mredcup,
       img: cups,
       inCart: true,
     }, 
@@ -133,6 +157,7 @@ const cartOne = [
       name: "Clear Plastic Cups",
       des: "Okay, I found Clear Plastic Cups. Is this correct?",
       audio: clearcup,
+      maudio: mclearcup,
       img: clearcups,
       incart: false
     },

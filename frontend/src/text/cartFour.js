@@ -25,6 +25,19 @@ import mitt2 from "../assets/audio/mitt2.mp3";
 import omitt from "../assets/audio/oven.mp3";
 import wmitt from "../assets/audio/winter.mp3";
 
+import mallen from "../assets/audio/mallen.wav";
+import mbb from "../assets/audio/mbb.wav";
+import mnb from "../assets/audio/mnb.wav";
+import mua from "../assets/audio/mua.wav";
+import mwood from "../assets/audio/mwood.wav";
+import mnbat from "../assets/audio/mnbat.wav";
+import mtba from "../assets/audio/mtba.wav";
+import mbba from "../assets/audio/mbba.wav";
+import mmitt from "../assets/audio/mmitt.wav";
+import mmitt2 from "../assets/audio/mmitt2.wav";
+import momitt from "../assets/audio/momitt.wav";
+import mwmitt from "../assets/audio/mwmitt.wav";
+
 const cartFour = [
   {
     name: "Baseball",
@@ -32,12 +45,14 @@ const cartFour = [
       name: "Baseball", 
       des: "Okay, I found Baseball. Is this correct?",
       audio: bba,
+      maudio: mbba,
       img: baseball, 
       inCart: true },
     secondOpt: {
       name: "Rawlings Training Baseball", 
       des: "Okay, I found Rawlings Training Baseball. Is this correct?",
       audio: tba,
+      maudio: mtba,
       img: tball, 
       inCart: false },
     added: false,
@@ -50,12 +65,14 @@ const cartFour = [
         name: "Oven Mitt", 
         des: "Okay, I found Oven Mitts. Is this correct?",
         audio: omitt,
+        maudio: momitt,
         img: oven, 
         inCart: true },
       secondOpt: {
         name: "Mitts for Winter", 
         des: "Okay, I found Mitts for Winter. Is this correct?",
         audio: wmitt,
+        maudio: mwmitt,
         img: winter, 
         inCart: false },
       },
@@ -64,12 +81,14 @@ const cartFour = [
       name: "Baseball Mitt", 
       des: "Okay, I found Baseball Mitt. Is this correct?",
       audio: mitt,
+      maudio: mmitt,
       img: bbmitt, 
       inCart: true },
     secondOpt: {
       name: "Large Baseball Glove", 
       des: "Okay, I found Large Baseball Glove. Is this correct?",
       audio: mitt2,
+      maudio: mmitt2,
       img: baseballmitt, 
       inCart: false },
     added: false,
@@ -81,12 +100,14 @@ const cartFour = [
       name: "Natural Baseball Bat", 
       des: "Okay, I found Natural Baseball Bat. Is this correct?",
       audio: nbat,
+      maudio: mnbat,
       img: baseballbat, 
       inCart: true },
     secondOpt: {
       name: "Wooden Baseball Bat", 
       des: "Okay, I found Wooden Baseball Bat. Is this correct?",
       audio: wood,
+      maudio: mwood,
       img: bat, 
       inCart: false },
     added: false,
@@ -98,12 +119,14 @@ const cartFour = [
       name: "Under Armor Baseball Cleats", 
       des: "Okay, I found Under Armor Baseball Cleats. Is this correct?",
       audio: ua,
+      maudio: mua,
       img: UA, 
       inCart: true },
     secondOpt: {
       name: "New Balance Baseball Cleats", 
       des: "Okay, I found New Balance Baseball Cleats. Is this correct?",
       audio: nb,
+      maudio: mnb,
       img: NB, 
       inCart: false },
     added: false,
@@ -115,12 +138,14 @@ const cartFour = [
       name: "Custom Baseball Uniform", 
       des: "Okay, I found Custom Baseball Uniform. Is this correct?",
       audio: bb,
+      maudio: mbb,
       img: bbuniform, 
       inCart: true },
     secondOpt: {
       name: "Allen Baseball Uniform", 
       des: "Okay, I found Allen Baseball Uniform. Is this correct?",
       audio: allen,
+      maudio: mallen,
       img: allenuniform, 
       inCart: false },
     added: false,

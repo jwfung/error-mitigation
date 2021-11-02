@@ -2,7 +2,8 @@ import "./App.css";
 import React from "react";
 
 import nextBtn from "./assets/next.png";
-import audio from "./assets/audio/temp.mp3";
+import faudio from "./assets/audio/temp.mp3";
+import maudio from "./assets/audio/mweather.wav";
 
 
 class NextButton extends React.Component{
@@ -57,6 +58,7 @@ class Speech extends React.Component {
     const { megaSpeak } = this.props;
     const { clickSpeak, speaking } = this.state;
     const btnName = "Ask the weather";
+    const audio = this.props.male ? maudio : faudio;
 
     return (
       <div>

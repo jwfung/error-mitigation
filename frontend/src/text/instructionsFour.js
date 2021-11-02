@@ -2,17 +2,17 @@ import React from "react";
 
 const instructionsFour = [
   {
-    top: "Session #3 Complete",
-    mid: "Continue to Session #4"
+    top: "Session #2 Complete",
+    mid: "Continue to Session #3"
   },
   {
-    header: "Session 4:",
+    header: "Session 3:",
     top: "In this next sequence, you will be interacting with the forth personal assistant.",
   },
   {
     gema: true,
     header: "This is Memi.",
-    top: "Memi is our fourth assistant, developed by Team4 of SmartShop",
+    top: "Memi is our third assistant, developed by Team3 of SmartShop",
     mid: "It can also respond to basic commands, and help you place orders online."
   },
   {

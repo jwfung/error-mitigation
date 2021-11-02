@@ -25,6 +25,19 @@ import pib from "../assets/audio/pib.mp3";
 import mcc from "../assets/audio/mcc.mp3";
 import rod from "../assets/audio/rod.mp3";
 
+import mRose from "../assets/audio/mrose.wav";
+import mSummer from "../assets/audio/msummer.wav";
+import mKing from "../assets/audio/mking.wav";
+import mAllPurpose from "../assets/audio/mallpurpose.wav";
+import msemi from "../assets/audio/msemi.wav";
+import mneswhite from "../assets/audio/mneswhite.wav";
+import mdom from "../assets/audio/mdom.wav";
+import mbutter from "../assets/audio/mamul.wav";
+import morg from "../assets/audio/morg.wav";
+import mpib from "../assets/audio/mpib.wav";
+import mmcc from "../assets/audio/mmcc.wav";
+import mrod from "../assets/audio/mrod.wav";
+
 
 const cartFive = [
   {
@@ -33,12 +46,14 @@ const cartFive = [
       name: "Nestle Semi-Sweet Chips", 
       des: "Okay, I found Nestle Semi-Sweet Chips. Is this correct?",
       audio: semi,
+      maudio: msemi,
       img: white, 
       inCart: true },
     secondOpt: {
       name: "Nestle White Chocolate Chips", 
       des: "Okay, I found Nestle White Chocolate Chips. Is this correct?",
       audio: neswhite,
+      maudio: mneswhite,
       img: semisweet, 
       inCart: false },
     added: false,
@@ -50,12 +65,14 @@ const cartFive = [
       name: "Organic Brown Sugar", 
       des: "Okay, I found Organic Brown Sugar. Is this correct?",
       audio: org,
+      maudio: morg,
       img: organicbrown, 
       inCart: true },
     secondOpt: {
       name: "Domino Brown Sugar", 
       des: "Okay, I found Domino Brown Sugar. Is this correct?",
       audio: dom,
+      maudio: mdom,
       img: domino, 
       inCart: false },
     added: false,
@@ -67,12 +84,14 @@ const cartFive = [
       name: "Amul Butter", 
       des: "Okay, I found Amul Butter. Is this correct?",
       audio: butter,
+      maudio: mbutter,
       img: amul, 
       inCart: true },
     secondOpt: {
       name: "Pure Irish Butter", 
       des: "Okay, I found Pure Irish Butter. Is this correct?",
       audio: pib,
+      maudio: mpib,
       img: pureirish, 
       inCart: false },
     added: false,
@@ -85,12 +104,14 @@ const cartFive = [
         name: "Dozen Roses", 
         des: "Okay, I found a dozen roses. Is this correct?", 
         audio: Rose,
+        maudio: mRose,
         img: roses, 
         inCart: true },
       secondOpt: {
         name: "Summer Flower Arrangement", 
         des: "Okay, I found Summer Flower Arrangements. Is this correct?", 
         audio: Summer,
+        maudio: mSummer,
         img: flower, 
         inCart: false },
       },
@@ -99,12 +120,14 @@ const cartFive = [
       name: "King Arthur Flour", 
       des: "Okay, I found King Arthur Flour. Is this correct?", 
       audio: King,
+      maudio: mKing,
       img: flour, 
       inCart: true },
     secondOpt: {
       name: "All Purpose Flour", 
       des: "Okay, I found All Purpose Flour. Is this correct?", 
       audio: AllPurpose,
+      maudio: mAllPurpose,
       img: flour2, 
       inCart: false },
     list: true,
@@ -116,12 +139,14 @@ const cartFive = [
       name: "McCormick Vanilla Extract", 
       des: "Okay, I found McCormick Vanilla Extract. Is this correct?",
       audio: mcc,
+      maudio: mmcc,
       img: mccormick, 
       inCart: true },
     secondOpt: {
       name: "Rodelle Vanilla Extract", 
       des: "Okay, I found Rodelle Vanilla Extract. Is this correct?",
       audio: rod,
+      maudio: mrod,
       img: rodelle, 
       inCart: false },
     added: false,

@@ -25,6 +25,19 @@ import plent from "../assets/audio/plent.mp3";
 import ecline from "../assets/audio/ecline.mp3";
 import think from "../assets/audio/think.mp3";
 
+import mDuracell from "../assets/audio/mduracell.wav";
+import mEnergizer from "../assets/audio/menergizer.wav";
+import mPurina from "../assets/audio/mpurina.wav";
+import mCesar from "../assets/audio/mcesar.wav";
+import mHEB from "../assets/audio/mHEB.wav";
+import mDairy from "../assets/audio/mdairy.wav";
+import mGlad from "../assets/audio/mglad.wav";
+import mKirkland from "../assets/audio/mkirkland.wav";
+import mbount from "../assets/audio/mbount.wav";
+import mplent from "../assets/audio/mplent.wav";
+import mecline from "../assets/audio/mecline.wav";
+import mthink from "../assets/audio/mthink.wav";
+
 
 //need to add more specific audio
 const cartTwo = [
@@ -34,12 +47,14 @@ const cartTwo = [
       name: "Duracell Batteries", 
       des: "Okay, I found Duracell Double A Batteries. Is this correct?",
       audio: Duracell,
+      maudio: mDuracell,
       img: battery, 
       inCart: true },
     secondOpt: {
       name: "Energizer Batteries", 
       des: "Okay, I found Energizer Double A Batteries. Is this correct?",
       audio: Energizer,
+      maudio: mEnergizer,
       img: battery2, 
       inCart: false },
     added: false,
@@ -51,12 +66,14 @@ const cartTwo = [
       name: "Purina Dog Food",
       des: "Okay, I found Purina Dog Food. Is this correct?", 
       audio: Purina,
+      maudio: mPurina,
       img: dogFood, 
       inCart: true },
     secondOpt: {
       name: "Cesar Dog Food", 
       des: "Okay, I found Cesar Dog Food. Is this correct?", 
       audio: Cesar,
+      maudio: mCesar,
       img: dogFood2, 
       inCart: false },
     list: true,
@@ -68,12 +85,14 @@ const cartTwo = [
       name: "Glad 13-gallon bags",
       des: "Okay, I found Glad 13-gallon trash bags. Is this correct?",  
       audio: Glad,
+      maudio: mGlad,
       img: bags, 
       inCart: true },
     secondOpt: {
       name: "Kirkland 13-gallons bags", 
       des: "Okay, I found Kirkland Signature 13-gallons bags. Is this correct?", 
       audio: Kirkland,
+      maudio: mKirkland,
       img: bags2, 
       inCart: false },
     list: true,
@@ -84,12 +103,14 @@ const cartTwo = [
         name: "13 x ECLINERS one-gallon trash bags", 
         des: "Okay, I found ECLINERS one-gallon trash bags. I can add 13 of them. Is this correct?", 
         audio: ecline,
+        maudio: mecline,
         img: ecliners, 
         inCart: false },
       firstOpt: {
         name: "13 x Think Green one-gal bags", 
         des: "Okay, I found Think Green one-gallon bags. I can add 13 of them. Is this correct?", 
         audio: think,
+        maudio: mthink,
         img: green, 
         inCart: true },
       },
@@ -100,12 +121,14 @@ const cartTwo = [
       name: "Bounty Paper Towels", 
       des: "Okay, I found Bounty Paper Towels. Is this correct?", 
       audio: bount,
+      maudio: mbount,
       img: bounty, 
       inCart: true },
     secondOpt: {
       name: "Plenty Paper Towels", 
       des: "Okay, I found Plenty Paper Towels. Is this correct?", 
       audio: plent,
+      maudio: mplent,
       img: plenty, 
       inCart: false },
     list: true,
@@ -117,12 +140,14 @@ const cartTwo = [
       name: "HEB lactose-free milk",
       des: "Okay, I found HEB lactose-free milk. Is this correct?", 
       audio: HEB,
+      maudio: mHEB,
       img: lactaid,
       inCart: true },
     secondOpt: {
       name: "Dairy Pure: lactose-free milk", 
       des: "Okay, I found Dairy Pure lactose-free milk. Is this correct?", 
       audio: Dairy,
+      maudio: mDairy,
       img: dairyfree, 
       inCart: false },
     list: true,
