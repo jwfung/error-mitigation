@@ -8,8 +8,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      goToStudy: false, //undo
-      continue: false,
+      goToStudy: true, //undo
+      continue: true,
       latinsqr: Math.floor( Math.random() * 4 ),
       //latinsqr: 3,
       uuid: '00-0-4-1-000'.replace(/[^-]/g,
