@@ -353,19 +353,19 @@ class Study extends React.Component {
           />
         );
       }
-      // else {
-      //   if (!questComplete) {
-      //     return (
-      //       <Questionaire 
-      //         completeQuest={this.completeQuest.bind(this)} 
-      //         data={this.state.data} 
-      //         clearData={this.clearData.bind(this)}
-      //       />);
-      //   } 
-      //   else {
+      else {
+        if (!questComplete) {
+          return (
+            <Questionaire 
+              completeQuest={this.completeQuest.bind(this)} 
+              data={this.state.data} 
+              clearData={this.clearData.bind(this)}
+            />);
+        } 
+        else {
           return <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} latinsqr={latinsqr} uuid={this.props.uuid}/>;
-        // }
-      // }
+        }
+      }
     }
 
     else if (delivered) {
