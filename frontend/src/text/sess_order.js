@@ -37,7 +37,6 @@ const er4 = {
 
 const sessOrder = [
   [er1, er2, er3, er4],
-  [er1, er2, er3, er4],
   [er2, er3, er4, er1],
   [er3, er4, er1, er2],
   [er4, er1, er2, er3]

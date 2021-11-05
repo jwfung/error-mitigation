@@ -55,10 +55,10 @@ class Speech extends React.Component {
   }
 
   render() {
-    const { megaSpeak } = this.props;
+    const { megaSpeak, male } = this.props;
     const { clickSpeak, speaking } = this.state;
     const btnName = "Ask the weather";
-    const audio = this.props.male ? maudio : faudio;
+    const audio = male ? maudio : faudio;
 
     return (
       <div>

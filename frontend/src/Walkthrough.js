@@ -24,13 +24,16 @@ class Walkthrough extends React.Component {
   render() {
     const { index } = this.state;
     const { checkpointText, sess, latinsqr } = this.props;
+    const male = ((latinsqr === 2 || latinsqr === 3) ? true : false)
 
-    if (sess === 5) {
+    if (sess === 4) {
       return <Demographics uuid={this.props.uuid}/>
     }
 
     else if (index >= sessions[sess].text.length) {
       console.log("sess: "+ sess)
+      console.log(this.props.latinsqr)
+      console.log(male)
       return <Study items={sessions[sess].list} sess={sess} checkpointText={checkpointText} latinsqr={latinsqr} uuid={this.props.uuid}/>;
     }
 
@@ -60,7 +63,7 @@ class Walkthrough extends React.Component {
           <Speech 
             isDemo={true}
             megaSpeak={currTex.speak}
-            male={this.latinsqr === 2 || 3 ? true : false}
+            male={male}
             getNextText={this.getNextText.bind(this)}
           />
         </div>

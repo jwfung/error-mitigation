@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import returnItm from "./assets/audio/return.mp3"; //TODO
+import mreturnItm from "./assets/audio/mreturn.wav";
 
 import nextBtn from "./assets/next.png";
 
@@ -40,8 +41,9 @@ class ReturnProcess extends React.Component{
   }
 
   render() {
-    const { errorAud, errorMitigation, agent, finishReturn, errorMit } = this.props;
+    const { errorAud, errorMitigation, agent, finishReturn, errorMit, male } = this.props;
     const { speaking } = this.state;
+    const returnAud = male ? mreturnItm : returnItm;
 
     return (
       <div style={{marginTop: "10%"}}>
@@ -49,7 +51,7 @@ class ReturnProcess extends React.Component{
         {this.state.playReturn ? <p className="mega-speech"> Okay, I can start a return process for the item </p> :
         (errorMit ? <p className="mega-speech"> {errorMitigation} </p> : <img className="nextBtn" src={nextBtn} alt="next button" onClick={finishReturn()}/>)}
         {!speaking && <img className="nextBtn" src={nextBtn} alt="next button" onClick={finishReturn()}/>}
-        <audio className="audio-return" src={returnItm} onEnded={() => this.errorMitAudio()}/>
+        <audio className="audio-return" src={returnAud} onEnded={() => this.errorMitAudio()}/>
         <audio className="audio-agent-error" src={errorAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
       </div>
     );
