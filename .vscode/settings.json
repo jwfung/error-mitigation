@@ -1,4 +1,4 @@
 {
-  "appService.defaultWebAppToDeploy": "/subscriptions/a8c83f8a-79fa-4da9-afb5-6e3f8254a3bd/resourceGroups/appsvc_linux_centralus_premium/providers/Microsoft.Web/sites/errormit",
-  "appService.deploySubpath": "backend"
+  "appService.deploySubpath": "backend",
+  "appService.defaultWebAppToDeploy": "/subscriptions/85645129-053b-477d-824f-ee006e1e01c2/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/error-mit-gender"
 }

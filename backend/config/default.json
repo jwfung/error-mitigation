@@ -1,4 +1,4 @@
 {
   "mongoURI":
-    "mongodb://jeanie:WIcAbNhdpJhzTUz25JI12DVExXBM5qbUOkmlOH1lmOWSDMxt9aEfo6VXdlISySqUtrxtLLLzuR5ldv46ubFH6A==@jeanie.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@jeanie@"
+  "mongodb://gender:MgXlzI5MWJd3iq7BARvglENRXP66B2tFpF4KMVMpAqVESaJdICHveoHUjAK9cBB7oZPOhbwZ7cEIJeWbdyTcLw==@gender@"
 }
