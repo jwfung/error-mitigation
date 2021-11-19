@@ -13,7 +13,7 @@ connectDB();
 // cors
 
 var corsOptions = {
-  origin: ["http://localhost:3000","https://jwfung.github.io"],
+  origin: ["http://localhost:3000", "http://localhost:3001", "https://jwfung.github.io"],
   default: "https://jwfung.github.io"
 }
 app.use(cors(corsOptions)); 

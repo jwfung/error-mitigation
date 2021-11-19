@@ -42,7 +42,7 @@ class EndSurvey extends React.Component {
     if (this.state.complete) { 
 
       axios
-        .post('https://error-mit-gender.azurewebsites.net/', participant)
+        .post('https://error-mit-gen.azurewebsites.net/', participant)
           .then(res => {
             this.setState({
                 first: '',
