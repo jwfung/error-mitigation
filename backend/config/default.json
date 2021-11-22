@@ -1,4 +1,4 @@
 {
   "mongoURI":
-  "mongodb://errormit:MgXlzI5MWJd3iq7BARvglENRXP66B2tFpF4KMVMpAqVESaJdICHveoHUjAK9cBB7oZPOhbwZ7cEIJeWbdyTcLw==@errormit@"
+  "mongodb://errormit:MgXlzI5MWJd3iq7BARvglENRXP66B2tFpF4KMVMpAqVESaJdICHveoHUjAK9cBB7oZPOhbwZ7cEIJeWbdyTcLw%3D%3D@errormit.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@errormit@"
 }
