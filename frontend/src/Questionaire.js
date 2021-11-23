@@ -64,7 +64,7 @@ class Questionaire extends React.Component {
       let newData = Object.assign(data, questData)
 
       axios
-        .post('https://error-mit-gen.azurewebsites.net/', newData)
+        .post('https://emittgen.azurewebsites.net/api/users', newData)
           .then(res => {
             this.setState({
               q1: '',

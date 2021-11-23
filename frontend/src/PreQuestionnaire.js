@@ -73,7 +73,7 @@ class PreQuestionaire extends React.Component {
       }
 
       axios
-        .post('https://error-mit-gen.azurewebsites.net/api/users', questData)
+        .post('https://emittgen.azurewebsites.net/api/users', questData)
           .then(res => {
             this.setState({
               pq1: '',

@@ -56,7 +56,7 @@ class Demographics extends React.Component {
     if (this.state.complete) {  
       
       axios
-        .post('https://error-mit-gen.azurewebsites.net/', data)
+        .post('https://emittgen.azurewebsites.net/api/users', data)
           .then(res => {
             this.setState({
                 gender: '',
