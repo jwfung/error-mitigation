@@ -7,6 +7,8 @@ import confirm from "./assets/audio/confirm.mp3";
 import mconfirm from "./assets/audio/mconfirm.wav";
 import tryAud from "./assets/audio/tryagain.mp3";
 import mtryAud from "./assets/audio/mtryagain.wav";
+import mdonate from "./assets/audio/mdonate.wav";
+import fdonate from "./assets/audio/donate.mp3";
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
@@ -57,7 +59,10 @@ class Study extends React.Component {
       cart: new Map(),
       playReturn: true,
       currItem: '',
-      cartOrder: []
+      cartOrder: [],
+      donate: false,
+      donation: '',
+      other: false
     }
   }
 
@@ -260,7 +265,25 @@ class Study extends React.Component {
     this.orderItem(index, male);
   }
 
-  checkout() {
+  donation() {
+    const audioAgent = document.getElementsByClassName("audio-donate")[0];
+    audioAgent.play();
+    this.setState({donate: true})
+  }
+
+  otherDonate() {
+    this.setState({other: true})
+  }
+  
+  onChange(e) {
+    this.setState({ donation: e.target.value});
+  }
+
+  //checkout
+  checkout(e) {
+    if (e) {
+      this.setState({ donation: e});
+    }
     this.state.cartOrder.push({item: this.state.currItem, err: this.state.errcount, cartcnt: this.state.cartcount},     
       this.setState({checkout: true})
     )
@@ -289,7 +312,8 @@ class Study extends React.Component {
         cartOrder: this.state.cartOrder,
         latinsqr: this.props.latinsqr,
         uuid: this.props.uuid,
-        sess: this.props.sess
+        sess: this.props.sess,
+        donation: this.state.donation
       },
       submit: true
     })
@@ -330,7 +354,7 @@ class Study extends React.Component {
 
 
   render() {
-    const { itemDes, itemCounter, errorMit, tryAgain, checkout, submit, delivered, questComplete, incorrectItem, itemAdded, showHelp, response, speaking } = this.state;
+    const { itemDes, itemCounter, errorMit, tryAgain, checkout, submit, delivered, questComplete, incorrectItem, itemAdded, showHelp, response, speaking, donate } = this.state;
     const { sess, items, checkpointText, latinsqr } = this.props;
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
@@ -402,7 +426,7 @@ class Study extends React.Component {
                       <input type="radio" id={item[i]} value="correct" name={i}/>   
                       <label for={item[i]}>Looks Good</label><br/>
                       <input type="radio" id={item[1]} value="incorrect" name={i}/> 
-                      <label for={item[i]}>This is incorrect, return item</label><br/>
+                      <label for={item[i]}>Incorrect, return item</label><br/>
                     </form>
                   </div>
                 );
@@ -428,6 +452,27 @@ class Study extends React.Component {
           />
         </div>
       );
+    }
+
+    else if (donate) {
+      return (
+        <div className="body">
+          <div style={{maxHeight: "170px"}}>{ sessions[sess].agent }</div>
+          <audio className="audio-donate" onPlay={() => this.speaking()} onEnded={() => this.maybeErrorMit(errorMitigation)}>
+            <source src={male ? mdonate : fdonate}/>
+          </audio>
+          <p className="mega-speech" style={{maxHeight: "50px", margin: "15px"}}>Before checking out, would you like to make a donation to a local charity?</p>
+          <div className="survey-item-wrapper"> 
+            <button className="response" onClick={() => this.checkout(5)}>Donate $5</button>
+            <button className="response" onClick={() => this.checkout(10)}>Donate $10</button>
+            <button className="response" onClick={() => this.checkout(15)}>Donate $15</button>
+            <button className="response" onClick={() => this.checkout(20)}>Donate $20</button>
+            <button className="response" onClick={() => this.otherDonate()}>Other</button>
+            {this.state.other ? <div><input type="number" id="age" name="age" min="0" max="120" style={{maxWidth: "30px"}} onChange={this.onChange.bind(this)}/>
+                                <button onClick={() => this.checkout()}>Submit</button> </div> : null }
+          </div>
+        </div>
+      )
     }
 
     //still ordering
@@ -483,13 +528,13 @@ class Study extends React.Component {
                 removeItem={this.removeItem.bind(this)}
                 exchangeItem={this.exchangeItem.bind(this)}
                 itemCounter={itemCounter}
-                checkout={this.checkout.bind(this)}
+                checkout={this.donation.bind(this)}
                 cartcount={this.cartcount.bind(this)}
                 speaking={this.state.speaking}
               />
             }
             {!speaking && (itemCounter >= items.length - 1) ? 
-              <button className="purchase" onClick={() => this.checkout()}>  
+              <button className="purchase" onClick={() => this.donation()}>  
                 Proceed to Checkout 
               </button> : null }
           </div>            

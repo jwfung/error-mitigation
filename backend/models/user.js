@@ -13,6 +13,10 @@ const UserSchema = new mongoose.Schema({
     type: Array,
     required: false
   },
+  donation: {
+    type: Number,
+    required: false
+  },
   cartOrder: {
     type: Array,
     required: false

@@ -1,4 +1,4 @@
 {
   "appService.deploySubpath": "backend",
-  "appService.defaultWebAppToDeploy": "/subscriptions/85645129-053b-477d-824f-ee006e1e01c2/resourceGroups/myResourceGroup/providers/Microsoft.Web/sites/error-mit-gen"
+  "appService.defaultWebAppToDeploy": "/subscriptions/85645129-053b-477d-824f-ee006e1e01c2/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/emittgen"
 }
