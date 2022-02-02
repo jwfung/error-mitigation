@@ -7,8 +7,6 @@ import confirm from "./assets/audio/confirm.mp3";
 import mconfirm from "./assets/audio/mconfirm.wav";
 import tryAud from "./assets/audio/tryagain.mp3";
 import mtryAud from "./assets/audio/mtryagain.wav";
-import mdonate from "./assets/audio/mdonate.wav";
-import fdonate from "./assets/audio/donate.mp3";
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
@@ -17,7 +15,8 @@ import sessOrder from "./text/sess_order";
 import Cart from "./Cart.js";
 import Walkthrough from "./Walkthrough.js";
 import Questionaire from "./Questionaire.js";
-import ReturnProcess from "./ReturnProcess.js"
+import ReturnProcess from "./ReturnProcess.js";
+import Donation from "./Donate.js";
 
 class Response extends React.Component {
   render () {
@@ -62,7 +61,6 @@ class Study extends React.Component {
       cartOrder: [],
       donate: false,
       donation: '',
-      other: false
     }
   }
 
@@ -266,26 +264,18 @@ class Study extends React.Component {
   }
 
   donation() {
-    const audioAgent = document.getElementsByClassName("audio-donate")[0];
-    audioAgent.play();
+    console.log("donate")
     this.setState({donate: true})
   }
 
-  otherDonate() {
-    this.setState({other: true})
-  }
-  
-  onChange(e) {
-    this.setState({ donation: e.target.value});
-  }
+
 
   //checkout
   checkout(e) {
-    if (e) {
-      this.setState({ donation: e});
-    }
+    console.log("checkout")
+    this.setState({donation: e});
     this.state.cartOrder.push({item: this.state.currItem, err: this.state.errcount, cartcnt: this.state.cartcount},     
-      this.setState({checkout: true})
+      this.setState({checkout: true}) 
     )
   }
 
@@ -313,7 +303,7 @@ class Study extends React.Component {
         latinsqr: this.props.latinsqr,
         uuid: this.props.uuid,
         sess: this.props.sess,
-        donation: this.state.donation
+        donation: this.state.donation,
       },
       submit: true
     })
@@ -344,6 +334,7 @@ class Study extends React.Component {
   }
 
   delivered() {
+    console.log("delivered")
     this.setState({delivered: true})
   }
 
@@ -393,6 +384,7 @@ class Study extends React.Component {
      }
 
     else if (delivered) {
+      {console.log("in delivered")}
       return (
         <div>
           <h2>Your items have arrived!</h2>
@@ -423,10 +415,8 @@ class Study extends React.Component {
                                                                       <img style={{textAlign: "left", maxHeight: "100px"}} src={item.secondOpt.img} alt=""/>)}
                     </div>                                                        
                     <form style={{marginBlock: "auto"}} onChange={(this.onChangeValue.bind(this))}>
-                      <input type="radio" id={item[i]} value="correct" name={i}/>   
-                      <label for={item[i]}>Looks Good</label><br/>
-                      <input type="radio" id={item[1]} value="incorrect" name={i}/> 
-                      <label for={item[i]}>Incorrect, return item</label><br/>
+                      <input type="radio" id={item[i]} value="correct" name={i}> Looks Good</input><br/>
+                      <input type="radio" id={item[1]} value="incorrect" name={i}> Incorrect, return item</input><br/>
                     </form>
                   </div>
                 );
@@ -456,22 +446,11 @@ class Study extends React.Component {
 
     else if (donate) {
       return (
-        <div className="body">
-          <div style={{maxHeight: "170px"}}>{ sessions[sess].agent }</div>
-          <audio className="audio-donate" onPlay={() => this.speaking()} onEnded={() => this.maybeErrorMit(errorMitigation)}>
-            <source src={male ? mdonate : fdonate}/>
-          </audio>
-          <p className="mega-speech" style={{maxHeight: "50px", margin: "15px"}}>Before checking out, would you like to make a donation to a local charity?</p>
-          <div className="survey-item-wrapper"> 
-            <button className="response" onClick={() => this.checkout(5)}>Donate $5</button>
-            <button className="response" onClick={() => this.checkout(10)}>Donate $10</button>
-            <button className="response" onClick={() => this.checkout(15)}>Donate $15</button>
-            <button className="response" onClick={() => this.checkout(20)}>Donate $20</button>
-            <button className="response" onClick={() => this.otherDonate()}>Other</button>
-            {this.state.other ? <div><input type="number" id="age" name="age" min="0" max="120" style={{maxWidth: "30px"}} onChange={this.onChange.bind(this)}/>
-                                <button onClick={() => this.checkout()}>Submit</button> </div> : null }
-          </div>
-        </div>
+        <Donation
+          agent={agent}
+          male={male}
+          checkout={this.checkout.bind(this)}
+        />
       )
     }
 
