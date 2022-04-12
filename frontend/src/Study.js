@@ -7,6 +7,7 @@ import confirm from "./assets/audio/confirm.mp3";
 import mconfirm from "./assets/audio/mconfirm.wav";
 import tryAud from "./assets/audio/tryagain.mp3";
 import mtryAud from "./assets/audio/mtryagain.wav";
+import axios from "axios";
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
@@ -273,7 +274,7 @@ class Study extends React.Component {
   //checkout
   checkout(e) {
     console.log("checkout")
-    this.setState({donation: e});
+    // this.setState({donation: e});
     this.state.cartOrder.push({item: this.state.currItem, err: this.state.errcount, cartcnt: this.state.cartcount},     
       this.setState({checkout: true}) 
     )
@@ -369,22 +370,11 @@ class Study extends React.Component {
         );
       }
       else {
-        if (!questComplete) {
-          return (
-            <Questionaire 
-              completeQuest={this.completeQuest.bind(this)} 
-              data={this.state.data} 
-              clearData={this.clearData.bind(this)}
-            />);
-        } 
-        else {
           return <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} latinsqr={latinsqr} uuid={this.props.uuid}/>;
-        }
        }
      }
 
     else if (delivered) {
-      {console.log("in delivered")}
       return (
         <div>
           <h2>Your items have arrived!</h2>
@@ -415,8 +405,10 @@ class Study extends React.Component {
                                                                       <img style={{textAlign: "left", maxHeight: "100px"}} src={item.secondOpt.img} alt=""/>)}
                     </div>                                                        
                     <form style={{marginBlock: "auto"}} onChange={(this.onChangeValue.bind(this))}>
-                      <input type="radio" id={item[i]} value="correct" name={i}> Looks Good</input><br/>
-                      <input type="radio" id={item[1]} value="incorrect" name={i}> Incorrect, return item</input><br/>
+                      {/* <input type="radio" id={item[i]} value="correct" name={i}/> Looks Good
+                      <br/> */}
+                      <input type="radio" id={item[i]} value="incorrect" name={i}/> Incorrect, return item
+                      <br/>
                     </form>
                   </div>
                 );
@@ -429,30 +421,30 @@ class Study extends React.Component {
     }
 
     //checked out
-    else if (checkout) {
-      return (
-        <div className="body">
-          <h2>Purchase Completed!</h2>
-          <img src={check} alt=""/>
-          <img
-            src={nextBtn}
-            className="nextBtn"
-            onClick={() => this.delivered()}
-            alt="next button"
-          />
-        </div>
-      );
-    }
+    // else if (checkout) {
+    //   return (
+    //     <div className="body">
+    //       <h2>Purchase Completed!</h2>
+    //       <img src={check} alt=""/>
+    //       <img
+    //         src={nextBtn}
+    //         className="nextBtn"
+    //         onClick={() => this.delivered()}
+    //         alt="next button"
+    //       />
+    //     </div>
+    //   );
+    // }
 
-    else if (donate) {
-      return (
-        <Donation
-          agent={agent}
-          male={male}
-          checkout={this.checkout.bind(this)}
-        />
-      )
-    }
+    // else if (donate) {
+    //   return (
+    //     <Donation
+    //       agent={agent}
+    //       male={male}
+    //       checkout={this.checkout.bind(this)}
+    //     />
+    //   )
+    // }
 
     //still ordering
     else if (currTex != null) {
@@ -477,7 +469,7 @@ class Study extends React.Component {
                 </audio>
                 <audio className="audio-agent-error" src={errorAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
               </div>
-              <div id="instructions" className="text">
+              {/* <div id="instructions" className="text">
                 {itemCounter >= 1 && <div className="help-btn" onClick={() => this.clickHelp()}>?</div>}
                 {showHelp || itemCounter < 1  || itemCounter === 5? 
                 <div>
@@ -486,21 +478,24 @@ class Study extends React.Component {
                   <p> {currTex.bottom} </p>
                 </div> : <img src={items[5].photo} alt="" style={{maxWidth: "80%"}}/>}
 
+              </div> */}
+              <div>
+                { sessions[sess].agent }
+                { tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> Let's try that again. </p>: null}
+                { speaking && itemAdded && !tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> { confirmItem } </p>: null }
+                { speaking && errorMit ? <p className="mega-speech"> { errorMitigation } </p> : null}
+                { itemDes !== false && !errorMit ? <p className="mega-speech"> { itemDes } </p> : null}
+                { response >= 0 && !speaking &&
+                  <Response 
+                    index={response} 
+                    addItem={this.addItem.bind(this)} 
+                    exchangeItem={this.exchangeItem.bind(this)} 
+                    tryAgain={this.tryAgain.bind(this)}
+                    male={male}
+                  /> }
               </div>
             </div>
-            { sessions[sess].agent }
-            { tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> Let's try that again. </p>: null}
-            { speaking && itemAdded && !tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> { confirmItem } </p>: null }
-            { speaking && errorMit ? <p className="mega-speech"> { errorMitigation } </p> : null}
-            { itemDes !== false && !errorMit ? <p className="mega-speech"> { itemDes } </p> : null}
-            { response >= 0 && !speaking &&
-              <Response 
-                index={response} 
-                addItem={this.addItem.bind(this)} 
-                exchangeItem={this.exchangeItem.bind(this)} 
-                tryAgain={this.tryAgain.bind(this)}
-                male={male}
-              /> }
+            
             { speaking ? <div className="phone-off"/> :
               <Cart 
                 items={items}
@@ -513,7 +508,7 @@ class Study extends React.Component {
               />
             }
             {!speaking && (itemCounter >= items.length - 1) ? 
-              <button className="purchase" onClick={() => this.donation()}>  
+              <button className="purchase" onClick={() => this.delivered()}>  
                 Proceed to Checkout 
               </button> : null }
           </div>            
