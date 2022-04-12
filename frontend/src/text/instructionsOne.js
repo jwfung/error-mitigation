@@ -12,23 +12,23 @@ const instructions = [
     mid: "Try asking it what the weather is.",
     speak: "It is currently 59 degrees Fahrenheit."
   },
-  {
-    top: "The SmartShop Company has been working on developing different personal assistants.",
-    mid: "You have been tasked with helping them test out 4 of their beta assistants."
-  },
-  {
-    mega: true,
-    header: "Meet Megma",
-    top: "Megma is our first assistant. It was developed by Team1 and can help you order items online.",
-    mid: "You can check your cart before placing your order, or place the order directly."
-  },
+  // {
+  //   top: "The SmartShop Company has been working on developing different personal assistants.",
+  //   mid: "You have been tasked with helping them test out 4 of their beta assistants."
+  // },
+  // {
+  //   mega: true,
+  //   header: "Meet Megma",
+  //   top: "Megma is our first assistant. It was developed by Team1 and can help you order items online.",
+  //   mid: "You can check your cart before placing your order, or place the order directly."
+  // },
   {
     top: <p>You will be using Megma to <strong>order some items for a party.</strong></p>,
     mid: "Click to arrow button to see what you need, and proceed with Session #1."
   },
-  {
-    top: <p>"Hello, I need some help preparing for a party. I need some <strong>party hats</strong> for our guests, a <strong>brownies mix</strong> to make some brownies, and <strong>balloons</strong> for decorations. Any kind will do. I also need a <strong>bow</strong> to wrap my presents. Oh! And dont forget the <strong>plastic cups!</strong>"</p>
-  }
+  // {
+  //   top: <p>"Hello, I need some help preparing for a party. I need some <strong>party hats</strong> for our guests, a <strong>brownies mix</strong> to make some brownies, and <strong>balloons</strong> for decorations. Any kind will do. I also need a <strong>bow</strong> to wrap my presents. Oh! And dont forget the <strong>plastic cups!</strong>"</p>
+  // }
 ];
 
 export default instructions;

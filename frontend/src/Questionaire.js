@@ -142,8 +142,6 @@ class Questionaire extends React.Component {
             </div>
           </div>
 
-         
-
           <div className="wrapper">
             <p className="statement">I am happy with how the error was handled.</p>
             <div>
