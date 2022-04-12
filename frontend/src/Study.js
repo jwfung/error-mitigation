@@ -7,6 +7,9 @@ import confirm from "./assets/audio/confirm.mp3";
 import mconfirm from "./assets/audio/mconfirm.wav";
 import tryAud from "./assets/audio/tryagain.mp3";
 import mtryAud from "./assets/audio/mtryagain.wav";
+import frepeat from "./assets/audio/frepeat.mp3";
+import mrepeat from "./assets/audio/mrepeat.wav";
+
 import axios from "axios";
 
 import checkpointTwo from "./text/checkpointTwo";
@@ -264,12 +267,10 @@ class Study extends React.Component {
     this.orderItem(index, male);
   }
 
-  donation() {
-    console.log("donate")
-    this.setState({donate: true})
+  repeatAudio() {
+    const audioAgent = document.getElementsByClassName("audio-repeat")[0];
+    audioAgent.play();
   }
-
-
 
   //checkout
   checkout(e) {
@@ -337,6 +338,11 @@ class Study extends React.Component {
   delivered() {
     console.log("delivered")
     this.setState({delivered: true})
+  }
+
+  donation() {
+    console.log("donate")
+    this.setState({donate: true})
   }
 
   //post-session survey
@@ -419,37 +425,9 @@ class Study extends React.Component {
         </div>
       );
     }
-
-    //checked out
-    // else if (checkout) {
-    //   return (
-    //     <div className="body">
-    //       <h2>Purchase Completed!</h2>
-    //       <img src={check} alt=""/>
-    //       <img
-    //         src={nextBtn}
-    //         className="nextBtn"
-    //         onClick={() => this.delivered()}
-    //         alt="next button"
-    //       />
-    //     </div>
-    //   );
-    // }
-
-    // else if (donate) {
-    //   return (
-    //     <Donation
-    //       agent={agent}
-    //       male={male}
-    //       checkout={this.checkout.bind(this)}
-    //     />
-    //   )
-    // }
-
     //still ordering
     else if (currTex != null) {
       return (
-        <div>
           <div>
             <div className="wrapper">
               <div className="list">
@@ -469,16 +447,7 @@ class Study extends React.Component {
                 </audio>
                 <audio className="audio-agent-error" src={errorAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
               </div>
-              {/* <div id="instructions" className="text">
-                {itemCounter >= 1 && <div className="help-btn" onClick={() => this.clickHelp()}>?</div>}
-                {showHelp || itemCounter < 1  || itemCounter === 5? 
-                <div>
-                  <p> {currTex.top} </p>
-                  <p> {currTex.mid} </p>
-                  <p> {currTex.bottom} </p>
-                </div> : <img src={items[5].photo} alt="" style={{maxWidth: "80%"}}/>}
 
-              </div> */}
               <div>
                 { sessions[sess].agent }
                 { tryAgain && !errorMit && !itemDes && response ? <p className="mega-speech"> Let's try that again. </p>: null}
@@ -496,23 +465,33 @@ class Study extends React.Component {
               </div>
             </div>
             
-            { speaking ? <div className="phone-off"/> :
-              <Cart 
-                items={items}
-                removeItem={this.removeItem.bind(this)}
-                exchangeItem={this.exchangeItem.bind(this)}
-                itemCounter={itemCounter}
-                checkout={this.donation.bind(this)}
-                cartcount={this.cartcount.bind(this)}
-                speaking={this.state.speaking}
-              />
-            }
-            {!speaking && (itemCounter >= items.length - 1) ? 
-              <button className="purchase" onClick={() => this.delivered()}>  
-                Proceed to Checkout 
-              </button> : null }
-          </div>            
+            <div className="wrapper" style={{marginTop: "5%"}}>
+              <audio className="audio-repeat" >
+                <source src={male ? mrepeat : frepeat}/>
+              </audio>
+              <div>
+                <button onClick={() => this.repeatAudio()}>"Sorry I didn't quite get that.."</button>
+              </div>
+              <div>
+              { speaking ? <div className="phone-off"/> :
+                <Cart 
+                  items={items}
+                  removeItem={this.removeItem.bind(this)}
+                  exchangeItem={this.exchangeItem.bind(this)}
+                  itemCounter={itemCounter}
+                  checkout={this.donation.bind(this)}
+                  cartcount={this.cartcount.bind(this)}
+                  speaking={this.state.speaking}
+                />
+              }
+              {!speaking && (itemCounter >= items.length - 1) ? 
+                <button className="purchase" onClick={() => this.delivered()}>  
+                  Proceed to Checkout 
+                </button> : null }
+              </div>
+            </div>   
         </div>
+       
       );
     } else {return;}
   }
