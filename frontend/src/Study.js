@@ -47,7 +47,6 @@ class Study extends React.Component {
       submit: false, //TODO: Undo for debugging
       delivered: false, //
       questComplete: false,
-      incorrectItem: false, 
       itemAdded: false,
       showHelp: false,
       response: -1,
@@ -307,7 +306,7 @@ class Study extends React.Component {
         sess: this.props.sess,
         donation: this.state.donation,
       },
-      submit: true
+      delivered: true
     })
   }
 
@@ -320,7 +319,7 @@ class Study extends React.Component {
   }
 
   finishReturn() {
-    this.setState({incorrectItem: false})
+    this.setState({submit: true})
   }
 
   onChangeValue(e) {
@@ -363,66 +362,22 @@ class Study extends React.Component {
     const agent = sessions[sess].agent;
 
     if (submit) {
-      if (incorrectItem) {
-        return ( 
-          <ReturnProcess
-            errorAud={errorAud}
-            errorMitigation={errorMitigation}
-            agent={agent}
-            male={male}
-            finishReturn={this.finishReturn.bind(this)}
-            errorMit={errorMit}
-          />
-        );
-      }
-      else {
-          return <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} latinsqr={latinsqr} uuid={this.props.uuid}/>;
-       }
-     }
-
+      console.log("submit")
+      return ( 
+        <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} latinsqr={latinsqr} uuid={this.props.uuid}/>
+      );
+    }
     else if (delivered) {
+      console.log("in delivered")
       return (
-        <div>
-          <h2>Your items have arrived!</h2>
-          <p>You can put the item away, or ask the assistant to start a return process for any unexpected items.</p>
-            <div className="list">
-              <h3 style={{fontFamily: "cursive"}}> Shopping List </h3>
-              {items.map((item, i) => {
-                return (
-                  <div key={i}>
-                    {item.list && <p className="list-disabled">{item.name}</p>}
-                  </div>
-                )
-              })}
-            </div> 
-            <div className="survey-wrapper">
-            {items && items.map((item, i) => {
-              if (item.name) {
-                return (
-                  <div className="survey-item-wrapper" key={i}>
-                     <div> {/* list items for survey */}
-                      <h3>{(item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
-                                  (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)) } </h3>
-                      {item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? 
-                                                                      <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.firstOpt.img} alt=""/> :
-                                                                      <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.secondOpt.img} alt=""/>) :
-                                                                    (item.added && item.firstOpt.inCart ? 
-                                                                      <img style={{textAlign: "left", maxHeight: "100px"}} src={item.firstOpt.img} alt=""/> :
-                                                                      <img style={{textAlign: "left", maxHeight: "100px"}} src={item.secondOpt.img} alt=""/>)}
-                    </div>                                                        
-                    <form style={{marginBlock: "auto"}} onChange={(this.onChangeValue.bind(this))}>
-                      {/* <input type="radio" id={item[i]} value="correct" name={i}/> Looks Good
-                      <br/> */}
-                      <input type="radio" id={item[i]} value="incorrect" name={i}/> Incorrect, return item
-                      <br/>
-                    </form>
-                  </div>
-                );
-              } 
-            })}
-            </div>
-            <button className="speak" style={{marginBottom: "40px"}} onClick={() => this.handleSubmission()}> Submit </button>
-        </div>
+        <ReturnProcess
+          errorAud={errorAud}
+          errorMitigation={errorMitigation}
+          agent={agent}
+          male={male}
+          finishReturn={this.finishReturn.bind(this)}
+          errorMit={errorMit}
+        />
       );
     }
     //still ordering
@@ -484,10 +439,11 @@ class Study extends React.Component {
                   speaking={this.state.speaking}
                 />
               }
-              {!speaking && (itemCounter >= items.length - 1) ? 
+              {/* {!speaking && (itemCounter >= items.length - 1) ?  */}
                 <button className="purchase" onClick={() => this.delivered()}>  
                   Proceed to Checkout 
-                </button> : null }
+                </button> 
+                {/* : null } */}
               </div>
             </div>   
         </div>

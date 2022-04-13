@@ -9,24 +9,22 @@ class ReturnProcess extends React.Component{
   constructor() {
     super();
     this.state= {
-      speaking: true,
-      playReturn: true
+      speaking: false,
+      playReturn: false,
+      next: false
     }
   }
 
-  componentDidMount() {
+  startReturn() {
+    this.setState({playReturn: true, speaking: true})
     const audioAgent = document.getElementsByClassName("audio-return")[0];
     audioAgent.play();
   }
 
   errorMitAudio() {
-    if (this.props.errorMit && this.props.errorMitigation) {
+    if (this.props.errorMitigation) {
       const audioAgent = document.getElementsByClassName("audio-agent-error")[0];
       audioAgent.play();
-    }
-
-    if (!this.props.errorMitigation) {
-      this.setState({speaking: false})
     }
 
     this.setState({playReturn: false})
@@ -48,11 +46,12 @@ class ReturnProcess extends React.Component{
     return (
       <div style={{marginTop: "10%"}}>
         { agent }
-        {this.state.playReturn ? <p className="mega-speech"> Okay, I can start a return process for the item </p> :
-        (errorMit ? <p className="mega-speech"> {errorMitigation} </p> : <img className="nextBtn" src={nextBtn} alt="next button" onClick={finishReturn()}/>)}
-        {!speaking && <img className="nextBtn" src={nextBtn} alt="next button" onClick={finishReturn()}/>}
+        {this.state.playReturn || speaking? (<div> <p className="mega-speech"> Okay, I can start a return process for the item </p> 
+          <p className="mega-speech"> {errorMitigation} </p> </div>) : <img className="nextBtn" src={nextBtn} alt="next button" onClick={() => finishReturn()}/>}
+        {!speaking && <img className="nextBtn" src={nextBtn} alt="next button" onClick={() => finishReturn()}/>}
         <audio className="audio-return" src={returnAud} onEnded={() => this.errorMitAudio()}/>
         <audio className="audio-agent-error" src={errorAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
+        <button onClick={() => this.startReturn()}>Start Return Process</button>
       </div>
     );
   }
