@@ -10,17 +10,19 @@ import mtryAud from "./assets/audio/mtryagain.wav";
 import frepeat from "./assets/audio/frepeat.mp3";
 import mrepeat from "./assets/audio/mrepeat.wav";
 
-import axios from "axios";
-
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
 import sessOrder from "./text/sess_order";
 
 import Cart from "./Cart.js";
 import Walkthrough from "./Walkthrough.js";
-import Questionaire from "./Questionaire.js";
 import ReturnProcess from "./ReturnProcess.js";
-import Donation from "./Donate.js";
+
+import { initializeApp } from "firebase/app";
+import { getDatabase, set, ref, update, push } from "firebase/database";
+import firebaseConfig from "./config";
+import { element, object } from "prop-types";
+
 
 class Response extends React.Component {
   render () {
@@ -38,7 +40,10 @@ class Response extends React.Component {
 class Study extends React.Component {
   constructor(props) {
     super(props);
+    const firebaseApp = initializeApp(firebaseConfig);
+
     this.state = { 
+      app: firebaseApp,
       itemCounter: 0, 
       errorMit: false, 
       maybeErrorMit: false,
@@ -58,7 +63,7 @@ class Study extends React.Component {
       },
       errcount: 0,
       cartcount: 0,
-      cart: new Map(),
+      cart: [],
       playReturn: true,
       currItem: '',
       cartOrder: [],
@@ -118,34 +123,28 @@ class Study extends React.Component {
     items[index].added = true
 
     this.addItemAudio();
+    console.log(currItem);
 
-    if (!currItem) {
-      this.setState({
-        items,
-        itemCounter: itemCounter + 1, 
-        errorMit: false, 
-        itemAdded: true,
-        response: -1,
-        itemDes: false,
-        currItem: (item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
-                  (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)),
-      });
-    }
-    else {
-      this.state.cartOrder.push({item: currItem, err: this.state.errcount, cartcnt: this.state.cartcount},
-      this.setState({ 
-        items, 
-        itemCounter: itemCounter + 1, 
-        errorMit: false, 
-        itemAdded: true,
-        response: -1,
-        itemDes: false,
-        errorcount: 0,
-        cartcount: 0,
-        currItem: (item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
-                  (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name))
-      }))
-    }
+    const curr = item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
+    (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name);
+
+    this.state.cart.push(curr)
+    this.state.cartOrder.push({item: curr, err: this.state.errcount, cartcnt: this.state.cartcount})
+
+    this.setState({ 
+      items, 
+      itemCounter: itemCounter + 1, 
+      errorMit: false, 
+      itemAdded: true,
+      response: -1,
+      itemDes: false,
+      errorcount: 0,
+      cartcount: 0,
+      currItem: curr
+    })
+      
+    console.log("push" + this.state.cartOrder)
+    
   }
 
   addItemAudio() {
@@ -271,87 +270,75 @@ class Study extends React.Component {
     audioAgent.play();
   }
 
-  //checkout
-  checkout(e) {
-    console.log("checkout")
-    // this.setState({donation: e});
-    this.state.cartOrder.push({item: this.state.currItem, err: this.state.errcount, cartcnt: this.state.cartcount},     
-      this.setState({checkout: true}) 
-    )
-  }
-
   //post-delivery survey
   handleSubmission() {   
-    this.state.cart.forEach((value) => {
-      if (value === "incorrect") {
-        this.setState({incorrectItem: true})
-      }
-    })
+    console.log("handling submit");
 
-    const arr = Array.from(this.state.cart).map(([itm, res]) => ({ itm, res }))
-    arr.forEach((element, index) => {
-      const item = this.props.items[index];
-      const {wrongItem} = item; 
-      if (wrongItem && !wrongItem.rejected) {
-        this.setState({errorMit: true})
-      }
-    })
+    var filtered = this.state.cartOrder.filter(function(x) {
+      return x !== undefined;
+    });
+    
+    console.log(filtered);
     
     this.setState({
-      data: {
-        cart: arr,
-        cartOrder: this.state.cartOrder,
-        latinsqr: this.props.latinsqr,
-        uuid: this.props.uuid,
-        sess: this.props.sess,
-        donation: this.state.donation,
-      },
-      delivered: true
-    })
+      cartOrder: filtered,
+    }, () => { 
+      this.writeUserData(); 
+    });
+    this.clearData();
+  }
+
+  writeUserData = () => {
+    var uuid = this.props.uuid;
+    JSON.parse( JSON.stringify(this.state.data));
+    const db = getDatabase(this.state.app);
+
+    const sess = this.props.sess;
+
+    const data = {
+      cart: this.state.cart,
+      cartOrder: this.state.cartOrder,
+    }
+    
+    const updates = {};
+    updates['/' + uuid + '/' + sess] = data;
+    updates['/' + uuid + '/' + "latinsqr"] = this.props.latinsqr;
+    update(ref(db), updates);
+
+    console.log("CART: " + this.state.cart);
+    console.log("DATA SAVED");
   }
 
   clearData() {
     this.setState({
-      cart: new Map(),
       errorcount: 0,
       cartcount: 0,
     });  
   }
 
   finishReturn() {
+    this.handleSubmission();
     this.setState({submit: true})
   }
 
-  onChangeValue(e) {
-    const item = this.props.items[e.target.name];
-    const itm = item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
-                                (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)
+  // onChangeValue(e) {
+  //   const item = this.props.items[e.target.name];
+  //   
 
-    let res = e.target.value;
+  //   let res = e.target.value;
     
-    this.state.cart.set(itm, res);
-    console.log(this.state.cart)
+  //   this.state.cart.set(itm, res);
+  //   console.log(this.state.cart)
 
-  }
+  // }
 
   delivered() {
     console.log("delivered")
     this.setState({delivered: true})
   }
 
-  donation() {
-    console.log("donate")
-    this.setState({donate: true})
-  }
-
-  //post-session survey
-  completeQuest() {
-    this.setState({questComplete: true})
-  }
-
-
   render() {
-    const { itemDes, itemCounter, errorMit, tryAgain, checkout, submit, delivered, questComplete, incorrectItem, itemAdded, showHelp, response, speaking, donate } = this.state;
+    const { itemDes, itemCounter, errorMit, tryAgain, checkout, submit, delivered, incorrectItem, itemAdded, showHelp, response, speaking } = this.state;
     const { sess, items, checkpointText, latinsqr } = this.props;
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
@@ -384,6 +371,7 @@ class Study extends React.Component {
     else if (currTex != null) {
       return (
           <div>
+            {male ? <h3>Male</h3> : <h3>Female</h3>}
             <div className="wrapper">
               <div className="list">
                 <h3 style={{fontFamily: "cursive"}}> Shopping List </h3>
@@ -433,8 +421,8 @@ class Study extends React.Component {
                   items={items}
                   removeItem={this.removeItem.bind(this)}
                   exchangeItem={this.exchangeItem.bind(this)}
+                  delivered={this.delivered.bind(this)}
                   itemCounter={itemCounter}
-                  checkout={this.donation.bind(this)}
                   cartcount={this.cartcount.bind(this)}
                   speaking={this.state.speaking}
                 />

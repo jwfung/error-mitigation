@@ -31,9 +31,6 @@ class Walkthrough extends React.Component {
     }
 
     else if (index >= sessions[sess].text.length) {
-      console.log("sess: "+ sess)
-      console.log(this.props.latinsqr)
-      console.log(male)
       return <Study items={sessions[sess].list} sess={sess} checkpointText={checkpointText} latinsqr={latinsqr} uuid={this.props.uuid}/>;
     }
 
@@ -45,9 +42,15 @@ class Walkthrough extends React.Component {
           <b> {currTex.header} </b>
         </h1>
         <div>
+        
           <p> {currTex.top} </p>
-          <p> {currTex.mid} </p>
+          
+          <p><b> The participant's id is: </b></p>
+          <p>{this.props.uuid}</p>
+
           <p> {currTex.bottom} </p>
+
+          
           {currTex.agent && (
             <div className="agent">
             </div>

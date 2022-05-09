@@ -122,7 +122,7 @@ const cartOne = [
         inCart: false
       },
     },
-    name: "bow (ribbon)",
+    name: "bow",
     firstOpt: {
       name: "Large Red Birthday Bow",
       des: "Okay, I found Large Red Birthday Bow. Is this correct?",

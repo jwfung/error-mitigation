@@ -55,7 +55,7 @@ class Cart extends React.Component {
   }
 
   render() {
-    const { items, removeItem, exchangeItem, itemCounter, checkout } = this.props;
+    const { items, removeItem, exchangeItem, itemCounter, delivered } = this.props;
     var modal = document.getElementById("myDevice");
 
     window.onclick = function(event) {
@@ -82,7 +82,7 @@ class Cart extends React.Component {
                   </div>
                 )
               })}
-              {itemCounter === items.length - 1 ? <button className="purchase" onClick={() => checkout()}> Proceed to Checkout </button> : null}
+              {itemCounter === items.length - 1 ? <button className="purchase" onClick={() => delivered()}> Proceed to Checkout </button> : null}
             </div>
             <div className="device-footer"/>
           </div>
