@@ -45,14 +45,14 @@ const cartOne = [
     name: "party hats",
     firstOpt: {
       name: "Striped Party Hats", 
-      des: "Okay, I found Striped Party Hats. Is this correct?",
+      des: "Okay, I found Striped Party Hats. Should I add to cart?",
       audio: striped,
       maudio: mstriped,
       img: partyhats, 
       inCart: true },
     secondOpt: {
       name: "Patterned Party Hats",
-      des: "Okay, I found Patterned Party Hat. Is this correct?",
+      des: "Okay, I found Patterned Party Hat. Should I add to cart?",
       audio: patterned,
       maudio: mpatterned,
       img: hats, 
@@ -65,14 +65,14 @@ const cartOne = [
     name:"brownie mix",
     firstOpt: {
       name: "Betty Crockers Brownie Mix",
-      des: "Okay, I found Betty Crockers Brownies Mix. Is this correct?",
+      des: "Okay, I found Betty Crockers Brownies Mix. Should I add to cart?",
       audio: betty,
       maudio: mbetty,
       img: brownies,
       inCart: true },
     secondOpt: {
       name: "Ghirardelli Brownie Mix",
-      des: "Okay, I found Ghirardelli Brownie Mix. Is this correct?",
+      des: "Okay, I found Ghirardelli Brownie Mix. Should I add to cart?",
       audio: ghirad, 
       maudio: mghirad,
       img: ghir,
@@ -84,7 +84,7 @@ const cartOne = [
     name: "balloons",
     firstOpt: {
       name: "Bag of Balloons",
-      des: "Okay, I found Bag of Balloons. Is this correct?",
+      des: "Okay, I found Bag of Balloons. Should I add to cart?",
       audio: ball,
       maudio: mball,
       img: balloons,
@@ -92,7 +92,7 @@ const cartOne = [
     }, 
     secondOpt: {
       name: "Metallic Balloons Pack",
-      des: "Okay, I found Metallic Balloons Pack. Is this correct?",
+      des: "Okay, I found Metallic Balloons Pack. Should I add to cart?",
       audio: metalball,
       maudio: mmetalball,
       img: metball,
@@ -107,7 +107,7 @@ const cartOne = [
       rejected: false,
       firstOpt: {
         name: "Red Archery Bow", 
-        des: "Okay, I found Red Archery Bow. Is this correct?",
+        des: "Okay, I found Red Archery Bow. Should I add to cart?",
         audio: redarch,
         maudio: mredarch,
         img: archery, 
@@ -115,7 +115,7 @@ const cartOne = [
       },
       secondOpt: {
         name: "Firebird Bow for Archery", 
-        des: "Okay, I found Firebird Bow for Archery. Is this correct?",
+        des: "Okay, I found Firebird Bow for Archery. Should I add to cart?",
         audio: firebrd,
         maudio: mfirebrd,
         img: firebird, 
@@ -125,7 +125,7 @@ const cartOne = [
     name: "bow",
     firstOpt: {
       name: "Large Red Birthday Bow",
-      des: "Okay, I found Large Red Birthday Bow. Is this correct?",
+      des: "Okay, I found Large Red Birthday Bow. Should I add to cart?",
       audio: redbday,
       maudio: mredbday,
       img: bow,
@@ -133,7 +133,7 @@ const cartOne = [
     }, 
     secondOpt: {
       name: "Gift Wrapping Bow",
-      des: "Okay, I found Bow for Gifts. Is this correct?",
+      des: "Okay, I found Bow for Gifts. Should I add to cart?",
       audio: bowgifts,
       maudio: mbowgifts,
       img: giftwrap,
@@ -147,7 +147,7 @@ const cartOne = [
     name: "plastic cups",
     firstOpt: {
       name: "Red Plastic Cups",
-      des: "Okay, I found Red Plastic Cups. Is this correct?",
+      des: "Okay, I found Red Plastic Cups. Should I add to cart?",
       audio: redcup,
       maudio: mredcup,
       img: cups,
@@ -155,7 +155,7 @@ const cartOne = [
     }, 
     secondOpt: {
       name: "Clear Plastic Cups",
-      des: "Okay, I found Clear Plastic Cups. Is this correct?",
+      des: "Okay, I found Clear Plastic Cups. Should I add to cart?",
       audio: clearcup,
       maudio: mclearcup,
       img: clearcups,

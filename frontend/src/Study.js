@@ -29,8 +29,8 @@ class Response extends React.Component {
     const { index, male } = this.props;
     return (
       <div className="survey-item-wrapper"> 
-        <button className="response" onClick={() => this.props.addItem(index)}>"Yes, this is correct. Add to cart"</button>
-        <button className="response" onClick={() => this.props.exchangeItem(index, male)}>"Yes, this is correct, but show me more options"</button>
+        <button className="response" onClick={() => this.props.addItem(index)}>"Yes, add to cart"</button>
+        <button className="response" onClick={() => this.props.exchangeItem(index, male)}>"Show me more options"</button>
         <button className="response" onClick={() => this.props.tryAgain(index)}>"No, this is incorrect"</button>
       </div>
     );
