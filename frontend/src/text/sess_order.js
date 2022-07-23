@@ -1,31 +1,49 @@
-import a1 from "../assets/audio/e1.mp3"
-import a2 from "../assets/audio/Er2.mp3"
-import a3 from "../assets/audio/male_er1.mp3"
-import a4 from "../assets/audio/male_er2.mp3"
+import a1 from "../assets/audio/female_apology.mp3" // Amama:female apology
+import a2 from "../assets/audio/neutral_apology.mp3"
+import a3 from "../assets/audio/male_apology.mp3" // Amama: changing audio here 
+import a4 from "../assets/audio/female_compensation.mp3" 
+import a5 from "../assets/audio/neutral_compensation.mp3" 
+import a6 from "../assets/audio/male_compensation.mp3" 
 
 //females
 const er1 = {
   audio: a1, 
   audio2: null,
   error: "​I am sorry for the inconvenience. I confused the items because there are multiple items for this keyword. From time to time, I have difficulty distinguishing between homonyms.",
-  male: false
+  male: false,
+  neutral: false
 };
 const er2 = {
   audio: a2, 
-  error: "Sorry for the mishap. I confused the items because there are multiple items for this keyword. You know English is not natural for agents, we understand ones and zeros better…In English, different words can sound the same",
-  male: false
+  error: "​I am sorry for the inconvenience. I confused the items because there are multiple items for this keyword. From time to time, I have difficulty distinguishing between homonyms.",
+  male: false,
+  neutral: true
 };
 //male
   const er3 = {
   audio: a3, 
   audio2: null,
   error: "​I am sorry for the inconvenience. I confused the items because there are multiple items for this keyword. From time to time, I have difficulty distinguishing between homonyms.",
-  male: true
+  male: true,
+  neutral: false
 };
 const er4 = {
   audio: a4, 
-  error: "Sorry for the mishap. I confused the items because there are multiple items for this keyword. You know English is not natural for agents, we understand ones and zeros better…In English, different words can sound the same",
-  male: true
+  error: "I will give you a 10 dollar credit that can be applied to your future purchases with us for the inconvenience caused.",
+  male: false,
+  neutral: false
+};
+const er5 = {
+  audio: a5, 
+  error:"I will give you a 10 dollar credit that can be applied to your future purchases with us for the inconvenience caused.",
+  male: false,
+  neutral: true
+};
+const er6 = {
+  audio: a6, 
+  error: "I will give you a 10 dollar credit that can be applied to your future purchases with us for the inconvenience caused.",
+  male: true,
+  neutral: false
 };
 // const er3 = {
 //   audio: a3,
@@ -35,6 +53,7 @@ const er4 = {
 //   audio: a4,
 //   error: "Sorry for the mishap. The engineering team must have made an error in the system last night. They frequently update my knowledge base. Embarrassing…Sometimes I don't know what they're doing behind my back."};
 
+// Amama:Change this
 const sessOrder = [
   [er1, er2, er3, er4],
   [er2, er3, er4, er1],

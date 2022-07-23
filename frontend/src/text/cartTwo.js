@@ -48,6 +48,7 @@ const cartTwo = [
       des: "Okay, I found Duracell Double A Batteries. Should I add to cart?",
       audio: Duracell,
       maudio: mDuracell,
+	naudio: nDuracell,
       img: battery, 
       inCart: true },
     secondOpt: {
@@ -55,6 +56,7 @@ const cartTwo = [
       des: "Okay, I found Energizer Double A Batteries. Should I add to cart?",
       audio: Energizer,
       maudio: mEnergizer,
+	naudio: nEnergizer,
       img: battery2, 
       inCart: false },
     added: false,
@@ -67,6 +69,7 @@ const cartTwo = [
       des: "Okay, I found Purina Dog Food. Should I add to cart?", 
       audio: Purina,
       maudio: mPurina,
+	naudio: nPurina,
       img: dogFood, 
       inCart: true },
     secondOpt: {
@@ -74,6 +77,7 @@ const cartTwo = [
       des: "Okay, I found Cesar Dog Food. Should I add to cart?", 
       audio: Cesar,
       maudio: mCesar,
+	naudio: nCesar,
       img: dogFood2, 
       inCart: false },
     list: true,
@@ -86,6 +90,7 @@ const cartTwo = [
       des: "Okay, I found Glad 13-gallon trash bags. Should I add to cart?",  
       audio: Glad,
       maudio: mGlad,
+	naudio: nGlad,
       img: bags, 
       inCart: true },
     secondOpt: {
@@ -93,6 +98,7 @@ const cartTwo = [
       des: "Okay, I found Kirkland Signature 13-gallons bags. Should I add to cart?", 
       audio: Kirkland,
       maudio: mKirkland,
+	naudio: nKirkland,
       img: bags2, 
       inCart: false },
     list: true,
@@ -104,6 +110,7 @@ const cartTwo = [
         des: "Okay, I found ECLINERS one-gallon trash bags. I can add 13 of them. Should I add to cart?", 
         audio: ecline,
         maudio: mecline,
+	  naudio: necline
         img: ecliners, 
         inCart: false },
       firstOpt: {
@@ -111,6 +118,7 @@ const cartTwo = [
         des: "Okay, I found Think Green one-gallon bags. I can add 13 of them. Should I add to cart?", 
         audio: think,
         maudio: mthink,
+	  naudio: nthink, 
         img: green, 
         inCart: true },
       },
@@ -122,6 +130,7 @@ const cartTwo = [
       des: "Okay, I found Bounty Paper Towels. Should I add to cart?", 
       audio: bount,
       maudio: mbount,
+	naudio: nbount,
       img: bounty, 
       inCart: true },
     secondOpt: {
@@ -129,6 +138,7 @@ const cartTwo = [
       des: "Okay, I found Plenty Paper Towels. Should I add to cart?", 
       audio: plent,
       maudio: mplent,
+	naudio: nplent,
       img: plenty, 
       inCart: false },
     list: true,
@@ -141,6 +151,7 @@ const cartTwo = [
       des: "Okay, I found HEB lactose-free milk. Should I add to cart?", 
       audio: HEB,
       maudio: mHEB,
+	naudio: nHEB,
       img: lactaid,
       inCart: true },
     secondOpt: {
@@ -148,6 +159,7 @@ const cartTwo = [
       des: "Okay, I found Dairy Pure lactose-free milk. Should I add to cart?", 
       audio: Dairy,
       maudio: mDairy,
+	naudio: nDairy,
       img: dairyfree, 
       inCart: false },
     list: true,

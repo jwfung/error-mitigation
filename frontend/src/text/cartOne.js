@@ -48,6 +48,7 @@ const cartOne = [
       des: "Okay, I found Striped Party Hats. Should I add to cart?",
       audio: striped,
       maudio: mstriped,
+	naudio: nstriped,
       img: partyhats, 
       inCart: true },
     secondOpt: {
@@ -55,6 +56,7 @@ const cartOne = [
       des: "Okay, I found Patterned Party Hat. Should I add to cart?",
       audio: patterned,
       maudio: mpatterned,
+	naudio: npatterned,
       img: hats, 
       inCart: false },
     list: true,
@@ -68,6 +70,7 @@ const cartOne = [
       des: "Okay, I found Betty Crockers Brownies Mix. Should I add to cart?",
       audio: betty,
       maudio: mbetty,
+	naudio: nbetty,
       img: brownies,
       inCart: true },
     secondOpt: {
@@ -75,6 +78,7 @@ const cartOne = [
       des: "Okay, I found Ghirardelli Brownie Mix. Should I add to cart?",
       audio: ghirad, 
       maudio: mghirad,
+	naudio: nghirad,
       img: ghir,
       inCart: false },
     list: true,
@@ -87,6 +91,7 @@ const cartOne = [
       des: "Okay, I found Bag of Balloons. Should I add to cart?",
       audio: ball,
       maudio: mball,
+	naudio: nball,
       img: balloons,
       inCart: true
     }, 
@@ -95,6 +100,7 @@ const cartOne = [
       des: "Okay, I found Metallic Balloons Pack. Should I add to cart?",
       audio: metalball,
       maudio: mmetalball,
+	naudio: nmetalball,
       img: metball,
       inCart: false
     },
@@ -110,6 +116,7 @@ const cartOne = [
         des: "Okay, I found Red Archery Bow. Should I add to cart?",
         audio: redarch,
         maudio: mredarch,
+	  naudio: nredarch,
         img: archery, 
         inCart: true
       },
@@ -118,6 +125,7 @@ const cartOne = [
         des: "Okay, I found Firebird Bow for Archery. Should I add to cart?",
         audio: firebrd,
         maudio: mfirebrd,
+	  naudio: nfirebrd,
         img: firebird, 
         inCart: false
       },
@@ -128,6 +136,7 @@ const cartOne = [
       des: "Okay, I found Large Red Birthday Bow. Should I add to cart?",
       audio: redbday,
       maudio: mredbday,
+	naudio: nredbday,
       img: bow,
       inCart: true,
     }, 
@@ -136,6 +145,7 @@ const cartOne = [
       des: "Okay, I found Bow for Gifts. Should I add to cart?",
       audio: bowgifts,
       maudio: mbowgifts,
+	naudio: nbowgifts,
       img: giftwrap,
       inCart: false,
     },
@@ -150,6 +160,7 @@ const cartOne = [
       des: "Okay, I found Red Plastic Cups. Should I add to cart?",
       audio: redcup,
       maudio: mredcup,
+	naudio: nredcup,
       img: cups,
       inCart: true,
     }, 
@@ -158,6 +169,7 @@ const cartOne = [
       des: "Okay, I found Clear Plastic Cups. Should I add to cart?",
       audio: clearcup,
       maudio: mclearcup,
+	naudio: mclearcup,
       img: clearcups,
       incart: false
     },
