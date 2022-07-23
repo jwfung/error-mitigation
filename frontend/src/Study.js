@@ -69,6 +69,7 @@ class Study extends React.Component {
       cartOrder: [],
       donate: false,
       donation: '',
+      goReturn: false
     }
   }
 
@@ -244,6 +245,10 @@ class Study extends React.Component {
     });
   }
 
+  goToReturn() {
+    this.setState({goReturn: true})
+  }
+
   exchangeItem(index, male) {
     const { items } = this.props;
 
@@ -338,7 +343,7 @@ class Study extends React.Component {
   }
 
   render() {
-    const { itemDes, itemCounter, errorMit, tryAgain, checkout, submit, delivered, incorrectItem, itemAdded, showHelp, response, speaking } = this.state;
+    const { itemDes, itemCounter, errorMit, tryAgain, goReturn, submit, delivered, itemAdded, response, speaking } = this.state;
     const { sess, items, checkpointText, latinsqr } = this.props;
     
     const currTex = (checkpointText && itemCounter < 5 ? checkpointText[0] : checkpointText[1]);
@@ -354,18 +359,43 @@ class Study extends React.Component {
         <Walkthrough sess={sess + 1} checkpointText={checkpointTwo} latinsqr={latinsqr} uuid={this.props.uuid}/>
       );
     }
+    else if (goReturn) {
+      return (
+        <ReturnProcess
+            errorAud={errorAud}
+            errorMitigation={errorMitigation}
+            agent={agent}
+            male={male}
+            finishReturn={this.finishReturn.bind(this)}
+            errorMit={errorMit}
+          />
+        );
+    }
     else if (delivered) {
       console.log("in delivered")
       return (
-        <ReturnProcess
-          errorAud={errorAud}
-          errorMitigation={errorMitigation}
-          agent={agent}
-          male={male}
-          finishReturn={this.finishReturn.bind(this)}
-          errorMit={errorMit}
-        />
-      );
+        <div>
+          <h2>Your order has been placed!</h2>
+          <p>If needed, you can ask the assistant to start a return process for any unexpected items.</p>
+
+            {items && items.map((item, i) => {
+            if (item.name) {
+              return (
+                <div className="survey-item-wrapper" key={i}>
+                    <h3>{(item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
+                                (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name)) } </h3>
+                    {item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? 
+                                                                    <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.firstOpt.img} alt=""/> :
+                                                                    <img style={{textAlign: "left", maxHeight: "100px"}} src={item.wrongItem.secondOpt.img} alt=""/>) :
+                                                                  (item.added && item.firstOpt.inCart ? 
+                                                                    <img style={{textAlign: "left", maxHeight: "100px"}} src={item.firstOpt.img} alt=""/> :
+                                                                    <img style={{textAlign: "left", maxHeight: "100px"}} src={item.secondOpt.img} alt=""/>)}
+                </div>
+              )}})}
+              <button onClick={()=>this.goToReturn()}>Next</button>
+          </div>
+        );
+       
     }
     //still ordering
     else if (currTex != null) {

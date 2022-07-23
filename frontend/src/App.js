@@ -1,39 +1,30 @@
 import Walkthrough from "./Walkthrough";
 import checkpointText from "./text/checkpointOne.js";
 import React from 'react';
-import PreQuestionaire from "./PreQuestionnaire.js";
-import Homepage from "./Homepage.js";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      goToStudy: true, //undo
-      continue: true,
-      latinsqr: Math.floor( Math.random() * 4 ),
-      //latinsqr: 3,
+      goToStudy: false, //undo
+      latinsqr: "",
       uuid: '00-0-4-1-000'.replace(/[^-]/g,
             s => ((Math.random() + ~~s) * 0x10000 >> s).toString(16).padStart(4, '0'))
-    }
+    };
+    this.onChangeValue = this.onChangeValue.bind(this);
   }
 
     goToStudy() {
       this.setState({goToStudy: true})
+      console.log(this.state.latinsqr)
     }
 
-    continue() {
-      this.setState({continue: true})
+    onChangeValue(e) {
+      this.setState({latinsqr: e.target.value})
     }
+
 
   render () {
-    if (!this.state.continue) {
-      return (
-        <div className="App">
-          <Homepage continue={this.continue.bind(this)}/>
-        </div>
-      )
-    }
-
     if (this.state.goToStudy) {
       return (
         <div className="App">
@@ -45,7 +36,27 @@ class App extends React.Component {
     else {
       return (
         <div className="App">
-          <PreQuestionaire uuid={this.state.uuid} goToStudy={this.goToStudy.bind(this)}/>
+          <h4>Select Latinsquare model</h4>
+          <div onChange={this.onChangeValue}>
+            <input type="radio" id="0" value="0" name="latinsqr"/>
+            <label for="0">0: f-serious, f-cas, m-serious, m-cas</label>
+            <br/>
+
+            <input type="radio" id="1" value="1" name="latinsqr"/>
+            <label for="1">1: f-cas, m-serious, m-cas, f-serious</label>
+            <br/>
+
+            <input type="radio" id="2" value="2" name="latinsqr"/>
+            <label for="2">2: m-serious, m-cas, f-serious, f-cas</label>
+            <br/>
+
+            <input type="radio" id="3" value="3" name="latinsqr"/>
+            <label for="3">3: m-cas, f-serious, f-cas, m-serious</label>
+            <br/>
+
+          </div>
+          {this.state.latinsqr == "" ? null :<button onClick={() =>this.goToStudy()}>Continue</button>}
+
         </div>);
     }
   }

@@ -5,7 +5,6 @@ import Study from "./Study";
 import Speech from "./Speech";
 
 import sessions from "./text/sessions";
-import Demographics from "./Demographics";
 
 class Walkthrough extends React.Component {
   constructor(props) {
@@ -24,10 +23,10 @@ class Walkthrough extends React.Component {
   render() {
     const { index } = this.state;
     const { checkpointText, sess, latinsqr } = this.props;
-    const male = ((latinsqr === 2 || latinsqr === 3) ? true : false)
+    const male = ((latinsqr === "2" || latinsqr === "3") ? true : false)
 
     if (sess === 4) {
-      return <Demographics uuid={this.props.uuid}/>
+      return (<p>finished</p>)
     }
 
     else if (index >= sessions[sess].text.length) {
