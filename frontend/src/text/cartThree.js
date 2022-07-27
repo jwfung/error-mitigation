@@ -26,8 +26,6 @@ import jans from "../assets/audio/jansport.mp3";
 import hers from "../assets/audio/herschel.mp3";
 
 
-
-
 const cartThree = [
   {
     name: "backpack",

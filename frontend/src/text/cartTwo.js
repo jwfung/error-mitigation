@@ -69,7 +69,7 @@ const cartTwo = [
       des: "Okay, I found Purina Dog Food. Should I add to cart?", 
       audio: Purina,
       maudio: mPurina,
-	naudio: nPurina,
+      naudio: nPurina,
       img: dogFood, 
       inCart: true },
     secondOpt: {
@@ -77,7 +77,7 @@ const cartTwo = [
       des: "Okay, I found Cesar Dog Food. Should I add to cart?", 
       audio: Cesar,
       maudio: mCesar,
-	naudio: nCesar,
+      naudio: nCesar,
       img: dogFood2, 
       inCart: false },
     list: true,
@@ -110,7 +110,7 @@ const cartTwo = [
         des: "Okay, I found ECLINERS one-gallon trash bags. I can add 13 of them. Should I add to cart?", 
         audio: ecline,
         maudio: mecline,
-	  naudio: necline
+        naudio: necline,
         img: ecliners, 
         inCart: false },
       firstOpt: {
