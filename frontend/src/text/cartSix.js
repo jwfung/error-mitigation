@@ -6,7 +6,8 @@ import pure from "../assets/100pure.jpg";
 import plant from "../assets/plant.jpg";
 import dismask from "../assets/dismask.jpg";
 import kmask from "../assets/Kmask.jpg";
-import nivea from "../assets/aveen.jpg";
+import aveeno from "../assets/aveen.jpg";
+import nivea from "../assets/nivea.jpg";
 import br2 from "../assets/br2.jpg";
 import br1 from "../assets/br1.jpg";
 
@@ -14,7 +15,7 @@ import br1 from "../assets/br1.jpg";
 import qtowel from "../assets/audio/qtowel.mp3";
 import ftowel from "../assets/audio/ftowel.mp3";
 import niveaa from "../assets/audio/niveaa.mp3";
-import aveeno from "../assets/audio/aveeno.mp3";
+import aveenoa from "../assets/audio/aveeno.mp3";
 import knmask from "../assets/audio/knmask.mp3";
 import smask from "../assets/audio/smask.mp3";
 import cmask from "../assets/audio/cmask.mp3";
@@ -79,16 +80,16 @@ const cartSix = [
       des: "Okay I found Nivea Nourishing Body Lotion. Should I add to cart?",
       audio: niveaa,
       maudio: mniveaa,
-	naudio: nniveaa,
+	    naudio: nniveaa,
       img: nivea, 
       inCart: true },
     secondOpt: {
       name: "Aveeno Skin Relief Moisturizing Lotion", 
       des: "Okay I found Aveeno Skin Relief Moisturizing Lotion. Should I add to cart?",
-      audio: aveeno,
+      audio: aveenoa,
       maudio: maveeno,
-	naudio: naveeno,
-      img: aveen, 
+	    naudio: naveeno,
+      img: aveeno, 
       inCart: false },
     added: false,
     list: true
@@ -100,7 +101,7 @@ const cartSix = [
       des: "Okay I found Multicolor Protective KN95 Face Masks. Should I add to cart?",
       audio: knmask,
       maudio: mknmask,
-	naudio:nknmask
+	    naudio:nknmask,
       img: kmask, 
       inCart: true },
     secondOpt: {
@@ -146,7 +147,7 @@ const cartSix = [
       des: "Okay I found Plant Therapy Essential Oils. Should I add to cart?",
       audio: plantt,
       maudio: mplantt,
-	naudio: mplantt
+	naudio: nplantt,
       img: plant, 
       inCart: false },
     added: false,

@@ -55,7 +55,7 @@ class App extends React.Component {
             <br/>
 
           </div>
-          {this.state.latinsqr == "" ? null :<button onClick={() =>this.goToStudy()}>Continue</button>}
+          {this.state.latinsqr === "" ? null :<button onClick={() =>this.goToStudy()}>Continue</button>}
 
         </div>);
     }

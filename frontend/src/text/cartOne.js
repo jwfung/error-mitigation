@@ -180,7 +180,7 @@ const cartOne = [
       des: "Okay, I found Clear Plastic Cups. Should I add to cart?",
       audio: clearcup,
       maudio: mclearcup,
-	naudio: mclearcup,
+	    naudio: nclearcup,
       img: clearcups,
       incart: false
     },
