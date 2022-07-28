@@ -53,12 +53,14 @@ const er6 = {
 //   audio: a4,
 //   error: "Sorry for the mishap. The engineering team must have made an error in the system last night. They frequently update my knowledge base. Embarrassing…Sometimes I don't know what they're doing behind my back."};
 
-// Amama:Change this
+// Amama:Changed
 const sessOrder = [
-  [er1, er2, er3, er4],
-  [er2, er3, er4, er1],
-  [er3, er4, er1, er2],
-  [er4, er1, er2, er3]
+  [er1, er2, er6, er3, er5, er4],
+  [er2, er3, er1, er4, er6, er5],
+  [er3, er4, er2, er5, er1, er6],
+  [er4, er5, er3, er6, er2, er1],
+  [er5, er6, er4, er1, er3, er2],
+  [er6, er1, er5, er2, er4, er3]
 ];
 
 export default sessOrder;
