@@ -13,7 +13,7 @@ import clear from "../assets/elmerclear.jpg";
 import photo from "../assets/back2school2.jpg";
 
 import eclear from "../assets/audio/clear.mp3";
-import ewhite from "../assets/audio/white.mp3";
+import ewhite from "../assets/audio/ewhite.mp3";
 import pastel from "../assets/audio/pastel.mp3";
 import fivestar from "../assets/audio/fivestars.mp3";
 import paper from "../assets/audio/paper.mp3";
@@ -25,13 +25,39 @@ import gold from "../assets/audio/gold.mp3";
 import jans from "../assets/audio/jansport.mp3";
 import hers from "../assets/audio/herschel.mp3";
 
+import meclear from "../assets/audio/meclear.mp3";
+import mewhite from "../assets/audio/mewhite.mp3";
+import mpastel from "../assets/audio/mpastel.mp3";
+import mfivestar from "../assets/audio/mfivestar.mp3";
+import mpaper from "../assets/audio/mpaper.mp3";
+import mtic from "../assets/audio/mtic.mp3";
+import mpack from "../assets/audio/mpack.mp3";
+import mglass from "../assets/audio/mglass.mp3";
+import mmodern from "../assets/audio/mmodern.mp3";
+import mgold from "../assets/audio/mgold.mp3";
+import mjans from "../assets/audio/mjans.mp3";
+import mhers from "../assets/audio/mhers.mp3";
+
+import neclear from "../assets/audio/neclear.mp3";
+import newhite from "../assets/audio/newhite.mp3";
+import npastel from "../assets/audio/npastel.mp3";
+import nfivestar from "../assets/audio/nfivestar.mp3";
+import npaper from "../assets/audio/npaper.mp3";
+import ntic from "../assets/audio/ntic.mp3";
+import npack from "../assets/audio/npack.mp3";
+import nglass from "../assets/audio/nglass.mp3";
+import nmodern from "../assets/audio/nmodern.mp3";
+import ngold from "../assets/audio/ngold.mp3";
+import njans from "../assets/audio/njans.mp3";
+import nhers from "../assets/audio/nhers.mp3";
+
 
 const cartThree = [
   {
     name: "backpack",
     firstOpt: {
       name: "Jansport School Backpack", 
-      des: "Okay, I found Jansport School Backpack. Is this correct?",
+      des: "Okay, I found Jansport School Backpack. Should I add to cart?",
       audio: jans,
 	maudio:mjans,
 	naudio:njans,
@@ -39,7 +65,7 @@ const cartThree = [
       inCart: true },
     secondOpt: {
       name: "Herschel School Backpack", 
-      des: "Okay, I found Herschel School Backpack. Is this correct?",
+      des: "Okay, I found Herschel School Backpack. Should I add to cart?",
       img: herschel,
       audio: hers, 
 	maudio: mhers,
@@ -52,7 +78,7 @@ const cartThree = [
     name: "(eye) glasses",
     firstOpt: {
       name: "Gold Framed Glasses", 
-      des: "Okay, I found Gold Framed Glasses. Is this correct?",
+      des: "Okay, I found Gold Framed Glasses. Should I add to cart?",
       audio: gold,
 	maudio: mgold,
 	naudio: ngold,
@@ -60,7 +86,7 @@ const cartThree = [
       inCart: true },
     secondOpt: {
       name: "Modern Optic Glasses", 
-      des: "Okay, I found Modern Optic Glasses. Is this correct?",
+      des: "Okay, I found Modern Optic Glasses. Should I add to cart?",
       audio: modern,
 	maudio: mmodern,
 	naudio: nmodern,
@@ -72,7 +98,7 @@ const cartThree = [
         rejected: false,
       firstOpt: {
         name: "Set of 6 Glass Cupware", 
-        des: "Okay, I found a set of 6 Glass Cupwares. Is this correct?",
+        des: "Okay, I found a set of 6 Glass Cupwares. Should I add to cart?",
         audio: glass,
 	  maudio: mglass,
 	  naudio: nglass,
@@ -80,7 +106,7 @@ const cartThree = [
         inCart: true },
       secondOpt: {
         name: "Pack of 6 Glass Cups", 
-        des: "Okay, I found Pack of 6 Glass Cups. Is this correct?",
+        des: "Okay, I found Pack of 6 Glass Cups. Should I add to cart?",
         audio: pack,
 	  maudio: mpack,
 	  naudio: npack,
@@ -92,7 +118,7 @@ const cartThree = [
     name: "#2 pencils",
     firstOpt: {
       name: "Ticonderoga #2 Wooden Pencils", 
-      des: "Okay, I found Ticonderoga #2 Wooden Pencils. Is this correct?",
+      des: "Okay, I found Ticonderoga #2 Wooden Pencils. Should I add to cart?",
       audio: tic,
 	maudio: mtic,
 	naudio: ntic,
@@ -100,7 +126,7 @@ const cartThree = [
       inCart: true },
     secondOpt: {
       name: "Papermate #2 Pencils", 
-      des: "Okay, I found Papermate #2 Pencils. Is this correct?",
+      des: "Okay, I found Papermate #2 Pencils. Should I add to cart?",
       audio: paper,
 	maudio: mpaper,
 	naudio: npaper, 
@@ -113,7 +139,7 @@ const cartThree = [
     name: "notebooks",
     firstOpt: {
       name: "Five Stars Brand Notebook", 
-      des: "Okay, I found Five Stars Brand Notebook. Is this correct?",
+      des: "Okay, I found Five Stars Brand Notebook. Should I add to cart?",
       audio: fivestar,
 	maudio: mfivestar,
 	naudio: nfivestar,
@@ -121,7 +147,7 @@ const cartThree = [
       inCart: true },
     secondOpt: {
       name: "Pastel Blue 1-Subject Notebook", 
-      des: "Okay, I found Pastel Blue 1-Subject Notebook. Is this correct?",
+      des: "Okay, I found Pastel Blue 1-Subject Notebook. Should I add to cart?",
       audio: pastel,
 	maudio: mpastel,
 	naudio: npastel,
@@ -134,7 +160,7 @@ const cartThree = [
     name: "school glue",
     firstOpt: {
       name: "Elmer's White School Glue", 
-      des: "Okay, I found Elmer's White School Glue. Is this correct?",
+      des: "Okay, I found Elmer's White School Glue. Should I add to cart?",
       audio: ewhite,
 	maudio: mewhite,
 	naudio: newhite,
@@ -142,8 +168,10 @@ const cartThree = [
       inCart: true },
     secondOpt: {
       name: "Elmer's Clear School Glue", 
-      des: "Okay, I found Elmer's Clear School Glue. Is this correct?",
+      des: "Okay, I found Elmer's Clear School Glue. Should I add to cart?",
       audio: eclear,
+	maudio: meclear,
+	naudio: neclear,
       img: clear, 
       inCart: false },
     added: false,

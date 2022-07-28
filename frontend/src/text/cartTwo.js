@@ -25,18 +25,31 @@ import plent from "../assets/audio/plent.mp3";
 import ecline from "../assets/audio/ecline.mp3";
 import think from "../assets/audio/think.mp3";
 
-import mDuracell from "../assets/audio/mduracell.wav";
-import mEnergizer from "../assets/audio/menergizer.wav";
-import mPurina from "../assets/audio/mpurina.wav";
-import mCesar from "../assets/audio/mcesar.wav";
-import mHEB from "../assets/audio/mHEB.wav";
-import mDairy from "../assets/audio/mdairy.wav";
-import mGlad from "../assets/audio/mglad.wav";
-import mKirkland from "../assets/audio/mkirkland.wav";
-import mbount from "../assets/audio/mbount.wav";
-import mplent from "../assets/audio/mplent.wav";
-import mecline from "../assets/audio/mecline.wav";
-import mthink from "../assets/audio/mthink.wav";
+import mDuracell from "../assets/audio/mduracell.mp3";
+import mEnergizer from "../assets/audio/menergizer.mp3";
+import mPurina from "../assets/audio/mpurina.mp3";
+import mCesar from "../assets/audio/mcesar.mp3";
+import mHEB from "../assets/audio/mHEB.mp3";
+import mDairy from "../assets/audio/mdairy.mp3";
+import mGlad from "../assets/audio/mglad.mp3";
+import mKirkland from "../assets/audio/mkirkland.mp3";
+import mbount from "../assets/audio/mbount.mp3";
+import mplent from "../assets/audio/mplent.mp3";
+import mecline from "../assets/audio/mecline.mp3";
+import mthink from "../assets/audio/mthink.mp3";
+
+import nDuracell from "../assets/audio/nDuracell.mp3";
+import nEnergizer from "../assets/audio/nEnergizer.mp3";
+import nPurina from "../assets/audio/nPurina.mp3";
+import nCesar from "../assets/audio/nCesar.mp3";
+import nHEB from "../assets/audio/nHEB.mp3";
+import nDairy from "../assets/audio/nDairy.mp3";
+import nGlad from "../assets/audio/nGlad.mp3";
+import nKirkland from "../assets/audio/nKirkland.mp3";
+import nbount from "../assets/audio/nbount.mp3";
+import nplent from "../assets/audio/nplent.mp3";
+import necline from "../assets/audio/necline.mp3";
+import nthink from "../assets/audio/nthink.mp3";
 
 
 //need to add more specific audio

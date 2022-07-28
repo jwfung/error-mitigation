@@ -25,18 +25,31 @@ import pib from "../assets/audio/pib.mp3";
 import mcc from "../assets/audio/mcc.mp3";
 import rod from "../assets/audio/rod.mp3";
 
-import mRose from "../assets/audio/mrose.wav";
-import mSummer from "../assets/audio/msummer.wav";
-import mKing from "../assets/audio/mking.wav";
-import mAllPurpose from "../assets/audio/mallpurpose.wav";
-import msemi from "../assets/audio/msemi.wav";
-import mneswhite from "../assets/audio/mneswhite.wav";
-import mdom from "../assets/audio/mdom.wav";
-import mbutter from "../assets/audio/mamul.wav";
-import morg from "../assets/audio/morg.wav";
-import mpib from "../assets/audio/mpib.wav";
-import mmcc from "../assets/audio/mmcc.wav";
-import mrod from "../assets/audio/mrod.wav";
+import mRose from "../assets/audio/mRose.mp3";
+import mSummer from "../assets/audio/mSummer.mp3";
+import mKing from "../assets/audio/mKing.mp3";
+import mAllPurpose from "../assets/audio/mAllPurpose.mp3";
+import msemi from "../assets/audio/msemi.mp3";
+import mneswhite from "../assets/audio/mneswhite.mp3";
+import mdom from "../assets/audio/mdom.mp3";
+import mbutter from "../assets/audio/mbutter.mp3";
+import morg from "../assets/audio/morg.mp3";
+import mpib from "../assets/audio/mpib.mp3";
+import mmcc from "../assets/audio/mmcc.mp3";
+import mrod from "../assets/audio/mrod.mp3";
+
+import nRose from "../assets/audio/nRose.mp3";
+import nSummer from "../assets/audio/nSummer.mp3";
+import nKing from "../assets/audio/nKing.mp3";
+import nAllPurpose from "../assets/audio/nAllPurpose.mp3";
+import nsemi from "../assets/audio/nsemi.mp3";
+import nneswhite from "../assets/audio/nneswhite.mp3";
+import ndom from "../assets/audio/ndom.mp3";
+import nbutter from "../assets/audio/nbutter.mp3";
+import norg from "../assets/audio/norg.mp3";
+import npib from "../assets/audio/npib.mp3";
+import nmcc from "../assets/audio/nmcc.mp3";
+import nrod from "../assets/audio/nrod.mp3";
 
 
 const cartFive = [

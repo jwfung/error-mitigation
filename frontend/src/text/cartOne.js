@@ -25,20 +25,31 @@ import ghirad from "../assets/audio/ghir.mp3";
 import ball from "../assets/audio/bagball.mp3";
 import metalball from "../assets/audio/metball.mp3";
 
-import mredarch from "../assets/audio/mredarch.wav";
-import mfirebrd from "../assets/audio/mfirebrd.wav";
-import mredbday from "../assets/audio/mredbday.wav";
-import mbowgifts from "../assets/audio/mbowgifts.wav";
-import mredcup from "../assets/audio/mredcup.wav";
-import mclearcup from "../assets/audio/mclearcup.wav";
-import mstriped from "../assets/audio/mstriped.wav";
-import mpatterned from "../assets/audio/mpatterned.wav";
-import mbetty from "../assets/audio/mbetty.wav";
-import mghirad from "../assets/audio/mghirad.wav";
-import mball from "../assets/audio/mball.wav";
-import mmetalball from "../assets/audio/mmetalball.wav";
+import mredarch from "../assets/audio/mredarch.mp3";
+import mfirebrd from "../assets/audio/mfirebrd.mp3";
+import mredbday from "../assets/audio/mredbday.mp3";
+import mbowgifts from "../assets/audio/mbowgifts.mp3";
+import mredcup from "../assets/audio/mredcup.mp3";
+import mclearcup from "../assets/audio/mclearcup.mp3";
+import mstriped from "../assets/audio/mstriped.mp3";
+import mpatterned from "../assets/audio/mpatterned.mp3";
+import mbetty from "../assets/audio/mbetty.mp3";
+import mghirad from "../assets/audio/mghirad.mp3";
+import mball from "../assets/audio/mball.mp3";
+import mmetalball from "../assets/audio/mmetalball.mp3";
 
-
+import nredarch from "../assets/audio/nredarch.mp3";
+import nfirebrd from "../assets/audio/nfirebrd.mp3";
+import nredbday from "../assets/audio/nredbday.mp3";
+import nbowgifts from "../assets/audio/nbowgifts.mp3";
+import nredcup from "../assets/audio/nredcup.mp3";
+import nclearcup from "../assets/audio/nclearcup.mp3";
+import nstriped from "../assets/audio/nstriped.mp3";
+import npatterned from "../assets/audio/npatterned.mp3";
+import nbetty from "../assets/audio/nbetty.mp3";
+import nghirad from "../assets/audio/nghirad.mp3";
+import nball from "../assets/audio/nball.mp3";
+import nmetalball from "../assets/audio/nmetalball.mp3";
 
 const cartOne = [
   {

@@ -25,18 +25,31 @@ import mitt2 from "../assets/audio/mitt2.mp3";
 import omitt from "../assets/audio/oven.mp3";
 import wmitt from "../assets/audio/winter.mp3";
 
-import mallen from "../assets/audio/mallen.wav";
-import mbb from "../assets/audio/mbb.wav";
-import mnb from "../assets/audio/mnb.wav";
-import mua from "../assets/audio/mua.wav";
-import mwood from "../assets/audio/mwood.wav";
-import mnbat from "../assets/audio/mnbat.wav";
-import mtba from "../assets/audio/mtba.wav";
-import mbba from "../assets/audio/mbba.wav";
-import mmitt from "../assets/audio/mmitt.wav";
-import mmitt2 from "../assets/audio/mmitt2.wav";
-import momitt from "../assets/audio/momitt.wav";
-import mwmitt from "../assets/audio/mwmitt.wav";
+import mallen from "../assets/audio/mallen.mp3";
+import mbb from "../assets/audio/mbb.mp3";
+import mnb from "../assets/audio/mnb.mp3";
+import mua from "../assets/audio/mua.mp3";
+import mwood from "../assets/audio/mwood.mp3";
+import mnbat from "../assets/audio/mnbat.mp3";
+import mtba from "../assets/audio/mtba.mp3";
+import mbba from "../assets/audio/mbba.mp3";
+import mmitt from "../assets/audio/mmitt.mp3";
+import mmitt2 from "../assets/audio/mmitt2.mp3";
+import momitt from "../assets/audio/momitt.mp3";
+import mwmitt from "../assets/audio/mwmitt.mp3";
+
+import nallen from "../assets/audio/nallen.mp3";
+import nbb from "../assets/audio/nbb.mp3";
+import nnb from "../assets/audio/nnb.mp3";
+import nua from "../assets/audio/nua.mp3";
+import nwood from "../assets/audio/nwood.mp3";
+import nnbat from "../assets/audio/nnbat.mp3";
+import ntba from "../assets/audio/ntba.mp3";
+import nbba from "../assets/audio/nbba.mp3";
+import nmitt from "../assets/audio/nmitt.mp3";
+import nmitt2 from "../assets/audio/nmitt2.mp3";
+import nomitt from "../assets/audio/nomitt.mp3";
+import nwmitt from "../assets/audio/nwmitt.mp3";
 
 const cartFour = [
   {
