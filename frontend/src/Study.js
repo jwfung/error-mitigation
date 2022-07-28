@@ -11,6 +11,9 @@ import ntryAud from "./assets/audio/ntryagain.mp3";
 import frepeat from "./assets/audio/frepeat.mp3";
 import mrepeat from "./assets/audio/mrepeat.mp3";
 import nrepeat from "./assets/audio/nrepeat.mp3";
+import fbeyond from "./assets/audio/fbeyond.mp3";
+import mbeyond from "./assets/audio/mbeyond.mp3";
+import nbeyond from "./assets/audio/nbeyond.mp3";
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
@@ -105,7 +108,7 @@ class Study extends React.Component {
                           (neutral ? (!items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.naudio : items[index].secondOpt.naudio) :
                           (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.naudio : items[index].wrongItem.secondOpt.naudio)) : 
                           (!items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.audio : items[index].secondOpt.audio) :
-                              (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.naudio : items[index].wrongItem.secondOpt.naudio)))),
+                              (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.audio : items[index].wrongItem.secondOpt.audio)))), //fixed here
       errorMit: false,
       tryAgain: false,
       item: index
@@ -451,6 +454,47 @@ class Study extends React.Component {
                     <button onClick={() => this.repeatAudio()}>"Sorry I didn't quite get that.."</button>
                   </div>
 
+ 			<audio className="audio-beyond" >
+                    <source src={male ? mbeyond : (neutral ? nbeyond : fbeyond)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.repeatAudio()}>"Unfortunately, that is beyond capabailities."</button>
+                  </div>
+			
+			<audio className="audio-checkout" >
+                    <source src={male ? mcheckout : (neutral ? ncheckout : fcheckout)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.repeatAudio()}>"Would you like to check out?"</button>
+                  </div>
+
+			<audio className="audio-arrive" >
+                    <source src={male ? marrive : (neutral ? narrive : farrive)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.repeatAudio()}>"Okay, checking out. Your order will arrive shortly"</button>
+                  </div>
+			
+			<audio className="audio-removed" >
+                    <source src={male ? mremoved : (neutral ? nremoved : fremoved)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.repeatAudio()}>"Your item has been removed."</button>
+                  </div>
+
+			<audio className="audio-incart" >
+                    <source src={male ? mincart : (neutral ? nincart : fincart)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.repeatAudio()}>"Yes, that item is already in the cart."</button>
+                  </div>
+
+			<audio className="audio-notcart" >
+                    <source src={male ? mnotcart : (neutral ? nnotcart : fnotcart)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.repeatAudio()}>"Yes, that item is already in the cart."</button>
+                  </div>
 
               <div>
               { speaking ? <div className="phone-off"/> :
