@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import returnItm from "./assets/audio/return.mp3"; //TODO
-import mreturnItm from "./assets/audio/mreturn.wav";
+import mreturnItm from "./assets/audio/mreturn.mp3";
 
 import nextBtn from "./assets/next.png";
 
@@ -39,7 +39,7 @@ class ReturnProcess extends React.Component{
   }
 
   render() {
-    const { errorAud, errorMitigation, agent, finishReturn, errorMit, male } = this.props;
+    const { errorAud, errorMitigation, agent, finishReturn, male } = this.props;
     const { speaking } = this.state;
     const returnAud = male ? mreturnItm : returnItm;
 
