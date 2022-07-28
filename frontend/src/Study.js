@@ -4,11 +4,14 @@ import React from "react";
 import nextBtn from "./assets/next.png";
 import check from "./assets/check.png";
 import confirm from "./assets/audio/confirm.mp3";
-import mconfirm from "./assets/audio/mconfirm.wav";
+import mconfirm from "./assets/audio/mconfirm.mp3";
 import tryAud from "./assets/audio/tryagain.mp3";
-import mtryAud from "./assets/audio/mtryagain.wav";
+import mtryAud from "./assets/audio/mtryagain.mp3";
+import ntryAud from "./assets/audio/ntryagain.mp3";
 import frepeat from "./assets/audio/frepeat.mp3";
-import mrepeat from "./assets/audio/mrepeat.wav";
+import mrepeat from "./assets/audio/mrepeat.mp3";
+import nrepeat from "./assets/audio/nrepeat.mp3";
+
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
