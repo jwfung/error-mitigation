@@ -3,6 +3,8 @@ import React from "react";
 
 import confirm from "./assets/audio/confirm.mp3";
 import mconfirm from "./assets/audio/mconfirm.mp3";
+import nconfirm from "./assets/audio/nconfirm.mp3";
+//TODO: need neutral
 import tryAud from "./assets/audio/tryagain.mp3";
 import mtryAud from "./assets/audio/mtryagain.mp3";
 import ntryAud from "./assets/audio/ntryagain.mp3";
@@ -24,11 +26,11 @@ import firebaseConfig from "./config";
 
 class Response extends React.Component {
   render () {
-    const { index, male } = this.props;
+    const { index, male, neutral } = this.props;
     return (
       <div className="survey-item-wrapper"> 
         <button className="response" onClick={() => this.props.addItem(index)}>"Yes, add to cart"</button>
-        <button className="response" onClick={() => this.props.exchangeItem(index, male)}>"Show me more options"</button>
+        <button className="response" onClick={() => this.props.exchangeItem(index, male, neutral)}>"Show me more options"</button>
         <button className="response" onClick={() => this.props.tryAgain(index)}>"No, this is incorrect"</button>
       </div>
     );
@@ -92,7 +94,7 @@ class Study extends React.Component {
     this.setState({ response: this.state.item, speaking: false })
   }
 
-  orderItem(index, male) {
+  orderItem(index, male, neutral) {
     const { items } = this.props;
 
     this.setState({
@@ -100,8 +102,10 @@ class Study extends React.Component {
                                                                             (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.des : items[index].wrongItem.secondOpt.des) ),
       itemAudio: ( male ? (!items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.maudio : items[index].secondOpt.maudio) :
                               (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.maudio : items[index].wrongItem.secondOpt.maudio)) :
+                          (neutral ? (!items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.naudio : items[index].secondOpt.naudio) :
+                          (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.naudio : items[index].wrongItem.secondOpt.naudio)) : 
                           (!items[index].wrongItem || items[index].wrongItem.rejected ? (items[index].firstOpt.inCart ? items[index].firstOpt.audio : items[index].secondOpt.audio) :
-                              (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.audio : items[index].wrongItem.secondOpt.audio))),
+                              (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.naudio : items[index].wrongItem.secondOpt.naudio)))),
       errorMit: false,
       tryAgain: false,
       item: index
@@ -247,7 +251,7 @@ class Study extends React.Component {
     this.setState({goReturn: true})
   }
 
-  exchangeItem(index, male) {
+  exchangeItem(index, male, neutral) {
     const { items } = this.props;
 
     const item = items[index];
@@ -265,7 +269,7 @@ class Study extends React.Component {
       (items[index].wrongItem.firstOpt.inCart ? items[index].wrongItem.firstOpt.des : items[index].wrongItem.secondOpt.des))
     });
 
-    this.orderItem(index, male);
+    this.orderItem(index, male, neutral);
   }
 
   repeatAudio() {
@@ -348,6 +352,7 @@ class Study extends React.Component {
     const confirmItem = "Got it! Item has been added to your cart";
     const errorMitigation = sessOrder[latinsqr][sess].error; //TODO: change to latinsqr
     const male = sessOrder[latinsqr][sess].male;
+    const neutral = sessOrder[latinsqr][sess].neutral;
     const errorAud = sessOrder[latinsqr][sess].audio;
     const agent = sessions[sess].agent;
 
@@ -364,6 +369,7 @@ class Study extends React.Component {
             errorMitigation={errorMitigation}
             agent={agent}
             male={male}
+            neutral={neutral}
             finishReturn={this.finishReturn.bind(this)}
             errorMit={errorMit}
           />
@@ -399,22 +405,22 @@ class Study extends React.Component {
     else if (currTex != null) {
       return (
           <div>
-            {male ? <h3>Male</h3> : <h3>Female</h3>}
+            {male ? <h3>Male</h3> : (neutral ? <h3>Neutral</h3> : <h3>Female</h3>)}
             <div className="wrapper">
               <div className="list">
                 <h3 style={{fontFamily: "cursive"}}> Shopping List </h3>
                 {items.map((item, i) => {
                   return (
                     <div key={i}>
-                      {!item.added ? ( speaking || response >= 0 ? <p className="list-disabled">{item.name}</p> : <button className="list-item" onClick={() => this.orderItem(i, male)}> {item.name} </button>)  :
+                      {!item.added ? ( speaking || response >= 0 ? <p className="list-disabled">{item.name}</p> : <button className="list-item" onClick={() => this.orderItem(i, male ,neutral)}> {item.name} </button>)  :
                                     <p className="list-added"> {item.name} </p> }
                     </div>
                   )
                 })}
                 <audio className="audio-order" src={this.state.itemAudio} onPlay={() => this.speaking()} onEnded={() => this.triggerResponse()}/>
-                <audio className="audio-try-again" src={male ? mtryAud : tryAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
+                <audio className="audio-try-again" src={male ? mtryAud : (neutral ? ntryAud : tryAud)} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
                 <audio className="audio-confirm" onPlay={() => this.speaking()} onEnded={() => this.maybeErrorMit(errorMitigation)}>
-                  <source src={male ? mconfirm : confirm}/>
+                  <source src={male ? mconfirm : (neutral ? nconfirm : confirm)}/>
                 </audio>
                 <audio className="audio-agent-error" src={errorAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
               </div>
@@ -432,17 +438,20 @@ class Study extends React.Component {
                     exchangeItem={this.exchangeItem.bind(this)} 
                     tryAgain={this.tryAgain.bind(this)}
                     male={male}
+                    neutral={neutral}
                   /> }
               </div>
             </div>
-            
             <div className="wrapper" style={{marginTop: "5%"}}>
-              <audio className="audio-repeat" >
-                <source src={male ? mrepeat : frepeat}/>
-              </audio>
-              <div>
-                <button onClick={() => this.repeatAudio()}>"Sorry I didn't quite get that.."</button>
-              </div>
+              {/* EXTRA  */}
+                  <audio className="audio-repeat" >
+                    <source src={male ? mrepeat : (neutral ? nrepeat : frepeat)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.repeatAudio()}>"Sorry I didn't quite get that.."</button>
+                  </div>
+
+
               <div>
               { speaking ? <div className="phone-off"/> :
                 <Cart 

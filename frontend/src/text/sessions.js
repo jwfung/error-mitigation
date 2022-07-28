@@ -2,6 +2,8 @@ import cartOne from "./cartOne";
 import cartTwo from "./cartTwo";
 import cartFour from "./cartFour";
 import cartFive from "./cartFive";
+import cartThree from "./cartThree";
+import cartSix from "./cartSix";
 
 import instructions from "./instructionsOne";
 import instructionsTwo from "./instructionsTwo";
@@ -20,6 +22,10 @@ const sessions = [
     list: cartTwo,
     text: instructionsTwo,
     agent: <div className="gema"/>,
+  },{ 
+    list: cartThree,
+    text: instructionsTwo,
+    agent: <div className="gema"/>,
   },
   {
     list: cartFour,
@@ -28,6 +34,12 @@ const sessions = [
   },
   {
     list: cartFive,
+    text: instructionsFinal,
+    agent: <div className="gema"/>,
+  },
+
+  {
+    list: cartSix,
     text: instructionsFinal,
     agent: <div className="gema"/>,
   },

@@ -75,7 +75,7 @@ const cartThree = [
     list: true
   },
   {
-    name: "(eye) glasses",
+    name: "glasses",
     firstOpt: {
       name: "Gold Framed Glasses", 
       des: "Okay, I found Gold Framed Glasses. Should I add to cart?",

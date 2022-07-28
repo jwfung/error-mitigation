@@ -52,6 +52,16 @@ class App extends React.Component {
 
             <input type="radio" id="3" value="3" name="latinsqr"/>
             <label for="3">3: m-cas, f-serious, f-cas, m-serious</label>
+
+            <input type="radio" id="4" value="4" name="latinsqr"/>
+            <label for="2">4: </label>
+
+            <input type="radio" id="5" value="5" name="latinsqr"/>
+            <label for="2">5: </label>
+
+            <input type="radio" id="6" value="6" name="latinsqr"/>
+            <label for="2">6: </label>
+
             <br/>
 
           </div>

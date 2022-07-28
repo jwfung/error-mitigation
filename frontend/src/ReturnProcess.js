@@ -1,6 +1,8 @@
 import "./App.css";
 import React from "react";
-import returnItm from "./assets/audio/return.mp3"; //TODO
+import returnItm from "./assets/audio/return.mp3";
+import nreturnItm from "./assets/audio/nreturn.mp3";
+//TODO need neutral
 import mreturnItm from "./assets/audio/mreturn.mp3";
 
 import nextBtn from "./assets/next.png";
@@ -39,9 +41,9 @@ class ReturnProcess extends React.Component{
   }
 
   render() {
-    const { errorAud, errorMitigation, agent, finishReturn, male } = this.props;
+    const { errorAud, errorMitigation, agent, finishReturn, male, neutral } = this.props;
     const { speaking } = this.state;
-    const returnAud = male ? mreturnItm : returnItm;
+    const returnAud = male ? mreturnItm : (neutral ? nreturnItm : returnItm);
 
     return (
       <div style={{marginTop: "10%"}}>

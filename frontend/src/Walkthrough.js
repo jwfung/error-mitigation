@@ -23,9 +23,10 @@ class Walkthrough extends React.Component {
   render() {
     const { index } = this.state;
     const { checkpointText, sess, latinsqr } = this.props;
-    const male = ((latinsqr === "2" || latinsqr === "3") ? true : false)
+    const male = ((latinsqr === "2" || latinsqr === "5") ? true : false)
+    const neutral = ((latinsqr === "1" || latinsqr === "4") ? true : false)
 
-    if (sess === 4) {
+    if (sess === 6) {
       return (<p>finished</p>)
     }
 
@@ -66,6 +67,7 @@ class Walkthrough extends React.Component {
             isDemo={true}
             megaSpeak={currTex.speak}
             male={male}
+            neutral={neutral}
             getNextText={this.getNextText.bind(this)}
           />
         </div>
