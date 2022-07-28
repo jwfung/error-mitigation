@@ -14,6 +14,15 @@ import nrepeat from "./assets/audio/nrepeat.mp3";
 import fbeyond from "./assets/audio/fbeyond.mp3";
 import mbeyond from "./assets/audio/mbeyond.mp3";
 import nbeyond from "./assets/audio/nbeyond.mp3";
+import fcheckout from "./assets/audio/fcheckout.mp3";
+import mcheckout from "./assets/audio/ncheckout.mp3";
+import ncheckout from "./assets/audio/ncheckout.mp3";
+import fincart from "./assets/audio/fincart.mp3";
+import mincart from "./assets/audio/mincart.mp3";
+import nincart from "./assets/audio/nincart.mp3";
+import fnotcart from "./assets/audio/fnotcart.mp3";
+import mnotcart from "./assets/audio/mnotcart.mp3";
+import nnotcart from "./assets/audio/nnotcart.mp3";
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
