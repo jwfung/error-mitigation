@@ -38,29 +38,31 @@ class App extends React.Component {
         <div className="App">
           <h4>Select Latinsquare model</h4>
           <div onChange={this.onChangeValue}>
+		<br/>
             <input type="radio" id="0" value="0" name="latinsqr"/>
-            <label for="0">0: f-serious, f-cas, m-serious, m-cas</label>
+            <label for="0">Row 1</label>
             <br/>
 
             <input type="radio" id="1" value="1" name="latinsqr"/>
-            <label for="1">1: f-cas, m-serious, m-cas, f-serious</label>
+            <label for="1">Row 2</label>
             <br/>
 
             <input type="radio" id="2" value="2" name="latinsqr"/>
-            <label for="2">2: m-serious, m-cas, f-serious, f-cas</label>
+            <label for="2">Row 3</label>
             <br/>
 
             <input type="radio" id="3" value="3" name="latinsqr"/>
-            <label for="3">3: m-cas, f-serious, f-cas, m-serious</label>
+            <label for="3">Row 4</label>
+		 <br/>
 
             <input type="radio" id="4" value="4" name="latinsqr"/>
-            <label for="2">4: </label>
+            <label for="4">Row 5 </label>
+		 <br/>
 
             <input type="radio" id="5" value="5" name="latinsqr"/>
-            <label for="2">5: </label>
+            <label for="5">Row 6</label>
 
-            <input type="radio" id="6" value="6" name="latinsqr"/>
-            <label for="2">6: </label>
+
 
             <br/>
 

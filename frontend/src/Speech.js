@@ -3,8 +3,8 @@ import React from "react";
 
 import nextBtn from "./assets/next.png";
 import faudio from "./assets/audio/temp.mp3";
-import maudio from "./assets/audio/mweather.mp3";
-
+import maudio from "./assets/audio/mtemp.mp3";
+import naudio from "./assets/audio/ntemp.mp3";
 
 class NextButton extends React.Component{
   render() {
@@ -55,10 +55,10 @@ class Speech extends React.Component {
   }
 
   render() {
-    const { megaSpeak, male } = this.props;
+    const { megaSpeak, male, neutral } = this.props;
     const { clickSpeak, speaking } = this.state;
     const btnName = "Ask the weather";
-    const audio = male ? faudio : faudio; //TODO:
+    const audio = male ? maudio : (neutral ? naudio:faudio); //TODO:
 
     return (
       <div>

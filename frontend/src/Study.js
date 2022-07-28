@@ -15,7 +15,7 @@ import fbeyond from "./assets/audio/fbeyond.mp3";
 import mbeyond from "./assets/audio/mbeyond.mp3";
 import nbeyond from "./assets/audio/nbeyond.mp3";
 import fcheckout from "./assets/audio/fcheckout.mp3";
-import mcheckout from "./assets/audio/ncheckout.mp3";
+import mcheckout from "./assets/audio/mcheckout.mp3";
 import ncheckout from "./assets/audio/ncheckout.mp3";
 import fincart from "./assets/audio/fincart.mp3";
 import mincart from "./assets/audio/mincart.mp3";
@@ -23,6 +23,12 @@ import nincart from "./assets/audio/nincart.mp3";
 import fnotcart from "./assets/audio/fnotcart.mp3";
 import mnotcart from "./assets/audio/mnotcart.mp3";
 import nnotcart from "./assets/audio/nnotcart.mp3";
+import farrive from "./assets/audio/farrive.mp3";
+import marrive from "./assets/audio/marrive.mp3";
+import narrive from "./assets/audio/narrive.mp3";
+import fremoved from "./assets/audio/fremoved.mp3";
+import mremoved from "./assets/audio/mremoved.mp3";
+import nremoved from "./assets/audio/nremoved.mp3";
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
@@ -288,6 +294,30 @@ class Study extends React.Component {
     const audioAgent = document.getElementsByClassName("audio-repeat")[0];
     audioAgent.play();
   }
+  beyondAudio() {
+    const audioAgent = document.getElementsByClassName("audio-beyond")[0];
+    audioAgent.play();
+  }
+  arriveAudio() {
+    const audioAgent = document.getElementsByClassName("audio-arrive")[0];
+    audioAgent.play();
+  }
+  removedAudio() {
+    const audioAgent = document.getElementsByClassName("audio-removed")[0];
+    audioAgent.play();
+  }
+  incartAudio() {
+    const audioAgent = document.getElementsByClassName("audio-incart")[0];
+    audioAgent.play();
+  }
+  notcartAudio() {
+    const audioAgent = document.getElementsByClassName("audio-notcart")[0];
+    audioAgent.play();
+  }
+  checkoutAudio() {
+    const audioAgent = document.getElementsByClassName("audio-checkout")[0];
+    audioAgent.play();
+  }
 
   //post-delivery survey
   handleSubmission() {   
@@ -460,49 +490,48 @@ class Study extends React.Component {
                     <source src={male ? mrepeat : (neutral ? nrepeat : frepeat)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.repeatAudio()}>"Sorry I didn't quite get that.."</button>
+                    <button onClick={() => this.repeatAudio()}>"I didn't quite get that.."</button>
                   </div>
-
  			<audio className="audio-beyond" >
                     <source src={male ? mbeyond : (neutral ? nbeyond : fbeyond)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.repeatAudio()}>"Unfortunately, that is beyond capabailities."</button>
+                    <button onClick={() => this.beyondAudio()}>"Unfortunately, that is beyond capabailities."</button>
                   </div>
 			
 			<audio className="audio-checkout" >
                     <source src={male ? mcheckout : (neutral ? ncheckout : fcheckout)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.repeatAudio()}>"Would you like to check out?"</button>
+                    <button onClick={() => this.checkoutAudio()}>"Would you like to check out?"</button>
                   </div>
 
 			<audio className="audio-arrive" >
                     <source src={male ? marrive : (neutral ? narrive : farrive)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.repeatAudio()}>"Okay, checking out. Your order will arrive shortly"</button>
+                    <button onClick={() => this.arriveAudio()}>"Okay, checking out. Your order will arrive shortly"</button>
                   </div>
 			
 			<audio className="audio-removed" >
                     <source src={male ? mremoved : (neutral ? nremoved : fremoved)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.repeatAudio()}>"Your item has been removed."</button>
+                    <button onClick={() => this.removedAudio()}>"Your item has been removed."</button>
                   </div>
 
 			<audio className="audio-incart" >
                     <source src={male ? mincart : (neutral ? nincart : fincart)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.repeatAudio()}>"Yes, that item is already in the cart."</button>
+                    <button onClick={() => this.incartAudio()}>"Yes, that item is already in the cart."</button>
                   </div>
 
 			<audio className="audio-notcart" >
                     <source src={male ? mnotcart : (neutral ? nnotcart : fnotcart)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.repeatAudio()}>"Yes, that item is already in the cart."</button>
+                    <button onClick={() => this.notcartAudio()}>"No, that item is not in the cart..."</button>
                   </div>
 
               <div>
