@@ -29,6 +29,9 @@ import narrive from "./assets/audio/narrive.mp3";
 import fremoved from "./assets/audio/fremoved.mp3";
 import mremoved from "./assets/audio/mremoved.mp3";
 import nremoved from "./assets/audio/nremoved.mp3";
+import fgreeting from "./assets/audio/fgreeting.mp3";
+import mgreeting from "./assets/audio/mgreeting.mp3";
+import ngreeting from "./assets/audio/ngreeting.mp3";
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
@@ -318,6 +321,10 @@ class Study extends React.Component {
     const audioAgent = document.getElementsByClassName("audio-checkout")[0];
     audioAgent.play();
   }
+  greetingAudio() {
+    const audioAgent = document.getElementsByClassName("audio-greeting")[0];
+    audioAgent.play();
+  }
 
   //post-delivery survey
   handleSubmission() {   
@@ -532,6 +539,13 @@ class Study extends React.Component {
                   </audio>
                   <div>
                     <button onClick={() => this.notcartAudio()}>"No, that item is not in the cart..."</button>
+                  </div>
+			
+			<audio className="audio-greeting" >
+                    <source src={male ? mgreeting : (neutral ? ngreeting : fgreeting)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.greetingAudio()}>"I am doing alright. How can ...?"</button>
                   </div>
 
               <div>

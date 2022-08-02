@@ -9,13 +9,13 @@ import a6 from "../assets/audio/male_compensation.mp3"
 const er1 = {
   audio: a1, 
   audio2: null,
-  error: "​I am sorry for the inconvenience. I confused the items because there are multiple items for this keyword. From time to time, I have difficulty distinguishing between homonyms.",
+  error: "​I am sorry for the inconvenience. I confused the items because there are multiple items for this keyword. From time to time, I have difficulty distinguishing among such items.",
   male: false,
   neutral: false
 };
 const er2 = {
   audio: a2, 
-  error: "​I am sorry for the inconvenience. I confused the items because there are multiple items for this keyword. From time to time, I have difficulty distinguishing between homonyms.",
+  error: "​I am sorry for the inconvenience. I confused the items because there are multiple items for this keyword. From time to time, I have difficulty distinguishing among such items.",
   male: false,
   neutral: true
 };
@@ -23,7 +23,7 @@ const er2 = {
   const er3 = {
   audio: a3, 
   audio2: null,
-  error: "​I am sorry for the inconvenience. I confused the items because there are multiple items for this keyword. From time to time, I have difficulty distinguishing between homonyms.",
+  error: "​I am sorry for the inconvenience. I confused the items because there are multiple items for this keyword. From time to time, I have difficulty distinguishing among such items.",
   male: true,
   neutral: false
 };
