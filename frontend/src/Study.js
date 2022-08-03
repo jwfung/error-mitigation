@@ -32,6 +32,22 @@ import nremoved from "./assets/audio/nremoved.mp3";
 import fgreeting from "./assets/audio/fgreeting.mp3";
 import mgreeting from "./assets/audio/mgreeting.mp3";
 import ngreeting from "./assets/audio/ngreeting.mp3";
+import fspecificItem from "./assets/audio/fspecificItem.mp3";
+import mspecificItem from "./assets/audio/mspecificItem.mp3";
+import nspecificItem from "./assets/audio/nspecificItem.mp3";
+import fhi from "./assets/audio/fhi.mp3";
+import mhi from "./assets/audio/mhi.mp3";
+import nhi from "./assets/audio/nhi.mp3";
+import fyes from "./assets/audio/fyes.mp3";
+import myes from "./assets/audio/myes.mp3";
+import nyes from "./assets/audio/nyes.mp3";
+import fno from "./assets/audio/fno.mp3";
+import mno from "./assets/audio/mno.mp3";
+import nno from "./assets/audio/nno.mp3";
+
+
+
+
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
@@ -183,15 +199,15 @@ class Study extends React.Component {
     const item = items[i];
     const { wrongItem } = item;
 
-    if (wrongItem && !wrongItem.rejected) {
+   /* if (wrongItem && !wrongItem.rejected) {
       wrongItem.rejected = true;
       if (sessOrder[this.props.latinsqr][this.props.sess].audio != null) {
         this.setState({maybeErrorMit: true})
       }
-    } 
+    } */
     item.added = false;
     this.setState({ items, itemCounter: itemCounter - 1, itemDes: false, errcount: errcount + 1});
-    this.tryAgain(i);
+    //this.tryAgain(i);
   }
 
   tryAgain(i) {
@@ -325,6 +341,25 @@ class Study extends React.Component {
     const audioAgent = document.getElementsByClassName("audio-greeting")[0];
     audioAgent.play();
   }
+  specificItemAudio() {
+    const audioAgent = document.getElementsByClassName("audio-specificItem")[0];
+    audioAgent.play();
+  }
+  hiAudio() {
+    const audioAgent = document.getElementsByClassName("audio-hi")[0];
+    audioAgent.play();
+  }
+  yesAudio() {
+    const audioAgent = document.getElementsByClassName("audio-yes")[0];
+    audioAgent.play();
+  }
+
+  noAudio() {
+    const audioAgent = document.getElementsByClassName("audio-no")[0];
+    audioAgent.play();
+  }
+
+
 
   //post-delivery survey
   handleSubmission() {   
@@ -512,6 +547,13 @@ class Study extends React.Component {
                   <div>
                     <button onClick={() => this.checkoutAudio()}>"Would you like to check out?"</button>
                   </div>
+			
+			<audio className="audio-specificItem" >
+                    <source src={male ? mspecificItem : (neutral ? nspecificItem : fspecificItem)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.specificItemAudio()}>"but ask me if a specific item is in cart?.?"</button>
+                  </div>
 
 			<audio className="audio-arrive" >
                     <source src={male ? marrive : (neutral ? narrive : farrive)}/>
@@ -546,6 +588,24 @@ class Study extends React.Component {
                   </audio>
                   <div>
                     <button onClick={() => this.greetingAudio()}>"I am doing alright. How can ...?"</button>
+                  </div>
+			<audio className="audio-hi" >
+                    <source src={male ? mhi : (neutral ? nhi : fhi)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.hiAudio()}>"Hi. How can I help ...?"</button>
+                  </div>
+			<audio className="audio-yes" >
+                    <source src={male ? myes : (neutral ? nyes : fyes)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.yesAudio()}>"Yes"</button>
+                  </div>
+			<audio className="audio-no" >
+                    <source src={male ? mno : (neutral ? nno : fno)}/>
+                  </audio>
+                  <div>
+                    <button onClick={() => this.noAudio()}>"No"</button>
                   </div>
 
               <div>
