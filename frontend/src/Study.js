@@ -69,6 +69,7 @@ class Response extends React.Component {
         <button className="response" onClick={() => this.props.addItem(index)}>"Yes, add to cart"</button>
         <button className="response" onClick={() => this.props.exchangeItem(index, male, neutral)}>"Show me more options"</button>
         <button className="response" onClick={() => this.props.tryAgain(index)}>"No, this is incorrect"</button>
+	  <button className="response" onClick={() => this.props.addItemWithoutAudio(index,male,neutral)}>"Repeat that"</button>
       </div>
     );
   }
@@ -154,6 +155,39 @@ class Study extends React.Component {
   orderItemAudio() {
     const audioAgent = document.getElementsByClassName("audio-order")[0];
     audioAgent.play();
+  }
+  
+  addItemWithoutAudio(index,male,neutral) {
+    const { itemCounter, currItem } = this.state;
+    const { items } = this.props;
+    const item = items[index];
+    items[index].added = true
+
+    //this.addItemAudio();
+    console.log(currItem);
+
+    const curr = item.wrongItem && !item.wrongItem.rejected ? (item.wrongItem.firstOpt.inCart ? item.wrongItem.firstOpt.name : item.wrongItem.secondOpt.name) : 
+    (item.added && item.firstOpt.inCart ? item.firstOpt.name : item.secondOpt.name);
+
+    this.state.cart.push(curr)
+    this.state.cartOrder.push({item: curr, err: this.state.errcount, cartcnt: this.state.cartcount})
+
+    this.setState({ 
+      items, 
+      itemCounter: itemCounter + 1, 
+      errorMit: false, 
+      itemAdded: true,
+      response: -1,
+      itemDes: false,
+      errorcount: 0,
+      cartcount: 0,
+      currItem: curr
+    })
+      
+    console.log("push" + this.state.cartOrder)
+    this.removeItem(index);
+    this.orderItem(index, male, neutral);
+    
   }
 
   addItem(index) {
@@ -521,6 +555,7 @@ class Study extends React.Component {
                     addItem={this.addItem.bind(this)} 
                     exchangeItem={this.exchangeItem.bind(this)} 
                     tryAgain={this.tryAgain.bind(this)}
+			  addItemWithoutAudio = {this.addItemWithoutAudio.bind(this)}
                     male={male}
                     neutral={neutral}
                   /> }
