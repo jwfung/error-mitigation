@@ -38,6 +38,9 @@ import nspecificItem from "./assets/audio/nspecificItem.mp3";
 import fhi from "./assets/audio/fhi.mp3";
 import mhi from "./assets/audio/mhi.mp3";
 import nhi from "./assets/audio/nhi.mp3";
+import fhelp from "./assets/audio/fhelp.mp3";
+import mhelp from "./assets/audio/mhelp.mp3";
+import nhelp from "./assets/audio/nhelp.mp3";
 import fyes from "./assets/audio/fyes.mp3";
 import myes from "./assets/audio/myes.mp3";
 import nyes from "./assets/audio/nyes.mp3";
@@ -45,9 +48,21 @@ import fno from "./assets/audio/fno.mp3";
 import mno from "./assets/audio/mno.mp3";
 import nno from "./assets/audio/nno.mp3";
 
+import ftemp from "./assets/audio/temp.mp3";
+import mtemp from "./assets/audio/mtemp.mp3";
+import ntemp from "./assets/audio/ntemp.mp3";
 
+import returnItm from "./assets/audio/return.mp3";
+import nreturnItm from "./assets/audio/nreturn.mp3";
+import mreturnItm from "./assets/audio/mreturn.mp3";
 
+import whichItem from "./assets/audio/whichItem.mp3";
+import mwhichItem from "./assets/audio/mwhichItem.mp3";
+import nwhichItem from "./assets/audio/nwhichItem.mp3";
 
+import returnedRefunded from "./assets/audio/returnedRefunded.mp3";
+import mreturnedRefunded from "./assets/audio/mreturnedRefunded.mp3";
+import nreturnedRefunded from "./assets/audio/nreturnedRefunded.mp3";
 
 import checkpointTwo from "./text/checkpointTwo";
 import sessions from "./text/sessions";
@@ -185,7 +200,7 @@ class Study extends React.Component {
     })
       
     console.log("push" + this.state.cartOrder)
-    this.removeItem(index);
+    this.removeItemWithoutAudio(index);
     this.orderItem(index, male, neutral);
     
   }
@@ -233,16 +248,64 @@ class Study extends React.Component {
     const item = items[i];
     const { wrongItem } = item;
 
-   /* if (wrongItem && !wrongItem.rejected) {
+    if (wrongItem && !wrongItem.rejected) {
       wrongItem.rejected = true;
       if (sessOrder[this.props.latinsqr][this.props.sess].audio != null) {
         this.setState({maybeErrorMit: true})
       }
-    } */
+    }
     item.added = false;
     this.setState({ items, itemCounter: itemCounter - 1, itemDes: false, errcount: errcount + 1});
-    //this.tryAgain(i);
-  }
+    this.tryAgainWithoutAudio(i);
+    }
+
+    removeItemWithoutAudio(i) {
+        const { itemCounter, errcount } = this.state;
+        const { items } = this.props;
+        const item = items[i];
+        const { wrongItem } = item;
+
+        /* if (wrongItem && !wrongItem.rejected) {
+           wrongItem.rejected = true;
+           if (sessOrder[this.props.latinsqr][this.props.sess].audio != null) {
+             this.setState({maybeErrorMit: true})
+           }
+         } */
+        item.added = false;
+        this.setState({ items, itemCounter: itemCounter - 1, itemDes: false, errcount: errcount + 1 });
+        //this.tryAgainWithoutAudio(i);
+    }
+
+    tryAgainWithoutAudio(i) {
+        const { items } = this.props;
+        const item = items[i];
+        const audioAgent = document.getElementsByClassName("audio-try-again")[0];
+        const { wrongItem } = item;
+        const { firstOpt, secondOpt } = wrongItem ? (wrongItem.rejected ? item : wrongItem) : item;
+
+
+        if (wrongItem && !wrongItem.rejected) {
+            wrongItem.rejected = true;
+            this.setState({ maybeErrorMit: true })
+        }
+        if (firstOpt.inCart) {
+            firstOpt.inCart = false;
+            secondOpt.inCart = true;
+        } else if (secondOpt.inCart) {
+            firstOpt.inCart = true;
+            secondOpt.inCart = false;
+        }
+
+        this.setState({
+            tryAgain: true,
+            itemDes: false,
+            items,
+            response: -1,
+            errcount: this.state.errcount + 1
+        });
+
+        //audioAgent.play();
+    }
 
   tryAgain(i) {
     const { items } = this.props;
@@ -291,7 +354,13 @@ class Study extends React.Component {
     audioAgent.play();
 
     this.setState({playReturn: false})
-  }
+    }
+
+    startReturn() {
+        this.setState({ playReturn: true, speaking: true })
+        const audioAgent = document.getElementsByClassName("audio-return")[0];
+        audioAgent.play();
+    }
 
   errorMitigation(i) {
     const { items } = this.props;
@@ -382,7 +451,11 @@ class Study extends React.Component {
   hiAudio() {
     const audioAgent = document.getElementsByClassName("audio-hi")[0];
     audioAgent.play();
-  }
+    }
+    helpAudio() {
+        const audioAgent = document.getElementsByClassName("audio-help")[0];
+        audioAgent.play();
+    }
   yesAudio() {
     const audioAgent = document.getElementsByClassName("audio-yes")[0];
     audioAgent.play();
@@ -393,7 +466,23 @@ class Study extends React.Component {
     audioAgent.play();
   }
 
+    whichItemAudio() {
+      const audioAgent = document.getElementsByClassName("audio-whichItem")[0];
+      audioAgent.play();
+    }
+    refundedAudio() {
+        const audioAgent = document.getElementsByClassName("audio-refunded")[0];
+        audioAgent.play();
+    }
 
+    tempAudio() {
+        const audioAgent = document.getElementsByClassName("audio-temp")[0];
+        audioAgent.play();
+    }
+    tryAudio() {
+        const audioAgent = document.getElementsByClassName("audio-try")[0];
+        audioAgent.play();
+    }
 
   //post-delivery survey
   handleSubmission() {   
@@ -473,6 +562,8 @@ class Study extends React.Component {
     const neutral = sessOrder[latinsqr][sess].neutral;
     const errorAud = sessOrder[latinsqr][sess].audio;
     const agent = sessions[sess].agent;
+    const returnAud = male ? mreturnItm : (neutral ? nreturnItm : returnItm);
+
 
     if (submit) {
       console.log("submit")
@@ -540,7 +631,9 @@ class Study extends React.Component {
                 <audio className="audio-confirm" onPlay={() => this.speaking()} onEnded={() => this.maybeErrorMit(errorMitigation)}>
                   <source src={male ? mconfirm : (neutral ? nconfirm : confirm)}/>
                 </audio>
-                <audio className="audio-agent-error" src={errorAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()}/>
+                      <audio className="audio-agent-error" src={errorAud} onPlay={() => this.speaking()} onEnded={() => this.doneSpeaking()} />
+                      <audio className="audio-return" src={returnAud} onEnded={() => this.doneSpeaking()} />
+                      
               </div>
 
               <div>
@@ -555,7 +648,9 @@ class Study extends React.Component {
                     addItem={this.addItem.bind(this)} 
                     exchangeItem={this.exchangeItem.bind(this)} 
                     tryAgain={this.tryAgain.bind(this)}
-			  addItemWithoutAudio = {this.addItemWithoutAudio.bind(this)}
+                    tryAgainWithoutAudio={this.tryAgainWithoutAudio.bind(this)}
+                    addItemWithoutAudio={this.addItemWithoutAudio.bind(this)}
+                    //removeItemWithoutAudio={this.removeItemWithoutAudio.bind(this)}
                     male={male}
                     neutral={neutral}
                   /> }
@@ -567,87 +662,103 @@ class Study extends React.Component {
                     <source src={male ? mrepeat : (neutral ? nrepeat : frepeat)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.repeatAudio()}>"I didn't quite get that.."</button>
+                      <button onClick={() => this.repeatAudio()}>"I didn't quite get that.."</button>
+                      <button onClick={() => this.removedAudio()}>"Your item has been removed."</button>
                   </div>
  			<audio className="audio-beyond" >
                     <source src={male ? mbeyond : (neutral ? nbeyond : fbeyond)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.beyondAudio()}>"Unfortunately, that is beyond capabailities."</button>
+                      
+                      <button onClick={() => this.beyondAudio()}>"Unfortunately, that is beyond capabailities."</button>
+                      <button onClick={() => this.specificItemAudio()}>"but ask me if a specific item is in cart?.?"</button>
                   </div>
 			
 			<audio className="audio-checkout" >
                     <source src={male ? mcheckout : (neutral ? ncheckout : fcheckout)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.checkoutAudio()}>"Would you like to check out?"</button>
+                      <button onClick={() => this.checkoutAudio()}>"Would you like to check out?"</button>
+                      <button onClick={() => this.arriveAudio()}>"Okay, checking out. Your order will arrive shortly"</button>
+
                   </div>
 			
 			<audio className="audio-specificItem" >
                     <source src={male ? mspecificItem : (neutral ? nspecificItem : fspecificItem)}/>
                   </audio>
-                  <div>
-                    <button onClick={() => this.specificItemAudio()}>"but ask me if a specific item is in cart?.?"</button>
-                  </div>
+                  
+                    
+                  
 
 			<audio className="audio-arrive" >
                     <source src={male ? marrive : (neutral ? narrive : farrive)}/>
                   </audio>
-                  <div>
-                    <button onClick={() => this.arriveAudio()}>"Okay, checking out. Your order will arrive shortly"</button>
-                  </div>
+                  
+                  
 			
 			<audio className="audio-removed" >
                     <source src={male ? mremoved : (neutral ? nremoved : fremoved)}/>
                   </audio>
-                  <div>
-                    <button onClick={() => this.removedAudio()}>"Your item has been removed."</button>
-                  </div>
+                  
+                    
+                  
 
 			<audio className="audio-incart" >
                     <source src={male ? mincart : (neutral ? nincart : fincart)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.incartAudio()}>"Yes, that item is already in the cart."</button>
+                      <button onClick={() => this.incartAudio()}>"Yes, that item is already in the cart."</button>
+                      <button onClick={() => this.notcartAudio()}>"No, that item is not in the cart..."</button>
+
                   </div>
 
 			<audio className="audio-notcart" >
                     <source src={male ? mnotcart : (neutral ? nnotcart : fnotcart)}/>
                   </audio>
-                  <div>
-                    <button onClick={() => this.notcartAudio()}>"No, that item is not in the cart..."</button>
-                  </div>
+                  
+                  
 			
 			<audio className="audio-greeting" >
                     <source src={male ? mgreeting : (neutral ? ngreeting : fgreeting)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.greetingAudio()}>"I am doing alright. How can ...?"</button>
+                      <button onClick={() => this.greetingAudio()}>"I am doing alright. How can ...?"</button>
+                      <button onClick={() => this.hiAudio()}>"Hi."</button>
+                      <button onClick={() => this.helpAudio()}>"How can I help ...?"</button>
                   </div>
 			<audio className="audio-hi" >
                     <source src={male ? mhi : (neutral ? nhi : fhi)}/>
                   </audio>
-                  <div>
-                    <button onClick={() => this.hiAudio()}>"Hi. How can I help ...?"</button>
-                  </div>
+            <audio className="audio-help" >
+                      <source src={male ? mhelp : (neutral ? nhelp : fhelp)} />
+                  </audio>     
+                    
+                  
 			<audio className="audio-yes" >
                     <source src={male ? myes : (neutral ? nyes : fyes)}/>
                   </audio>
                   <div>
-                    <button onClick={() => this.yesAudio()}>"Yes"</button>
+                      <button onClick={() => this.yesAudio()}>"Yes"</button>
+                      <button onClick={() => this.noAudio()}>"No"</button>
+                      <button onClick={() => this.tempAudio()}>"Weather"</button>
+                      <button onClick={() => this.tryAudio()}>"Let's try that again"</button>
                   </div>
 			<audio className="audio-no" >
                     <source src={male ? mno : (neutral ? nno : fno)}/>
                   </audio>
-                  <div>
-                    <button onClick={() => this.noAudio()}>"No"</button>
-                  </div>
+            <audio className="audio-temp" >
+                      <source src={male ? mtemp : (neutral ? ntemp : ftemp)} />
+                  </audio> 
+            <audio className="audio-try" >
+                <source src={male ? mtryAud : (neutral ? ntryAud : tryAud)} />
+            </audio>
 
               <div>
               { speaking ? <div className="phone-off"/> :
                 <Cart 
                   items={items}
                   removeItem={this.removeItem.bind(this)}
+                  removeItemWithoutAudio={this.removeItemWithoutAudio.bind(this)}
                   exchangeItem={this.exchangeItem.bind(this)}
                   delivered={this.delivered.bind(this)}
                   itemCounter={itemCounter}
@@ -660,7 +771,27 @@ class Study extends React.Component {
                   Proceed to Checkout 
                 </button> 
                 {/* : null } */}
-              </div>
+                  </div>
+                  
+                  <div>
+                      <br/>
+                      <button onClick={() => this.startReturn()}>"Start Return"</button>
+                      <button onClick={() => this.whichItemAudio()}>"which item"</button>
+                      
+                      <br/>
+                      <button onClick={() => this.refundedAudio()}>"Returned and refunded"</button>
+                      <button onClick={() => this.errorMitAudio()}>"Error Mitigation for return"</button>
+                      <audio className="audio-whichItem" >
+                          <source src={male ? mwhichItem : (neutral ? nwhichItem : whichItem)} />
+                      </audio>
+                      <audio className="audio-refunded" >
+                          <source src={male ? mreturnedRefunded : (neutral ? nreturnedRefunded : returnedRefunded)} />
+                      </audio>
+                      
+                          
+                      
+                  </div>
+
             </div>   
         </div>
        
