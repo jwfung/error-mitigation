@@ -170,7 +170,16 @@ class Study extends React.Component {
   orderItemAudio() {
     const audioAgent = document.getElementsByClassName("audio-order")[0];
     audioAgent.play();
-  }
+    }
+  stopSpeaking() {
+      var audios = document.getElementsByTagName('audio');
+      for (var i = 0; i < audios.length; i++) {
+          audios[i].pause();
+          audios[i].currentTime = 0;
+      }
+      
+    }
+
   
   addItemWithoutAudio(index,male,neutral) {
     const { itemCounter, currItem } = this.state;
@@ -781,6 +790,8 @@ class Study extends React.Component {
                       <br/>
                       <button onClick={() => this.refundedAudio()}>"Returned and refunded"</button>
                       <button onClick={() => this.errorMitAudio()}>"Error Mitigation for return"</button>
+                      <br />
+                      <button onClick={() => this.stopSpeaking()}>"Stop Audio"</button>
                       <audio className="audio-whichItem" >
                           <source src={male ? mwhichItem : (neutral ? nwhichItem : whichItem)} />
                       </audio>
